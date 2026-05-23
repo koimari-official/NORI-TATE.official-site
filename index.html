@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>株式会社NORI&amp;TATE | 中小企業から、再び日本を盛り上げる</title>
+  <meta name="description" content="株式会社NORI&amp;TATEは、事業承継を通じて中小企業の技術継承・雇用・事業を守り、日本を盛り上げる会社です。代表：吉田光輝。大阪市北区梅田。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --serif:  'Noto Serif JP', serif;
+      --sans:   'Noto Sans JP', sans-serif;
+      --en:     'Montserrat', sans-serif;
+      --white:  #ffffff;
+      --black:  #111111;
+      --mid:    #888888;
+      --border: #e8e8e8;
+      --col-l:  240px;
+      --col-r:  180px;
+    }
+
+    body {
+      background: var(--white);
+      font-family: var(--sans);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ════════════════════════════
+       背景レイヤー
+    ════════════════════════════ */
+    #bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .bg-panel {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.4s ease;
+    }
+    .bg-panel.active-hero  { opacity: 1; }
+    .bg-panel.active-light { opacity: 0.12; }
+
+    /* ════════════════════════════
+       左サイドバー（ナビ）
+    ════════════════════════════ */
+    #sidebar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: var(--col-l);
+      z-index: 30;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      padding: 3.5rem 2.2rem 3rem;
+      border-right: 1px solid var(--border);
+      /* トランジション */
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    /* ヒーロー表示中：非表示 */
+    body.hero-mode #sidebar {
+      opacity: 0;
+      transform: translateX(-18px);
+      pointer-events: none;
+    }
+
+    .sidebar-logo {
+      font-family: var(--en);
+      font-size: 0.96rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--black);
+      text-decoration: none;
+      line-height: 1.4;
+      display: block;
+      margin-bottom: 3.5rem;
+      white-space: nowrap;
+    }
+    .sidebar-logo span {
+      display: block;
+      font-family: var(--serif);
+      font-size: 0.76rem;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      color: var(--mid);
+      margin-top: 0.4rem;
+      line-height: 1.6;
+    }
+
+    .sidebar-nav ul { list-style: none; }
+    .sidebar-nav li a {
+      display: block;
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--mid);
+      text-decoration: none;
+      padding: 0.8rem 0;
+      transition: color 0.25s;
+    }
+    .sidebar-nav li a:hover,
+    .sidebar-nav li a.active {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* ════════════════════════════
+       右サイドバー（SNS・連絡先）
+    ════════════════════════════ */
+    #right-sidebar {
+      position: fixed;
+      right: 0; top: 0; bottom: 0;
+      width: var(--col-r);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-left: 1px solid rgba(200,200,200,0.25);
+      overflow: hidden;
+      /* トランジション */
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    /* ヒーロー表示中：非表示 */
+    body.hero-mode #right-sidebar {
+      opacity: 0;
+      transform: translateX(18px);
+      pointer-events: none;
+    }
+
+    #right-sidebar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.78) 0%,
+        rgba(0,0,0,0.35) 45%,
+        transparent 72%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .rs-bottom {
+      position: relative;
+      z-index: 1;
+      padding: 2.4rem 2rem 2.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .rs-sns { display: flex; gap: 1.4rem; align-items: center; }
+    .rs-icon {
+      color: rgba(255,255,255,0.65);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .rs-icon:hover { color: var(--white); }
+
+    .rs-contact { display: flex; flex-direction: column; gap: 0.4rem; }
+    .rs-contact-label {
+      font-family: var(--en);
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.32);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .rs-contact a {
+      font-family: var(--en);
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.62);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rs-contact a:hover { color: rgba(255,255,255,0.9); }
+    .rs-copy {
+      font-family: var(--en);
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.05em;
+    }
+
+    /* ════════════════════════════
+       中央スクロールエリア
+    ════════════════════════════ */
+    #main {
+      margin-left: var(--col-l);
+      margin-right: var(--col-r);
+      position: relative;
+      z-index: 10;
+      /* トランジション */
+      transition: margin-left 0.7s ease, margin-right 0.7s ease;
+    }
+
+    /* ヒーロー表示中：マージン0（全画面） */
+    body.hero-mode #main {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    /* ════════════════════════════
+       ヒーローセクション（全画面）
+    ════════════════════════════ */
+    #top {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--white);
+      padding: 3.5rem 4.5rem;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-en {
+      font-family: var(--en);
+      font-size: clamp(0.65rem, 1.1vw, 0.82rem);
+      font-weight: 300;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      display: block;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-catch {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.75;
+      letter-spacing: 0.06em;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-brand {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      opacity: 1;
+    }
+
+    /* スクロールヒント（中央下） */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .scroll-hint span {
+      font-family: var(--en);
+      font-size: 0.55rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 44px;
+      background: rgba(255,255,255,0.38);
+      transform-origin: top;
+      animation: lineAnim 2s ease-in-out infinite;
+    }
+    @keyframes lineAnim {
+      0%   { transform: scaleY(0); opacity: 0; }
+      40%  { opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ════════════════════════════
+       二列セクションレイアウト
+    ════════════════════════════ */
+    .sec-split {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 4rem;
+      align-items: start;
+      padding: 8rem 3.5rem 8rem 2rem;
+    }
+
+    .sec-head {
+      position: sticky;
+      top: 5rem;
+    }
+
+    .s-label {
+      font-family: var(--en);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+    .s-title {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      font-weight: 400;
+      line-height: 1.65;
+      letter-spacing: 0.03em;
+    }
+    .s-rule {
+      width: 24px;
+      height: 1px;
+      background: #ccc;
+      margin-top: 1.8rem;
+    }
+
+    .s-body {
+      font-size: 0.875rem;
+      line-height: 2.15;
+      color: #444;
+    }
+
+    /* ── CONCEPT ── */
+    .concept-quote {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      line-height: 2.1;
+      color: var(--black);
+      border-left: 2px solid #bbb;
+      padding-left: 1.3rem;
+      margin-bottom: 2.2rem;
+    }
+
+    /* ── NAME ── */
+    .name-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+    .name-word {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 0.7rem;
+    }
+    .name-def { font-size: 0.83rem; line-height: 2; color: #555; }
+    .name-foot {
+      margin-top: 2.5rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.86rem;
+      line-height: 2;
+      color: #555;
+    }
+
+    /* ── BUSINESS ── */
+    .biz-intro { font-size: 0.875rem; line-height: 2.1; color: #555; margin-bottom: 3rem; }
+    .biz-card {
+      padding-top: 3rem;
+      border-top: 2px solid var(--black);
+    }
+    .biz-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .biz-num {
+      font-family: var(--en);
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--black);
+      flex-shrink: 0;
+    }
+    .biz-meta {
+      border-left: 1px solid var(--border);
+      padding-left: 1.6rem;
+    }
+    .biz-location {
+      font-family: var(--en);
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .biz-name {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 400;
+      line-height: 1.6;
+      margin-bottom: 0.3rem;
+    }
+    .biz-sub { font-size: 0.92rem; color: var(--mid); }
+    .biz-body { font-size: 0.85rem; line-height: 2.2; color: #444; margin-bottom: 1.8rem; }
+    .biz-body + .biz-body { margin-top: -0.8rem; }
+    .biz-link {
+      font-family: var(--en);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+      display: inline-block;
+    }
+    .biz-link:hover { opacity: 0.4; }
+
+    /* ── 事業成長の心得 ── */
+    .growth-lead { font-size: 0.875rem; line-height: 2.1; color: #555; margin-bottom: 3rem; }
+    .growth-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+    .g-card { background: var(--white); padding: 2.4rem 2rem; position: relative; }
+    .g-card-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+    .bar-a { background: #e9956a; }
+    .bar-b { background: #5bbfb5; }
+    .bar-c { background: #a989c5; }
+    .bar-d { background: #d4a847; }
+    .g-card-num {
+      font-family: var(--en);
+      font-size: 0.57rem;
+      letter-spacing: 0.28em;
+      color: #ccc;
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+    .g-card-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .g-card-desc { font-size: 0.82rem; line-height: 2; color: #555; }
+
+    /* ════════════════════════════
+       JOIN（黒背景）
+    ════════════════════════════ */
+    #join { background: var(--black); }
+    #join .s-label { color: rgba(255,255,255,0.3); }
+    #join .s-title { color: var(--white); }
+    #join .s-rule  { background: rgba(255,255,255,0.18); }
+
+    .join-lead {
+      font-size: 0.88rem;
+      line-height: 2.2;
+      color: rgba(255,255,255,0.62);
+      margin-bottom: 3rem;
+    }
+    .join-list { list-style: none; margin-bottom: 3.5rem; }
+    .join-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 0.95rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.72);
+    }
+    .join-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+    .join-list li::before { content: '—'; color: rgba(255,255,255,0.22); flex-shrink: 0; }
+    .join-cta {
+      display: inline-block;
+      padding: 0.95rem 2.6rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      font-family: var(--en);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .join-cta:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.65); }
+
+    /* ── COMPANY ── */
+    .co-table { width: 100%; border-collapse: collapse; }
+    .co-table tr { border-bottom: 1px solid var(--border); }
+    .co-table tr:first-child { border-top: 1px solid var(--border); }
+    .co-table th {
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: var(--mid);
+      text-align: left;
+      padding: 1.3rem 1.5rem 1.3rem 0;
+      width: 150px;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+    .co-table td { font-size: 0.86rem; padding: 1.3rem 0; line-height: 1.9; vertical-align: top; }
+    .co-table td a { color: inherit; text-decoration: none; border-bottom: 1px solid #ddd; }
+    .co-table td a:hover { color: #555; }
+
+    /* ── CONTACT ── */
+    .ct-lead { font-size: 0.875rem; line-height: 2.1; color: #555; margin-bottom: 2.5rem; }
+    .ct-form { display: flex; flex-direction: column; gap: 1.3rem; }
+    .ct-row  { display: flex; flex-direction: column; gap: 0.4rem; }
+    .ct-label { font-size: 0.73rem; color: #555; letter-spacing: 0.04em; }
+    .ct-label .req { color: #c07a5a; margin-left: 0.3em; font-size: 0.68rem; }
+    .ct-input, .ct-select, .ct-textarea {
+      width: 100%;
+      padding: 0.8rem 0.9rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.85);
+      font-family: var(--sans);
+      font-size: 0.86rem;
+      color: var(--black);
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+      transition: border-color 0.25s;
+    }
+    .ct-input:focus, .ct-select:focus, .ct-textarea:focus { border-color: #999; }
+    .ct-textarea { min-height: 120px; resize: vertical; line-height: 1.8; }
+    .ct-sel-wrap { position: relative; }
+    .ct-sel-wrap::after {
+      content: '›';
+      position: absolute;
+      right: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      color: var(--mid);
+      pointer-events: none;
+    }
+    .ct-submit {
+      display: block;
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--en);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 0.3rem;
+    }
+    .ct-submit:hover { background: #333; }
+    .ct-note { font-size: 0.72rem; color: #aaa; line-height: 1.9; margin-top: 0.9rem; }
+    #formDone { display: none; padding: 2.5rem; text-align: center; border: 1px solid var(--border); }
+    .done-title { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.6rem; }
+    .done-body  { font-size: 0.83rem; color: #555; line-height: 2; }
+
+    /* ── FOOTER ── */
+    #footer { background: #0c0c0c; color: rgba(255,255,255,0.3); padding: 5rem 4.5rem 3.5rem; }
+    .ft-logo {
+      font-family: var(--en);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.8);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .ft-tag { font-family: var(--serif); font-size: 0.75rem; color: rgba(255,255,255,0.2); margin-bottom: 3rem; }
+    .ft-nav { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+    .ft-nav a {
+      font-family: var(--en);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .ft-nav a:hover { color: rgba(255,255,255,0.7); }
+    .ft-line { width: 36px; height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 2.5rem; }
+    .ft-copy { font-family: var(--en); font-size: 0.62rem; letter-spacing: 0.05em; }
+
+    /* ════════════════════════════
+       下から上へのフェードイン
+    ════════════════════════════ */
+    .js-fade {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .js-fade.on { opacity: 1; transform: translateY(0); }
+    .js-fade.d1 { transition-delay: 0.15s; }
+    .js-fade.d2 { transition-delay: 0.28s; }
+    .js-fade.d3 { transition-delay: 0.40s; }
+    .js-fade.d4 { transition-delay: 0.52s; }
+
+    /* ════════════════════════════
+       レスポンシブ
+    ════════════════════════════ */
+    @media (max-width: 1100px) {
+      :root { --col-l: 200px; --col-r: 180px; }
+    }
+    @media (max-width: 960px) {
+      #right-sidebar { display: none !important; }
+      body.hero-mode #main,
+      #main { margin-right: 0; }
+      .sec-split { grid-template-columns: 1fr; gap: 2.5rem; padding: 6rem 3rem; }
+      .sec-head { position: static; }
+      .name-pair { grid-template-columns: 1fr; gap: 2rem; }
+      .biz-card  { grid-template-columns: 1fr; gap: 2rem; }
+      .biz-visual { order: -1; }
+    }
+    @media (max-width: 660px) {
+      :root { --col-l: 0px; }
+      #sidebar {
+        position: relative;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        flex-direction: row;
+        align-items: center;
+        padding: 1.2rem 1.5rem;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+      }
+      .sidebar-logo { margin-bottom: 0; margin-right: 2rem; }
+      .sidebar-logo span { display: none; }
+      .sidebar-nav ul { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.2rem 1rem; }
+      .sidebar-nav li a { padding: 0.3rem 0; font-size: 0.78rem; }
+      body.hero-mode #main,
+      #main { margin-left: 0; }
+      .sec-split { padding: 4.5rem 1.5rem; }
+      .hero-catch { font-size: 2rem; }
+      .hero-en { letter-spacing: 0.3em; }
+      #footer { padding: 4rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body class="hero-mode">
+
+<!-- ════════════════════════
+     背景レイヤー
+════════════════════════ -->
+<div id="bg-layer" aria-hidden="true">
+  <div class="bg-panel" id="bg-top"      style="background-image:url('hero.jpg.png');"></div>
+  <div class="bg-panel" id="bg-concept"  style="background-image:url('our%20mind.jpg.png');"></div>
+  <div class="bg-panel" id="bg-name"     style="background-image:url('ameft.jpg.jpg');"></div>
+  <div class="bg-panel" id="bg-business" style="background-image:url('cake.jpg');"></div>
+  <div class="bg-panel" id="bg-growth"   style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=70&auto=format&fit=crop');"></div>
+  <div class="bg-panel" id="bg-company"  style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=70&auto=format&fit=crop');"></div>
+  <div class="bg-panel" id="bg-contact"  style="background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=70&auto=format&fit=crop');"></div>
+</div>
+
+
+<!-- ════════════════════════
+     左サイドバー（ナビ）
+════════════════════════ -->
+<aside id="sidebar">
+  <a href="#top" class="sidebar-logo">
+    NORI&amp;TATE Co., Ltd.
+    <span>中小企業から、<br>再び日本を盛り上げる</span>
+  </a>
+  <nav class="sidebar-nav" aria-label="メインナビゲーション">
+    <ul>
+      <li><a href="#top"      class="nav-link active" data-section="top">Top</a></li>
+      <li><a href="#concept"  class="nav-link" data-section="concept">Concept</a></li>
+      <li><a href="#name"     class="nav-link" data-section="name">Name</a></li>
+      <li><a href="#business" class="nav-link" data-section="business">Business</a></li>
+      <li><a href="#growth"   class="nav-link" data-section="growth">心得</a></li>
+      <li><a href="#join"     class="nav-link" data-section="join">Join</a></li>
+      <li><a href="#company"  class="nav-link" data-section="company">Company</a></li>
+      <li><a href="#contact"  class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
+  </nav>
+</aside>
+
+
+<!-- ════════════════════════
+     右サイドバー（SNS・連絡先）
+════════════════════════ -->
+<div id="right-sidebar" aria-label="SNS・連絡先">
+  <div class="rs-bottom">
+    <div class="rs-sns">
+      <a href="https://www.instagram.com/" class="rs-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a href="mailto:noritate.official@gmail.com" class="rs-icon" aria-label="メールでお問い合わせ">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </a>
+    </div>
+    <div class="rs-contact">
+      <span class="rs-contact-label">Contact</span>
+      <a href="tel:09012436770">090-1243-6770</a>
+      <a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a>
+    </div>
+    <p class="rs-copy">&copy; 2026 NORI&amp;TATE Co., Ltd.</p>
+  </div>
+</div>
+
+
+<!-- ════════════════════════
+     中央スクロールエリア
+════════════════════════ -->
+<main id="main">
+
+  <!-- ── TOP（全画面ヒーロー） ── -->
+  <section id="top">
+    <div class="hero-content js-fade">
+      <span class="hero-en">Reviving Japan through Small Business</span>
+      <h1 class="hero-catch">中小企業から、<br>再び日本を<br>盛り上げる。</h1>
+      <p class="hero-brand">株式会社NORI&amp;TATE</p>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ── CONCEPT ── -->
+  <section id="concept">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Concept</span>
+        <h2 class="s-title">代表の<br>考え方</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <p class="concept-quote js-fade d1">
+          「技術はある。けれど、人材や経営体制に課題があり、この先の継続に不安がある」
+        </p>
+        <p class="s-body js-fade d2">
+          そんな経営者の方と同じ目線で向き合い、オーナーの方の想いと現場の価値を尊重しながら、安定した運営体制を並走してつくっていきます。
+        </p>
+        <p class="s-body js-fade d2" style="margin-top:1.4rem;">
+          株式会社NORI&amp;TATEは、私が商社時代に、優れた技術を持つ中小企業が経営者層・後継者不足によって技術を継承できず、事業が衰退していく現場を目の当たりにしてきたことを原点にしています。
+        </p>
+        <p class="s-body js-fade d3" style="margin-top:1.4rem;">
+          私たちは事業承継による技術と雇用の継承を通じて、従来と違った観点から事業を見つめ直し、新しい価値を創造・探求することで成長を図り、働く方とご家族の暮らしをより良くすることを第一に考えております。
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── NAME ── -->
+  <section id="name">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Name</span>
+        <h2 class="s-title">NORI&amp;TATE<br>の由来</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <p class="s-body js-fade d1">
+          社名は、私が学生時代からアメリカンフットボールのランニングバックとしてプレーする中で生まれた合言葉で、環境や前例にとらわれず自ら判断し責任を持って前進するという、私が心がける経営の在り方そのものを表しています。
+        </p>
+        <div class="name-pair">
+          <div class="js-fade d2">
+            <p class="name-word">ノリ（NORI）</p>
+            <p class="name-def">ボールを持ち全速力で走りながら、味方の状況や相手の動きを感じ、最も前進できるルートを瞬時に決める能力。</p>
+          </div>
+          <div class="js-fade d3">
+            <p class="name-word">縦上がり（TATE）</p>
+            <p class="name-def">壁や相手にぶつかられながらも加速し走り続ける。困難を前に立ち止まらず、託された責任を持って突き進む意志。</p>
+          </div>
+        </div>
+        <p class="name-foot js-fade d4">この二つを重ねた言葉が、「ノリと縦上がり（NORI&amp;TATE）」です。</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── BUSINESS ── -->
+  <section id="business">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Business</span>
+        <h2 class="s-title">事業継承<br>実績</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <div class="biz-card js-fade d1">
+          <div class="biz-header">
+            <div class="biz-num">01</div>
+            <div class="biz-meta">
+              <span class="biz-location">No.01 — 大阪市城東区</span>
+              <h3 class="biz-name">ケーキ屋さん こいまり</h3>
+              <p class="biz-sub">Cake Shop Koimari</p>
+            </div>
+          </div>
+          <p class="biz-body js-fade d2">
+            30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり」。そのオーナー様がNORI&amp;TATEの考えに賛同してくださり、事業を引き継ぐことになりました。
+          </p>
+          <p class="biz-body js-fade d3">
+            オーナー様も従業員のみなさんも、これまで通りお店に。私はそこに経営者として加わる形で、もっと地域に愛されるこいまりを一緒につくっていきます。
+          </p>
+          <p class="biz-body js-fade d3" style="margin-bottom:2rem;">
+            長く通ってくださっているお客様、支えてくださっている地域のみなさん。これまでの大切なものはそのままに、これからの新しい価値も少しずつ積み上げていけたらと考えています。
+          </p>
+          <a class="biz-link js-fade d4" href="https://koimari-official.github.io/koimari-site/" target="_blank" rel="noopener noreferrer">公式サイトを見る &nbsp;›</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── 事業成長の心得 ── -->
+  <section id="growth">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Growth</span>
+        <h2 class="s-title">事業成長の<br>心得</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <p class="growth-lead js-fade d1">
+          譲受した事業を育てるにあたり、NORI&amp;TATEが大切にしている４つの柱です。オーナーの想いと現場の価値を尊重しながら、無理のない形で事業を成長させていきます。
+        </p>
+        <div class="growth-cards">
+          <article class="g-card js-fade d2">
+            <div class="g-card-bar bar-a"></div>
+            <span class="g-card-num">01 — Recruitment &amp; Training</span>
+            <h3 class="g-card-title">採用・育成による現場の強化</h3>
+            <p class="g-card-desc">現場を支える人材の採用計画から育成体制の構築まで、事業の実情に合わせて取り組みます。技術と知識が次の世代へ確実に引き継がれる仕組みをつくります。</p>
+          </article>
+          <article class="g-card js-fade d3">
+            <div class="g-card-bar bar-b"></div>
+            <span class="g-card-num">02 — Marketing</span>
+            <h3 class="g-card-title">マーケティングによる企業価値の創出・探求</h3>
+            <p class="g-card-desc">マーケティングの視点から事業の強みを掘り起こし、地域に根ざしたブランドづくりと集客の仕組みを整えます。事業固有の価値を発信し、新たな顧客との接点を創出します。</p>
+          </article>
+          <article class="g-card js-fade d3">
+            <div class="g-card-bar bar-c"></div>
+            <span class="g-card-num">03 — Management Visualization</span>
+            <h3 class="g-card-title">数字と業務の見える化・仕組み化</h3>
+            <p class="g-card-desc">経営状況・業務フロー・財務数値を可視化し、属人化していた判断を「仕組み」へ変えます。経営者が安心して次のステップを描けるよう、管理体制を整備します。</p>
+          </article>
+          <article class="g-card js-fade d4">
+            <div class="g-card-bar bar-d"></div>
+            <span class="g-card-num">04 — Next Generation Structure</span>
+            <h3 class="g-card-title">次世代を担う経営体制づくり</h3>
+            <p class="g-card-desc">後継者の選定・育成から、経営移行のシナリオ設計まで。オーナーの想いを引き継ぎながら、無理のない形で次世代への橋渡しをサポートします。</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── JOIN（黒背景） ── -->
+  <section id="join">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">For Owners</span>
+        <h2 class="s-title" style="color:var(--white);">ともに、<br>次の一歩を。</h2>
+        <div class="s-rule" style="background:rgba(255,255,255,0.18);"></div>
+      </div>
+
+      <div class="sec-body">
+        <p class="join-lead js-fade d1">
+          あなたが長年かけて育ててきた事業には、言葉にできない価値があります。技術、人、地域との絆——それを「売る」のではなく、「渡す」ために、私たちはここにいます。<br><br>
+          私たちの考え方に共感いただける経営者の方と、ともに前進していきたいと考えています。
+        </p>
+        <ul class="join-list js-fade d2">
+          <li>事業を続けたいが、後継者が見つからない</li>
+          <li>従業員や取引先を守りながら引き継ぎたい</li>
+          <li>一人で抱え込まず、一緒に考えてくれる相手が欲しい</li>
+          <li>引退後も、事業の成長を見届けたい</li>
+        </ul>
+        <a class="join-cta js-fade d3" href="#contact">まずは話を聞かせてください &nbsp;›</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── COMPANY ── -->
+  <section id="company">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Company</span>
+        <h2 class="s-title">会社概要</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <table class="co-table js-fade d1">
+          <tbody>
+            <tr><th scope="row">会社名</th><td>株式会社NORI&amp;TATE</td></tr>
+            <tr><th scope="row">設立</th><td>2026年4月19日</td></tr>
+            <tr><th scope="row">代表取締役</th><td>吉田　光輝</td></tr>
+            <tr><th scope="row">所在地</th><td>大阪市北区梅田一丁目２番２号<br>大阪駅前第2ビル１２－１２</td></tr>
+            <tr><th scope="row">連絡先</th><td>090-1243-6770<br><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a></td></tr>
+            <tr><th scope="row">事業内容</th><td>洋菓子製造・小売、卸業<br>事業承継による新規事業への参入</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Contact</span>
+        <h2 class="s-title">お問い<br>合わせ</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <p class="ct-lead js-fade d1">
+          事業承継・経営体制づくりについて、まずはお気軽にご相談ください。秘密は厳守いたします。どんな些細なことでも構いません。
+        </p>
+        <form id="contactForm" class="ct-form js-fade d2">
+          <div class="ct-row">
+            <label class="ct-label">お名前<span class="req">*</span></label>
+            <input class="ct-input" type="text" name="name" required placeholder="山田 太郎">
+          </div>
+          <div class="ct-row">
+            <label class="ct-label">会社名</label>
+            <input class="ct-input" type="text" name="company" placeholder="株式会社○○">
+          </div>
+          <div class="ct-row">
+            <label class="ct-label">メールアドレス<span class="req">*</span></label>
+            <input class="ct-input" type="email" name="email" required placeholder="example@company.co.jp">
+          </div>
+          <div class="ct-row">
+            <label class="ct-label">電話番号</label>
+            <input class="ct-input" type="tel" name="phone" placeholder="090-0000-0000">
+          </div>
+          <div class="ct-row">
+            <label class="ct-label">お問い合わせ種別</label>
+            <div class="ct-sel-wrap">
+              <select class="ct-select" name="type">
+                <option value="">選択してください</option>
+                <option value="succession">事業承継について</option>
+                <option value="recruitment">採用・育成支援について</option>
+                <option value="management">経営管理・見える化について</option>
+                <option value="other">その他・まずは相談したい</option>
+              </select>
+            </div>
+          </div>
+          <div class="ct-row">
+            <label class="ct-label">お問い合わせ内容<span class="req">*</span></label>
+            <textarea class="ct-textarea" name="message" required placeholder="ご相談内容をご記入ください。"></textarea>
+          </div>
+          <button type="submit" class="ct-submit">Send Message</button>
+          <p class="ct-note">
+            ※ 送信後、担当者より数営業日以内にご連絡いたします。<br>
+            ※ ご入力いただいた個人情報は、お問い合わせへの対応にのみ使用いたします。
+          </p>
+        </form>
+        <div id="formDone">
+          <p class="done-title">お問い合わせありがとうございます</p>
+          <p class="done-body">内容を確認の上、担当者よりご連絡いたします。<br>しばらくお待ちください。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <footer id="footer">
+    <span class="ft-logo">NORI&amp;TATE Co., Ltd.</span>
+    <p class="ft-tag">中小企業から、再び日本を盛り上げる。</p>
+    <nav class="ft-nav">
+      <a href="#top">Top</a><a href="#concept">Concept</a><a href="#name">Name</a>
+      <a href="#business">Business</a><a href="#growth">心得</a>
+      <a href="#join">Join</a><a href="#company">Company</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="ft-line"></div>
+    <p class="ft-copy">&copy; 2026 株式会社NORI&amp;TATE. All Rights Reserved.</p>
+  </footer>
+
+</main>
+
+
+<script>
+  // ── 背景切替マップ ──
+  const bgMap = {
+    top:      { panel:'bg-top',      mode:'hero'  },
+    concept:  { panel:'bg-concept',  mode:'light' },
+    name:     { panel:'bg-name',     mode:'light' },
+    business: { panel:'bg-business', mode:'light' },
+    growth:   { panel:'bg-growth',   mode:'light' },
+    join:     { panel:'bg-growth',   mode:'light' },
+    company:  { panel:'bg-company',  mode:'light' },
+    contact:  { panel:'bg-contact',  mode:'light' },
+  };
+  const allPanels = document.querySelectorAll('.bg-panel');
+
+  function activateBg(id) {
+    const cfg = bgMap[id];
+    if (!cfg) return;
+    allPanels.forEach(p => p.classList.remove('active-hero', 'active-light'));
+    const p = document.getElementById(cfg.panel);
+    if (p) p.classList.add(cfg.mode === 'hero' ? 'active-hero' : 'active-light');
+  }
+  activateBg('top');
+
+  // ── ヒーローモード切替（背景切替と同じタイミングで三列へ移行） ──
+  // threshold:0.7 → ヒーローが30%スクロールされた時点（背景切替と同期）でサイドバーを表示
+  new IntersectionObserver((entries) => {
+    document.body.classList.toggle('hero-mode', entries[0].isIntersecting);
+  }, { threshold: 0.7 }).observe(document.getElementById('top'));
+
+  // ── セクション検知（背景 & ナビ同期） ──
+  const navLinks = document.querySelectorAll('.nav-link');
+  function setNav(id) {
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
+  }
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { activateBg(e.target.id); setNav(e.target.id); }
+      });
+    }, { threshold: 0.3 }).observe(s);
+  });
+
+  // ── 下から上へのフェードイン ──
+  const fadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        fadeObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.js-fade').forEach(el => fadeObs.observe(el));
+
+  // ── フォーム送信 ──
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formDone').style.display = 'block';
+    document.getElementById('formDone').scrollIntoView({ behavior:'smooth', block:'center' });
+  });
+</script>
+
+</body>
+</html>
