@@ -498,20 +498,25 @@
     }
     .join-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
     .join-list li::before { content: '—'; color: rgba(255,255,255,0.22); flex-shrink: 0; }
-    .join-cta {
+    .join-btn {
       display: inline-block;
-      padding: 0.95rem 2.6rem;
-      border: 1px solid rgba(255,255,255,0.35);
-      color: var(--white);
-      font-family: var(--en);
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
+      font-size: 1.5rem;
+      font-family: var(--serif);
+      color: #fafafa;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid #fafafa;
+      background: #252525;
+      box-shadow: 3px 3px #fafafa;
+      cursor: pointer;
+      margin: 35px 0;
       text-decoration: none;
-      transition: background 0.3s, border-color 0.3s;
+      transition: box-shadow 0.12s, transform 0.12s;
     }
-    .join-cta:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.65); }
+    .join-btn:active {
+      box-shadow: none;
+      transform: translate(3px, 3px);
+    }
 
     /* ── COMPANY ── */
     .co-table { width: 100%; border-collapse: collapse; }
@@ -911,16 +916,17 @@
 
       <div class="sec-body">
         <p class="join-lead js-fade d1">
-          あなたが長年かけて育ててきた事業には、言葉にできない価値があります。技術、人、地域との絆——それを「売る」のではなく、「渡す」ために、私たちはここにいます。<br><br>
-          私たちの考え方に共感いただける経営者の方と、ともに前進していきたいと考えています。
+          長年かけて育ててきた事業を、誰にどう引き継ぐか。それは経営者の方にとって、人生の大きな決断だと思います。<br><br>
+          技術、人、地域とのつながり。積み重ねてきたものを、単なる売買として手放すのではなく、その価値を理解した相手にきちんと渡したい。私たちは、そう考える経営者の方と一緒に進んでいきたいと考えています。<br><br>
+          こんな想いをお持ちの方は、お気軽にご相談ください。
         </p>
         <ul class="join-list js-fade d2">
           <li>事業を続けたいが、後継者が見つからない</li>
-          <li>従業員や取引先を守りながら引き継ぎたい</li>
+          <li>従業員や取引先を大切にしながら引き継ぎたい</li>
           <li>一人で抱え込まず、一緒に考えてくれる相手が欲しい</li>
           <li>引退後も、事業の成長を見届けたい</li>
         </ul>
-        <a class="join-cta js-fade d3" href="#contact">まずは話を聞かせてください &nbsp;›</a>
+        <a class="join-btn js-fade d3" href="#contact">まずは話をお聞かせください</a>
       </div>
 
     </div>
@@ -943,6 +949,7 @@
             <tr><th scope="row">会社名</th><td>株式会社NORI&amp;TATE</td></tr>
             <tr><th scope="row">設立</th><td>2026年4月19日</td></tr>
             <tr><th scope="row">代表取締役</th><td>吉田　光輝</td></tr>
+            <tr><th scope="row">生年月日</th><td>1991年12月16日</td></tr>
             <tr><th scope="row">所在地</th><td>大阪市北区梅田一丁目２番２号<br>大阪駅前第2ビル１２－１２</td></tr>
             <tr><th scope="row">連絡先</th><td>090-1243-6770<br><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a></td></tr>
             <tr><th scope="row">事業内容</th><td>洋菓子製造・小売、卸業<br>事業承継による新規事業への参入</td></tr>
