@@ -1114,13 +1114,23 @@
   function setNav(id) {
     navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
   }
-  document.querySelectorAll('section[id]').forEach(s => {
-    new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { activateBg(e.target.id); setNav(e.target.id); }
-      });
-    }, { threshold: 0.3 }).observe(s);
-  });
+  // 画面中央を仮想トリガーラインとして設定。
+  // スマホは固定ナビ分(70px)を上端からオフセット。
+  // セクションがこのラインを跨いだ瞬間に発火するため、上下スクロールどちらでも確実に動作する。
+  (function() {
+    const navH = window.matchMedia('(max-width: 660px)').matches ? 70 : 0;
+    const mid  = Math.round((window.innerHeight - navH) / 2);
+    const topM = navH + mid;
+    const botM = Math.max(0, window.innerHeight - topM);
+    const rootMargin = `-${topM}px 0px -${botM}px 0px`;
+    document.querySelectorAll('section[id]').forEach(s => {
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { activateBg(e.target.id); setNav(e.target.id); }
+        });
+      }, { threshold: 0, rootMargin }).observe(s);
+    });
+  })();
 
   // ── 下から上へのフェードイン ──
   const fadeObs = new IntersectionObserver((entries) => {
