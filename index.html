@@ -649,6 +649,24 @@
       .biz-card  { grid-template-columns: 1fr; gap: 2rem; }
       .biz-visual { order: -1; }
     }
+    /* ── スマホ横向き：サイドバー左右パディングを詰めてはみ出しを防ぐ ── */
+    @media (orientation: landscape) and (max-height: 500px) {
+      #sidebar {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      .sidebar-logo {
+        font-size: 0.86rem;
+        margin-bottom: 2rem;
+      }
+      .sidebar-nav li a {
+        padding: 0.5rem 0;
+        font-size: 0.95rem;
+      }
+    }
+
     @media (max-width: 660px) {
       :root { --col-l: 0px; }
 
