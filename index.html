@@ -1122,36 +1122,53 @@
   }
   activateBg('top');
 
-  // ── ヒーローモード切替 ──
-  // スマホ：ヒーローが95%以上スクロールされてから（ほぼ退場した瞬間）ナビ表示
-  // PC：ヒーローが30%スクロールされた時点でサイドバー表示
-  const _heroThreshold = window.matchMedia('(max-width: 660px)').matches ? 0.05 : 0.7;
-  new IntersectionObserver((entries) => {
-    document.body.classList.toggle('hero-mode', entries[0].isIntersecting);
-  }, { threshold: _heroThreshold }).observe(document.getElementById('top'));
+  // ── ヒーローモード切替（画面回転対応） ──
+  let _heroObs = null;
+  function initHeroObserver() {
+    if (_heroObs) _heroObs.disconnect();
+    const threshold = window.matchMedia('(max-width: 660px)').matches ? 0.05 : 0.7;
+    _heroObs = new IntersectionObserver((entries) => {
+      document.body.classList.toggle('hero-mode', entries[0].isIntersecting);
+    }, { threshold });
+    _heroObs.observe(document.getElementById('top'));
+  }
+  initHeroObserver();
 
-  // ── セクション検知（背景 & ナビ同期） ──
+  // ── セクション検知（背景 & ナビ同期・画面回転対応） ──
   const navLinks = document.querySelectorAll('.nav-link');
   function setNav(id) {
     navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
   }
-  // 画面中央を仮想トリガーラインとして設定。
-  // スマホは固定ナビ分(70px)を上端からオフセット。
-  // セクションがこのラインを跨いだ瞬間に発火するため、上下スクロールどちらでも確実に動作する。
-  (function() {
+  let _sectionObs = [];
+  function initSectionObservers() {
+    _sectionObs.forEach(o => o.disconnect());
+    _sectionObs = [];
     const navH = window.matchMedia('(max-width: 660px)').matches ? 70 : 0;
     const mid  = Math.round((window.innerHeight - navH) / 2);
     const topM = navH + mid;
     const botM = Math.max(0, window.innerHeight - topM);
     const rootMargin = `-${topM}px 0px -${botM}px 0px`;
     document.querySelectorAll('section[id]').forEach(s => {
-      new IntersectionObserver((entries) => {
+      const obs = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) { activateBg(e.target.id); setNav(e.target.id); }
         });
-      }, { threshold: 0, rootMargin }).observe(s);
+      }, { threshold: 0, rootMargin });
+      obs.observe(s);
+      _sectionObs.push(obs);
     });
-  })();
+  }
+  initSectionObservers();
+
+  // 画面回転・リサイズ時にObserverを再初期化（250ms デバウンス）
+  let _resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(function() {
+      initHeroObserver();
+      initSectionObservers();
+    }, 250);
+  });
 
   // ── 下から上へのフェードイン ──
   const fadeObs = new IntersectionObserver((entries) => {

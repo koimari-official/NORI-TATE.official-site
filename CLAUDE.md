@@ -94,6 +94,53 @@ new IntersectionObserver((entries) => {
 - 遅延クラス：`.d1`（0.15s）/ `.d2`（0.28s）/ `.d3`（0.40s）/ `.d4`（0.52s）
 - IntersectionObserver（threshold: 0.1）で一度だけ発火
 
+## レスポンシブブレークポイント
+
+| ブレークポイント | 条件 | 適用内容 |
+|----------------|------|---------|
+| PC | 幅 960px超 | 三列レイアウト。右サイドバー表示。`.sec-head` sticky |
+| タブレット〜横向きスマホ | 幅 661〜960px | 右サイドバー非表示。`.sec-head` static。単一列 sec-split |
+| 縦向きスマホ | 幅 660px以下 | 左サイドバーが上部固定ナビに変化。`--col-l: 0` |
+| 横向きスマホ（追加） | `orientation: landscape` かつ 高さ 500px以下 | サイドバーパディング縮小・sec-split padding縮小 |
+
+## IntersectionObserver の扱い（重要）
+
+- `IntersectionObserver` の `rootMargin` は初期化時の `window.innerHeight` で計算される
+- **画面回転・リサイズ後は古い rootMargin が無効になり、背景切替・ナビ同期が停止する**
+- 対処：`initHeroObserver()` と `initSectionObservers()` を関数化し、`resize` イベント（250msデバウンス）で再初期化する
+- 新たに Observer を追加・変更する際も必ず再初期化関数の中に記述すること
+
+```javascript
+// Observer再初期化パターン（必ず守る）
+let _obs = [];
+function initObservers() {
+  _obs.forEach(o => o.disconnect());
+  _obs = [];
+  // ここで new IntersectionObserver(...) を作成し _obs.push(obs)
+}
+initObservers();
+let _timer;
+window.addEventListener('resize', function() {
+  clearTimeout(_timer);
+  _timer = setTimeout(initObservers, 250);
+});
+```
+
+## スマホ横向き対応の注意点
+
+- iOS でアドレスバーが出入りする際に `100vh` が変動し背景がズームする → `height: 100lvh` で防ぐ
+- `#sidebar` の `bottom: 0` は縦向きモバイルCSSで `bottom: auto` にリセット必須
+- 横向きスマホ（幅 > 660px）は縦向きの660pxメディアクエリが適用されない点に注意
+- `window.matchMedia('(max-width: 660px)')` は横向きでは false になる
+
+## クロスデバイス作業ルール
+
+コードを変更したら以下の3環境を必ず想定してテストすること：
+
+1. **PC（960px超）** — 三列・sticky表題・右サイドバーあり
+2. **スマホ縦向き（660px以下）** — 上部固定ナビ・単列
+3. **スマホ横向き（661〜959px・高さ≦500px）** — 左サイドバー・単列・Observer再初期化必要
+
 ## 修正時の注意
 
 - 背景画像の差し替え：`#bg-layer` 内の各 `.bg-panel` の `style="background-image:url(...)"` を変更
