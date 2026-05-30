@@ -1,237 +1,314 @@
-# 株式会社NORI&TATE サイト 運用・カスタマイズ手順書
+# HP作成 汎用標準ガイド
+
+> このファイルはプロジェクト横断で再利用できる汎用ガイドです。  
+> プロジェクト固有の実装詳細は `CLAUDE.md` を参照してください。
 
 ---
 
 ## 目次
 
-1. [サイト概要・技術構成](#1-サイト概要技術構成)
-2. [ファイル構成](#2-ファイル構成)
-3. [画面構成・レイアウト](#3-画面構成レイアウト)
-4. [よく使う更新作業](#4-よく使う更新作業)
-5. [デザインのカスタマイズ](#5-デザインのカスタマイズ)
-6. [GitHub Pagesへのデプロイ](#6-github-pagesへのデプロイ)
-7. [クロスデバイス対応チェックリスト](#7-クロスデバイス対応チェックリスト)
+1. [クロスデバイス設計の基本](#1-クロスデバイス設計の基本)
+2. [よくある不具合とバスター](#2-よくある不具合とバスター)
+3. [確認チェックリスト（3環境）](#3-確認チェックリスト3環境)
+4. [CSS設計の基本ルール](#4-css設計の基本ルール)
+5. [JSの注意点（IntersectionObserver）](#5-jsの注意点intersectionobserver)
+6. [静的HTML構成での注意点](#6-静的html構成での注意点)
+7. [GitHub Pagesへのデプロイ](#7-github-pagesへのデプロイ)
 
 ---
 
-## 1. サイト概要・技術構成
+## 1. クロスデバイス設計の基本
 
-| 項目 | 内容 |
-|------|------|
-| 構成 | 静的HTML（サーバー不要） |
-| ファイル数 | index.html 1ファイル |
-| 公開方法 | GitHub Pages（無料）または任意のWebサーバー |
-| デザイン | バニラCSS（外部CSSライブラリなし） |
-| フォント | Google Fonts（Noto Serif JP / Noto Sans JP / Montserrat） |
-| インタラクション | バニラJS（IntersectionObserver によるフェードイン・背景切替） |
+### ブレークポイント設計
 
-**メリット：** サーバー代不要、維持コストほぼゼロ、読み込みが速い
+| 環境 | 幅の目安 | 高さの目安 | 主な考慮事項 |
+|------|---------|-----------|------------|
+| PC（デスクトップ） | 960px超 | — | フルレイアウト・サイドバーあり |
+| タブレット・横向きスマホ | 661〜959px | — | サイドバー縮小または非表示 |
+| 縦向きスマホ | 660px以下 | — | 縦一列・ナビは上部固定バー |
+| 横向きスマホ（追加） | 661px超 | 500px以下 | 縦方向の余白を大幅に削減 |
+
+```css
+/* タブレット・右サイドバー非表示 */
+@media (max-width: 960px) { ... }
+
+/* 縦向きスマホ：上部固定ナビ */
+@media (max-width: 660px) { ... }
+
+/* 横向きスマホ：高さが非常に短い状態への個別対応 */
+@media (orientation: landscape) and (max-height: 500px) { ... }
+```
+
+> **ポイント：** 横向きスマホは「幅は広いが高さが非常に短い」特殊な状態。`max-width`だけでは拾えないため、`orientation: landscape` と `max-height` の組み合わせで別途対応する。
+
+### ナビゲーション設計
+
+- ハンバーガーメニューはJSが複雑になるため、小規模サイトは避ける
+- スマホ縦向き：水平スクロールなし＋全ナビ項目が一画面に収まる配置が必須
+- スマホ横向き：縦方向が短いため、ナビの `padding`・`font-size` を縮小し `overflow-y: auto` を設定
+- 固定ナビを使う場合は `scroll-padding-top` でアンカーリンクのオフセットを設定
+
+```css
+/* 固定ナビがある場合のアンカー補正 */
+@media (max-width: 660px) {
+  html { scroll-padding-top: 70px; } /* 固定ナビの高さ分 */
+}
+```
 
 ---
 
-## 2. ファイル構成
+## 2. よくある不具合とバスター
 
-```
-/
-├── index.html      ← メインページ（全コンテンツ含む）
-├── hero.jpg.png    ← トップ画像（必須・この名前で配置）
-├── CLAUDE.md       ← AI作業ルール（Claude Code用）
-└── MANUAL.md       ← この手順書
-```
+### 不具合1：画面回転後にスクロール検知が停止する
 
-> **注意：** ヒーロー画像のファイル名は必ず `hero.jpg.png` にしてください。
-> 別の名前にする場合は `index.html` 内の `url('hero.jpg.png')` を変更してください。
+**症状：** 縦→横に回転すると背景切替・ナビ同期などが動かなくなる  
+**原因：** `IntersectionObserver` の `rootMargin` は初期化時の `window.innerHeight` で固定される。回転後に画面高さが変わっても再計算されない  
+**対処：**
+
+```javascript
+let _obs = [];
+function initObservers() {
+  _obs.forEach(o => o.disconnect());
+  _obs = [];
+  const navH = window.matchMedia('(max-width: 660px)').matches ? 70 : 0;
+  const mid  = Math.round((window.innerHeight - navH) / 2);
+  const topM = navH + mid;
+  const botM = Math.max(0, window.innerHeight - topM);
+  const rootMargin = `-${topM}px 0px -${botM}px 0px`;
+  document.querySelectorAll('section[id]').forEach(s => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) activate(e.target.id); });
+    }, { threshold: 0, rootMargin });
+    obs.observe(s);
+    _obs.push(obs);
+  });
+}
+initObservers();
+
+// リサイズ・回転時に再初期化（250ms デバウンス）
+let _timer;
+window.addEventListener('resize', function() {
+  clearTimeout(_timer);
+  _timer = setTimeout(initObservers, 250);
+});
+```
 
 ---
 
-## 3. 画面構成・レイアウト
+### 不具合2：固定要素の白背景がページ全体を覆う
 
-### ヒーロー表示（最初の全画面）
+**症状：** モバイルで固定サイドバー/ナビの白背景が画面全体を覆う  
+**原因：** デスクトップCSSで `bottom: 0`（縦一杯）が設定されたまま、モバイルCSSで未リセット  
+**対処：**
 
-ページを開くと `hero.jpg.png` が全画面表示され、中央に以下が表示されます：
-
-- 英語サブタイトル（小文字・薄め）
-- **メインキャッチコピー**（大見出し・明朝体）
-- 社名「株式会社NORI&TATE」
-
-サイドバーはこの時点では非表示です。
-
-### スクロール後の三列レイアウト
-
-ヒーローをスクロールすると自動的に三列レイアウトへ切り替わります：
-
-| 列 | 幅 | 内容 |
-|----|-----|------|
-| 左サイドバー | 240px（固定） | ロゴ＋ナビゲーション |
-| 中央エリア | 残りの幅（スクロール） | 各セクションの内容 |
-| 右サイドバー | 220px（固定） | SNSアイコン・連絡先（下部） |
-
-### セクション一覧
-
-| セクションID | 表示名 | 内容 |
-|-------------|--------|------|
-| `#top` | Top | ヒーロー（全画面） |
-| `#concept` | Concept | 私たちの考え方 |
-| `#name` | Name | 社名の由来（NORI&TATE） |
-| `#business` | Business | 事業実績（こいまり） |
-| `#growth` | 心得 | 事業成長の心得（3つの柱） |
-| `#join` | Join | オーナー様へ（黒背景） |
-| `#company` | Company | 会社概要 |
-| `#contact` | Contact | お問い合わせフォーム |
+```css
+@media (max-width: 660px) {
+  #sidebar {
+    bottom: auto;  /* ← これを必ず明示する */
+    height: auto;
+  }
+}
+```
 
 ---
 
-## 4. よく使う更新作業
+### 不具合3：iOSで固定背景がスクロール時にズームする
 
-### 4-1. ヒーロー画像を差し替える
+**症状：** iPhoneで下スクロールするとアドレスバーが隠れ、`position: fixed` の背景がズームアニメーションする  
+**原因：** `100vh` はアドレスバーの出入りで変動する  
+**対処：**
 
-新しい画像ファイルを `hero.jpg.png` という名前でフォルダに上書き保存するだけです。
-
-別の名前にしたい場合は `index.html` 内を検索：
-```
-url('hero.jpg.png')
-```
-この部分を新しいファイル名に変更します。
-
-### 4-2. キャッチコピーを変更する
-
-`index.html` の Hero セクション（`<section id="top">` 内）を編集します：
-
-```html
-<span class="hero-en">Reviving Japan through Small Business</span>
-<h1 class="hero-catch">中小企業から、<br>再び日本を<br>盛り上げる。</h1>
-<p class="hero-brand">株式会社NORI&amp;TATE</p>
+```css
+#bg-layer {
+  height: 100vh;   /* フォールバック（古いブラウザ用） */
+  height: 100lvh;  /* Large Viewport Height：アドレスバーの変動を無視 */
+}
 ```
 
-> `&amp;` は `&` の HTML 表記です。そのまま残してください。
-
-### 4-3. 各セクションの本文を更新する
-
-各セクションは以下の構造になっています：
-
-```html
-<section id="concept">
-  <div class="sec-split">
-    <div class="sec-head">  <!-- 左側の表題（スクロール中も固定） -->
-      <span class="s-label">Concept</span>
-      <h2 class="s-title">私たちの考え方</h2>
-    </div>
-    <div class="sec-body">  <!-- 右側の本文（ここを編集） -->
-      <p class="s-body">本文テキスト</p>
-    </div>
-  </div>
-</section>
-```
-
-### 4-4. 会社概要を更新する
-
-`<section id="company">` 内のテーブルを編集します：
-
-```html
-<tr><th>会社名</th><td>株式会社NORI&amp;TATE</td></tr>
-<tr><th>設立</th><td>2026年4月19日</td></tr>
-<tr><th>代表取締役</th><td>吉田　光輝</td></tr>
-<tr><th>所在地</th><td>大阪市北区梅田...</td></tr>
-<tr><th>連絡先</th><td>090-1243-6770<br><a href="mailto:...">...</a></td></tr>
-```
-
-### 4-5. SNSリンク・連絡先を更新する
-
-右サイドバー（`<div id="right-sidebar">` 内）を編集します：
-
-```html
-<!-- Instagram URL を変更 -->
-<a href="https://www.instagram.com/あなたのアカウント" ...>
-
-<!-- 電話番号 -->
-<a href="tel:09012436770">090-1243-6770</a>
-
-<!-- メールアドレス -->
-<a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a>
-```
-
-### 4-6. 事業実績（こいまり）を更新する
-
-`<section id="business">` 内の `.biz-card` を編集します。
-新しい事業を追加する場合はカードをコピーして `border-top` で区切ります。
+> `100lvh` は iOS Safari 16以降・Android Chrome 108以降に対応。
 
 ---
 
-## 5. デザインのカスタマイズ
+### 不具合4：横向きスマホでナビ下部が見切れる
 
-### 5-1. カラーを変更する
+**症状：** 横向きにするとサイドバーの下部ナビ（下の方の項目）が画面外に隠れる  
+**原因：** デスクトップ用の大きな padding/margin が、高さ375〜430px程度の横向き画面に収まらない  
+**対処：**
 
-`index.html` 先頭の `:root {}` ブロックを編集します：
+```css
+@media (orientation: landscape) and (max-height: 500px) {
+  #sidebar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    overflow-y: auto;  /* 収まらない場合はスクロール可能に */
+  }
+  .sidebar-logo { margin-bottom: 1rem; }
+  .sidebar-nav li a { padding: 0.28rem 0; font-size: 0.88rem; }
+}
+```
+
+---
+
+### 不具合5：固定幅列でテキストが折り返す
+
+**症状：** 固定幅の左列（表題エリア）でテキストが途中で折り返す  
+**原因：** フォントサイズ × 文字数が列幅を超過。ブラウザのフォントサイズ設定により超過幅が変わる  
+**対処：**
+
+```css
+/* <br>による改行は維持しつつ、行内の折り返しのみ防ぐ */
+.sec-head .s-title { white-space: nowrap; }
+```
+
+---
+
+### 不具合6：横向きスマホでセクション表題が見えない
+
+**症状：** `position: sticky` の表題列が横向き時に画面内に表示されない  
+**原因：** 短い画面高さで sticky の `top` 値が画面外にはみ出す / セクション padding が大きすぎる  
+**対処：**
+
+```css
+@media (orientation: landscape) and (max-height: 500px) {
+  .sec-head { position: static; top: auto; }
+  .sec-split { padding: 2.5rem 1.5rem; gap: 1.5rem; }
+}
+```
+
+---
+
+## 3. 確認チェックリスト（3環境）
+
+コードを変更したら必ず以下3環境で確認してください。
+
+### PC（960px超）
+- [ ] フルレイアウト（サイドバー込み）が崩れていない
+- [ ] サイドバーのナビが全項目表示される
+- [ ] スクロールでセクション検知・背景切替が動作する
+- [ ] sticky 要素が正しく固定される
+- [ ] フォントサイズが読みやすい
+
+### スマホ縦向き（660px以下）
+- [ ] 上部固定ナビが白背景で表示され、コンテンツに被らない
+- [ ] アンカーリンクがナビの下に正しく表示される（`scroll-padding-top`）
+- [ ] ナビ項目が横並びで全て表示される
+- [ ] 背景画像がスクロール時にズームしない（`100lvh` 使用）
+- [ ] フォントサイズ・行間が読みやすい
+
+### スマホ横向き（661〜959px・高さ≦500px）
+- [ ] 固定ナビ/サイドバーのロゴ・テキストが背景外にはみ出していない
+- [ ] ナビ項目が全て画面内に収まる（または `overflow-y: auto` でスクロール可）
+- [ ] 画面回転後もスクロール検知（背景切替・ナビ同期）が動作する
+- [ ] セクション表題が画面内に表示される
+- [ ] 固定背景がズームしない
+
+---
+
+## 4. CSS設計の基本ルール
+
+### 変数（`:root`）で値を一元管理
 
 ```css
 :root {
-  --white:  #ffffff;   /* 背景・サイドバー */
-  --black:  #111111;   /* テキスト・Join セクション背景 */
-  --mid:    #888888;   /* サブテキスト・ラベル */
-  --border: #e8e8e8;   /* 区切り線 */
-  --col-l:  240px;     /* 左サイドバー幅 */
-  --col-r:  220px;     /* 右サイドバー幅 */
+  --col-l: 240px;          /* 左サイドバー幅 */
+  --col-r: 220px;          /* 右サイドバー幅 */
+  --serif: 'Noto Serif JP', serif;
+  --sans:  'Noto Sans JP', sans-serif;
+  --en:    'Montserrat', sans-serif;
+  --white: #ffffff;
+  --black: #111111;
+  --mid:   #888888;
+  --border:#e8e8e8;
 }
 ```
 
-### 5-2. ヒーロー文字サイズを変更する
+### font-size は `clamp()` で可変対応
 
 ```css
-.hero-catch {
-  font-size: clamp(最小, 画面幅比, 最大);
-  /* 現在値：clamp(3.2rem, 7.5vw, 7rem) */
-}
-
-.hero-brand {
-  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
-}
+h1 { font-size: clamp(最小rem, vw指定, 最大rem); }
+/* 例：clamp(2rem, 5vw, 4rem) */
 ```
 
-### 5-3. 背景画像（各セクション）を変更する
+ブラウザのフォントサイズ設定に依存するため、`rem` + `vw` を組み合わせると様々な環境で安定する。
 
-`#bg-layer` 内の各パネルの URL を変更します：
+### z-index は用途別に整理する
 
-```html
-<div class="bg-panel" id="bg-concept"
-  style="background-image:url('あなたの画像URL');">
-</div>
-```
+| 用途 | z-index の目安 |
+|------|--------------|
+| 固定背景レイヤー | 1 |
+| メインコンテンツ | 10 |
+| 右サイドバー | 20 |
+| 左サイドバー/ナビ | 30 |
 
-現在は Unsplash の画像を使用しています（インターネット接続が必要）。
-ローカル画像を使う場合はファイルをフォルダに置いて `url('ファイル名.jpg')` に変更します。
+### レスポンシブの記述順序
 
-### 5-4. 背景の透過度を変更する
-
-```css
-.bg-panel.active-hero  { opacity: 1; }    /* ヒーロー：鮮明 */
-.bg-panel.active-light { opacity: 0.12; } /* 各セクション：半透明 */
-```
-
-`active-light` の値を上げると背景画像が濃くなります（0〜1の範囲）。
-
-### 5-5. ヒーローモードの切替タイミングを変更する
-
-```javascript
-// threshold: 0.08 → ヒーローが8%以下になったらサイドバーを表示
-}, { threshold: 0.08 }).observe(document.getElementById('top'));
-```
-
-値を大きくする（例：0.3）とヒーローが残っているうちにサイドバーが現れます。
+1. デスクトップ（デフォルト）で書く
+2. `max-width` で段階的に縮小
+3. 横向きスマホは `orientation: landscape` で個別対応（最後に記述）
 
 ---
 
-## 6. GitHub Pagesへのデプロイ
+## 5. JSの注意点（IntersectionObserver）
+
+### 基本パターン
+
+```javascript
+// NG：ページ読み込み時に1回だけ生成（画面回転で壊れる）
+new IntersectionObserver(callback, { rootMargin }).observe(el);
+
+// OK：関数化して resize 時に再初期化
+let _obs = [];
+function initObs() {
+  _obs.forEach(o => o.disconnect());
+  _obs = [];
+  const obs = new IntersectionObserver(callback, { rootMargin: calcMargin() });
+  obs.observe(el);
+  _obs.push(obs);
+}
+initObs();
+let _t;
+window.addEventListener('resize', () => { clearTimeout(_t); _t = setTimeout(initObs, 250); });
+```
+
+### 画面中央トリガーによるセクション検知
+
+上下スクロールどちらでも確実に検知する方法：
+
+```javascript
+function calcRootMargin() {
+  const navH = window.matchMedia('(max-width: 660px)').matches ? 70 : 0;
+  const mid  = Math.round((window.innerHeight - navH) / 2);
+  const topM = navH + mid;
+  const botM = Math.max(0, window.innerHeight - topM);
+  return `-${topM}px 0px -${botM}px 0px`;
+}
+// threshold: 0 で「セクションの端が中央ラインを通過した瞬間」に発火
+```
+
+---
+
+## 6. 静的HTML構成での注意点
+
+- お問い合わせフォームはサーバーサイド処理が不可のため、外部サービスを使用する  
+  - **Formspree**（推奨）：無料50件/月。`<form action="https://formspree.io/f/[ID]">` のみで動作  
+- 外部画像（Unsplash等）はインターネット接続が必要。低速環境では読み込まれない場合がある  
+- Google Fonts は初回読み込みで遅延が発生することがある。重要テキストにはシステムフォントをフォールバックとして設定する  
+- `index.html` 1ファイル構成にすることで、デプロイ・管理コストをほぼゼロにできる
+
+---
+
+## 7. GitHub Pagesへのデプロイ
 
 ### 初回設定
 
 1. GitHub でリポジトリを作成（Public）
-2. `index.html` と `hero.jpg.png` をリポジトリにアップロード
+2. `index.html` と画像ファイルをリポジトリにアップロード
 3. Settings → Pages → Source: `main` ブランチ → Save
 4. 数分後に `https://USERNAME.github.io/REPO_NAME/` で公開
 
 ### 独自ドメインを使う場合
 
-1. ドメインを取得（お名前.com、Xserverドメイン等）
+1. ドメインを取得（お名前.com・Xserver等）
 2. DNS設定でGitHub PagesのIPアドレスに向ける
 3. Settings → Pages → Custom domain に入力
 4. HTTPSを有効化
@@ -239,7 +316,6 @@ url('hero.jpg.png')
 ### 更新の流れ
 
 ```bash
-# ファイルを編集後
 git add index.html
 git commit -m "更新内容の説明"
 git push origin main
@@ -248,57 +324,4 @@ git push origin main
 
 ---
 
-## 7. クロスデバイス対応チェックリスト
-
-サイトを更新した際は、以下の3環境で必ず確認してください。
-
-### 確認環境
-
-| 環境 | 画面幅の目安 | 適用レイアウト |
-|------|------------|--------------|
-| PC（デスクトップ） | 960px以上 | 三列（左サイド＋中央＋右サイド） |
-| スマホ縦向き | 660px以下 | 上部固定ナビ＋全幅スクロール |
-| スマホ横向き | 661〜959px・高さ500px以下 | 左サイドバー＋中央（右サイドは非表示） |
-
-### チェック項目
-
-#### 共通（全環境）
-- [ ] ヒーロー画像が全画面に表示される
-- [ ] スクロールするとサイドバー/ナビが出現する
-- [ ] 各セクションへのスクロールで背景画像が切り替わる
-- [ ] ナビの太字（active状態）がセクションに合わせて切り替わる
-- [ ] フェードインアニメーションが動作する
-- [ ] お問い合わせフォームが送信できる
-
-#### PC
-- [ ] 三列レイアウトが崩れていない
-- [ ] 左サイドバーのロゴ・ナビが見切れていない
-- [ ] 右サイドバーのSNS・連絡先が表示される
-- [ ] 各セクションの表題列（左）が sticky で固定される
-
-#### スマホ縦向き
-- [ ] 上部固定ナビが白背景で表示され、コンテンツに被らない
-- [ ] ナビ項目が横並びで全て表示される（Top〜Contact）
-- [ ] セクション表題が1行に収まっている
-- [ ] 背景画像がスクロールでズームしない
-
-#### スマホ横向き
-- [ ] 左サイドバーのロゴが白背景からはみ出していない
-- [ ] サイドバーのナビ項目（Top〜Contact）が全て表示される
-- [ ] スクロール時に背景画像が切り替わる
-- [ ] ナビの active（太字）がセクションに合わせて切り替わる
-- [ ] 各セクションの表題が画面内に表示される（画面外に隠れない）
-
-### よくある不具合と原因
-
-| 症状 | 原因 | 対処 |
-|------|------|------|
-| 横向きで背景・ナビが切り替わらない | `IntersectionObserver` が縦向きの画面サイズで初期化されたまま | `resize` イベントでObserverを再初期化する（実装済み） |
-| スマホで白い背景がページ全体を覆う | `#sidebar` に `bottom: 0` が残っている | モバイル用CSSに `bottom: auto` を追加する |
-| 横向きで背景画像がズームする | iOS のアドレスバー出入りで `100vh` が変動する | `#bg-layer` に `height: 100lvh` を使用する（実装済み） |
-| 横向きでサイドバー下部のナビが見切れる | 縦方向の高さ不足 | 横向きクエリでパディング・行間を縮小する |
-| セクション見出しの文字が折り返す | 表題列（200px）に対して文字幅が超過 | 該当セクションに `white-space: nowrap` を追加する |
-
----
-
-*最終更新：2026年5月*
+*汎用テンプレート。プロジェクト固有の実装詳細は CLAUDE.md へ。*
