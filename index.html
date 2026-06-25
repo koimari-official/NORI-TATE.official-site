@@ -640,7 +640,36 @@
     @media (max-width: 1100px) {
       :root { --col-l: 200px; --col-r: 180px; }
     }
+    /* ════════════════════════════
+       モバイル用 固定相談ボタン（960px以下）
+    ════════════════════════════ */
+    .mobile-fab {
+      display: none;
+      position: fixed;
+      bottom: 1.1rem;
+      right: 1.1rem;
+      z-index: 40;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.75rem 1.15rem;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.28);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    body.hero-mode .mobile-fab {
+      opacity: 0;
+      transform: translateY(14px);
+      pointer-events: none;
+    }
+
     @media (max-width: 960px) {
+      .mobile-fab { display: flex; }
       #right-sidebar { display: none !important; }
       body.hero-mode #main,
       #main { margin-right: 0; }
@@ -777,6 +806,17 @@
     </ul>
   </nav>
 </aside>
+
+<!-- ════════════════════════
+     モバイル用 固定相談ボタン
+════════════════════════ -->
+<a href="#contact" class="mobile-fab" aria-label="お問い合わせ・相談する">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+  </svg>
+  相談する
+</a>
 
 
 <!-- ════════════════════════
