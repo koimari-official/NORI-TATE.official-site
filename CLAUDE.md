@@ -16,6 +16,7 @@
 - Google Fonts（Noto Serif JP / Noto Sans JP / Montserrat）
 - バニラCSS（外部ライブラリなし）
 - バニラJS（最小限・IntersectionObserver）
+- アクセス解析: Google Tag Manager（ID: `GTM-WQJ25SX6`、2026-07-09導入。head直後・body直後にスニペット設置済み）
 
 ---
 
