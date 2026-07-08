@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://koimari-official.github.io/NORI-TATE.official-site/sitemap.xml
