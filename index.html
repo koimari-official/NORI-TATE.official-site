@@ -1273,6 +1273,25 @@ const fbApp = initializeApp(firebaseConfig);
 const db = getDatabase(fbApp);
 const contactsRef = ref(db, "noritate/contacts");
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwvddbqk";
+async function sendToFormspree(data) {
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: `【NORI&TATEサイト】お問い合わせ: ${data.name} 様`,
+        _replyto: data.email,
+        お名前: data.name, 会社名: data.company,
+        電話番号: data.phone, メールアドレス: data.email,
+        種別: data.type, お問い合わせ内容: data.message,
+        受信日時: data.submittedAt
+      })
+    });
+    return res.ok;
+  } catch (err) { console.warn("Formspree送信失敗:", err); return false; }
+}
+
 const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -1291,6 +1310,7 @@ contactForm.addEventListener('submit', async (e) => {
   const btn = contactForm.querySelector('.ct-submit');
   const originalText = btn.textContent;
   btn.disabled = true; btn.textContent = "送信中...";
+  await sendToFormspree(data);
   try {
     await push(contactsRef, data);
   } catch (err) {
