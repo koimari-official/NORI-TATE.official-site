@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>管理ページ｜株式会社NORI&amp;TATE</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/><text x='50' y='63' font-family='serif' font-size='36' fill='%23ffffff' text-anchor='middle'>NT</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500&family=Noto+Sans+JP:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--serif:'Noto Serif JP',serif;--sans:'Noto Sans JP',sans-serif;--en:'Montserrat',sans-serif;--black:#111;--mid:#888;--border:#e8e8e8}
+  body{font-family:var(--sans);color:var(--black);background:#fafafa;line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  #loginScreen{max-width:360px;margin:120px auto;padding:40px;background:#fff;border:1px solid var(--border)}
+  #loginScreen h1{font-family:var(--serif);font-size:19px;margin-bottom:24px;text-align:center;letter-spacing:.1em;font-weight:500}
+  #loginScreen input{width:100%;padding:12px 14px;border:1px solid var(--border);margin-bottom:12px;font-size:14px;font-family:inherit}
+  #loginScreen button{width:100%;padding:12px;background:var(--black);color:#fff;border:none;font-size:14px;letter-spacing:.05em;cursor:pointer}
+  #loginError{color:#b03b48;font-size:13px;margin-top:8px;min-height:18px}
+  #adminShell{display:none}
+  header{background:#fff;border-bottom:1px solid var(--border);padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+  header .logo{font-family:var(--en);font-size:16px;letter-spacing:.16em}
+  header button{background:none;border:1px solid var(--border);padding:8px 16px;font-size:13px;cursor:pointer;font-family:inherit}
+  main{max-width:1100px;margin:0 auto;padding:32px 24px 100px}
+  .panel__head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+  .panel__title{font-family:var(--serif);font-size:20px;letter-spacing:.08em;font-weight:500}
+  .btn{padding:9px 16px;font-size:13px;border:1px solid var(--black);background:var(--black);color:#fff;cursor:pointer;letter-spacing:.03em;font-family:inherit}
+  .btn--ghost{background:none;color:var(--black)}
+  .btn--danger{background:#b03b48;border-color:#b03b48;color:#fff}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap}
+  table{width:100%;border-collapse:collapse;background:#fff;font-size:13.5px}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+  th{font-family:var(--serif);font-weight:500;color:var(--mid);font-size:12.5px}
+  .empty{padding:60px 0;text-align:center;color:var(--mid);background:#fff;border:1px solid var(--border)}
+  select.status{font-size:12px;padding:4px 6px;border:1px solid var(--border);font-family:inherit}
+  .small{color:var(--mid);font-size:12px}
+  #trashArea{display:none;margin-bottom:20px;background:#fff;border:1px solid var(--border);padding:16px}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--black);color:#fff;padding:12px 22px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:10}
+  .toast.show{opacity:1}
+  @media(max-width:700px){table{font-size:12px}th,td{padding:8px}}
+</style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <h1>NORI&amp;TATE 管理ページ</h1>
+  <input type="email" id="loginEmail" placeholder="メールアドレス" autocomplete="username">
+  <input type="password" id="loginPassword" placeholder="パスワード" autocomplete="current-password">
+  <button id="loginBtn">ログイン</button>
+  <div id="loginError"></div>
+  <p class="small" style="margin-top:14px;text-align:center;">こいまり管理画面と同じログイン情報でご利用いただけます</p>
+</div>
+
+<div id="adminShell">
+  <header>
+    <span class="logo">NORI&amp;TATE ADMIN</span>
+    <button id="logoutBtn">ログアウト</button>
+  </header>
+  <main>
+    <div class="panel__head">
+      <h2 class="panel__title">お問い合わせ一覧</h2>
+      <div class="toolbar">
+        <button class="btn btn--ghost" id="exportBtn">CSV出力</button>
+        <button class="btn btn--ghost" id="trashToggle">ゴミ箱</button>
+        <button class="btn btn--danger" id="clearAll">全削除</button>
+      </div>
+    </div>
+    <div id="trashArea"></div>
+    <div id="contactsArea"></div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, onValue, update, remove, get, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBMnJaIuF2vohO0YqKVmbcWeMBt9ZmSACI",
+  authDomain: "koimari-tasting.firebaseapp.com",
+  databaseURL: "https://koimari-tasting-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "koimari-tasting",
+  storageBucket: "koimari-tasting.firebasestorage.app",
+  messagingSenderId: "852851855633",
+  appId: "1:852851855633:web:1bb5765680a137f20abcb0"
+};
+const fbApp = initializeApp(firebaseConfig);
+const fbDb = getDatabase(fbApp);
+const fbAuth = getAuth(fbApp);
+const contactsRef = ref(fbDb, "noritate/contacts");
+const trashRef = ref(fbDb, "trash/noritate_contacts");
+
+let contactKeys = [];
+let contactList = [];
+let unsub = null;
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2200);
+}
+function escapeHtml(s) {
+  return String(s || "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+function fmtDate(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (isNaN(d)) return iso;
+  return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+}
+
+function renderContacts() {
+  const area = document.getElementById("contactsArea");
+  if (!contactList.length) { area.innerHTML = '<div class="empty">お問い合わせはまだありません</div>'; return; }
+  let html = '<div style="overflow-x:auto;"><table><thead><tr><th>ステータス</th><th>受信日時</th><th>お名前</th><th>会社名</th><th>連絡先</th><th>種別</th><th>内容</th></tr></thead><tbody>';
+  contactList.forEach((c, idx) => {
+    const status = c.status || "未対応";
+    const color = status === "対応完了" ? "#3e6b50" : "#a98554";
+    const typeLabel = c.type === "succession" ? "事業承継について" : (c.type === "other" ? "その他・まずは相談したい" : escapeHtml(c.type || ""));
+    html += `<tr>
+      <td><select class="status" style="color:${color};font-weight:600;" onchange="updateContactStatus(${idx},this.value)">
+        ${["未対応","対応完了"].map(s=>`<option value="${s}"${s===status?" selected":""}>${s}</option>`).join("")}
+      </select></td>
+      <td>${fmtDate(c.submittedAt)}</td>
+      <td>${escapeHtml(c.name)}</td>
+      <td>${escapeHtml(c.company)}</td>
+      <td>${escapeHtml(c.phone)}<br><span class="small">${escapeHtml(c.email)}</span></td>
+      <td>${typeLabel}</td>
+      <td>${escapeHtml(c.message)}</td>
+    </tr>`;
+  });
+  html += '</tbody></table></div>';
+  area.innerHTML = html;
+}
+
+window.updateContactStatus = function (idx, status) {
+  contactList[idx].status = status;
+  const key = contactKeys[idx];
+  if (key) update(ref(fbDb, "noritate/contacts/" + key), { status }).catch(err => console.warn("更新失敗:", err));
+};
+
+function syncContacts() {
+  if (unsub) return;
+  unsub = onValue(contactsRef, (snapshot) => {
+    const val = snapshot.val() || {};
+    const entries = Object.entries(val);
+    entries.sort((a, b) => new Date(b[1].submittedAt || 0) - new Date(a[1].submittedAt || 0));
+    contactKeys = entries.map(([k]) => k);
+    contactList = entries.map(([, d]) => d);
+    renderContacts();
+  });
+}
+
+document.getElementById("exportBtn").addEventListener("click", () => {
+  if (!contactList.length) { showToast("出力するデータがありません"); return; }
+  const headers = ["受信日時", "ステータス", "お名前", "会社名", "電話番号", "メールアドレス", "種別", "内容"];
+  const rows = contactList.map(c => [c.submittedAt, c.status || "未対応", c.name, c.company, c.phone, c.email, c.type, (c.message || "").replace(/\n/g, " ")]);
+  const csv = [headers, ...rows].map(r => r.map(v => `"${String(v || "").replace(/"/g, '""')}"`).join(",")).join("\r\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `noritate_contacts_${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("clearAll").addEventListener("click", async () => {
+  if (!confirm("すべてのお問い合わせデータを削除します。ゴミ箱に移動され、後から復元できます。よろしいですか？")) return;
+  const snap = await get(contactsRef);
+  const items = snap.val();
+  if (!items) { showToast("削除するデータがありません"); return; }
+  await push(trashRef, { deletedAt: new Date().toISOString(), items });
+  await remove(contactsRef);
+  showToast("削除しました（ゴミ箱に移動）");
+});
+
+async function renderTrash() {
+  const area = document.getElementById("trashArea");
+  area.innerHTML = '<p class="small">読み込み中...</p>';
+  const snap = await get(trashRef);
+  const val = snap.val() || {};
+  const batches = Object.entries(val)
+    .map(([key, batch]) => ({ key, deletedAt: batch.deletedAt, count: Object.keys(batch.items || {}).length }))
+    .sort((a, b) => new Date(b.deletedAt) - new Date(a.deletedAt));
+  if (!batches.length) { area.innerHTML = '<p class="small">ゴミ箱は空です</p>'; return; }
+  let html = '';
+  batches.forEach(b => {
+    html += `<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);flex-wrap:wrap;">
+      <span class="small">${fmtDate(b.deletedAt)} 削除・${b.count}件</span>
+      <span style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button class="btn btn--ghost" style="padding:5px 12px;font-size:12px;" onclick="restoreTrash('${b.key}')">復元</button>
+        <button class="btn btn--danger" style="padding:5px 12px;font-size:12px;" onclick="purgeTrash('${b.key}')">完全に削除</button>
+      </span>
+    </div>`;
+  });
+  area.innerHTML = html;
+}
+window.restoreTrash = async function (key) {
+  if (!confirm("復元しますか？")) return;
+  const snap = await get(ref(fbDb, "trash/noritate_contacts/" + key));
+  const batch = snap.val();
+  if (batch && batch.items) {
+    await update(contactsRef, batch.items);
+    await remove(ref(fbDb, "trash/noritate_contacts/" + key));
+    showToast("復元しました");
+    renderTrash();
+  }
+};
+window.purgeTrash = async function (key) {
+  if (!confirm("完全に削除します。復元できなくなります。よろしいですか？")) return;
+  await remove(ref(fbDb, "trash/noritate_contacts/" + key));
+  showToast("完全に削除しました");
+  renderTrash();
+};
+document.getElementById("trashToggle").addEventListener("click", () => {
+  const area = document.getElementById("trashArea");
+  const show = area.style.display === "none" || !area.style.display;
+  area.style.display = show ? "block" : "none";
+  if (show) renderTrash();
+});
+
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+  const errEl = document.getElementById("loginError");
+  errEl.textContent = "";
+  try {
+    await signInWithEmailAndPassword(fbAuth, email, password);
+  } catch (err) {
+    errEl.textContent = "ログインに失敗しました。メールアドレス・パスワードをご確認ください。";
+  }
+});
+document.getElementById("logoutBtn").addEventListener("click", () => signOut(fbAuth));
+
+onAuthStateChanged(fbAuth, (user) => {
+  if (user) {
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("adminShell").style.display = "block";
+    syncContacts();
+  } else {
+    document.getElementById("loginScreen").style.display = "block";
+    document.getElementById("adminShell").style.display = "none";
+  }
+});
+</script>
+</body>
+</html>
