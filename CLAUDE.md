@@ -229,7 +229,7 @@ window.addEventListener('resize', function() {
 | 会社名 | 株式会社NORI&TATE |
 | 設立 | 2026年4月19日 |
 | 代表取締役 | 吉田　光輝 |
-| 所在地 | 大阪市北区梅田1丁目1番3-1900号 大阪駅前第3ビル19階 |
+| 所在地 | 〒530-0001 大阪府大阪市北区梅田一丁目２番２号大阪駅前第2ビル１２－１２（登記内容） |
 | 電話 | 090-1243-6770 |
 | メール | noritate.official@gmail.com |
 | Instagram | https://www.instagram.com/nori.tate_official |
