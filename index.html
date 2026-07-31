@@ -468,6 +468,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: inline-block;
     }
     .biz-link:hover { opacity: 0.4; }
+    .biz-link-row { display: flex; align-items: center; gap: 1.1rem; }
+    .biz-qr {
+      width: 4.2rem;
+      height: 4.2rem;
+      border: 1px solid var(--border);
+      padding: 3px;
+      background: var(--white);
+      flex-shrink: 0;
+    }
 
     /* ── 事業成長の心得 ── */
     .growth-lead { font-size: 0.875rem; line-height: 2.1; color: #555; margin-bottom: 3rem; }
@@ -971,15 +980,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
           <p class="biz-body js-fade d2">
-            30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり」。そのオーナー様がNORI&amp;TATEの考えに賛同してくださり、事業を引き継ぐことになりました。
+            30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり」。そのオーナー様の想いに共感し、NORI&amp;TATEが経営面のサポートに入らせていただくことになりました。
           </p>
           <p class="biz-body js-fade d3">
-            オーナー様も従業員のみなさんも、これまで通りお店に。私はそこに経営者として加わる形で、もっと地域に愛されるこいまりを一緒につくっていきます。
+            オーナー様も従業員のみなさんも、これまで通りお店に立ち続けています。私たちはその後ろ盾として、もっと地域に愛されるこいまりを一緒につくっていきます。
           </p>
           <p class="biz-body js-fade d3" style="margin-bottom:2rem;">
             ご愛好いただいているお客様、支えてくださっている地域の皆様。これまでの大切なものはそのままに、これからの新しい価値も少しずつ積み上げていけたらと考えています。
           </p>
-          <a class="biz-link js-fade d4" href="https://koimari-official.github.io/koimari-site/" target="_blank" rel="noopener noreferrer">公式サイトを見る &nbsp;›</a>
+          <div class="biz-link-row js-fade d4">
+            <a class="biz-link" href="https://www.instagram.com/_koimari_/" target="_blank" rel="noopener noreferrer">Instagramを見る &nbsp;›</a>
+            <img class="biz-qr" src="koimari-instagram-qr.png" alt="こいまり公式Instagram QRコード" width="72" height="72" loading="lazy">
+          </div>
         </div>
       </div>
 
