@@ -40,6 +40,34 @@
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--black);color:#fff;padding:12px 22px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:10}
   .toast.show{opacity:1}
   @media(max-width:700px){table{font-size:12px}th,td{padding:8px}}
+
+  /* ── タブ切替 ── */
+  .tabbar{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:4px;border-bottom:1px solid var(--border);background:#fff}
+  .tab-btn{padding:14px 18px;font-size:13.5px;font-family:inherit;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--mid)}
+  .tab-btn.active{color:var(--black);border-bottom-color:var(--black);font-weight:600}
+
+  /* ── サイト内容編集 ── */
+  .cf-note{font-size:12.5px;color:var(--mid);margin-bottom:20px;line-height:1.8}
+  .cf-section{background:#fff;border:1px solid var(--border);margin-bottom:14px}
+  .cf-section > summary{cursor:pointer;padding:16px 18px;font-family:var(--serif);font-size:15px;font-weight:500;letter-spacing:.04em;list-style:none;display:flex;align-items:center;justify-content:space-between}
+  .cf-section > summary::-webkit-details-marker{display:none}
+  .cf-section > summary::after{content:'+';font-family:var(--en);font-size:16px;color:var(--mid)}
+  .cf-section[open] > summary::after{content:'−'}
+  .cf-body{padding:4px 18px 20px}
+  .cf-row{margin-bottom:14px}
+  .cf-row label{display:block;font-size:12.5px;color:var(--mid);margin-bottom:5px}
+  .cf-row .cf-hint{font-size:11.5px;color:#aaa;margin-top:4px;line-height:1.6}
+  .cf-input, .cf-textarea{width:100%;padding:9px 11px;border:1px solid var(--border);font-family:inherit;font-size:13.5px;color:var(--black)}
+  .cf-textarea{min-height:80px;resize:vertical;line-height:1.8}
+  .cf-img-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+  .cf-img-preview{width:120px;height:72px;object-fit:cover;border:1px solid var(--border);background:#f0f0f0}
+  .cf-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:600px){.cf-grid2{grid-template-columns:1fr}}
+  .cf-card-block{border-top:1px solid var(--border);padding-top:14px;margin-top:14px}
+  .cf-card-block:first-child{border-top:none;padding-top:0;margin-top:0}
+  .cf-save-row{display:flex;justify-content:flex-end}
+  .cf-danger-box{background:#fff;border:1px solid #e3c6c6;padding:16px 18px;margin-top:24px}
+  .cf-danger-box p{font-size:12.5px;color:var(--mid);margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -58,17 +86,184 @@
     <span class="logo">NORI&amp;TATE ADMIN</span>
     <button id="logoutBtn">ログアウト</button>
   </header>
+  <nav class="tabbar">
+    <button class="tab-btn active" data-tab="contacts">お問い合わせ</button>
+    <button class="tab-btn" data-tab="content">サイト内容</button>
+  </nav>
   <main>
-    <div class="panel__head">
-      <h2 class="panel__title">お問い合わせ一覧</h2>
-      <div class="toolbar">
-        <button class="btn btn--ghost" id="exportBtn">CSV出力</button>
-        <button class="btn btn--ghost" id="trashToggle">ゴミ箱</button>
-        <button class="btn btn--danger" id="clearAll">全削除</button>
+    <section id="tab-contacts">
+      <div class="panel__head">
+        <h2 class="panel__title">お問い合わせ一覧</h2>
+        <div class="toolbar">
+          <button class="btn btn--ghost" id="exportBtn">CSV出力</button>
+          <button class="btn btn--ghost" id="trashToggle">ゴミ箱</button>
+          <button class="btn btn--danger" id="clearAll">全削除</button>
+        </div>
       </div>
-    </div>
-    <div id="trashArea"></div>
-    <div id="contactsArea"></div>
+      <div id="trashArea"></div>
+      <div id="contactsArea"></div>
+    </section>
+
+    <section id="tab-content" style="display:none">
+      <div class="panel__head">
+        <h2 class="panel__title">サイト内容（背景画像・文言）</h2>
+      </div>
+      <p class="cf-note">
+        トップページの背景画像・見出し・本文を、コードを触らずにここから変更できます。セクションごとに「保存する」を押すと即座にサイトに反映されます（保存しないと反映されません）。<br>
+        画像は自動的に縮小・圧縮されてから保存されます。電話番号・メールアドレス・お問い合わせフォームの項目はここでは変更できません（複数箇所を一括で直す必要があるため、変更が必要な場合はJobsにご依頼ください）。
+      </p>
+
+      <details class="cf-section" open>
+        <summary>トップ（ヒーロー）</summary>
+        <div class="cf-body">
+          <div class="cf-img-row">
+            <img class="cf-img-preview" data-preview-for="hero" src="hero.jpg.png" alt="">
+            <input type="file" accept="image/*" data-img-section="hero">
+          </div>
+          <div class="cf-row"><label>英語キャッチ（小）</label><input class="cf-input" data-section="hero" data-field="en"></div>
+          <div class="cf-row"><label>メインキャッチコピー</label><textarea class="cf-textarea" data-section="hero" data-field="catch"></textarea><p class="cf-hint">改行した位置で行が変わります</p></div>
+          <div class="cf-row"><label>会社名表記</label><input class="cf-input" data-section="hero" data-field="brand"></div>
+          <div class="cf-save-row"><button class="btn cf-save" data-save-section="hero">保存する</button></div>
+        </div>
+      </details>
+
+      <details class="cf-section">
+        <summary>Concept（代表の考え方）</summary>
+        <div class="cf-body">
+          <div class="cf-img-row">
+            <img class="cf-img-preview" data-preview-for="concept" src="our%20mind.jpg.png" alt="">
+            <input type="file" accept="image/*" data-img-section="concept">
+          </div>
+          <div class="cf-row"><label>見出し</label><textarea class="cf-textarea" data-section="concept" data-field="title" style="min-height:50px"></textarea></div>
+          <div class="cf-row"><label>本文</label><textarea class="cf-textarea" data-section="concept" data-field="body" style="min-height:160px"></textarea><p class="cf-hint">空行（1行あける）で段落が分かれます</p></div>
+          <div class="cf-save-row"><button class="btn cf-save" data-save-section="concept">保存する</button></div>
+        </div>
+      </details>
+
+      <details class="cf-section">
+        <summary>Name（社名の由来）</summary>
+        <div class="cf-body">
+          <div class="cf-img-row">
+            <img class="cf-img-preview" data-preview-for="name" src="ameft.jpg.jpg" alt="">
+            <input type="file" accept="image/*" data-img-section="name">
+          </div>
+          <div class="cf-row"><label>見出し</label><textarea class="cf-textarea" data-section="name" data-field="title" style="min-height:50px"></textarea></div>
+          <div class="cf-row"><label>導入文</label><textarea class="cf-textarea" data-section="name" data-field="intro"></textarea></div>
+          <div class="cf-grid2">
+            <div class="cf-row"><label>語句1（見出し）</label><input class="cf-input" data-section="name" data-field="noriWord"></div>
+            <div class="cf-row"><label>語句2（見出し）</label><input class="cf-input" data-section="name" data-field="tateWord"></div>
+          </div>
+          <div class="cf-grid2">
+            <div class="cf-row"><label>語句1の説明</label><textarea class="cf-textarea" data-section="name" data-field="noriDef" style="min-height:70px"></textarea></div>
+            <div class="cf-row"><label>語句2の説明</label><textarea class="cf-textarea" data-section="name" data-field="tateDef" style="min-height:70px"></textarea></div>
+          </div>
+          <div class="cf-row"><label>まとめ文</label><textarea class="cf-textarea" data-section="name" data-field="foot"></textarea></div>
+          <div class="cf-save-row"><button class="btn cf-save" data-save-section="name">保存する</button></div>
+        </div>
+      </details>
+
+      <details class="cf-section">
+        <summary>Business（事業継承実績）</summary>
+        <div class="cf-body">
+          <div class="cf-img-row">
+            <img class="cf-img-preview" data-preview-for="business" src="cake.jpg.jpg" alt="">
+            <input type="file" accept="image/*" data-img-section="business">
+          </div>
+          <div class="cf-row"><label>見出し</label><textarea class="cf-textarea" data-section="business" data-field="title" style="min-height:50px"></textarea></div>
+          <div class="cf-grid2">
+            <div class="cf-row"><label>所在地ラベル</label><input class="cf-input" data-section="business" data-field="location"></div>
+            <div class="cf-row"><label>屋号・英語表記</label><input class="cf-input" data-section="business" data-field="name">
+              <input class="cf-input" style="margin-top:6px" data-section="business" data-field="sub" placeholder="英語表記（例：Cake Shop Koimari）">
+            </div>
+          </div>
+          <div class="cf-row"><label>本文</label><textarea class="cf-textarea" data-section="business" data-field="body" style="min-height:160px"></textarea><p class="cf-hint">空行（1行あける）で段落が分かれます</p></div>
+          <div class="cf-save-row"><button class="btn cf-save" data-save-section="business">保存する</button></div>
+        </div>
+      </details>
+
+      <details class="cf-section">
+        <summary>Key Principles（事業成長の心得）</summary>
+        <div class="cf-body">
+          <div class="cf-img-row">
+            <img class="cf-img-preview" data-preview-for="growth" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=70&auto=format&fit=crop" alt="">
+            <input type="file" accept="image/*" data-img-section="growth">
+          </div>
+          <p class="cf-hint" style="margin-bottom:12px">※ この背景画像は「Join」セクションでも共用されます</p>
+          <div class="cf-row"><label>見出し</label><input class="cf-input" data-section="growth" data-field="title"></div>
+          <div class="cf-row"><label>リード文</label><textarea class="cf-textarea" data-section="growth" data-field="lead" style="min-height:60px"></textarea></div>
+          <div class="cf-card-block">
+            <div class="cf-row"><label>柱1・タイトル</label><input class="cf-input" data-section="growth" data-field="card1Title"></div>
+            <div class="cf-row"><label>柱1・説明</label><textarea class="cf-textarea" data-section="growth" data-field="card1Desc" style="min-height:70px"></textarea></div>
+          </div>
+          <div class="cf-card-block">
+            <div class="cf-row"><label>柱2・タイトル</label><input class="cf-input" data-section="growth" data-field="card2Title"></div>
+            <div class="cf-row"><label>柱2・説明</label><textarea class="cf-textarea" data-section="growth" data-field="card2Desc" style="min-height:70px"></textarea></div>
+          </div>
+          <div class="cf-card-block">
+            <div class="cf-row"><label>柱3・タイトル</label><input class="cf-input" data-section="growth" data-field="card3Title"></div>
+            <div class="cf-row"><label>柱3・説明</label><textarea class="cf-textarea" data-section="growth" data-field="card3Desc" style="min-height:70px"></textarea></div>
+          </div>
+          <div class="cf-card-block">
+            <div class="cf-row"><label>柱4・タイトル</label><input class="cf-input" data-section="growth" data-field="card4Title"></div>
+            <div class="cf-row"><label>柱4・説明</label><textarea class="cf-textarea" data-section="growth" data-field="card4Desc" style="min-height:70px"></textarea></div>
+          </div>
+          <div class="cf-save-row"><button class="btn cf-save" data-save-section="growth">保存する</button></div>
+        </div>
+      </details>
+
+      <details class="cf-section">
+        <summary>Join（オーナー様へ）</summary>
+        <div class="cf-body">
+          <div class="cf-row"><label>見出し</label><textarea class="cf-textarea" data-section="join" data-field="title" style="min-height:50px"></textarea></div>
+          <div class="cf-row"><label>リード文</label><textarea class="cf-textarea" data-section="join" data-field="lead" style="min-height:120px"></textarea></div>
+          <div class="cf-row"><label>チェックリスト項目</label><textarea class="cf-textarea" data-section="join" data-field="items" style="min-height:100px"></textarea><p class="cf-hint">1行につき1項目</p></div>
+          <div class="cf-row"><label>ボタン文言</label><input class="cf-input" data-section="join" data-field="btnText"></div>
+          <div class="cf-save-row"><button class="btn cf-save" data-save-section="join">保存する</button></div>
+        </div>
+      </details>
+
+      <details class="cf-section">
+        <summary>Company（会社概要）</summary>
+        <div class="cf-body">
+          <div class="cf-img-row">
+            <img class="cf-img-preview" data-preview-for="company" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=70&auto=format&fit=crop" alt="">
+            <input type="file" accept="image/*" data-img-section="company">
+          </div>
+          <div class="cf-row"><label>見出し</label><input class="cf-input" data-section="company" data-field="title"></div>
+          <div class="cf-grid2">
+            <div class="cf-row"><label>会社名</label><input class="cf-input" data-section="company" data-field="companyName"></div>
+            <div class="cf-row"><label>英文社名</label><input class="cf-input" data-section="company" data-field="enName"></div>
+          </div>
+          <div class="cf-grid2">
+            <div class="cf-row"><label>設立</label><input class="cf-input" data-section="company" data-field="founded"></div>
+            <div class="cf-row"><label>代表取締役</label><input class="cf-input" data-section="company" data-field="ceo"></div>
+          </div>
+          <div class="cf-row"><label>生年月日</label><input class="cf-input" data-section="company" data-field="birthday"></div>
+          <div class="cf-row"><label>所在地</label><textarea class="cf-textarea" data-section="company" data-field="address" style="min-height:60px"></textarea></div>
+          <div class="cf-row"><label>事業内容</label><textarea class="cf-textarea" data-section="company" data-field="business" style="min-height:60px"></textarea></div>
+          <div class="cf-save-row"><button class="btn cf-save" data-save-section="company">保存する</button></div>
+        </div>
+      </details>
+
+      <details class="cf-section">
+        <summary>Contact / フッター</summary>
+        <div class="cf-body">
+          <div class="cf-img-row">
+            <img class="cf-img-preview" data-preview-for="contact" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=70&auto=format&fit=crop" alt="">
+            <input type="file" accept="image/*" data-img-section="contact">
+          </div>
+          <div class="cf-row"><label>見出し</label><textarea class="cf-textarea" data-section="contact" data-field="title" style="min-height:50px"></textarea></div>
+          <div class="cf-row"><label>リード文</label><textarea class="cf-textarea" data-section="contact" data-field="lead" style="min-height:100px"></textarea></div>
+          <div class="cf-row"><label>フッターの一言（タグライン）</label><input class="cf-input" data-section="footer" data-field="tagline"></div>
+          <div class="cf-save-row"><button class="btn cf-save" data-save-section="contact,footer">保存する</button></div>
+        </div>
+      </details>
+
+      <div class="cf-danger-box">
+        <p>すべての背景画像・文言を、コードに書かれた初期状態に戻します（お問い合わせデータには影響しません）。</p>
+        <button class="btn btn--danger" id="resetContentBtn">サイト内容を初期状態に戻す</button>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -76,7 +271,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, onValue, update, remove, get, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, onValue, update, remove, get, push, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -224,6 +419,197 @@ document.getElementById("trashToggle").addEventListener("click", () => {
   if (show) renderTrash();
 });
 
+/* ============================================================
+   タブ切替
+   ============================================================ */
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b === btn));
+    document.getElementById("tab-contacts").style.display = btn.dataset.tab === "contacts" ? "block" : "none";
+    document.getElementById("tab-content").style.display = btn.dataset.tab === "content" ? "block" : "none";
+  });
+});
+
+/* ============================================================
+   サイト内容編集
+   ============================================================ */
+const contentRef = ref(fbDb, "noritate/content");
+
+const CONTENT_DEFAULTS = {
+  hero: {
+    bg: "hero.jpg.png",
+    en: "Reviving Japan through Small Business",
+    catch: "中小企業から、\n再び日本を\n盛り上げる。",
+    brand: "株式会社NORI&TATE"
+  },
+  concept: {
+    bg: "our%20mind.jpg.png",
+    title: "代表の\n考え方",
+    body: "株式会社NORI&TATEの原点は、私が商社時代に目の当たりにしてきた、ある中小企業の姿にあります。お世話になった、鉄鋼業界で優れた技術を持つその金属加工会社は、経営者の高齢化と後継者不足によって技術を継承できず、職人さんが一人ずつ離れていきました。そうして事業が衰退していく──そんな現場でした。\n\nこの光景を、二度と繰り返したくない。それが、NORI&TATEを立ち上げた理由です。\n\n私たちは、事業承継を通じて技術と雇用を継承します。そのうえで、従来と違った観点から事業を見つめ直し、新しい価値を創造・探求することで成長を図ります。何よりも大切にしているのは、そこで働く方とご家族の暮らしを、より良くすることです。"
+  },
+  name: {
+    bg: "ameft.jpg.jpg",
+    title: "NORI&TATE\n(ノリタテ)\nの由来",
+    intro: "社名は、私が学生時代からアメリカンフットボールをランニングバックとしてプレーする中で生まれた合言葉、「ノリと縦上がり」に由来し、環境や前例にとらわれず自ら判断し責任を持って前進するという、私が心がける経営の在り方そのものを表しています。",
+    noriWord: "ノリ（NORI）",
+    noriDef: "ボールを持ち全速力で走りながら、味方の状況や相手の動きを感じ、最も前進できる最善のルートを瞬時に察知する能力。",
+    tateWord: "縦上がり（TATE）",
+    tateDef: "壁や相手にぶち当たりながらも臆さずに最善のルートを最短距離で、全速力で突き進む強い意志。",
+    foot: "この二つを重ねた言葉が、「ノリと縦上がり」\n\nノリタテ（株式会社ＮＯＲＩ＆ＴＡＴＥ）の由来です。"
+  },
+  business: {
+    bg: "cake.jpg.jpg",
+    title: "事業継承\n実績",
+    location: "No.01 — 大阪市城東区",
+    name: "ケーキ屋さん こいまり",
+    sub: "Cake Shop Koimari",
+    body: "30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり」。そのオーナー様の想いに共感し、NORI&TATEが経営面のサポートに入らせていただくことになりました。\n\nオーナー様も従業員のみなさんも、これまで通りお店に立ち続けています。私たちはその後ろ盾として、もっと地域に愛されるこいまりを一緒につくっていきます。\n\nご愛好いただいているお客様、支えてくださっている地域の皆様。これまでの大切なものはそのままに、これからの新しい価値も少しずつ積み上げていけたらと考えています。"
+  },
+  growth: {
+    bg: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=70&auto=format&fit=crop",
+    title: "事業成長の心得",
+    lead: "譲受した事業を育てるにあたり、NORI&TATEが大切にしている４つの柱です。\nオーナーの想いと現場の価値を尊重しながら、無理のない形で事業を成長させていきます。",
+    card1Title: "採用・育成による現場の強化",
+    card1Desc: "現場を支える人材の採用計画から育成体制の構築まで、事業の実情に合わせて取り組みます。技術と知識が次の世代へ確実に引き継がれる仕組みをつくります。",
+    card2Title: "マーケティングによる企業価値の創出・探求",
+    card2Desc: "マーケティングの視点から事業の強みを掘り起こし、地域に根ざしたブランドづくりと集客の仕組みを整えます。事業固有の価値を発信し、新たな顧客との接点を創出します。",
+    card3Title: "数字と業務の見える化・仕組み化",
+    card3Desc: "経営状況・業務フロー・財務数値を可視化し、属人化していた判断を「仕組み」へ変えます。経営者が安心して次のステップを描けるよう、管理体制を整備します。",
+    card4Title: "次世代を担う経営体制づくり",
+    card4Desc: "後継者の選定・育成から、経営移行のシナリオ設計まで。オーナーの想いを引き継ぎながら、無理のない形で次世代への橋渡しをサポートします。"
+  },
+  join: {
+    title: "ともに、\n次の一歩を。",
+    lead: "長年かけて育ててきた事業を、誰にどう引き継ぐか。それは経営者の方にとって、人生の大きな決断だと思います。\n\n技術、人、地域とのつながり。積み重ねてきたものを、単なる売買として手放すのではなく、その価値を理解した相手にきちんと渡したい。私たちは、そう考える経営者の方と一緒に進んでいきたいと考えています。\n\nこんな想いをお持ちの方は、お気軽にご相談ください。",
+    items: "事業を続けたいが、後継者が見つからない\n従業員や取引先を大切にしながら引き継ぎたい\n一人で抱え込まず、一緒に考えてくれる相手が欲しい\n引退後も、事業の成長を見届けたい",
+    btnText: "まずは話をお聞かせください"
+  },
+  company: {
+    bg: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=70&auto=format&fit=crop",
+    title: "会社概要",
+    companyName: "株式会社NORI&TATE",
+    enName: "NORI&TATE Co., Ltd.",
+    founded: "2026年4月6日",
+    ceo: "吉田　光輝",
+    birthday: "1991年12月16日",
+    address: "大阪市城東区成育2丁目13-15\nアイビーマンション103号室",
+    business: "洋菓子製造・小売、卸業\n事業承継による新規事業への参入"
+  },
+  contact: {
+    bg: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=70&auto=format&fit=crop",
+    title: "お話を\n聞かせて\nください",
+    lead: "事業承継は、経営者の方にとって一生に一度の決断だと思います。だからこそ、判断を急がせるような場にはしたくないと考えています。\n\nまずは現状を聞かせてください。その上で、私たちでお役に立てそうかどうか、一緒に見極めていければと思います。"
+  },
+  footer: {
+    tagline: "中小企業から、再び日本を盛り上げる。"
+  }
+};
+
+let cfState = null;
+
+function fileToDataUrl(file, maxWidth) {
+  return new Promise((resolve, reject) => {
+    if (file.size > 15 * 1024 * 1024) { reject(new Error("画像のファイルサイズが大きすぎます（15MB以下にしてください）")); return; }
+    const r = new FileReader();
+    r.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        let w = img.naturalWidth, h = img.naturalHeight;
+        if (w > maxWidth) { h = Math.round(h * (maxWidth / w)); w = maxWidth; }
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        try { resolve(canvas.toDataURL("image/jpeg", 0.82)); }
+        catch (err) { resolve(r.result); }
+      };
+      img.onerror = () => reject(new Error("画像を読み込めませんでした"));
+      img.src = r.result;
+    };
+    r.onerror = () => reject(r.error);
+    r.readAsDataURL(file);
+  });
+}
+
+function populateContentFields() {
+  document.querySelectorAll("[data-section][data-field]").forEach(el => {
+    const s = el.dataset.section, f = el.dataset.field;
+    const val = cfState[s] && cfState[s][f] != null ? cfState[s][f] : "";
+    el.value = val;
+  });
+  document.querySelectorAll("[data-preview-for]").forEach(img => {
+    const s = img.dataset.previewFor;
+    if (cfState[s] && cfState[s].bg) img.src = cfState[s].bg;
+  });
+}
+
+function bindContentFieldEvents() {
+  document.querySelectorAll("[data-section][data-field]").forEach(el => {
+    el.addEventListener("input", () => {
+      const s = el.dataset.section, f = el.dataset.field;
+      if (!cfState[s]) cfState[s] = {};
+      cfState[s][f] = el.value;
+    });
+  });
+  document.querySelectorAll("[data-img-section]").forEach(input => {
+    input.addEventListener("change", async () => {
+      const file = input.files[0];
+      if (!file) return;
+      const s = input.dataset.imgSection;
+      try {
+        const dataUrl = await fileToDataUrl(file, 1920);
+        if (!cfState[s]) cfState[s] = {};
+        cfState[s].bg = dataUrl;
+        const preview = document.querySelector(`[data-preview-for="${s}"]`);
+        if (preview) preview.src = dataUrl;
+        showToast("画像を反映しました（保存するボタンを押してください）");
+      } catch (err) {
+        showToast(err.message || "画像の読み込みに失敗しました");
+      }
+      input.value = "";
+    });
+  });
+  document.querySelectorAll(".cf-save").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const sections = btn.dataset.saveSection.split(",");
+      btn.disabled = true;
+      const original = btn.textContent;
+      btn.textContent = "保存中...";
+      try {
+        for (const s of sections) {
+          await set(ref(fbDb, "noritate/content/" + s), cfState[s] || {});
+        }
+        showToast("保存しました。サイトに反映されます");
+      } catch (err) {
+        showToast("保存に失敗しました: " + (err.message || err));
+      }
+      btn.disabled = false;
+      btn.textContent = original;
+    });
+  });
+  document.getElementById("resetContentBtn").addEventListener("click", async () => {
+    if (!confirm("すべての背景画像・文言を初期状態に戻します。よろしいですか？")) return;
+    try {
+      await remove(contentRef);
+      cfState = JSON.parse(JSON.stringify(CONTENT_DEFAULTS));
+      populateContentFields();
+      showToast("初期状態に戻しました");
+    } catch (err) {
+      showToast("リセットに失敗しました: " + (err.message || err));
+    }
+  });
+}
+
+async function loadContentPanel() {
+  const snap = await get(contentRef);
+  const saved = snap.val() || {};
+  cfState = {};
+  Object.keys(CONTENT_DEFAULTS).forEach(s => {
+    cfState[s] = Object.assign({}, CONTENT_DEFAULTS[s], saved[s] || {});
+  });
+  populateContentFields();
+}
+bindContentFieldEvents();
+
 document.getElementById("loginBtn").addEventListener("click", async () => {
   const email = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
@@ -242,6 +628,7 @@ onAuthStateChanged(fbAuth, (user) => {
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("adminShell").style.display = "block";
     syncContacts();
+    loadContentPanel();
   } else {
     document.getElementById("loginScreen").style.display = "block";
     document.getElementById("adminShell").style.display = "none";
