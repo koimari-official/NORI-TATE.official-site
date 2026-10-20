@@ -467,6 +467,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       transition: opacity 0.2s;
       display: inline-block;
     }
+    .works-img { display:block; width:100%; height:auto; border:1px solid var(--border); margin:0 0 1.6rem; }
+    .works-pair { display:grid; grid-template-columns:1fr 1fr; gap:1rem; max-width:420px; }
+    .works-img--phone { margin-bottom:1.6rem; }
+    #services .g-card, #process .g-card { }
+    #services .sec-split > *, #works .sec-split > *, #process .sec-split > * { min-width:0; }
+    #works .biz-sub, #works .biz-name { overflow-wrap:anywhere; }
+    #works .biz-header { min-width:0; } #works .biz-meta { min-width:0; flex:1 1 auto; }
+    @media (max-width: 600px) { #works .biz-name { font-size:1.15rem; } }
+    #works .biz-name { white-space:normal; }
     .biz-link:hover { opacity: 0.4; }
     .biz-link-row { display: flex; align-items: center; gap: 1.1rem; }
     .biz-qr {
@@ -833,6 +842,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li><a href="#concept"  class="nav-link" data-section="concept">Concept</a></li>
       <li><a href="#name"     class="nav-link" data-section="name">Name</a></li>
       <li><a href="#business" class="nav-link" data-section="business">Business</a></li>
+      <li><a href="#services" class="nav-link" data-section="services">Services</a></li>
+      <li><a href="#works"    class="nav-link" data-section="works">Case Study</a></li>
       <li><a href="#growth"   class="nav-link" data-section="growth">Key Principles</a></li>
       <li><a href="#join"     class="nav-link" data-section="join">Join</a></li>
       <li><a href="#company"  class="nav-link" data-section="company">Company</a></li>
@@ -994,6 +1005,164 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a class="biz-link" href="https://www.instagram.com/_koimari_/" target="_blank" rel="noopener noreferrer">Instagramを見る &nbsp;›</a>
             <img class="biz-qr" src="koimari-instagram-qr.png" alt="こいまり公式Instagram QRコード" width="72" height="72" loading="lazy">
           </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── SERVICES（2026-10-20追加：既存の sec-split / g-card / biz-card の作りをそのまま使用） ── -->
+  <section id="services">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Services</span>
+        <h2 class="s-title">私たちに<br>できること</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <p class="growth-lead js-fade d1">
+          事業承継したケーキ屋さん「こいまり」で、私たち自身が現場に入り、考え、つくり、運用してきた取り組みを、そのままサービスとしてご提供します。<br>机上の提案ではなく、実際の店舗で毎日使われている仕組みです。
+        </p>
+        <div class="growth-cards">
+          <article class="g-card js-fade d2">
+            <div class="g-card-bar bar-a"></div>
+            <span class="g-card-num">01 — Branding &amp; Marketing</span>
+            <h3 class="g-card-title">ターゲットの洗い出しと、選ばれる理由づくり</h3>
+            <p class="g-card-desc">お客様の年代・来店の目的・競合を整理し、お店の強みを言葉と写真で伝わる形に整えます。商品説明やキャッチコピー、季節・イベントごとの特設ページまで、一貫した世界観でつくります。</p>
+          </article>
+          <article class="g-card js-fade d2">
+            <div class="g-card-bar bar-b"></div>
+            <span class="g-card-num">02 — Website</span>
+            <h3 class="g-card-title">自分で更新できるホームページの制作・運用</h3>
+            <p class="g-card-desc">スマホで見やすい公式サイトを制作し、お店の方が自分で写真や文章を更新できる管理画面を備えます。祝日や特別営業時間が自動で反映される営業日カレンダー、英語表示、検索・AI検索への対策にも対応します。</p>
+          </article>
+          <article class="g-card js-fade d3">
+            <div class="g-card-bar bar-c"></div>
+            <span class="g-card-num">03 — Reservation &amp; EC</span>
+            <h3 class="g-card-title">予約・販売の仕組みづくり</h3>
+            <p class="g-card-desc">LINEから予約できるフォーム、ご注文内容からの見積もりの自動計算、予約の一覧・カレンダー表示、スタッフへの通知までを一つの流れにします。ネットショップ（ECサイト）の立ち上げもご相談いただけます。</p>
+          </article>
+          <article class="g-card js-fade d3">
+            <div class="g-card-bar bar-d"></div>
+            <span class="g-card-num">04 — LINE &amp; SNS</span>
+            <h3 class="g-card-title">LINE・SNSでの集客と、お客様とのつながり</h3>
+            <p class="g-card-desc">LINE公式アカウントの自動返信（予約受付・確定のご連絡・前日のリマインド）、リッチメニュー、クーポン施策を設計します。Instagramの反応を分析し、伝わる投稿づくりと商品・店舗のPRをお手伝いします。</p>
+          </article>
+          <article class="g-card js-fade d3">
+            <div class="g-card-bar bar-a"></div>
+            <span class="g-card-num">05 — Operations</span>
+            <h3 class="g-card-title">新しいシステムによる、作業の効率化・自動化</h3>
+            <p class="g-card-desc">複雑なシフトの作成・修正、勤怠・給与計算、レシートを読み取る経費精算、原価と料金表の自動連動など、手作業で時間がかかっていた業務を、お店に合わせた仕組みに置き換えます。</p>
+          </article>
+          <article class="g-card js-fade d4">
+            <div class="g-card-bar bar-b"></div>
+            <span class="g-card-num">06 — Product Development</span>
+            <h3 class="g-card-title">ターゲットに合わせた商品研究</h3>
+            <p class="g-card-desc">市場やトレンドを調べ、それぞれのお店のお客様が好む商品・価格・季節の企画を一緒に考えます。売れる理由を言葉にし、店頭とWebの両方で伝わる形まで落とし込みます。</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── CASE STUDY ── -->
+  <section id="works">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Case Study</span>
+        <h2 class="s-title">こいまりでの<br>取り組み</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <div class="biz-card js-fade d1">
+          <div class="biz-header">
+            <div class="biz-num">01</div>
+            <div class="biz-meta">
+              <span class="biz-location">Website / Branding</span>
+              <h3 class="biz-name">公式ホームページの全面リニューアル</h3>
+              <p class="biz-sub">Cake Shop Koimari — Official Site</p>
+            </div>
+          </div>
+          <img class="works-img" src="works/site.jpg" alt="ケーキ屋さん こいまり 城東店 公式サイト" loading="lazy">
+          <p class="biz-body">「フルーツリッチで満足度の高いケーキ屋さん」という強みが伝わるよう、写真の見せ方・言葉選び・ページ構成を見直しました。お店の方が写真や文章をその場で更新できる管理画面も整えています。</p>
+        </div>
+
+        <div class="biz-card js-fade d2">
+          <div class="biz-header">
+            <div class="biz-num">02</div>
+            <div class="biz-meta">
+              <span class="biz-location">Seasonal Campaign</span>
+              <h3 class="biz-name">季節・イベントの特設ページ</h3>
+              <p class="biz-sub">Halloween / Christmas / New Year and more</p>
+            </div>
+          </div>
+          <img class="works-img" src="works/special.jpg" alt="ハロウィンフェア特設ページ" loading="lazy">
+          <p class="biz-body">ハロウィンやクリスマスなど、イベントごとに配色・飾り・動きが切り替わる特設ページの仕組みをつくりました。お知らせを書くだけで、関連商品が並んだにぎやかなページになり、トップページにも自動で掲載されます。</p>
+        </div>
+
+        <div class="biz-card js-fade d3">
+          <div class="biz-header">
+            <div class="biz-num">03</div>
+            <div class="biz-meta">
+              <span class="biz-location">Reservation / LINE</span>
+              <h3 class="biz-name">LINEで完結するケーキの予約</h3>
+              <p class="biz-sub">Reservation System</p>
+            </div>
+          </div>
+          <div class="works-pair">
+            <img class="works-img works-img--phone" src="works/phone-top.jpg" alt="スマートフォンで見たトップページ" loading="lazy">
+            <img class="works-img works-img--phone" src="works/phone-reserve.jpg" alt="LINEから開く予約フォーム" loading="lazy">
+          </div>
+          <p class="biz-body">写真から選んだケーキの仕様がそのまま入る予約フォーム、見積もりの自動計算、受付・確定・前日のリマインドの自動送信まで、LINEの中で完結する流れにしました。スタッフの電話対応や確認の手間を減らしています。</p>
+        </div>
+
+        <div class="biz-card js-fade d3">
+          <div class="biz-header">
+            <div class="biz-num">04</div>
+            <div class="biz-meta">
+              <span class="biz-location">Operations</span>
+              <h3 class="biz-name">営業日カレンダーと、店舗運営の仕組み化</h3>
+              <p class="biz-sub">Calendar / Shift / Payroll</p>
+            </div>
+          </div>
+          <img class="works-img" src="works/calendar.jpg" alt="営業日カレンダー" loading="lazy">
+          <p class="biz-body">定休日・祝日・特別営業時間が自動で反映される営業日カレンダーをはじめ、シフトの作成・修正、勤怠と給与の計算、経費精算など、日々の業務を一つずつ仕組みに置き換えてきました。</p>
+          <div class="biz-link-row">
+            <a class="biz-link" href="https://koimari-official.github.io/koimari-site/" target="_blank" rel="noopener">こいまりの公式サイトを見る &nbsp;›</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── PROCESS ── -->
+  <section id="process">
+    <div class="sec-split">
+
+      <div class="sec-head js-fade">
+        <span class="s-label">Process</span>
+        <h2 class="s-title">ご相談の<br>流れ</h2>
+        <div class="s-rule"></div>
+      </div>
+
+      <div class="sec-body">
+        <div class="growth-cards">
+          <article class="g-card js-fade d1"><div class="g-card-bar bar-a"></div><span class="g-card-num">Step 01 — Hearing</span><h3 class="g-card-title">お話をお聞かせください</h3><p class="g-card-desc">お店やお仕事の現状、困っていること、これからやりたいことをお伺いします。</p></article>
+          <article class="g-card js-fade d2"><div class="g-card-bar bar-b"></div><span class="g-card-num">Step 02 — Research</span><h3 class="g-card-title">現状の洗い出し</h3><p class="g-card-desc">お客様・商品・業務の流れを整理し、どこから手を付けると効果が大きいかを見極めます。</p></article>
+          <article class="g-card js-fade d3"><div class="g-card-bar bar-c"></div><span class="g-card-num">Step 03 — Proposal</span><h3 class="g-card-title">ご提案とお見積もり</h3><p class="g-card-desc">優先順位をつけたご提案と、お見積もりをお出しします。小さく始めることもできます。</p></article>
+          <article class="g-card js-fade d4"><div class="g-card-bar bar-d"></div><span class="g-card-num">Step 04 — Build &amp; Support</span><h3 class="g-card-title">制作・導入と、その後の運用</h3><p class="g-card-desc">つくって終わりではなく、実際に使いながら一緒に改善を続けます。</p></article>
+        </div>
+        <div class="biz-link-row js-fade d4" style="margin-top:2.4rem;">
+          <a class="biz-link" href="#contact">まずはご相談ください &nbsp;›</a>
         </div>
       </div>
 
@@ -1178,7 +1347,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="ft-tag" id="footer-tagline">中小企業から、再び日本を盛り上げる。</p>
     <nav class="ft-nav">
       <a href="#top">Top</a><a href="#concept">Concept</a><a href="#name">Name</a>
-      <a href="#business">Business</a><a href="#growth">Key Principles</a>
+      <a href="#business">Business</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#growth">Key Principles</a>
       <a href="#join">Join</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a>
     </nav>
     <div class="ft-line"></div>
@@ -1195,6 +1364,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     concept:  { panel:'bg-concept',  mode:'light' },
     name:     { panel:'bg-name',     mode:'light' },
     business: { panel:'bg-business', mode:'light' },
+    services: { panel:'bg-business', mode:'light' },
+    works:    { panel:'bg-business', mode:'light' },
+    process:  { panel:'bg-growth',   mode:'light' },
     growth:   { panel:'bg-growth',   mode:'light' },
     join:     { panel:'bg-growth',   mode:'light' },
     company:  { panel:'bg-company',  mode:'light' },
