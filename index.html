@@ -1631,7 +1631,7 @@ const firebaseConfig = {
 };
 const contentApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
 // App Check（2026-10-23）：正規のページからの通信に印を付ける（ロボットによる大量の書き込み対策）。Firebaseで「適用」するまでは確認だけ。
-try { initializeAppCheck(contentApp, { provider: new ReCaptchaEnterpriseProvider("6LeTWvstAAAAADtCiZryhHIWWLne5_6PIa-lUNbD"), isTokenAutoRefreshEnabled: true }); } catch (e) { console.warn("AppCheck:", e && e.message); }
+// App Check はこのページの1つ目の起動で開始済み（同じアプリに2回起動しない）
 const contentDb = getDatabase(contentApp);
 
 function escapeHtml(s) {
