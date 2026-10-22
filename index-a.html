@@ -151,6 +151,32 @@ section{position:relative}
 .ind-note{font-size:14px;line-height:1.9;color:var(--sub);margin:20px 0 0}
 .ind-desc{display:block;font-size:14px;line-height:1.9;color:var(--sub)}
 
+/* 強み：流通の流れ（川上→川下）と4つの知識 */
+.sec--strength{background:var(--paper)}
+.chain{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr);align-items:stretch;margin:10px 0 0}
+.chain-node{padding:26px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:var(--ink);min-height:120px}
+.chain-node b{font-family:var(--serif);font-weight:500;font-size:clamp(18px,1.8vw,24px)}
+.chain-tag{font-family:var(--en);font-size:10.5px;letter-spacing:.2em;margin-bottom:6px}
+.cn1{background:var(--c4)}.cn2{background:var(--c3)}.cn3{background:var(--c2)}.cn4{background:var(--c1)}
+.chain-arw{display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:22px;color:var(--gold)}
+.chain-cap{font-family:var(--serif);font-size:clamp(17px,1.6vw,21px);margin:22px 0 56px;text-align:center}
+.know-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 5vw;border-top:1px solid var(--line)}
+.know{padding:28px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:10px}
+.know--main{grid-column:1/-1;background:var(--tint);padding:34px 30px;border-bottom:none;margin:0 0 6px}
+.know--main .know-title{font-size:clamp(21px,2vw,27px)}
+.know--main p{max-width:760px}
+.know-num{grid-row:span 2;font-family:var(--en);font-weight:300;font-size:30px;line-height:1;color:var(--gold)}
+.know-title{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.6;margin:0 0 8px;text-wrap:pretty}
+.know p{font-size:14.5px;line-height:2;color:var(--sub);margin:0}
+@media (max-width:900px){
+  .chain{grid-template-columns:1fr;gap:0}
+  .chain-node{min-height:0;padding:16px 18px;flex-direction:row;justify-content:space-between}
+  .chain-tag{margin:0;order:2}
+  .chain-arw{transform:rotate(90deg);height:34px}
+  .chain-cap{margin:18px 0 34px}
+  .know-list{grid-template-columns:1fr}
+}
+
 /* 実績：雑誌の見開き */
 .feature{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:5vw;align-items:stretch}
 .feature-media{position:relative;overflow:hidden;min-height:520px;background:#e9e4da}
@@ -350,7 +376,7 @@ section{position:relative}
   <div class="hdr-right"><a href="#contact" class="btn btn--sm hdr-contact">CONTACT</a><button type="button" id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu">MENU</button></div>
 </header>
 <nav id="menu" class="menu" aria-hidden="true" aria-label="メインナビゲーション">
-  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の想い</span></a></li><li><a href="#vision"><span class="mn">03</span><span class="mj">ビジョン</span></a></li><li><a href="#issues"><span class="mn">04</span><span class="mj">その「困った」、伸びしろです</span></a></li><li><a href="#whatwedo"><span class="mn">05</span><span class="mj">私たちの仕事</span></a></li><li><a href="#industries"><span class="mn">06</span><span class="mj">業種の壁はありません</span></a></li><li><a href="#business"><span class="mn">07</span><span class="mj">最初の一歩</span></a></li><li><a href="#services"><span class="mn">08</span><span class="mj">7つの道具</span></a></li><li><a href="#works"><span class="mn">09</span><span class="mj">こいまりで実際にやったこと</span></a></li><li><a href="#growth"><span class="mn">10</span><span class="mj">会社が伸びる4本の柱</span></a></li><li><a href="#process"><span class="mn">11</span><span class="mj">はじめ方</span></a></li><li><a href="#join"><span class="mn">12</span><span class="mj">オーナー様へ</span></a></li><li><a href="#name"><span class="mn">13</span><span class="mj">社名の由来</span></a></li><li><a href="#company"><span class="mn">14</span><span class="mj">会社概要</span></a></li><li><a href="#contact"><span class="mn">15</span><span class="mj">お問い合わせ</span></a></li></ol>
+  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の想い</span></a></li><li><a href="#vision"><span class="mn">03</span><span class="mj">ビジョン</span></a></li><li><a href="#issues"><span class="mn">04</span><span class="mj">その「困った」、伸びしろです</span></a></li><li><a href="#whatwedo"><span class="mn">05</span><span class="mj">私たちの仕事</span></a></li><li><a href="#industries"><span class="mn">06</span><span class="mj">業種の壁はありません</span></a></li><li><a href="#strength"><span class="mn">07</span><span class="mj">流通を知る強み</span></a></li><li><a href="#business"><span class="mn">08</span><span class="mj">最初の一歩</span></a></li><li><a href="#services"><span class="mn">09</span><span class="mj">7つの道具</span></a></li><li><a href="#works"><span class="mn">10</span><span class="mj">こいまりで実際にやったこと</span></a></li><li><a href="#growth"><span class="mn">11</span><span class="mj">会社が伸びる4本の柱</span></a></li><li><a href="#process"><span class="mn">12</span><span class="mj">はじめ方</span></a></li><li><a href="#join"><span class="mn">13</span><span class="mj">オーナー様へ</span></a></li><li><a href="#name"><span class="mn">14</span><span class="mj">社名の由来</span></a></li><li><a href="#company"><span class="mn">15</span><span class="mj">会社概要</span></a></li><li><a href="#contact"><span class="mn">16</span><span class="mj">お問い合わせ</span></a></li></ol>
   <div class="menu-foot"><a href="tel:09012436770">090-1243-6770</a><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a><a href="https://www.instagram.com/nori.tate_official" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </nav>
 <a href="#contact" class="mobile-fab" aria-label="お問い合わせ・相談する">相談してみる</a>
@@ -455,13 +481,41 @@ section{position:relative}
         <h2 class="s-title">業種の壁は、<br>ありません。</h2>
         <p class="sec-lead">後継者や人材の悩みは、業種を選びません。小売・卸やモノづくり、飲食、サロン、工事・職人の世界まで。事業の価値と、そこで働く人を大切にする想いがあれば、どの業種でもご相談ください。</p>
         <ul class="ind-list">
-          <li class="ind i1"><span class="ind-en">Retail / Wholesale / Manufacturing</span><b class="ind-name">小売・卸／商社・モノづくり</b><span class="ind-desc">地域のお店から、卸・商社、町工場や製造業まで。長年築いてきた取引先とのつながりと、技術や商品の力を次の世代へつなぎます。</span></li>
+          <li class="ind i1"><span class="ind-en">Retail / Wholesale / Manufacturing</span><b class="ind-name">小売・卸／商社・モノづくり</b><span class="ind-desc">地域のお店から、卸・商社、町工場や製造業まで。代表は鉄鋼商社の出身で、川上から川下までの流通と、モノづくりの市場構造をよく知っています。取引先とのつながりと、技術や商品の力を次の世代へつなぎます。</span></li>
           <li class="ind i2"><span class="ind-en">Food &amp; Restaurant</span><b class="ind-name">飲食店・食品</b><span class="ind-desc">地域に愛されてきた味と、お客様とのつながりを守りながら、時代に合わせて育てます。</span></li>
           <li class="ind i3"><span class="ind-en">Salon / Healthcare / Beauty</span><b class="ind-name">サロン・ヘルスケア・ビューティ</b><span class="ind-desc">施術者の技術と、通い続けてくださるお客様の信頼を引き継ぎ、集客や予約の仕組みも整えます。</span></li>
           <li class="ind i4"><span class="ind-en">Construction &amp; Craftsmanship</span><b class="ind-name">各種工事業・職人業など</b><span class="ind-desc">建築・設備・内装などの工事業や、職人の手仕事まで。受け継がれてきた技と現場の信頼を、次の世代へつなぎます。</span></li>
         </ul>
         <p class="ind-note">ここにない業種も、まずはお気軽にご相談ください。</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ── STRENGTH：鉄鋼商社で培った、流通を読む目（2026-10-23オーナー情報） ── -->
+  <section id="strength" class="sec sec--strength">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
+        <span class="s-label">Strength</span>
+        <h2 class="s-title">鉄鋼商社で見てきた、<br>川上から川下まで。</h2>
+        <p class="sec-lead">代表は、鉄鋼商社で流通の現場を歩いてきました。とくにモノづくりの業界は、市場の構造そのものを理解しています。つくる側の事情も、使う側の事情も知っているからこそ、値上げの伝え方や販路づくり、取引条件の見直しにも、しっかり踏み込めます。</p>
+      </div>
+      <div class="chain" role="img" aria-label="メーカーから商社・卸、加工・販売、ユーザーまでの流通の流れ">
+        <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b></div>
+        <span class="chain-arw" aria-hidden="true">→</span>
+        <div class="chain-node cn2"><b>商社・卸</b></div>
+        <span class="chain-arw" aria-hidden="true">→</span>
+        <div class="chain-node cn3"><b>加工・販売</b></div>
+        <span class="chain-arw" aria-hidden="true">→</span>
+        <div class="chain-node cn4"><span class="chain-tag">川下</span><b>ユーザー</b></div>
+      </div>
+      <p class="chain-cap">この流れの、どこで何が起きているかを知っています。</p>
+      <ol class="know-list">
+        <li class="know know--main"><span class="know-num">01</span><h3 class="know-title">モノづくりの市場構造</h3><p>どこで何がつくられ、どこへ流れ、どこで値段が決まっていくのか。モノづくりの業界の仕組みそのものを理解しているから、その会社が伸びる場所と、守るべき強みが見えてきます。</p></li>
+        <li class="know"><span class="know-num">02</span><h3 class="know-title">メーカー側とユーザー側、両方の立場と力関係</h3><p>売る側の事情も、買う側の事情も分かるから、無理のない値上げや条件の交渉を、一緒に考えて進められます。</p></li>
+        <li class="know"><span class="know-num">03</span><h3 class="know-title">商流・物流のつながり</h3><p>誰から誰へ、モノとお金がどう流れているか。両方の流れから、ムダや新しい販路の糸口を見つけます。</p></li>
+        <li class="know"><span class="know-num">04</span><h3 class="know-title">外口銭・内口銭などの商習慣</h3><p>業界ならではのマージンの考え方を踏まえて、利益がきちんと残る価格や取引条件を考えます。</p></li>
+        <li class="know"><span class="know-num">05</span><h3 class="know-title">見積もり依頼の回り方</h3><p>相見積もりの依頼が、どこへ、どう回っていくのか。声がかかりやすい会社になるための打ち手を、一緒に考えます。</p></li>
+      </ol>
     </div>
   </section>
 
@@ -751,7 +805,7 @@ section{position:relative}
   </div>
   <div class="ft-bottom">
     <span class="ft-logo">NORI&amp;TATE Co., Ltd.</span>
-    <nav class="ft-nav"><a href="#top">Top</a><a href="#concept">Concept</a><a href="#vision">Vision</a><a href="#issues">Issues</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a><a href="#business">Business</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#growth">Key Principles</a><a href="#process">Process</a><a href="#join">Join</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a></nav>
+    <nav class="ft-nav"><a href="#top">Top</a><a href="#concept">Concept</a><a href="#vision">Vision</a><a href="#issues">Issues</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a><a href="#strength">Strength</a><a href="#business">Business</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#growth">Key Principles</a><a href="#process">Process</a><a href="#join">Join</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a></nav>
     <div class="ft-line"></div>
     <p class="ft-copy">&copy; 2026 株式会社NORI&amp;TATE. All Rights Reserved.</p>
     <p class="ft-copy ft-credit">背景写真：「Torii Hanging Along an Osaka Shopping Arcade」Ethan Doyle White（<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 4.0</a>／<a href="https://commons.wikimedia.org/wiki/File:Torii_Hanging_Along_an_Osaka_Shopping_Arcade.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>）</p>
@@ -893,6 +947,11 @@ section{position:relative}
     return function () { if (tw.scrollTrigger) tw.scrollTrigger.kill(); tw.kill(); gsap.set(track, { x: 0 }); };
   });
   gsap.utils.toArray('.panel').forEach(function (p) { gsap.from(p.querySelector('.panel-num'), { opacity: 0, y: 40, duration: 1, ease: E, scrollTrigger: { trigger: p, start: 'top 85%' } }); });
+
+  // 強み：流通の流れが川上から川下へ順に点き、知識が並ぶ
+  gsap.from('.chain-node, .chain-arw', { opacity: 0, x: -24, duration: 0.6, stagger: 0.14, ease: E, scrollTrigger: { trigger: '.chain', start: 'top 82%' } });
+  gsap.from('.chain-cap', { opacity: 0, y: 16, duration: 0.8, delay: 0.9, ease: E, scrollTrigger: { trigger: '.chain', start: 'top 82%' } });
+  gsap.from('.know', { opacity: 0, y: 30, duration: 0.8, stagger: 0.12, ease: E, scrollTrigger: { trigger: '.know-list', start: 'top 85%' } });
 
   // 7つの道具：カードが順に入ってくる
   gsap.from('.svc .swiper-slide', { opacity: 0, x: 60, duration: 0.9, stagger: 0.08, ease: E, scrollTrigger: { trigger: '.svc', start: 'top 85%' } });
@@ -1105,7 +1164,7 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
 <script type="module">
 import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
 const parser = loadDefaultJapaneseParser();
-const SEL = '.g-card-title, .biz-name, .name-word, .join-list li, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .pillar-title, .panel-sub, .ind-name, .ft-tag, .v-text';
+const SEL = '.g-card-title, .know-title, .chain-cap, .biz-name, .name-word, .join-list li, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .pillar-title, .panel-sub, .ind-name, .ft-tag, .v-text';
 const done = new WeakMap();
 function apply() {
   document.querySelectorAll(SEL).forEach((el) => {
