@@ -160,7 +160,7 @@ section{position:relative}
 .range-txt{font-family:var(--serif);font-weight:500;font-size:clamp(17px,1.6vw,22px);line-height:1.6}
 .range-bar{height:10px;background:var(--line);position:relative;overflow:hidden}
 .range-bar span{position:absolute;inset:0;background:linear-gradient(90deg,var(--c4) 0 25%,var(--c3) 25% 50%,var(--c2) 50% 75%,var(--c1) 75% 100%);transform-origin:0 50%}
-.range-cap{font-family:var(--serif);font-size:clamp(17px,1.6vw,21px);line-height:1.9;text-align:center;margin:30px 0 6px}
+.range-cap{font-family:var(--serif);font-size:clamp(17px,1.6vw,21px);line-height:1.9;text-align:center;margin:30px 0 56px}
 .range-note{font-size:12px;color:var(--mute);text-align:center;margin:0 0 56px}
 .know--last{margin:6px 0 0}
 .chain{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr);align-items:stretch;margin:10px 0 0}
@@ -182,7 +182,7 @@ section{position:relative}
   .range{grid-template-columns:1fr;gap:14px}
   .range-end--r{text-align:left;align-items:flex-start}
   .range-bar{height:8px}
-  .range-note{margin-bottom:34px}
+  .range-cap{margin-bottom:34px}
   .chain{grid-template-columns:1fr;gap:0}
   .chain-node{min-height:0;padding:16px 18px;flex-direction:row;justify-content:space-between}
   .chain-tag{margin:0;order:2}
@@ -390,7 +390,7 @@ section{position:relative}
   <div class="hdr-right"><a href="#contact" class="btn btn--sm hdr-contact">CONTACT</a><button type="button" id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu">MENU</button></div>
 </header>
 <nav id="menu" class="menu" aria-hidden="true" aria-label="メインナビゲーション">
-  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の想い</span></a></li><li><a href="#vision"><span class="mn">03</span><span class="mj">ビジョン</span></a></li><li><a href="#issues"><span class="mn">04</span><span class="mj">その「困った」、伸びしろです</span></a></li><li><a href="#whatwedo"><span class="mn">05</span><span class="mj">私たちの仕事</span></a></li><li><a href="#industries"><span class="mn">06</span><span class="mj">業種の壁はありません</span></a></li><li><a href="#strength"><span class="mn">07</span><span class="mj">流通を知る強み</span></a></li><li><a href="#business"><span class="mn">08</span><span class="mj">最初の一歩</span></a></li><li><a href="#services"><span class="mn">09</span><span class="mj">7つの道具</span></a></li><li><a href="#works"><span class="mn">10</span><span class="mj">こいまりで実際にやったこと</span></a></li><li><a href="#growth"><span class="mn">11</span><span class="mj">会社が伸びる4本の柱</span></a></li><li><a href="#process"><span class="mn">12</span><span class="mj">はじめ方</span></a></li><li><a href="#join"><span class="mn">13</span><span class="mj">オーナー様へ</span></a></li><li><a href="#name"><span class="mn">14</span><span class="mj">社名の由来</span></a></li><li><a href="#company"><span class="mn">15</span><span class="mj">会社概要</span></a></li><li><a href="#contact"><span class="mn">16</span><span class="mj">お問い合わせ</span></a></li></ol>
+  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の想い</span></a></li><li><a href="#vision"><span class="mn">03</span><span class="mj">ビジョン</span></a></li><li><a href="#issues"><span class="mn">04</span><span class="mj">その「困った」、伸びしろです</span></a></li><li><a href="#whatwedo"><span class="mn">05</span><span class="mj">私たちの仕事</span></a></li><li><a href="#industries"><span class="mn">06</span><span class="mj">業種の壁はありません</span></a></li><li><a href="#strength"><span class="mn">07</span><span class="mj">代表の強み</span></a></li><li><a href="#business"><span class="mn">08</span><span class="mj">最初の一歩</span></a></li><li><a href="#services"><span class="mn">09</span><span class="mj">7つの道具</span></a></li><li><a href="#works"><span class="mn">10</span><span class="mj">こいまりで実際にやったこと</span></a></li><li><a href="#growth"><span class="mn">11</span><span class="mj">会社が伸びる4本の柱</span></a></li><li><a href="#process"><span class="mn">12</span><span class="mj">はじめ方</span></a></li><li><a href="#join"><span class="mn">13</span><span class="mj">オーナー様へ</span></a></li><li><a href="#name"><span class="mn">14</span><span class="mj">社名の由来</span></a></li><li><a href="#company"><span class="mn">15</span><span class="mj">会社概要</span></a></li><li><a href="#contact"><span class="mn">16</span><span class="mj">お問い合わせ</span></a></li></ol>
   <div class="menu-foot"><a href="tel:09012436770">090-1243-6770</a><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a><a href="https://www.instagram.com/nori.tate_official" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </nav>
 <a href="#contact" class="mobile-fab" aria-label="お問い合わせ・相談する">相談してみる</a>
@@ -510,16 +510,15 @@ section{position:relative}
     <div class="wrap">
       <div class="sec-head sec-head--wide">
         <span class="s-label">Strength</span>
-        <h2 class="s-title">鉄鋼商社で見てきた、<br>川上から川下まで。</h2>
-        <p class="sec-lead">代表は、鉄鋼商社で流通の現場を歩いてきました。とくにモノづくりの業界は、市場の構造そのものを理解しています。つくる側の事情も、使う側の事情も知っているからこそ、値上げの伝え方や販路づくり、取引条件の見直しにも、しっかり踏み込めます。</p>
+        <h2 class="s-title">職人さんの現場から、<br>自動車の開発者まで。</h2>
+        <p class="sec-lead">代表は鉄鋼商社で、ものづくりの一連の現場を経験してきました。とくにモノづくりの業界は、市場の構造そのものを理解しています。つくる側の事情も、使う側の事情も知っているからこそ、値上げの伝え方や販路づくり、取引条件の見直しにも、しっかり踏み込めます。</p>
       </div>
       <div class="range">
-        <div class="range-end range-end--l"><span class="range-tag">現場</span><b class="range-txt">中小零細企業への<br>材料の配達・出荷</b></div>
+        <div class="range-end range-end--l"><span class="range-tag">現場</span><b class="range-txt">職人さんや現場の方と<br>深く関わった現場仕事</b></div>
         <div class="range-bar" aria-hidden="true"><span></span></div>
-        <div class="range-end range-end--r"><span class="range-tag">経営・戦略</span><b class="range-txt">カーメーカー・Tier1メーカーの<br>新規戦略・新車種の開発</b></div>
+        <div class="range-end range-end--r"><span class="range-tag">開発・経営</span><b class="range-txt">カーメーカーの開発者との商談、<br>新規戦略・新車種の開発</b></div>
       </div>
-      <p class="range-cap">材料を届ける現場から、メーカーの経営に入り込んだ戦略づくり、新しい車の開発まで。<br>現場の手間も、経営の判断も、どちらも肌で知っています。</p>
-      <p class="range-note">※Tier1メーカー：自動車メーカーに直接部品を納める一次サプライヤー</p>
+      <p class="range-cap">ものづくりの一連の現場を、端から端まで経験してきた、めずらしい経歴です。<br>その経験は、どの業界の会社の立て直しにも、アドバイスにも活かせると自負しています。</p>
       <div class="chain" role="img" aria-label="メーカーから商社・卸、加工・販売、ユーザーまでの流通の流れ">
         <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b></div>
         <span class="chain-arw" aria-hidden="true">→</span>
@@ -529,7 +528,7 @@ section{position:relative}
         <span class="chain-arw" aria-hidden="true">→</span>
         <div class="chain-node cn4"><span class="chain-tag">川下</span><b>ユーザー</b></div>
       </div>
-      <p class="chain-cap">この流れの、どこで何が起きているかを知っています。</p>
+      <p class="chain-cap">川上から川下まで、この流れのどこで何が起きているかを知っています。</p>
       <ol class="know-list">
         <li class="know know--main"><span class="know-num">01</span><h3 class="know-title">モノづくりの市場構造</h3><p>どこで何がつくられ、どこへ流れ、どこで値段が決まっていくのか。モノづくりの業界の仕組みそのものを理解しているから、その会社が伸びる場所と、守るべき強みが見えてきます。</p></li>
         <li class="know"><span class="know-num">02</span><h3 class="know-title">メーカー側とユーザー側、両方の立場と力関係</h3><p>売る側の事情も、買う側の事情も分かるから、無理のない値上げや条件の交渉を、一緒に考えて進められます。</p></li>
