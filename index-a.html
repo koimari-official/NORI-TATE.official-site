@@ -8,199 +8,363 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
 <style>
-:root{--bg:#f7f5f0;--paper:#fffdf9;--ink:#1d1d1b;--sub:#4a4a46;--mute:#8b8b85;--gold:#8a7a5a;--line:#d9d3c6;--dark:#161615;
---serif:'Noto Serif JP',serif;--sans:'Noto Sans JP',sans-serif;--en:'Montserrat',sans-serif;--pad:6vw;--hdr:76px}
+/* NORI&TATE A案（上品ミニマル × ワクワク）2026-10-23  ルールは A_DESIGN_CONCEPT.md */
+:root{--bg:#f7f5f0;--paper:#fffdf9;--tint:#efebe2;--ink:#1d1d1b;--sub:#4a4a46;--mute:#8b8b85;--gold:#8a7a5a;--line:#d9d3c6;--dark:#161615;
+--c1:#ff3d8b;--c2:#ff8a00;--c3:#ffc400;--c4:#00b4d8;--c5:#2f6bff;--c6:#19b36b;--c7:#8b5cf6;
+--serif:'Noto Serif JP',serif;--sans:'Noto Sans JP',sans-serif;--en:'Montserrat',sans-serif;--pad:6vw;--hdr:76px;--max:1360px}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit}
-img{max-width:100%}
-.progress{position:fixed;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;z-index:60}
-/* ヘッダー */
+a{color:inherit}img{max-width:100%}
+.grecaptcha-badge{visibility:hidden!important}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c1) 0 17%,var(--c2) 17% 34%,var(--c3) 34% 50%,var(--c6) 50% 67%,var(--c4) 67% 84%,var(--c5) 84% 100%);transform:scaleX(0);transform-origin:0 50%;z-index:60}
+
+/* ボタン（主ボタンは1種類）・文字リンク */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:18px 34px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14.5px;letter-spacing:.14em;border:none;cursor:pointer;transition:background .3s,color .3s}
+.btn:hover{background:var(--gold)}
+.btn .arw{display:inline-block;transition:transform .3s}.btn:hover .arw{transform:translateX(5px)}
+.btn--sm{padding:11px 18px;font-family:var(--en);font-size:11.5px;letter-spacing:.24em}
+.btn--light{background:var(--bg);color:var(--ink)}.btn--light:hover{background:var(--c3);color:var(--ink)}
+.tlink{font-size:14px;letter-spacing:.08em;text-decoration:none;background:linear-gradient(var(--ink),var(--ink)) 0 100%/100% 1px no-repeat;padding-bottom:5px;transition:background-size .4s}
+.tlink:hover{background-size:0 1px;background-position:100% 100%}
+.cta-row{margin-top:56px}.cta-row--center{text-align:center}
+
+/* ヘッダー・メニュー */
 #hdr{position:fixed;top:0;left:0;right:0;height:var(--hdr);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);z-index:50;transition:background .4s,box-shadow .4s}
-#hdr.scrolled{background:rgba(247,245,240,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+#hdr.scrolled{background:rgba(247,245,240,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
 .logo{font-family:var(--en);font-weight:500;letter-spacing:.28em;font-size:13px;text-decoration:none}
-.hdr-right{display:flex;align-items:center;gap:14px}
-.hdr-contact{font-family:var(--en);font-size:11.5px;letter-spacing:.24em;text-decoration:none;padding:11px 18px;border:1px solid var(--ink);background:var(--bg);transition:background .3s,color .3s}
-.hdr-contact:hover{background:var(--ink);color:var(--bg)}
-.menu-btn{font-family:var(--en);font-size:11.5px;letter-spacing:.24em;padding:12px 20px;border:none;background:var(--ink);color:var(--bg);cursor:pointer;min-width:96px}
-/* メニュー */
+.hdr-right{display:flex;align-items:center;gap:10px}
+.menu-btn{font-family:var(--en);font-size:11.5px;letter-spacing:.24em;padding:11px 18px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer;min-width:92px}
 .menu{position:fixed;inset:0;background:var(--bg);z-index:45;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hdr) + 10px) var(--pad) 40px;visibility:hidden;opacity:0;transition:opacity .45s,visibility .45s;overflow-y:auto}
 .menu.open{visibility:visible;opacity:1}
-.menu ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:6vw;max-width:1100px}
-.menu li a{display:flex;align-items:baseline;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.menu ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:4vw;max-width:1200px}
+.menu li a{display:flex;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none}
 .menu .mn{font-family:var(--en);font-size:11px;color:var(--gold);letter-spacing:.2em;width:22px}
-.menu .mj{font-family:var(--serif);font-weight:300;font-size:clamp(18px,1.9vw,26px);flex:1}
-.menu .me{font-family:var(--en);font-size:10.5px;letter-spacing:.22em;color:var(--mute);text-transform:uppercase}
+.menu .mj{font-family:var(--serif);font-weight:300;font-size:clamp(17px,1.6vw,23px);flex:1}
 .menu li a:hover .mj{color:var(--gold)}
-.menu-foot{margin-top:36px;font-size:13px;line-height:2;color:var(--sub);display:flex;flex-wrap:wrap;gap:6px 28px}
+.menu-foot{margin-top:34px;font-size:13px;line-height:2;color:var(--sub);display:flex;flex-wrap:wrap;gap:6px 28px}
 .menu-foot a{text-decoration:none;border-bottom:1px solid var(--line)}
 html.menu-open{overflow:hidden}
-/* ヒーロー（左：言葉／右：鮮やかなメインビジュアルを大きく） */
+
+/* ヒーロー */
 #top{position:relative;display:grid;grid-template-columns:44% 56%;min-height:100vh;min-height:100svh}
-.hero-text{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hdr) + 20px) 4vw 60px var(--pad)}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hdr) + 20px) 4vw 70px var(--pad)}
 .hero-en{font-family:var(--en);font-size:11.5px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
-.hero-catch{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.2vw,76px);line-height:1.32;margin:26px 0 0;letter-spacing:.02em;white-space:nowrap}
-.hero-line{height:1px;background:var(--ink);width:120px;margin:34px 0 26px}
+.hero-catch{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.2vw,76px);line-height:1.32;margin:24px 0 0;letter-spacing:.02em;white-space:nowrap}
+.hero-line{height:3px;width:140px;margin:30px 0 22px;background:linear-gradient(90deg,var(--c1) 0 25%,var(--c2) 25% 50%,var(--c3) 50% 75%,var(--c4) 75% 100%)}
 .hero-brand{font-family:var(--serif);font-weight:500;font-size:16px;letter-spacing:.14em;margin:0}
-.hero-lead{font-size:14.5px;line-height:2.15;color:var(--sub);margin:18px 0 0;max-width:560px}
-.hero-cta{align-self:flex-start;margin-top:34px;font-size:14px;letter-spacing:.14em;text-decoration:none;padding:17px 34px;border:1px solid var(--ink);transition:background .3s,color .3s}
-.hero-cta:hover{background:var(--ink);color:var(--bg)}
+.hero-lead{font-size:14.5px;line-height:2.1;color:var(--sub);margin:16px 0 0;max-width:560px}
+.hero-lead b{color:var(--ink);font-weight:500;background:linear-gradient(transparent 62%,rgba(255,196,0,.55) 62%)}
+.hero-ctas{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:32px}
 .hero-visual{position:relative;overflow:hidden;min-height:100%}
 .hero-img{position:absolute;inset:-6% 0;background-size:cover;background-position:center}
-.scroll-hint{position:absolute;left:var(--pad);bottom:28px;display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:10.5px;letter-spacing:.3em;color:var(--mute)}
+.scroll-hint{position:absolute;left:var(--pad);bottom:26px;display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:10.5px;letter-spacing:.3em;color:var(--mute)}
 .scroll-hint i{display:block;width:64px;height:1px;background:var(--line);position:relative;overflow:hidden}
 .scroll-hint i::after{content:"";position:absolute;inset:0;background:var(--ink);transform:translateX(-100%);animation:sh 2.4s cubic-bezier(.7,0,.3,1) infinite}
 @keyframes sh{50%{transform:translateX(0)}100%{transform:translateX(100%)}}
-/* 流れる英字 */
+
+/* 流れる英字・写真の帯 */
 .marquee{overflow:hidden;padding:7vh 0 5vh;white-space:nowrap}
 .marquee-track{display:inline-flex;will-change:transform}
 .marquee-track span{font-family:var(--en);font-weight:300;font-size:clamp(44px,8vw,128px);letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px #bdb29b;padding-right:.6em}
-/* 写真の帯 */
-.band{position:relative;height:var(--h,68vh);margin:0 var(--pad);overflow:hidden;background:#e9e4da}
-.band--sm{--h:44vh}
-.band--opt{display:none}.band--opt.has-img{display:block}
-.band-img{position:absolute;inset:-10% 0;background-size:cover;background-position:center}
-/* セクション */
+.band{position:relative;height:var(--h,60vh);margin:0 var(--pad);overflow:hidden;background:#e9e4da}
+.band--opt{display:none;margin-top:12vh}.band--opt.has-img{display:block}
+.band-img,.media-img{position:absolute;inset:-10% 0;background-size:cover;background-position:center}
+
+/* セクション共通（同じ役割は同じ大きさ） */
 section{position:relative}
-.sec-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.25fr);gap:6vw;padding:17vh var(--pad);max-width:1480px;margin:0 auto}
-.sec-head{position:sticky;top:calc(var(--hdr) + 40px);align-self:start}
+.sec{padding:16vh 0}
+.sec--tint{background:var(--tint)}
+.sec--flush{padding-bottom:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.wrap.narrow{max-width:980px}
+.sec-head{margin-bottom:56px}
+.sec-head--wide{max-width:900px}
+.sec-head--center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head--row{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:6vw;align-items:end}
+.sec-head--row .sec-lead{margin:0}
 .s-label{display:block;font-family:var(--en);font-size:11px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase}
-.s-title{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3vw,46px);line-height:1.5;margin:18px 0 0;letter-spacing:.03em}
-.s-rule{height:1px;width:64px;background:var(--ink);margin-top:30px}
-.s-body,.growth-lead,.ct-lead,.join-lead{font-size:15.5px;line-height:2.2;color:var(--sub);margin:0}
-.growth-lead{margin-bottom:48px}
-.growth-lead strong,.g-card-desc strong{color:var(--ink);font-weight:500}
-/* カード：細い罫線のグリッド */
-.growth-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.growth-cards:has(>.g-card:nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
-/* カード：トップの鮮やかな画像の一部を背景にし、文章は明るい面にのせて読みやすく。カードごとに違う場所を切り出す */
+.s-title{font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.4vw,52px);line-height:1.45;margin:16px 0 0;letter-spacing:.03em}
+.sec-lead,.s-body,.ct-lead,.join-lead{font-size:15.5px;line-height:2.15;color:var(--sub);margin:22px 0 0;max-width:640px}
+.sec-lead b{color:var(--ink);font-weight:500}
+
+/* 代表の想い */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:6vw}
+.story .sec-head{position:sticky;top:calc(var(--hdr) + 40px);align-self:start}
+.story-body .s-body{margin:0 0 1.2em}
+.s-body--strong{color:var(--ink);font-weight:500}
+.pull{margin:48px 0;padding:0;font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.8vw,42px);line-height:1.6;color:var(--ink)}
+.pull::before{content:"";display:block;width:56px;height:3px;background:var(--c1);margin-bottom:22px}
+
+/* ビジョン：鮮やかなメインビジュアルの上に、言葉を大きく */
+.vision{position:relative;padding:16vh var(--pad);overflow:hidden}
+.vision-bg{position:absolute;inset:-12% 0;background:url('hero.jpg.png') center/cover no-repeat}
+.vision-inner{position:relative;max-width:1080px;margin:0 auto;background:var(--bg);padding:9vh 7vw}
+.vision-list{list-style:none;margin:26px 0 40px;padding:0}
+.vision-list li{display:flex;align-items:baseline;gap:22px;padding:14px 0;border-bottom:1px solid var(--line)}
+.v-num{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--gold);width:28px;flex-shrink:0}
+.v-text{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.2vw,62px);line-height:1.35}
+.mk{font-style:normal;display:inline-block;background-repeat:no-repeat;background-size:0% 100%;background-position:0 0;padding:0 .08em}
+.mk--1{background-image:linear-gradient(transparent 58%,var(--c3) 58%)}
+.mk--2{background-image:linear-gradient(transparent 58%,var(--c4) 58%)}
+.mk--3{background-image:linear-gradient(transparent 58%,var(--c1) 58%)}
+.vision-text{font-size:15.5px;line-height:2.15;color:var(--sub);margin:0 0 1em;max-width:680px}
+
+/* お悩み：困った → こう変える */
+.flip-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.flip{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);align-items:stretch;border-bottom:1px solid var(--line)}
+.flip-pain{padding:30px 28px 30px 0}
+.flip-tag{display:block;font-family:var(--en);font-size:10.5px;letter-spacing:.2em;color:var(--mute);margin-bottom:8px}
+.flip-pain h3{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.6;margin:0 0 8px;display:inline;background:linear-gradient(var(--ink),var(--ink)) 0 58%/0% 1.5px no-repeat}
+.flip-pain p{font-size:14px;line-height:1.95;color:var(--sub);margin:10px 0 0}
+.flip-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:28px;color:var(--gold)}
+.flip-hope{margin:14px 0;padding:24px 28px;display:flex;flex-direction:column;justify-content:center}
+.flip-hope .flip-tag{color:rgba(29,29,27,.7)}
+.flip-hope p{font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.75;margin:0;color:var(--ink)}
+.h1c{background:var(--c1)}.h2c{background:var(--c2)}.h3c{background:var(--c3)}.h4c{background:var(--c4)}.h5c{background:var(--c6)}
+.h6c{background:var(--c5)}.h6c p,.h6c .flip-tag{color:#fff}
+
+/* 私たちの仕事：横に流れるパネル */
+.hpin{overflow:hidden;padding:0 0 16vh}
+.htrack{display:flex;gap:28px;padding:0 var(--pad);width:max-content}
+.panel{position:relative;width:min(62vw,860px);min-height:min(64vh,560px);padding:54px 56px;display:flex;flex-direction:column;justify-content:flex-end;color:var(--ink);overflow:hidden}
+.pc1{background:var(--c2)}.pc2{background:var(--c4)}.pc3{background:var(--c1)}
+.panel-num{position:absolute;top:30px;right:40px;font-family:var(--en);font-weight:300;font-size:clamp(90px,11vw,170px);line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(29,29,27,.55)}
+.panel-en{font-family:var(--en);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase}
+.panel-title{font-family:var(--serif);font-weight:500;font-size:clamp(40px,5vw,76px);line-height:1.2;margin:10px 0 6px}
+.panel-sub{font-family:var(--serif);font-size:18px;margin:0 0 18px}
+.panel-desc{font-size:15px;line-height:2;margin:0;max-width:600px}
+
+/* 業種：写真＋大きな文字の一覧 */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:6vw;align-items:start}
+.split-media{position:relative;overflow:hidden;min-height:560px;background:#e9e4da}
+.split--company .split-media{min-height:420px}
+.ind-list{list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--line)}
+.ind{padding:22px 0 22px 30px;border-bottom:1px solid var(--line);position:relative}
+.ind::before{content:"";position:absolute;left:0;top:34px;width:14px;height:14px;background:var(--c2)}
+.i2::before{background:var(--c1)}.i3::before{background:var(--c7)}.i4::before{background:var(--c4)}
+.ind-en{display:block;font-family:var(--en);font-size:10.5px;letter-spacing:.2em;color:var(--gold)}
+.ind-name{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(20px,2vw,27px);margin:4px 0 6px}
+.ind-desc{display:block;font-size:14px;line-height:1.9;color:var(--sub)}
+
+/* 実績：雑誌の見開き */
+.feature{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:5vw;align-items:stretch}
+.feature-media{position:relative;overflow:hidden;min-height:520px;background:#e9e4da}
+.feature-text{padding:10px 0}
+.biz-location{font-family:var(--en);font-size:11px;letter-spacing:.24em;color:var(--gold)}
+.biz-name{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.4vw,34px);line-height:1.5;margin:10px 0 4px}
+.biz-sub{font-family:var(--en);font-size:12px;letter-spacing:.12em;color:var(--mute);margin:0 0 22px}
+.biz-body{font-size:15px;line-height:2.1;color:var(--sub);margin:0 0 1.1em}
+.link-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:26px}
+.link-row .biz-link{font-size:14px;letter-spacing:.08em;text-decoration:none;background:linear-gradient(var(--ink),var(--ink)) 0 100%/100% 1px no-repeat;padding-bottom:5px}
+.biz-qr{border:1px solid var(--line);background:#fff}
+
+/* 7つの道具：色とりどりのカードを横にめくる（Swiper） */
+.svc{position:relative}
+.svc-swiper{padding:0 var(--pad);overflow:hidden}
+.svc .swiper-slide{width:360px;height:auto}
 .g-card{--ox:12%;--oy:14%;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:12px;background:#e9e4da;isolation:isolate}
-.g-card::before{content:"";position:absolute;inset:0;z-index:-1;background:url('hero.jpg.png') center/cover no-repeat;transform:scale(2.6);transform-origin:calc(var(--ox) + var(--sx,0%)) calc(var(--oy) + var(--sy,0%));transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.g-card::before{content:"";position:absolute;inset:0;z-index:-1;background:url('hero.jpg.png') center/cover no-repeat;transform:scale(2.6);transform-origin:var(--ox) var(--oy);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
 .g-card:hover::before{transform:scale(3)}
 .g-card:nth-child(7n+2){--ox:46%;--oy:30%}.g-card:nth-child(7n+3){--ox:86%;--oy:12%}.g-card:nth-child(7n+4){--ox:20%;--oy:86%}
 .g-card:nth-child(7n+5){--ox:62%;--oy:72%}.g-card:nth-child(7n+6){--ox:90%;--oy:58%}.g-card:nth-child(7n+7){--ox:34%;--oy:50%}
-#whatwedo{--sx:7%;--sy:-6%}#industries{--sx:-6%;--sy:8%}#services{--sx:4%;--sy:5%}#growth{--sx:-8%;--sy:-4%}#process{--sx:8%;--sy:6%}
 .g-card-bar{display:none}
-.g-card-num{align-self:flex-start;display:block;font-family:var(--en);font-weight:500;font-size:10.5px;letter-spacing:.18em;color:var(--ink);background:rgba(255,253,249,.94);padding:7px 12px;margin-bottom:68px}
+.g-card-num{align-self:flex-start;display:block;font-family:var(--en);font-weight:500;font-size:10.5px;letter-spacing:.18em;color:var(--ink);background:rgba(255,253,249,.94);padding:7px 12px;margin-bottom:84px}
 .g-card-title{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.65;margin:0;padding:26px 24px 12px;background:var(--paper);text-wrap:pretty}
 .g-card-desc{font-size:14.5px;line-height:2.05;color:var(--sub);margin:0;padding:0 24px 28px;background:var(--paper);flex:1}
-/* 実績・事例カード */
-.biz-card{border-top:1px solid var(--ink);padding:44px 0 56px}
-.biz-card+.biz-card{margin-top:8px}
-.biz-header{display:flex;align-items:flex-start;gap:28px;margin-bottom:26px}
-.biz-num{font-family:var(--en);font-weight:300;font-size:56px;line-height:1;color:var(--gold)}
-.biz-location{font-family:var(--en);font-size:11px;letter-spacing:.24em;color:var(--gold)}
-.biz-name{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2vw,26px);line-height:1.55;margin:8px 0 4px}
-.biz-sub{font-family:var(--en);font-size:12px;letter-spacing:.12em;color:var(--mute);margin:0}
-.biz-body{font-size:15.5px;line-height:2.2;color:var(--sub);margin:0 0 1.2em}
-.works-img{display:block;width:100%;border:1px solid var(--line);margin:0 0 26px;background:var(--paper)}
-.works-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:26px}.works-pair .works-img{margin:0}
-.biz-link-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.biz-link{font-size:14.5px;letter-spacing:.1em;text-decoration:none;background:linear-gradient(var(--ink),var(--ink)) 0 100%/100% 1px no-repeat;padding-bottom:6px;transition:background-size .4s}
-.biz-link:hover{background-size:0 1px;background-position:100% 100%}
-.biz-qr{border:1px solid var(--line)}
+.g-card-desc strong{color:var(--ink);font-weight:500}
+.svc-nav{display:flex;align-items:center;gap:18px;margin-top:30px}
+.svc-nav button{width:52px;height:52px;border:1px solid var(--ink);background:transparent;font-family:var(--en);font-size:18px;cursor:pointer;transition:background .3s,color .3s}
+.svc-nav button:hover{background:var(--ink);color:var(--bg)}
+.svc-bar{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden}
+.svc-bar__fill{position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--ink);transform:scaleX(.14);transform-origin:0 50%;transition:transform .5s}
+
+/* 実際の取り組み：左右交互 */
+.zig{display:flex;flex-direction:column;gap:12vh}
+.zig-item{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:5vw;align-items:center}
+.zig-item:nth-child(even) .zig-media{order:2}
+.zig-media{overflow:hidden;background:var(--paper);border:1px solid var(--line)}
+.zig-media img{display:block;width:100%}
+.zig-media--pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;border:none;background:transparent}
+.zig-media--pair img{border:1px solid var(--line)}
+.zig-num{font-family:var(--en);font-weight:300;font-size:64px;line-height:1;color:transparent;-webkit-text-stroke:1px var(--gold)}
+.zig-en{display:block;font-family:var(--en);font-size:11px;letter-spacing:.22em;color:var(--gold);margin-top:14px}
+.zig-title{font-family:var(--serif);font-weight:500;font-size:clamp(21px,2vw,28px);line-height:1.55;margin:8px 0 14px}
+.zig-text p{font-size:15px;line-height:2.1;color:var(--sub);margin:0 0 20px}
+
+/* 4本の柱：下から伸びる */
+.pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;align-items:end}
+.pillar-bar{position:relative;height:240px;margin-bottom:22px;border-bottom:1px solid var(--ink)}
+.pillar-bar span{position:absolute;left:0;right:0;bottom:0;height:var(--ph,50%);transform-origin:50% 100%}
+.pl1 .pillar-bar span{--ph:42%;background:var(--c1)}.pl2 .pillar-bar span{--ph:58%;background:var(--c2)}
+.pl3 .pillar-bar span{--ph:74%;background:var(--c4)}.pl4 .pillar-bar span{--ph:92%;background:var(--c6)}
+.pillar-num{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--gold)}
+.pillar-en{display:block;font-family:var(--en);font-size:10.5px;letter-spacing:.16em;color:var(--mute);margin-top:4px}
+.pillar-title{font-family:var(--serif);font-weight:500;font-size:18.5px;line-height:1.65;margin:10px 0 10px;text-wrap:pretty}
+.pillar-desc{font-size:14px;line-height:2;color:var(--sub);margin:0}
+
+/* はじめ方：伸びる線 */
+.timeline{list-style:none;margin:0 auto;padding:0;position:relative;max-width:760px}
+.tl-step{position:relative;padding:0 0 56px 64px}
+.tl-dot{position:absolute;left:0;top:4px;width:22px;height:22px;background:var(--c1);z-index:1}
+.tl-step:nth-child(2) .tl-dot{background:var(--c2)}.tl-step:nth-child(3) .tl-dot{background:var(--c4)}.tl-step:nth-child(4) .tl-dot{background:var(--c6)}
+.tl-num{font-family:var(--en);font-size:11px;letter-spacing:.22em;color:var(--gold)}
+.tl-title{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2vw,26px);line-height:1.5;margin:6px 0 10px}
+.tl-step p{font-size:15px;line-height:2.05;color:var(--sub);margin:0}
+.tl-line{position:absolute;left:10px;top:14px;bottom:70px;width:2px;background:var(--line);list-style:none}
+.tl-fill{position:absolute;inset:0;background:var(--ink);transform-origin:50% 0}
+
 /* オーナー様へ（黒） */
 #join{background:var(--dark);color:#efece5}
-#join .s-label{color:#bfae86}
-#join .join-lead{color:#cfcac0}
-.join-list{list-style:none;margin:40px 0;padding:0;border-top:1px solid rgba(255,255,255,.14)}
-.join-list li{padding:20px 0 20px 42px;border-bottom:1px solid rgba(255,255,255,.14);position:relative;font-family:var(--serif);font-size:17px;line-height:1.7}
-.join-list li::before{content:"";position:absolute;left:0;top:50%;width:24px;height:1px;background:#bfae86}
-.join-btn{display:inline-block;padding:20px 44px;border:1px solid #efece5;text-decoration:none;letter-spacing:.14em;font-size:14.5px;transition:background .3s,color .3s}
-.join-btn:hover{background:#efece5;color:var(--dark)}
+#join .s-label{color:#d8c79f}
+#join .s-title{color:#fff}
+#join .join-lead{color:#cfcac0;margin-top:0}
+.split--join{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
+.join-list{list-style:none;margin:36px 0 40px;padding:0;border-top:1px solid rgba(255,255,255,.16)}
+.join-list li{padding:18px 0 18px 40px;border-bottom:1px solid rgba(255,255,255,.16);position:relative;font-family:var(--serif);font-size:17px;line-height:1.7}
+.join-list li::before{content:"";position:absolute;left:0;top:50%;width:22px;height:3px;background:var(--c3)}
+.join-list li:nth-child(2)::before{background:var(--c4)}.join-list li:nth-child(3)::before{background:var(--c1)}.join-list li:nth-child(4)::before{background:var(--c6)}
+
 /* 社名の由来 */
-.name-pair{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:44px 0}
-.name-pair>div{background:var(--bg);padding:34px 30px}
-.name-word{font-family:var(--serif);font-weight:500;font-size:21px;margin:0 0 12px}
+.name-photo{position:relative;overflow:hidden;height:42vh;min-height:300px;background:#e9e4da;margin-bottom:48px}
+.name-intro{max-width:760px}
+.name-duo{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:28px;align-items:stretch;margin:48px 0}
+.duo{padding:34px 32px;border-top:3px solid var(--c2);background:var(--paper)}
+.duo--tate{border-top-color:var(--c4)}
+.duo-plus{display:flex;align-items:center;font-family:var(--en);font-weight:300;font-size:44px;color:var(--gold)}
+.name-word{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,36px);margin:0 0 12px}
 .name-def{font-size:14.5px;line-height:2.05;color:var(--sub);margin:0}
-.name-foot{font-family:var(--serif);font-size:17px;line-height:1.9;margin:0}
+.name-foot{font-family:var(--serif);font-size:clamp(18px,1.8vw,24px);line-height:1.9;margin:0}
+
 /* 会社概要 */
-.co-table{width:100%;border-collapse:collapse;border-top:1px solid var(--ink)}
-.co-table th,.co-table td{text-align:left;vertical-align:top;padding:24px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.95}
-.co-table th{width:170px;font-family:var(--serif);font-weight:500;padding-right:20px}
+.co-table{width:100%;border-collapse:collapse;border-top:1px solid var(--ink);margin-top:34px}
+.co-table th,.co-table td{text-align:left;vertical-align:top;padding:20px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.95}
+.co-table th{width:150px;font-family:var(--serif);font-weight:500;padding-right:20px}
 .co-table td a{text-decoration:none;border-bottom:1px solid var(--line)}
+
 /* お問い合わせ */
-.ct-lead{margin-bottom:44px}
-.ct-row{margin-bottom:30px}
+.contact-strip{position:relative;height:30vh;min-height:200px;margin:-16vh 0 14vh;overflow:hidden;background:#e9e4da}
+.split--contact{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
+.split--contact .sec-head{position:sticky;top:calc(var(--hdr) + 40px);align-self:start;margin:0}
+.ct-info{list-style:none;margin:34px 0 0;padding:0;border-top:1px solid var(--line)}
+.ct-info li{display:flex;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.ct-info span{font-family:var(--en);font-size:11px;letter-spacing:.2em;color:var(--gold);width:84px;padding-top:3px}
+.ct-info a{text-decoration:none}
+.ct-box{background:var(--paper);padding:48px 44px;border-top:3px solid var(--c1)}
+.ct-row{margin-bottom:28px}
 .ct-label{display:block;font-size:13px;letter-spacing:.08em;margin-bottom:6px}
-.req{color:var(--gold);margin-left:4px}
+.req{color:var(--c1);margin-left:4px}
 .ct-input,.ct-select,.ct-textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:transparent;border:none;border-bottom:1px solid #b9b3a6;border-radius:0;padding:12px 0;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
 .ct-input:focus,.ct-select:focus,.ct-textarea:focus{border-bottom-color:var(--ink)}
 .ct-textarea{min-height:170px;resize:vertical;line-height:1.9}
 .ct-sel-wrap{position:relative}.ct-sel-wrap::after{content:"";position:absolute;right:4px;top:50%;width:7px;height:7px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:translateY(-70%) rotate(45deg);pointer-events:none}
-.ct-submit{margin-top:10px;padding:21px 60px;border:none;background:var(--ink);color:var(--bg);font:inherit;font-size:15px;letter-spacing:.18em;cursor:pointer;transition:background .3s}
+.ct-submit{margin-top:8px;padding:20px 58px;border:none;background:var(--ink);color:var(--bg);font:inherit;font-size:15px;letter-spacing:.18em;cursor:pointer;transition:background .3s}
 .ct-submit:hover{background:var(--gold)}.ct-submit:disabled{opacity:.6}
 .ct-note{font-size:12.5px;line-height:1.9;color:var(--mute);margin-top:22px}
-#formDone{display:none;border:1px solid var(--line);padding:48px 32px;text-align:center;background:var(--paper)}
+.ct-note a{color:inherit}
+#formDone{display:none;padding:40px 10px;text-align:center}
 .done-title{font-family:var(--serif);font-size:21px;margin:0 0 14px}.done-body{font-size:14.5px;line-height:2;color:var(--sub);margin:0}
+
 /* フッター */
-#footer{background:var(--dark);color:#bdb8ae;padding:12vh var(--pad) 120px}
+#footer{background:var(--dark);color:#bdb8ae}
+.ft-cta{padding:16vh var(--pad) 12vh;text-align:center;border-bottom:1px solid rgba(255,255,255,.12)}
+.ft-tag{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.6vw,54px);line-height:1.5;color:#f1eee7;margin:0 0 40px}
+.ft-bottom{padding:8vh var(--pad) 110px}
 .ft-logo{font-family:var(--en);font-weight:500;letter-spacing:.3em;color:#f1eee7;font-size:14px}
-.ft-tag{font-family:var(--serif);font-size:clamp(20px,2.4vw,30px);font-weight:300;color:#f1eee7;margin:22px 0 40px;line-height:1.6}
-.ft-nav{display:flex;flex-wrap:wrap;gap:10px 26px}
-.ft-nav a{font-family:var(--en);font-size:11.5px;letter-spacing:.18em;text-decoration:none;color:#bdb8ae}
+.ft-nav{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:24px}
+.ft-nav a{font-family:var(--en);font-size:11.5px;letter-spacing:.16em;text-decoration:none;color:#bdb8ae}
 .ft-nav a:hover{color:#fff}
-.ft-line{height:1px;background:rgba(255,255,255,.14);margin:38px 0 22px}
+.ft-line{height:1px;background:rgba(255,255,255,.14);margin:34px 0 20px}
 .ft-copy{font-size:11.5px;margin:0;letter-spacing:.06em}
-/* スマホの相談ボタン */
+.ft-credit{font-size:10px;opacity:.6;margin-top:6px}.ft-credit a{color:inherit}
+
 .mobile-fab{display:none}
+
 @media (max-width:900px){
   :root{--pad:22px;--hdr:62px}
   .hdr-contact{display:none}
-  .menu-btn{min-width:84px;padding:11px 16px}
   .menu ol{grid-template-columns:1fr}
-  .menu li a{padding:12px 0}
+  .menu li a{padding:11px 0}
   #top{display:flex;flex-direction:column;min-height:0}
-  .hero-text{padding:34px var(--pad) 44px}
+  .hero-visual{order:-1;height:48vh;height:48svh;margin-top:var(--hdr)}
+  .hero-text{padding:34px var(--pad) 48px}
   .hero-catch{font-size:clamp(30px,9.6vw,46px)}
   .hero-lead{font-size:14px;line-height:2.05}
   .hero-lead br{display:none}
-  .hero-visual{order:-1;height:48vh;height:48svh;margin-top:var(--hdr)}
   .scroll-hint{display:none}
-  .band{--h:40vh;margin:0}
-  .band--sm{--h:30vh}
-  .sec-split{grid-template-columns:1fr;gap:34px;padding:12vh var(--pad)}
-  .sec-head{position:static}
-  .growth-cards,.growth-cards:has(>.g-card:nth-child(4):last-child){grid-template-columns:1fr}
-  .g-card{padding:10px}
-  .g-card-num{margin-bottom:52px}
-  .g-card-title{padding:22px 20px 10px}.g-card-desc{padding:0 20px 24px}
-  .biz-num{font-size:40px}
-  .biz-header{gap:18px}
-  .name-pair{grid-template-columns:1fr}
+  .band{--h:40vh!important;margin:0}
+  .sec{padding:11vh 0}
+  .sec-head{margin-bottom:36px}
+  .sec-head--row{grid-template-columns:1fr;gap:0}
+  .sec-head--row .sec-lead{margin-top:20px}
+  .story{grid-template-columns:1fr;gap:0}
+  .story .sec-head{position:static}
+  .vision{padding:9vh 16px}
+  .vision-inner{padding:44px 24px}
+  .vision-list li{gap:14px}
+  .v-text{font-size:clamp(24px,7.2vw,34px)}
+  .flip{grid-template-columns:1fr}
+  .flip-pain{padding:26px 0 6px}
+  .flip-arrow{justify-content:flex-start;font-size:22px;transform:rotate(90deg);width:24px;height:30px}
+  .flip-hope{margin:6px 0 24px;padding:20px 22px}
+  .flip-hope p{font-size:16.5px}
+  .hpin{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:11vh;scrollbar-width:none}
+  .hpin::-webkit-scrollbar{display:none}
+  .htrack{gap:14px}
+  .panel{width:82vw;min-height:430px;padding:30px 26px;scroll-snap-align:start;scroll-margin-left:22px}
+  .panel-num{top:18px;right:20px;font-size:84px}
+  .panel-desc{font-size:14.5px}
+  .split,.split--join,.split--contact,.feature,.zig-item{grid-template-columns:1fr;gap:28px}
+  .split-media,.feature-media{min-height:280px}
+  .split--company .split-media{min-height:220px}
+  .zig{gap:9vh}
+  .zig-item:nth-child(even) .zig-media{order:0}
+  .zig-num{font-size:48px}
+  .svc .swiper-slide{width:80vw}
+  .pillars{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px}
+  .pillar-bar{height:150px}
+  .pillar-title{font-size:16.5px}
+  .name-photo{height:34vh}
+  .name-duo{grid-template-columns:1fr;gap:12px}
+  .duo-plus{justify-content:center;font-size:32px}
   .co-table th{width:92px;font-size:13.5px}.co-table td{font-size:14px}
+  .contact-strip{margin:-11vh 0 9vh}
+  .split--contact .sec-head{position:static}
+  .ct-box{padding:30px 20px}
   .ct-submit{width:100%}
   .mobile-fab{display:flex;align-items:center;gap:8px;position:fixed;right:16px;bottom:18px;z-index:40;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14px;letter-spacing:.1em;padding:15px 22px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
 }
-.grecaptcha-badge{visibility:hidden!important}
-@media (prefers-reduced-motion:reduce){.scroll-hint i::after{animation:none}.g-card::before{transition:none}}
-.biz-name,.name-word{text-wrap:pretty}
+@media (prefers-reduced-motion:reduce){.scroll-hint i::after{animation:none}.g-card::before{transition:none}.mk{background-size:100% 100%}}
+.biz-name,.name-word,.panel-sub,.zig-title,.tl-title,.flip-pain h3{text-wrap:pretty}
+
 </style>
 </head>
 <body>
 <div class="progress" aria-hidden="true"></div>
 <header id="hdr">
   <a href="#top" class="logo">NORI&amp;TATE</a>
-  <div class="hdr-right"><a href="#contact" class="hdr-contact">CONTACT</a><button type="button" id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu">MENU</button></div>
+  <div class="hdr-right"><a href="#contact" class="btn btn--sm hdr-contact">CONTACT</a><button type="button" id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu">MENU</button></div>
 </header>
 <nav id="menu" class="menu" aria-hidden="true" aria-label="メインナビゲーション">
-  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span><span class="me">Top</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の考え方</span><span class="me">Concept</span></a></li><li><a href="#issues"><span class="mn">03</span><span class="mj">こんなお悩み</span><span class="me">Issues</span></a></li><li><a href="#whatwedo"><span class="mn">04</span><span class="mj">どのような会社か</span><span class="me">What We Do</span></a></li><li><a href="#industries"><span class="mn">05</span><span class="mj">業種は問いません</span><span class="me">Industries</span></a></li><li><a href="#business"><span class="mn">06</span><span class="mj">事業承継の実績</span><span class="me">Business</span></a></li><li><a href="#services"><span class="mn">07</span><span class="mj">経営を良くする手段</span><span class="me">Services</span></a></li><li><a href="#works"><span class="mn">08</span><span class="mj">取り組みの一例</span><span class="me">Case Study</span></a></li><li><a href="#growth"><span class="mn">09</span><span class="mj">事業成長の心得</span><span class="me">Key Principles</span></a></li><li><a href="#process"><span class="mn">10</span><span class="mj">ご相談の流れ</span><span class="me">Process</span></a></li><li><a href="#join"><span class="mn">11</span><span class="mj">オーナー様へ</span><span class="me">Join</span></a></li><li><a href="#name"><span class="mn">12</span><span class="mj">社名の由来</span><span class="me">Name</span></a></li><li><a href="#company"><span class="mn">13</span><span class="mj">会社概要</span><span class="me">Company</span></a></li><li><a href="#contact"><span class="mn">14</span><span class="mj">お問い合わせ</span><span class="me">Contact</span></a></li></ol>
+  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の想い</span></a></li><li><a href="#vision"><span class="mn">03</span><span class="mj">ビジョン</span></a></li><li><a href="#issues"><span class="mn">04</span><span class="mj">その「困った」、伸びしろです</span></a></li><li><a href="#whatwedo"><span class="mn">05</span><span class="mj">私たちの仕事</span></a></li><li><a href="#industries"><span class="mn">06</span><span class="mj">業種の壁はありません</span></a></li><li><a href="#business"><span class="mn">07</span><span class="mj">最初の一歩</span></a></li><li><a href="#services"><span class="mn">08</span><span class="mj">7つの道具</span></a></li><li><a href="#works"><span class="mn">09</span><span class="mj">こいまりで実際にやったこと</span></a></li><li><a href="#growth"><span class="mn">10</span><span class="mj">会社が伸びる4本の柱</span></a></li><li><a href="#process"><span class="mn">11</span><span class="mj">はじめ方</span></a></li><li><a href="#join"><span class="mn">12</span><span class="mj">オーナー様へ</span></a></li><li><a href="#name"><span class="mn">13</span><span class="mj">社名の由来</span></a></li><li><a href="#company"><span class="mn">14</span><span class="mj">会社概要</span></a></li><li><a href="#contact"><span class="mn">15</span><span class="mj">お問い合わせ</span></a></li></ol>
   <div class="menu-foot"><a href="tel:09012436770">090-1243-6770</a><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a><a href="https://www.instagram.com/nori.tate_official" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </nav>
-<a href="#contact" class="mobile-fab" aria-label="お問い合わせ・相談する">相談する</a>
+<a href="#contact" class="mobile-fab" aria-label="お問い合わせ・相談する">相談してみる</a>
+
 <main id="main">
 
+  <!-- ── TOP：左に言葉、右にオーナー作の鮮やかなメインビジュアルを大きく ── -->
   <section id="top">
     <div class="hero-text">
       <span class="hero-en fade" id="hero-en">Reviving Japan through Small Business</span>
       <h1 class="hero-catch" id="hero-catch">中小企業から、<br>再び日本を<br>盛り上げる。</h1>
       <div class="hero-line"></div>
       <p class="hero-brand fade" id="hero-brand">株式会社NORI&amp;TATE</p>
-      <p class="hero-lead fade">後継者不在・人手不足・高齢化。<br>時代の移り変わりとともに落ちていく営業力や管理の力。<br>取引先に値上げを言い出せない、販路が広がらない──。<br>あらゆる業種の中小企業の「続けたい」を、<br>経営ごと引き継ぎ、育て、次の世代へ。</p>
-      <a class="hero-cta fade" href="#contact">まずはご相談ください</a>
+      <p class="hero-lead fade">後継者不在・人手不足・高齢化。<br>時代の移り変わりとともに落ちていく営業力や管理の力。<br>取引先に値上げを言い出せない、販路が広がらない──。<br><b>その「困った」は、まだ伸びる場所がある証拠です。</b><br>経営ごと引き継ぎ、育て、世界へ羽ばたく会社に。</p>
+      <div class="hero-ctas fade"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a><a class="tlink" href="#whatwedo">NORI&amp;TATEってどんな会社？</a></div>
     </div>
     <div class="hero-visual"><div class="hero-img" id="bg-top" style="background-image:url('hero.jpg.png');"></div></div>
     <div class="scroll-hint" aria-hidden="true">SCROLL<i></i></div>
@@ -208,125 +372,110 @@ section{position:relative}
 
   <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Reviving Japan through Small Business —</span><span>NORI&amp;TATE —</span><span>Reviving Japan through Small Business —</span><span>NORI&amp;TATE —</span><span>Reviving Japan through Small Business —</span><span>NORI&amp;TATE —</span><span>Reviving Japan through Small Business —</span><span>NORI&amp;TATE —</span></div></div>
 
-  <div class="band " style="--h:78vh" aria-hidden="true"><div class="band-img" id="bg-concept" style="background-image:url('our%20mind.jpg.png');"></div></div>
+  <div class="band" style="--h:76vh" aria-hidden="true"><div class="band-img" id="bg-concept" data-bg="our%20mind.jpg.png"></div></div>
 
-  <!-- ── CONCEPT ── -->
-  <section id="concept">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── CONCEPT：原体験 → 決意の一文 → ミッション ── -->
+  <section id="concept" class="sec">
+    <div class="wrap story">
+      <div class="sec-head">
         <span class="s-label">Concept</span>
-        <h2 class="s-title" id="concept-title">代表の<br>考え方</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title" id="concept-title">この悔しさを、<br>希望に変える。</h2>
       </div>
-
-      <div class="sec-body" id="concept-body">
-        <p class="s-body js-fade d1">
-          株式会社NORI&amp;TATEの原点は、私が商社時代に目の当たりにしてきた、ある中小企業の姿にあります。お世話になった、鉄鋼業界で優れた技術を持つその金属加工会社は、経営者の高齢化と後継者不足によって技術を継承できず、職人さんが一人ずつ離れていきました。そうして事業が衰退していく──そんな現場でした。
-        </p>
-        <p class="s-body js-fade d2" style="margin-top:1.4rem;">
-          この光景を、二度と繰り返したくない。それが、NORI&amp;TATEを立ち上げた理由です。
-        </p>
-        <p class="s-body js-fade d3" style="margin-top:1.4rem;">
-          私たちは、事業承継を通じて技術と雇用を継承します。そのうえで、従来と違った観点から事業を見つめ直し、新しい価値を創造・探求することで成長を図ります。何よりも大切にしているのは、そこで働く方々やご家族の暮らしを、より良くし、時代に必要とされる企業へと成長させることです。
-        </p>
+      <div class="story-body" id="concept-body">
+        <p class="s-body">株式会社NORI&amp;TATEの原点は、私が商社時代に目の当たりにした、ある中小企業の姿です。</p>
+        <p class="s-body">お世話になった、鉄鋼業界で優れた技術を持つ金属加工会社。経営者の高齢化と後継者不足で技術を継げず、職人さんが一人、また一人と離れていき、事業は小さくなっていきました。</p>
+        <blockquote class="pull">この光景を、<br>二度と繰り返したくない。</blockquote>
+        <p class="s-body">それが、NORI&amp;TATEを立ち上げた理由です。</p>
+        <p class="s-body">私たちは事業承継で、技術と雇用を引き継ぎます。そのうえで、これまでと違う角度から事業を見つめ直し、新しい価値を一緒につくって、会社を伸ばしていきます。</p>
+        <p class="s-body s-body--strong">何よりも大切にしているのは、そこで働く方々やご家族の暮らしを、より良くし、時代に必要とされる企業へと成長させることです。</p>
       </div>
-
     </div>
   </section>
 
+  <!-- ── VISION（新設）：オーナーの言葉をそのまま大きく ── -->
+  <section id="vision" class="vision">
+    <div class="vision-bg" aria-hidden="true"></div>
+    <div class="vision-inner">
+      <span class="s-label">Vision</span>
+      <ul class="vision-list">
+        <li><span class="v-num">01</span><span class="v-text">日本の未来を、<em class="mk mk--1">明るく。</em></span></li>
+        <li><span class="v-num">02</span><span class="v-text">中小企業を、<em class="mk mk--2">世界へ。</em></span></li>
+        <li><span class="v-num">03</span><span class="v-text">社員を、<em class="mk mk--3">次の経営者に。</em></span></li>
+      </ul>
+      <p class="vision-text">日本には、世界に誇れる技術や、おいしさや、あたたかいサービスを持つ中小企業がたくさんあります。その会社が、これからも、もっと遠くまで届くように。</p>
+      <p class="vision-text">私たちは経営を引き継いで会社を育て、もともと働いている社員の方々を、ゆくゆくは経営を任せられる人へと育てていきます。</p>
+    </div>
+  </section>
 
-  <!-- ── ISSUES（2026-10-20：誰のどんな悩みに応える会社かを最初に示す） ── -->
-  <section id="issues">
-    <div class="sec-split">
-      <div class="sec-head js-fade">
+  <!-- ── ISSUES：「困った」→「こう変える」 ── -->
+  <section id="issues" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Issues</span>
-        <h2 class="s-title">こんなお悩み<br>ありませんか</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title">その「困った」、<br>伸びしろです。</h2>
+        <p class="sec-lead">業種や規模に関係なく、多くの中小企業が同じ壁にぶつかっています。でも、壁があるのは、まだ伸びる場所がある証拠。ひとつずつ、次の一手に変えていきます。</p>
       </div>
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1">業種や規模を問わず、日本の中小企業の多くが、いま同じ壁に向き合っています。</p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-a"></div><span class="g-card-num">01 — Succession</span><h3 class="g-card-title">後継者がいない</h3><p class="g-card-desc">事業は続けたい。けれど、ご家族にも社内にも、任せられる人が見つからない。</p></article>
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-b"></div><span class="g-card-num">02 — People</span><h3 class="g-card-title">人手が足りない・高齢化が進んでいる</h3><p class="g-card-desc">採用しても定着しない。職人や中心メンバーの高齢化で、技術や経験の継承が止まりかけている。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-c"></div><span class="g-card-num">03 — Management</span><h3 class="g-card-title">営業力・管理力が落ちてきた</h3><p class="g-card-desc">時代の移り変わりとともに、昔ながらのやり方では売上が伸びず、数字や業務の管理も追いつかない。何から手を付ければよいのか分からない。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-d"></div><span class="g-card-num">04 — Change</span><h3 class="g-card-title">時代の変化についていけない</h3><p class="g-card-desc">ホームページやSNS、予約や業務のデジタル化。必要だと分かっていても、手が回らない。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-a"></div><span class="g-card-num">05 — Partner</span><h3 class="g-card-title">相談できる相手がいない</h3><p class="g-card-desc">経営の悩みを、一人で抱え込んでいる。社外に、腹を割って話せる相談役が欲しい。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-b"></div><span class="g-card-num">06 — Price &amp; Market</span><h3 class="g-card-title">値上げを言い出せない・販路が広がらない</h3><p class="g-card-desc">原材料や人件費は上がるのに、長年の取引先には値上げを切り出せない。新しいお客様や販路を広げる手立ても見つからない。</p></article>
-        </div>
-      </div>
+      <ol class="flip-list">
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>後継者がいない</h3><p>事業は続けたい。けれど、ご家族にも社内にも、任せられる人が見つからない。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h1c"><span class="flip-tag">NORI&amp;TATEなら</span><p>経営ごと引き継ぎ、社員の中から次の社長を育てます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>人手が足りない・高齢化が進んでいる</h3><p>採用しても定着しない。職人や中心メンバーの高齢化で、技術や経験の継承が止まりかけている。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h2c"><span class="flip-tag">NORI&amp;TATEなら</span><p>採用と育成の仕組みをつくり、技術と経験を次の世代へつなぎます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>営業力・管理力が落ちてきた</h3><p>時代の移り変わりとともに、昔ながらのやり方では売上が伸びず、数字や業務の管理も追いつかない。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h3c"><span class="flip-tag">NORI&amp;TATEなら</span><p>数字と業務を見える化して、「売れる仕組み」「回る仕組み」に変えます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>時代の変化についていけない</h3><p>ホームページやSNS、予約や業務のデジタル化。必要だと分かっていても、手が回らない。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h4c"><span class="flip-tag">NORI&amp;TATEなら</span><p>ホームページ・SNS・予約・AIまで、まるごと一緒に整えます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>相談できる相手がいない</h3><p>経営の悩みを、一人で抱え込んでいる。社外に、腹を割って話せる相談役が欲しい。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h5c"><span class="flip-tag">NORI&amp;TATEなら</span><p>いちばん近くの相談役として、一緒に悩み、一緒に決めます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>値上げを言い出せない・販路が広がらない</h3><p>原材料や人件費は上がるのに、長年の取引先には値上げを切り出せない。新しいお客様や販路を広げる手立ても見つからない。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h6c"><span class="flip-tag">NORI&amp;TATEなら</span><p>価値がきちんと伝わる見せ方と、新しいお客様に届く道を一緒につくります。</p></div></li>
+      </ol>
+      <div class="cta-row"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
-
-  <!-- ── WHAT WE DO ── -->
-  <section id="whatwedo">
-    <div class="sec-split">
-      <div class="sec-head js-fade">
+  <!-- ── WHAT WE DO：横に流れる3枚のパネル（PC）／横スワイプ（スマホ） ── -->
+  <section id="whatwedo" class="sec sec--flush">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">What is NORI&amp;TATE</span>
-        <h2 class="s-title">どのような<br>会社ですか</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title">引き継ぐ。育てる。<br>次の世代へ。</h2>
+        <p class="sec-lead"><b>NORI&amp;TATEは、あらゆる業種の中小企業の「続けたい」を、経営ごと引き継ぎ、育て、次の世代へつなぐ会社です。</b>外から助言するだけではありません。自ら経営の当事者になって、現場の皆さんと一緒に汗をかきます。いちばんに考えるのは、その会社にとって最善の形。事業承継ありきではありません。</p>
       </div>
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1"><strong>NORI&amp;TATEは、あらゆる業種の中小企業の「続けたい」を、経営ごと引き継ぎ、育て、次の世代へつなぐ会社です。</strong><br>外から助言するだけでなく、自ら経営の当事者になって、現場とともに事業を立て直し、成長させます。<br>私たちが一番に考えているのは、中小企業の再起です。<strong>事業承継ありきではなく、その会社にとって最善の形</strong>を、一緒に選びます。</p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-a"></div><span class="g-card-num">01 — Business Succession</span><h3 class="g-card-title">事業を買い取り、経営を引き継ぐ</h3><p class="g-card-desc">後継者がいない事業を、M&amp;A（事業の譲り受け）によって引き継ぎます。屋号・技術・従業員の雇用・取引先とのつながりを守り、これまで通り現場が続いていく形を大切にします。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-b"></div><span class="g-card-num">02 — Management Support</span><h3 class="g-card-title">経営の立て直しと成長を、ともに担う</h3><p class="g-card-desc">事業承継が最善でない場合は、経営はそのままに、私たちのノウハウで支援します。月々の定額で継続的に伴走する形（サブスクリプション）から、必要なテーマだけのスポット支援まで。ホームページやSNS戦略の構築、商品・集客の見直し、業務の効率化、AIの導入と使い方の指導などに、現場に入り込んで取り組み、経営者の方の相談役も務めます。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-c"></div><span class="g-card-num">03 — Next Generation</span><h3 class="g-card-title">人を育て、次の経営者へ任せる</h3><p class="g-card-desc">後継者や社員の育成に力を入れ、ゆくゆくは事業を一番よく知るプロパー社員に経営を任せていきます。事業が、その会社の人の手で続いていくことが、私たちの目指すゴールです。</p></article>
-        </div>
+    </div>
+    <div class="hpin">
+      <div class="htrack">
+        <article class="panel pc1"><span class="panel-num">01</span><span class="panel-en">Business Succession</span><h3 class="panel-title">引き継ぐ</h3><p class="panel-sub">事業を買い取り、経営を引き継ぐ</p><p class="panel-desc">後継者がいない事業を、M&amp;A（事業の譲り受け）で引き継ぎます。屋号も、技術も、従業員の皆さんの雇用も、取引先とのつながりも大切に守り、現場はこれまで通り続いていきます。</p></article>
+        <article class="panel pc2"><span class="panel-num">02</span><span class="panel-en">Management Support</span><h3 class="panel-title">伴走する</h3><p class="panel-sub">経営の立て直しと成長を、ともに担う</p><p class="panel-desc">事業承継が最善でないときは、経営はそのままに、私たちのノウハウで支えます。月々の定額でずっと伴走する形から、テーマを絞ったスポット支援まで。現場に入り込んで一緒に取り組み、経営者の方の相談役にもなります。</p></article>
+        <article class="panel pc3"><span class="panel-num">03</span><span class="panel-en">Next Generation</span><h3 class="panel-title">任せる</h3><p class="panel-sub">人を育て、次の経営者へ</p><p class="panel-desc">後継者や社員の皆さんの育成に力を注ぎ、ゆくゆくは事業をいちばんよく知るプロパー社員に経営を任せます。会社が、その会社の人の手で続いていく。それが私たちのゴールです。</p></article>
       </div>
     </div>
   </section>
 
-
-  <!-- ── INDUSTRIES ── -->
-  
-  <div class="band " aria-hidden="true"><div class="band-img" id="bg-industries" style="background-image:url('bg-industries.jpg');"></div></div>
-  <section id="industries">
-    <div class="sec-split">
-      <div class="sec-head js-fade">
+  <!-- ── INDUSTRIES：大きな文字の一覧＋商店街の写真 ── -->
+  <section id="industries" class="sec">
+    <div class="wrap split">
+      <div class="split-media"><div class="media-img" id="bg-industries" data-bg="bg-industries.jpg"></div></div>
+      <div class="split-text">
         <span class="s-label">Industries</span>
-        <h2 class="s-title">業種は<br>問いません</h2>
-        <div class="s-rule"></div>
-      </div>
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1">後継者や人材の悩みは、業種を選びません。ものづくりの現場から、地域のお店、サービス業まで、事業の価値と、そこで働く人を大切にする想いがあれば、どの業種でもご相談ください。</p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-a"></div><span class="g-card-num">Manufacturing</span><h3 class="g-card-title">製造業・ものづくり</h3><p class="g-card-desc">鉄鋼・金属加工、町工場など。長年の技術と職人の経験を、次の世代へ。</p></article>
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-b"></div><span class="g-card-num">Food &amp; Restaurant</span><h3 class="g-card-title">飲食店・菓子店・食品</h3><p class="g-card-desc">地域に愛されてきた味と、お客様とのつながりを守りながら、時代に合わせて育てます。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-c"></div><span class="g-card-num">Beauty &amp; Relaxation</span><h3 class="g-card-title">サロン・リラクゼーション</h3><p class="g-card-desc">施術者の技術とお客様の信頼を引き継ぎ、集客や予約の仕組みも整えます。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-d"></div><span class="g-card-num">Retail &amp; Service</span><h3 class="g-card-title">小売・サービス業 ほか</h3><p class="g-card-desc">業種を限らず、まずはお話をお聞かせください。</p></article>
-        </div>
+        <h2 class="s-title">業種の壁は、<br>ありません。</h2>
+        <p class="sec-lead">後継者や人材の悩みは、業種を選びません。ものづくりの現場から、街のお店、サービス業まで。事業の価値と、そこで働く人を大切にする想いがあれば、ぜひお話を聞かせてください。</p>
+        <ul class="ind-list">
+          <li class="ind i1"><span class="ind-en">Manufacturing</span><b class="ind-name">製造業・ものづくり</b><span class="ind-desc">鉄鋼・金属加工、町工場など。長年の技術と職人の経験を、次の世代へ。</span></li>
+          <li class="ind i2"><span class="ind-en">Food &amp; Restaurant</span><b class="ind-name">飲食店・菓子店・食品</b><span class="ind-desc">地域に愛されてきた味と、お客様とのつながりを守りながら、時代に合わせて育てます。</span></li>
+          <li class="ind i3"><span class="ind-en">Beauty &amp; Relaxation</span><b class="ind-name">サロン・リラクゼーション</b><span class="ind-desc">施術者の技術とお客様の信頼を引き継ぎ、集客や予約の仕組みも整えます。</span></li>
+          <li class="ind i4"><span class="ind-en">Retail &amp; Service</span><b class="ind-name">小売・サービス業 ほか</b><span class="ind-desc">業種を限らず、まずはお話をお聞かせください。</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
-
-
-
-
-  <!-- ── BUSINESS ── -->
-  
-  <div class="band " aria-hidden="true"><div class="band-img" id="bg-business" style="background-image:url('cake.jpg.jpg');"></div></div>
-  <section id="business">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── BUSINESS：雑誌の見開きのように ── -->
+  <section id="business" class="sec sec--tint">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Business</span>
-        <h2 class="s-title" id="business-title">事業承継の<br>実績</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title" id="business-title">最初の一歩は、<br>街のケーキ屋さん。</h2>
       </div>
-
-      <div class="sec-body">
-        <div class="biz-card js-fade d1">
-          <div class="biz-header">
-            <div class="biz-num">01</div>
-            <div class="biz-meta">
-              <span class="biz-location" id="business-location">No.01 — 大阪市城東区</span>
-              <h3 class="biz-name" id="business-name">ケーキ屋さん こいまり 城東店</h3>
-              <p class="biz-sub" id="business-sub">Cake Shop Koimari</p>
-            </div>
-          </div>
+      <div class="feature">
+        <div class="feature-media"><div class="media-img" id="bg-business" data-bg="cake.jpg.jpg"></div></div>
+        <div class="feature-text">
+          <span class="biz-location" id="business-location">No.01 — 大阪市城東区</span>
+          <h3 class="biz-name" id="business-name">ケーキ屋さん こいまり 城東店</h3>
+          <p class="biz-sub" id="business-sub">Cake Shop Koimari</p>
           <div id="business-body">
           <p class="biz-body js-fade d2">
             30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり 城東店」。そのオーナー様の想いに共感し、NORI&amp;TATEが経営面のサポートに入らせていただくことになりました。
@@ -338,313 +487,174 @@ section{position:relative}
             ご愛好いただいているお客様、支えてくださっている地域の皆様。これまでの大切なものはそのままに、これからの新しい価値も少しずつ積み上げていけたらと考えています。
           </p>
           </div>
-          <div class="biz-link-row js-fade d4">
+          <div class="link-row">
             <a class="biz-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B1%E3%83%BC%E3%82%AD%E5%B1%8B%E3%81%95%E3%82%93%20%E3%81%93%E3%81%84%E3%81%BE%E3%82%8A%20%E5%9F%8E%E6%9D%B1%E5%BA%97" target="_blank" rel="noopener noreferrer">Googleマップで見る &nbsp;›</a>
             <a class="biz-link" href="https://www.instagram.com/_koimari_/" target="_blank" rel="noopener noreferrer">Instagramを見る &nbsp;›</a>
             <img class="biz-qr" src="koimari-instagram-qr.png" alt="こいまり公式Instagram QRコード" width="72" height="72" loading="lazy">
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-
-  <!-- ── SERVICES（2026-10-20追加：既存の sec-split / g-card / biz-card の作りをそのまま使用） ── -->
-  
-  <div class="band " aria-hidden="true"><div class="band-img" id="bg-services" style="background-image:url('bg-services.jpg');"></div></div>
-  <section id="services">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
-        <span class="s-label">Services</span>
-        <h2 class="s-title">経営を<br>良くする手段</h2>
-        <div class="s-rule"></div>
+  <!-- ── SERVICES：色とりどりのカードを横にめくる ── -->
+  <section id="services" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide sec-head--row">
+        <div>
+          <span class="s-label">Services</span>
+          <h2 class="s-title">会社が元気になる、<br>7つの道具。</h2>
+        </div>
+        <p class="sec-lead">引き継いだ事業や、ご相談いただいた会社の立て直しで、私たちが実際に使っている道具です。机の上の提案ではなく、経営の当事者として現場で試し、手応えを確かめてきたものばかり。会社に合わせて組み合わせ、月々の伴走でも、テーマごとのスポットでもご提供します。</p>
       </div>
-
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1">
-          引き継いだ事業や、ご相談いただいた会社の立て直しで、私たちが実際に使っている手段です。業種に合わせて必要なものを組み合わせ、継続的な伴走（月額）でも、テーマごとのスポットでもご提供します。<br>机上の提案ではなく、私たち自身が経営の当事者として現場で使い、成果を確かめてきたものです。
-        </p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2">
+    </div>
+    <div class="svc">
+      <div class="swiper svc-swiper"><div class="swiper-wrapper"><article class="swiper-slide g-card">
             <div class="g-card-bar bar-a"></div>
             <span class="g-card-num">01 — Branding &amp; Marketing</span>
             <h3 class="g-card-title">ターゲットの洗い出しと、選ばれる理由づくり</h3>
             <p class="g-card-desc">お客様・取引先の層や、選ばれるきっかけ、競合を整理し、自社の強みを言葉と写真で伝わる形に整えます。商品・サービスの説明やキャッチコピー、キャンペーンごとの特設ページまで、一貫した世界観でつくります。</p>
           </article>
-          <article class="g-card js-fade d2">
+<article class="swiper-slide g-card">
             <div class="g-card-bar bar-b"></div>
             <span class="g-card-num">02 — Website</span>
             <h3 class="g-card-title">公式ホームページの新規立ち上げ・運用</h3>
             <p class="g-card-desc"><strong>公式ホームページの新規立ち上げ</strong>から、今あるサイトのリニューアルまで。スマホで見やすいサイトを制作し、社内の方が自分で写真や文章を更新できる管理画面を備えます。営業日カレンダーや英語表示、検索・AI検索への対策など、業種に合わせた機能にも対応します。</p>
           </article>
-          <article class="g-card js-fade d3">
+<article class="swiper-slide g-card">
             <div class="g-card-bar bar-c"></div>
             <span class="g-card-num">03 — Reservation &amp; EC</span>
             <h3 class="g-card-title">予約・受注・販売の仕組みづくり</h3>
             <p class="g-card-desc">LINEやWebからの予約・注文・お問い合わせ、内容に応じた見積もりの自動計算、一覧・カレンダーでの管理、担当者への通知までを一つの流れにします。ネットショップ（ECサイト）の立ち上げもご相談いただけます。</p>
           </article>
-          <article class="g-card js-fade d3">
+<article class="swiper-slide g-card">
             <div class="g-card-bar bar-d"></div>
             <span class="g-card-num">04 — LINE &amp; SNS</span>
             <h3 class="g-card-title">LINE・SNSでの集客と、お客様とのつながり</h3>
             <p class="g-card-desc">LINE公式アカウントの自動返信やリッチメニュー、クーポンなどの施策を設計します。InstagramなどSNSの反応を分析し、伝わる投稿づくりと、商品・サービス・会社のPRをお手伝いします。</p>
           </article>
-          <article class="g-card js-fade d3">
+<article class="swiper-slide g-card">
             <div class="g-card-bar bar-a"></div>
             <span class="g-card-num">05 — Operations</span>
             <h3 class="g-card-title">新しいシステムによる、作業の効率化・自動化</h3>
             <p class="g-card-desc">人数や勤務条件が絡み合う<strong>複雑なシフト作成の自動化</strong>をはじめ、勤怠・給与計算、レシートを読み取る経費精算、原価計算と価格表の自動連動など、手作業で時間がかかっていた業務を、会社に合わせた仕組みに置き換えます。</p>
           </article>
-          <article class="g-card js-fade d4">
+<article class="swiper-slide g-card">
             <div class="g-card-bar bar-b"></div>
             <span class="g-card-num">06 — Product Development</span>
             <h3 class="g-card-title">ニーズの分析と、商品展開・将来戦略のご提案</h3>
             <p class="g-card-desc">市況やお客様のニーズを調べ、得意先・お客様が何を必要としているかを分析して、自社製品や取り扱い商品の展開をご提案します。将来の戦略も含めて、経営陣・従業員の皆さまと一緒に考えていきます。</p>
           </article>
-          <article class="g-card js-fade d4">
+<article class="swiper-slide g-card">
             <div class="g-card-bar bar-c"></div>
             <span class="g-card-num">07 — AI</span>
             <h3 class="g-card-title">AIの導入と、使いこなすための指導</h3>
             <p class="g-card-desc">文章や資料づくり、問い合わせ対応、データの整理など、日々の仕事にAIを取り入れる方法を、会社の業務に合わせてご提案します。導入して終わりではなく、社員の方が自分で使いこなせるようになるまで指導します。</p>
-          </article>
-        </div>
-      </div>
-
+          </article></div></div>
+      <div class="wrap svc-nav"><button type="button" class="svc-prev" aria-label="前へ">←</button><div class="svc-bar"><span class="svc-bar__fill"></span></div><button type="button" class="svc-next" aria-label="次へ">→</button></div>
     </div>
   </section>
 
-
-  <!-- ── CASE STUDY ── -->
-  <section id="works">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── CASE STUDY：写真と文章を左右交互に ── -->
+  <section id="works" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Case Study</span>
-        <h2 class="s-title">取り組みの<br>一例</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title">こいまりで、<br>実際にやったこと。</h2>
+        <p class="sec-lead">事業承継した「ケーキ屋さん こいまり 城東店」での取り組みの一部です。業種が変わっても、課題を見つけ、仕組みで解決するという考え方は同じです。</p>
       </div>
-
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1">事業承継した「ケーキ屋さん こいまり 城東店」での取り組みの一部をご紹介します。業種が変わっても、課題を洗い出し、仕組みで解決するという考え方は同じです。</p>
-        <div class="biz-card js-fade d1">
-          <div class="biz-header">
-            <div class="biz-num">01</div>
-            <div class="biz-meta">
-              <span class="biz-location">Website / Branding</span>
-              <h3 class="biz-name">公式ホームページの全面リニューアル</h3>
-              <p class="biz-sub">Cake Shop Koimari — Official Site</p>
-            </div>
-          </div>
-          <img class="works-img" src="works/site.jpg" alt="ケーキ屋さん こいまり 城東店 公式サイト" loading="lazy">
-          <p class="biz-body">「フルーツリッチで満足度の高いケーキ屋さん」という強みが伝わるよう、写真の見せ方・言葉選び・ページ構成を見直しました。お店の方が写真や文章をその場で更新できる管理画面も整えています。</p>
-        </div>
-
-        <div class="biz-card js-fade d2">
-          <div class="biz-header">
-            <div class="biz-num">02</div>
-            <div class="biz-meta">
-              <span class="biz-location">Seasonal Campaign</span>
-              <h3 class="biz-name">季節・イベントの特設ページ</h3>
-              <p class="biz-sub">Halloween / Christmas / New Year and more</p>
-            </div>
-          </div>
-          <img class="works-img" src="works/special.jpg" alt="ハロウィンフェア特設ページ" loading="lazy">
-          <p class="biz-body">ハロウィンやクリスマスなど、イベントごとに配色・飾り・動きが切り替わる特設ページの仕組みをつくりました。お知らせを書くだけで、関連商品が並んだにぎやかなページになり、トップページにも自動で掲載されます。</p>
-        </div>
-
-        <div class="biz-card js-fade d3">
-          <div class="biz-header">
-            <div class="biz-num">03</div>
-            <div class="biz-meta">
-              <span class="biz-location">Reservation / LINE</span>
-              <h3 class="biz-name">LINEで完結するケーキの予約</h3>
-              <p class="biz-sub">Reservation System</p>
-            </div>
-          </div>
-          <div class="works-pair">
-            <img class="works-img works-img--phone" src="works/phone-top.jpg" alt="スマートフォンで見たトップページ" loading="lazy">
-            <img class="works-img works-img--phone" src="works/phone-reserve.jpg" alt="LINEから開く予約フォーム" loading="lazy">
-          </div>
-          <p class="biz-body">写真から選んだケーキの仕様がそのまま入る予約フォーム、見積もりの自動計算、受付・確定・前日のリマインドの自動送信まで、LINEの中で完結する流れにしました。スタッフの電話対応や確認の手間を減らしています。</p>
-        </div>
-
-        <div class="biz-card js-fade d3">
-          <div class="biz-header">
-            <div class="biz-num">04</div>
-            <div class="biz-meta">
-              <span class="biz-location">Operations</span>
-              <h3 class="biz-name">営業日カレンダーと、店舗運営の仕組み化</h3>
-              <p class="biz-sub">Calendar / Shift / Payroll</p>
-            </div>
-          </div>
-          <img class="works-img" src="works/calendar.jpg" alt="営業日カレンダー" loading="lazy">
-          <p class="biz-body">定休日・祝日・特別営業時間が自動で反映される営業日カレンダーをはじめ、シフトの作成・修正、勤怠と給与の計算、経費精算など、日々の業務を一つずつ仕組みに置き換えてきました。</p>
-          <div class="biz-link-row">
-            <a class="biz-link" href="https://koimari-official.github.io/koimari-site/" target="_blank" rel="noopener">こいまりの公式サイトを見る &nbsp;›</a>
-          </div>
-        </div>
+      <div class="zig">
+        <article class="zig-item"><div class="zig-media"><img src="works/site.jpg" alt="ケーキ屋さん こいまり 城東店 公式サイト" loading="lazy"></div><div class="zig-text"><span class="zig-num">01</span><span class="zig-en">Website / Branding</span><h3 class="zig-title">公式ホームページの全面リニューアル</h3><p>「フルーツリッチで満足度の高いケーキ屋さん」という強みが伝わるよう、写真の見せ方・言葉選び・ページ構成を見直しました。お店の方が写真や文章をその場で更新できる管理画面も整えています。</p></div></article>
+        <article class="zig-item"><div class="zig-media"><img src="works/special.jpg" alt="ハロウィンフェア特設ページ" loading="lazy"></div><div class="zig-text"><span class="zig-num">02</span><span class="zig-en">Seasonal Campaign</span><h3 class="zig-title">季節・イベントの特設ページ</h3><p>ハロウィンやクリスマスなど、イベントごとに配色・飾り・動きが切り替わる特設ページの仕組みをつくりました。お知らせを書くだけで、関連商品が並んだにぎやかなページになり、トップページにも自動で掲載されます。</p></div></article>
+        <article class="zig-item"><div class="zig-media zig-media--pair"><img src="works/phone-top.jpg" alt="スマートフォンで見たトップページ" loading="lazy"><img src="works/phone-reserve.jpg" alt="LINEから開く予約フォーム" loading="lazy"></div><div class="zig-text"><span class="zig-num">03</span><span class="zig-en">Reservation / LINE</span><h3 class="zig-title">LINEで完結するケーキの予約</h3><p>写真から選んだケーキの仕様がそのまま入る予約フォーム、見積もりの自動計算、受付・確定・前日のリマインドの自動送信まで、LINEの中で完結する流れにしました。スタッフの電話対応や確認の手間を減らしています。</p></div></article>
+        <article class="zig-item"><div class="zig-media"><img src="works/calendar.jpg" alt="営業日カレンダー" loading="lazy"></div><div class="zig-text"><span class="zig-num">04</span><span class="zig-en">Operations</span><h3 class="zig-title">営業日カレンダーと、店舗運営の仕組み化</h3><p>定休日・祝日・特別営業時間が自動で反映される営業日カレンダーをはじめ、シフトの作成・修正、勤怠と給与の計算、経費精算など、日々の業務を一つずつ仕組みに置き換えてきました。</p><a class="tlink" href="https://koimari-official.github.io/koimari-site/" target="_blank" rel="noopener">こいまりの公式サイトを見る</a></div></article>
       </div>
-
     </div>
   </section>
 
+  <div class="band band--opt" aria-hidden="true"><div class="band-img" id="bg-growth"></div></div>
 
-
-
-  <!-- ── 事業成長の心得 ── -->
-  
-  <div class="band band--opt" aria-hidden="true"><div class="band-img" id="bg-growth" style=""></div></div>
-  <section id="growth">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── KEY PRINCIPLES：伸びていく4本の柱 ── -->
+  <section id="growth" class="sec sec--tint">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Key Principles</span>
-        <h2 class="s-title" id="growth-title">事業成長の心得</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title" id="growth-title">会社が伸びる、<br>4本の柱。</h2>
+        <p class="sec-lead" id="growth-lead">引き継いだ事業を育てるとき、NORI&amp;TATEが大切にしている4本の柱です。オーナーの想いと現場の良さを活かしながら、無理なく、でも着実に伸ばしていきます。</p>
       </div>
-
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1" id="growth-lead">
-          譲受した事業を育てるにあたり、NORI&amp;TATEが大切にしている４つの柱です。<br>オーナーの想いと現場の価値を尊重しながら、無理のない形で事業を成長させていきます。
-        </p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2">
-            <div class="g-card-bar bar-a"></div>
-            <span class="g-card-num">01 — Recruitment &amp; Training</span>
-            <h3 class="g-card-title" id="growth-card-1-title">採用・育成による現場の強化</h3>
-            <p class="g-card-desc" id="growth-card-1-desc">現場を支える人材の採用計画から育成体制の構築まで、事業の実情に合わせて取り組みます。技術と知識が次の世代へ確実に引き継がれる仕組みをつくります。</p>
-          </article>
-          <article class="g-card js-fade d3">
-            <div class="g-card-bar bar-b"></div>
-            <span class="g-card-num">02 — Marketing</span>
-            <h3 class="g-card-title" id="growth-card-2-title">マーケティングによる企業価値の創出・探求</h3>
-            <p class="g-card-desc" id="growth-card-2-desc">マーケティングの視点から事業の強みを掘り起こし、地域に根ざしたブランドづくりと集客の仕組みを整えます。事業固有の価値を発信し、新たな顧客との接点を創出します。</p>
-          </article>
-          <article class="g-card js-fade d3">
-            <div class="g-card-bar bar-c"></div>
-            <span class="g-card-num">03 — Management Visualization</span>
-            <h3 class="g-card-title" id="growth-card-3-title">数字と業務の見える化・仕組み化</h3>
-            <p class="g-card-desc" id="growth-card-3-desc">経営状況・業務フロー・財務数値を可視化し、属人化していた判断を「仕組み」へ変えます。経営者が安心して次のステップを描けるよう、管理体制を整備します。</p>
-          </article>
-          <article class="g-card js-fade d4">
-            <div class="g-card-bar bar-d"></div>
-            <span class="g-card-num">04 — Next Generation Structure</span>
-            <h3 class="g-card-title" id="growth-card-4-title">次世代を担う経営体制づくり</h3>
-            <p class="g-card-desc" id="growth-card-4-desc">後継者の選定・育成から、経営移行のシナリオ設計まで。オーナーの想いを引き継ぎながら、無理のない形で次世代への橋渡しをサポートします。</p>
-          </article>
-        </div>
+      <div class="pillars">
+        <article class="pillar pl1"><div class="pillar-bar" aria-hidden="true"><span></span></div><span class="pillar-num">01</span><span class="pillar-en">Recruitment &amp; Training</span><h3 class="pillar-title" id="growth-card-1-title">採用・育成による現場の強化</h3><p class="pillar-desc" id="growth-card-1-desc">現場を支える人材の採用計画から育成体制の構築まで、事業の実情に合わせて取り組みます。技術と知識が次の世代へ確実に引き継がれる仕組みをつくります。</p></article>
+        <article class="pillar pl2"><div class="pillar-bar" aria-hidden="true"><span></span></div><span class="pillar-num">02</span><span class="pillar-en">Marketing</span><h3 class="pillar-title" id="growth-card-2-title">マーケティングによる企業価値の創出・探求</h3><p class="pillar-desc" id="growth-card-2-desc">マーケティングの視点から事業の強みを掘り起こし、地域に根ざしたブランドづくりと集客の仕組みを整えます。事業固有の価値を発信し、新たな顧客との接点を創出します。</p></article>
+        <article class="pillar pl3"><div class="pillar-bar" aria-hidden="true"><span></span></div><span class="pillar-num">03</span><span class="pillar-en">Management Visualization</span><h3 class="pillar-title" id="growth-card-3-title">数字と業務の見える化・仕組み化</h3><p class="pillar-desc" id="growth-card-3-desc">経営状況・業務フロー・財務数値を可視化し、属人化していた判断を「仕組み」へ変えます。経営者が安心して次のステップを描けるよう、管理体制を整備します。</p></article>
+        <article class="pillar pl4"><div class="pillar-bar" aria-hidden="true"><span></span></div><span class="pillar-num">04</span><span class="pillar-en">Next Generation Structure</span><h3 class="pillar-title" id="growth-card-4-title">次世代を担う経営体制づくり</h3><p class="pillar-desc" id="growth-card-4-desc">後継者の選定・育成から、経営移行のシナリオ設計まで。オーナーの想いを引き継ぎながら、無理のない形で次世代への橋渡しをサポートします。</p></article>
       </div>
-
     </div>
   </section>
 
-
-  <!-- ── PROCESS ── -->
-  <section id="process">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── PROCESS：伸びていく線でつなぐ4ステップ ── -->
+  <section id="process" class="sec">
+    <div class="wrap narrow">
+      <div class="sec-head sec-head--wide sec-head--center">
         <span class="s-label">Process</span>
-        <h2 class="s-title">ご相談の<br>流れ</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title">はじめ方は、<br>かんたん4ステップ。</h2>
       </div>
-
-      <div class="sec-body">
-        <div class="growth-cards">
-          <article class="g-card js-fade d1"><div class="g-card-bar bar-a"></div><span class="g-card-num">Step 01 — Hearing</span><h3 class="g-card-title">お話をお聞かせください</h3><p class="g-card-desc">お店やお仕事の現状、困っていること、これからやりたいことをお伺いします。</p></article>
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-b"></div><span class="g-card-num">Step 02 — Research</span><h3 class="g-card-title">現状の洗い出し</h3><p class="g-card-desc">お客様・商品・業務の流れを整理し、どこから手を付けると効果が大きいかを見極めます。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-c"></div><span class="g-card-num">Step 03 — Proposal</span><h3 class="g-card-title">ご提案とお見積もり</h3><p class="g-card-desc">事業承継・継続的な伴走支援・スポット支援の中から、その会社に最善の形と優先順位をご提案し、お見積もりをお出しします。小さく始めることもできます。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-d"></div><span class="g-card-num">Step 04 — Build &amp; Support</span><h3 class="g-card-title">制作・導入と、その後の運用</h3><p class="g-card-desc">つくって終わりではなく、実際に使いながら一緒に改善を続けます。</p></article>
-        </div>
-        <div class="biz-link-row js-fade d4" style="margin-top:2.4rem;">
-          <a class="biz-link" href="#contact">まずはご相談ください &nbsp;›</a>
-        </div>
-      </div>
-
+      <ol class="timeline">
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 01 — Hearing</span><h3 class="tl-title">お話をお聞かせください</h3><p>お店やお仕事のいま、困っていること、これからやりたいことを、気軽にお話しください。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 02 — Research</span><h3 class="tl-title">いまを一緒に整理</h3><p>お客様・商品・業務の流れを整理して、どこから手を付けるといちばん効くかを見極めます。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 03 — Proposal</span><h3 class="tl-title">ご提案とお見積もり</h3><p>事業承継・継続的な伴走支援・スポット支援の中から、その会社にいちばん合う形と優先順位をご提案し、お見積もりをお出しします。小さく始めることもできます。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 04 — Build &amp; Support</span><h3 class="tl-title">つくって、一緒に育てる</h3><p>つくって終わりではありません。実際に使いながら、一緒に改善を続けます。</p></li>
+        <li class="tl-line" aria-hidden="true"><span class="tl-fill"></span></li>
+      </ol>
+      <div class="cta-row cta-row--center"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
-
-  <!-- ── JOIN（黒背景） ── -->
-  <section id="join">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── JOIN（黒） ── -->
+  <section id="join" class="sec">
+    <div class="wrap split split--join">
+      <div class="sec-head">
         <span class="s-label">Join</span>
-        <h2 class="s-title" id="join-title" style="color:var(--white);">ともに、<br>次の一歩を。</h2>
-        <div class="s-rule" style="background:rgba(255,255,255,0.18);"></div>
+        <h2 class="s-title" id="join-title">ともに、<br>次の一歩を。</h2>
       </div>
-
-      <div class="sec-body">
-        <p class="join-lead js-fade d1" id="join-lead">
-          長年かけて育ててきた事業を、誰にどう引き継ぐか。それは経営者の方にとって、人生の大きな決断だと思います。<br><br>
-          技術、人、地域とのつながり。積み重ねてきたものを、単なる売買として手放すのではなく、その価値を理解した相手にきちんと渡したい。私たちは、そう考える経営者の方と一緒に進んでいきたいと考えています。<br><br>
-          こんな想いをお持ちの方は、お気軽にご相談ください。
-        </p>
-        <ul class="join-list js-fade d2" id="join-items">
+      <div>
+        <p class="join-lead" id="join-lead">長年かけて育ててきた事業を、誰にどう引き継ぐか。それは経営者の方にとって、人生の大きな決断だと思います。<br><br>技術、人、地域とのつながり。積み重ねてきたものを、単なる売買として手放すのではなく、その価値を分かってくれる相手に、きちんと渡したい。私たちは、そう考える経営者の方と一緒に進んでいきたいと考えています。<br><br>こんな想いをお持ちなら、ぜひ気軽にお声がけください。</p>
+        <ul class="join-list" id="join-items">
           <li>事業を続けたいが、後継者が見つからない</li>
           <li>従業員や取引先を大切にしながら引き継ぎたい</li>
           <li>一人で抱え込まず、一緒に考えてくれる相手が欲しい</li>
           <li>引退後も、事業の成長を見届けたい</li>
         </ul>
-        <a class="join-btn js-fade d3" href="#contact" id="join-btn-text">まずは話をお聞かせください</a>
+        <a class="btn btn--light" href="#contact"><span id="join-btn-text">まずは話をお聞かせください</span> <span class="arw" aria-hidden="true">→</span></a>
       </div>
-
     </div>
   </section>
 
-
-  <!-- ── NAME ── -->
-  
-  <div class="band " aria-hidden="true"><div class="band-img" id="bg-name" style="background-image:url('ameft.jpg.jpg');"></div></div>
-  <section id="name">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── NAME：ノリと縦上がり ── -->
+  <section id="name" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Name</span>
-        <h2 class="s-title" id="name-title">NORI&amp;TATE<br>(ノリタテ)<br>の由来</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title" id="name-title">ノリと、<br>縦上がり。</h2>
       </div>
-
-      <div class="sec-body">
-        <p class="s-body js-fade d1" id="name-intro">
-          社名は、私が学生時代からアメリカンフットボールをランニングバックとしてプレーする中で生まれた合言葉、「ノリと縦上がり」に由来し、環境や前例にとらわれず自ら判断し責任を持って前進するという、私が心がける経営の在り方そのものを表しています。
-        </p>
-        <div class="name-pair">
-          <div class="js-fade d2">
-            <p class="name-word" id="name-word-nori">ノリ（NORI）</p>
-            <p class="name-def" id="name-def-nori">ボールを持ち全速力で走りながら、味方の状況や相手の動きを感じ、最も前進できる最善のルートを瞬時に察知する能力。</p>
-          </div>
-          <div class="js-fade d3">
-            <p class="name-word" id="name-word-tate">縦上がり（TATE）</p>
-            <p class="name-def" id="name-def-tate">壁や相手にぶち当たりながらも臆さずに最善のルートを最短距離で、全速力で突き進む強い意志。</p>
-          </div>
-        </div>
-        <p class="name-foot js-fade d4" id="name-foot">この二つを重ねた言葉が、「ノリと縦上がり」<br><br>ノリタテ（株式会社ＮＯＲＩ＆ＴＡＴＥ）の由来です。</p>
+      <div class="name-photo"><div class="media-img" id="bg-name" data-bg="ameft.jpg.jpg"></div></div>
+      <p class="s-body name-intro" id="name-intro">社名は、私が学生時代からアメリカンフットボールをランニングバックとしてプレーする中で生まれた合言葉、「ノリと縦上がり」に由来しています。環境や前例にとらわれず、自ら判断し、責任を持って前へ進む。私が心がける経営の在り方そのものです。</p>
+      <div class="name-duo">
+        <div class="duo duo--nori"><p class="name-word" id="name-word-nori">ノリ（NORI）</p><p class="name-def" id="name-def-nori">ボールを持ち全速力で走りながら、味方の状況や相手の動きを感じ、最も前進できる最善のルートを瞬時に察知する能力。</p></div>
+        <div class="duo-plus" aria-hidden="true">＋</div>
+        <div class="duo duo--tate"><p class="name-word" id="name-word-tate">縦上がり（TATE）</p><p class="name-def" id="name-def-tate">壁や相手にぶち当たりながらも臆さずに最善のルートを最短距離で、全速力で突き進む強い意志。</p></div>
       </div>
-
+      <p class="name-foot" id="name-foot">この二つを重ねた言葉が、「ノリと縦上がり」。<br>ノリタテ（株式会社ＮＯＲＩ＆ＴＡＴＥ）の由来です。</p>
     </div>
   </section>
-
-
-
 
   <!-- ── COMPANY ── -->
-  
-  <div class="band band--sm" aria-hidden="true"><div class="band-img" id="bg-company" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=70&auto=format&fit=crop');"></div></div>
-  <section id="company">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <section id="company" class="sec sec--tint">
+    <div class="wrap split split--company">
+      <div class="split-media"><div class="media-img" id="bg-company" data-bg="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=70&auto=format&fit=crop"></div></div>
+      <div class="split-text">
         <span class="s-label">Company</span>
         <h2 class="s-title" id="company-title">会社概要</h2>
-        <div class="s-rule"></div>
-      </div>
-
-      <div class="sec-body">
-        <table class="co-table js-fade d1">
+        <table class="co-table">
           <tbody>
             <tr><th scope="row">会社名</th><td id="co-name">株式会社NORI&amp;TATE</td></tr>
             <tr><th scope="row">英文社名</th><td id="co-enname">NORI&amp;TATE Co., Ltd.</td></tr>
@@ -657,28 +667,24 @@ section{position:relative}
           </tbody>
         </table>
       </div>
-
     </div>
   </section>
 
-
   <!-- ── CONTACT ── -->
-  
-  <div class="band band--sm" aria-hidden="true"><div class="band-img" id="bg-contact" style="background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=70&auto=format&fit=crop');"></div></div>
-  <section id="contact">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <section id="contact" class="sec">
+    <div class="contact-strip" aria-hidden="true"><div class="media-img" id="bg-contact" data-bg="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=70&auto=format&fit=crop"></div></div>
+    <div class="wrap split split--contact">
+      <div class="sec-head">
         <span class="s-label">Contact</span>
-        <h2 class="s-title" id="contact-title">お話を<br>聞かせて<br>ください</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title" id="contact-title">まずは気軽に、<br>話してみませんか。</h2>
+        <p class="ct-lead" id="contact-lead">事業承継は、経営者の方にとって一生に一度の大きな決断です。だからこそ、判断を急かすようなことはしません。<br><br>まずは、いまのことを気軽に聞かせてください。私たちでお役に立てるかどうか、一緒に考えましょう。</p>
+        <ul class="ct-info">
+          <li><span>Tel</span><a href="tel:09012436770">090-1243-6770</a></li>
+          <li><span>Mail</span><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a></li>
+          <li><span>Instagram</span><a href="https://www.instagram.com/nori.tate_official" target="_blank" rel="noopener noreferrer">@nori.tate_official</a></li>
+        </ul>
       </div>
-
-      <div class="sec-body">
-        <p class="ct-lead js-fade d1" id="contact-lead">
-          事業承継は、経営者の方にとって一生に一度の決断だと思います。だからこそ、判断を急がせるような場にはしたくないと考えています。<br><br>まずは現状を聞かせてください。その上で、私たちでお役に立てそうかどうか、一緒に見極めていければと思います。
-        </p>
-        <form id="contactForm" class="ct-form js-fade d2">
+      <div class="ct-box"><form id="contactForm" class="ct-form js-fade d2">
           <div class="ct-row">
             <label class="ct-label">お名前<span class="req">*</span></label>
             <input class="ct-input" type="text" name="name" required placeholder="山田 太郎">
@@ -730,67 +736,88 @@ section{position:relative}
         <div id="formDone">
           <p class="done-title">お問い合わせありがとうございます</p>
           <p class="done-body">内容を確認の上、担当者よりご連絡いたします。<br>しばらくお待ちください。</p>
-        </div>
-      </div>
-
+        </div></div>
     </div>
   </section>
 
+</main>
 
-  <!-- ── FOOTER ── -->
-  <footer id="footer">
-    <span class="ft-logo">NORI&amp;TATE Co., Ltd.</span>
+<footer id="footer">
+  <div class="ft-cta">
     <p class="ft-tag" id="footer-tagline">中小企業から、再び日本を盛り上げる。</p>
-    <nav class="ft-nav">
-      <a href="#top">Top</a><a href="#concept">Concept</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a>
-      <a href="#business">Business</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#growth">Key Principles</a>
-      <a href="#join">Join</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a>
-    </nav>
+    <a class="btn btn--light" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-logo">NORI&amp;TATE Co., Ltd.</span>
+    <nav class="ft-nav"><a href="#top">Top</a><a href="#concept">Concept</a><a href="#vision">Vision</a><a href="#issues">Issues</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a><a href="#business">Business</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#growth">Key Principles</a><a href="#process">Process</a><a href="#join">Join</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a></nav>
     <div class="ft-line"></div>
     <p class="ft-copy">&copy; 2026 株式会社NORI&amp;TATE. All Rights Reserved.</p>
-    <p class="ft-copy" style="font-size:10px;opacity:.6;margin-top:4px;">背景写真：「Torii Hanging Along an Osaka Shopping Arcade」Ethan Doyle White（<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener" style="color:inherit;">CC BY-SA 4.0</a>／<a href="https://commons.wikimedia.org/wiki/File:Torii_Hanging_Along_an_Osaka_Shopping_Arcade.jpg" target="_blank" rel="noopener" style="color:inherit;">Wikimedia Commons</a>）</p>
-  </footer>
-</main>
+    <p class="ft-copy ft-credit">背景写真：「Torii Hanging Along an Osaka Shopping Arcade」Ethan Doyle White（<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 4.0</a>／<a href="https://commons.wikimedia.org/wiki/File:Torii_Hanging_Along_an_Osaka_Shopping_Arcade.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>）</p>
+  </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
 <script>
+// NORI&TATE A案の動き（GSAP 3.13 / ScrollTrigger / SplitText / Lenis / Swiper）2026-10-23
+// 動きの種類は4つだけ：①見出しが下から現れる ②ブロックのフェードイン ③写真が左右から開く ④スクロール連動（横に流れるパネル・柱・線・マーカー）
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hdr = document.getElementById('hdr'), menu = document.getElementById('menu'), btn = document.getElementById('menuBtn');
   var lenis = null;
+
+  // ── メニュー ──
   function setMenu(open) {
     menu.classList.toggle('open', open); menu.setAttribute('aria-hidden', open ? 'false' : 'true');
     btn.setAttribute('aria-expanded', open ? 'true' : 'false'); btn.textContent = open ? 'CLOSE' : 'MENU';
     document.documentElement.classList.toggle('menu-open', open);
     if (lenis) { open ? lenis.stop() : lenis.start(); }
-    if (open && window.gsap && !reduce) gsap.fromTo('#menu li', { y: 28, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.035, duration: 0.6, ease: 'power3.out' });
+    if (open && window.gsap && !reduce) gsap.fromTo('#menu li', { y: 24, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.03, duration: 0.55, ease: 'power3.out' });
   }
   btn.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false); });
-  // ページ内リンク：ヘッダーの高さ分ずらして、なめらかに移動
+
+  // ── ページ内リンク（ヘッダーの高さ分ずらす。移動中に写真が読み込まれてずれたら、着いた後に補正） ──
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
     var id = a.getAttribute('href'), t = id.length > 1 ? document.querySelector(id) : null; if (!t) return;
     e.preventDefault(); if (menu.classList.contains('open')) setMenu(false);
     var off = -(hdr.offsetHeight - 1);
-    // 移動中に上の写真が読み込まれてページが伸びることがあるので、着いた後に位置を確かめて補正する
-    var fix = function () { var d = t.getBoundingClientRect().top + off; if (Math.abs(d) > 4) lenis.scrollTo(t, { offset: off, duration: 0.5, onComplete: fix2 }); };
-    var fix2 = function () { var d = t.getBoundingClientRect().top + off; if (Math.abs(d) > 4) lenis.scrollTo(t, { offset: off, immediate: true }); };
-    if (lenis) lenis.scrollTo(t, { offset: off, duration: 1.4, onComplete: fix }); else window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset + off, behavior: reduce ? 'auto' : 'smooth' });
+    var fix2 = function () { if (Math.abs(t.getBoundingClientRect().top + off) > 4) lenis.scrollTo(t, { offset: off, immediate: true }); };
+    var fix = function () { if (Math.abs(t.getBoundingClientRect().top + off) > 4) lenis.scrollTo(t, { offset: off, duration: 0.5, onComplete: fix2 }); };
+    if (lenis) lenis.scrollTo(t, { offset: off, duration: 1.4, onComplete: fix });
+    else window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset + off, behavior: reduce ? 'auto' : 'smooth' });
   });
   function onScroll() { hdr.classList.toggle('scrolled', window.pageYOffset > 30); }
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
-  // 管理画面で「事業成長の心得」の写真が設定された時だけ、その写真の帯を出す
-  // （動きの処理も style を書き換えるので、写真が変わった時だけ反応する。毎回反応すると無限に呼び合って画面が固まる）
-  var opt = document.getElementById('bg-growth'), optLast = opt.style.backgroundImage;
-  function syncOpt() {
+
+  // ── 管理画面で「事業成長の心得」の写真が設定された時だけ帯を出す（写真が変わった時だけ反応。動きの処理も style を書き換えるため） ──
+  var opt = document.getElementById('bg-growth'), optLast = opt ? opt.style.backgroundImage : '';
+  if (opt) new MutationObserver(function () {
     var v = opt.style.backgroundImage; if (v === optLast) return; optLast = v;
     opt.parentNode.classList.toggle('has-img', !!v); if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }).observe(opt, { attributes: true, attributeFilter: ['style'] });
+
+  // ── 写真は画面に近づいてから読み込む（最初の表示を軽くする。解像度はそのまま）。管理画面で写真が設定されていれば、そちらを優先 ──
+  var lazyEls = [].slice.call(document.querySelectorAll('[data-bg]'));
+  function loadBg(el) { if (!el.style.backgroundImage) el.style.backgroundImage = "url('" + el.getAttribute('data-bg') + "')"; el.removeAttribute('data-bg'); }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ents) { ents.forEach(function (en) { if (en.isIntersecting) { loadBg(en.target); io.unobserve(en.target); } }); }, { rootMargin: '900px 0px' });
+    lazyEls.forEach(function (el) { io.observe(el); });
+  } else lazyEls.forEach(loadBg);
+
+  // ── 7つの道具（Swiper：ドラッグ・スワイプでめくる） ──
+  var fill = document.querySelector('.svc-bar__fill');
+  if (window.Swiper) {
+    new Swiper('.svc-swiper', {
+      slidesPerView: 'auto', spaceBetween: 20, grabCursor: true, speed: 600,
+      navigation: { nextEl: '.svc-next', prevEl: '.svc-prev' },
+      on: { progress: function (s, p) { if (fill) fill.style.transform = 'scaleX(' + Math.max(0.14, Math.min(1, p)) + ')'; } }
+    });
   }
-  new MutationObserver(syncOpt).observe(opt, { attributes: true, attributeFilter: ['style'] });
 
   if (reduce || !window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
@@ -800,34 +827,93 @@ section{position:relative}
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); }); gsap.ticker.lagSmoothing(0);
   }
-  // 最初の画面：メインビジュアルが下から現れ、言葉が一文字ずつ立ち上がる
+  var E = 'power3.out';
+
+  // ── 最初の画面 ──
   gsap.from('.hero-visual', { clipPath: 'inset(100% 0% 0% 0%)', duration: 1.6, ease: 'power4.inOut' });
-  gsap.from('.hero-img', { scale: 1.22, duration: 2.4, ease: 'power3.out' });
-  gsap.from('.hero-line', { width: 0, duration: 1.3, delay: 0.7, ease: 'power3.inOut' });
+  gsap.from('.hero-img', { scale: 1.22, duration: 2.4, ease: E });
+  gsap.from('.hero-line', { scaleX: 0, transformOrigin: '0 50%', duration: 1.2, delay: 0.7, ease: 'power3.inOut' });
   gsap.from('.hero-text .fade', { opacity: 0, y: 18, duration: 1, delay: 0.9, stagger: 0.12, ease: 'power2.out' });
   gsap.to('.hero-img', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
+
   document.fonts.ready.then(function () {
     if (window.SplitText) {
       var hc = SplitText.create('#hero-catch', { type: 'chars', mask: 'chars' });
       gsap.from(hc.chars, { yPercent: 110, duration: 1.1, ease: 'power4.out', stagger: 0.045, delay: 0.3 });
-      gsap.utils.toArray('.sec-head .s-title').forEach(function (el) {
-        gsap.from(el, { clipPath: 'inset(0% 0% 100% 0%)', y: 24, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
-      });
     }
     ScrollTrigger.refresh();
   });
-  // 写真の帯：左右から開き、ゆっくり動く
+
+  // ① 見出し（文字は分けない＝日本語の改行ルールを守る）
+  gsap.utils.toArray('.s-title, .pull, .panel-title, .ft-tag').forEach(function (el) {
+    gsap.from(el, { clipPath: 'inset(0% 0% 100% 0%)', y: 26, duration: 1.1, ease: E, scrollTrigger: { trigger: el, start: 'top 86%' } });
+  });
+  gsap.utils.toArray('.s-label').forEach(function (el) { gsap.from(el, { opacity: 0, x: -14, duration: 0.8, ease: E, scrollTrigger: { trigger: el, start: 'top 90%' } }); });
+
+  // ② ブロックのフェードイン
+  gsap.utils.toArray('.sec-lead, .story-body > p, .vision-text, .ind, .feature-text > *, .zig-text, .tl-step, .join-lead, .join-list li, .name-intro, .name-foot, .co-table, .ct-info, .ct-box, .cta-row, .svc-nav').forEach(function (el) {
+    gsap.from(el, { opacity: 0, y: 34, duration: 1, ease: E, scrollTrigger: { trigger: el, start: 'top 90%' } });
+  });
+
+  // ③ 写真が左右から開き、ゆっくり動く
   gsap.utils.toArray('.band').forEach(function (b, i) {
     gsap.fromTo(b, { clipPath: i % 2 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: b, start: 'top 92%', end: 'top 38%', scrub: true } });
-    gsap.fromTo(b.querySelector('.band-img'), { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: b, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
-  gsap.utils.toArray('.s-rule').forEach(function (r) { gsap.from(r, { width: 0, duration: 1.2, ease: 'power3.inOut', scrollTrigger: { trigger: r, start: 'top 90%' } }); });
-  gsap.utils.toArray('main .js-fade').forEach(function (el) { gsap.from(el, { opacity: 0, y: 36, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' } }); });
+  gsap.utils.toArray('.split-media, .feature-media, .name-photo, .contact-strip, .zig-media').forEach(function (b, i) {
+    gsap.fromTo(b, { clipPath: i % 2 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'power3.inOut', scrollTrigger: { trigger: b, start: 'top 82%' } });
+  });
+  gsap.utils.toArray('.band-img, .media-img').forEach(function (img) {
+    gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: img.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+
+  // ④ スクロール連動
+  // ビジョン：背景のメインビジュアルがゆっくり動き、言葉にマーカーが引かれる
+  gsap.fromTo('.vision-bg', { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.vision', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.from('.vision-list li', { opacity: 0, y: 30, duration: 0.9, stagger: 0.18, ease: E, scrollTrigger: { trigger: '.vision-list', start: 'top 80%' } });
+  gsap.to('.mk', { backgroundSize: '100% 100%', duration: 0.9, stagger: 0.3, delay: 0.4, ease: 'power2.inOut', scrollTrigger: { trigger: '.vision-list', start: 'top 80%' } });
+
+  // お悩み：「困った」に線が引かれ、「こう変える」が色つきで現れる
+  gsap.utils.toArray('.flip').forEach(function (row) {
+    var tl = gsap.timeline({ scrollTrigger: { trigger: row, start: 'top 82%' } });
+    tl.from(row.querySelector('.flip-pain'), { opacity: 0, x: -24, duration: 0.7, ease: E })
+      .to(row.querySelector('.flip-pain h3'), { backgroundSize: '100% 1.5px', duration: 0.5, ease: 'power2.inOut' }, '-=0.1')
+      .from(row.querySelector('.flip-arrow'), { opacity: 0, x: -16, duration: 0.4, ease: E }, '-=0.25')
+      .from(row.querySelector('.flip-hope'), { clipPath: 'inset(0% 100% 0% 0%)', duration: 0.8, ease: 'power3.inOut' }, '-=0.2');
+  });
+
+  // 私たちの仕事：PCでは縦スクロールで3枚のパネルが横に流れる（スマホは指で横スワイプ）
+  var mm = gsap.matchMedia();
+  mm.add('(min-width: 901px)', function () {
+    var track = document.querySelector('.htrack'), pin = document.querySelector('.hpin');
+    var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
+    var tw = gsap.to(track, { x: function () { return -dist(); }, ease: 'none',
+      scrollTrigger: { trigger: pin, start: 'top 14%', end: function () { return '+=' + dist(); }, pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 } });
+    return function () { if (tw.scrollTrigger) tw.scrollTrigger.kill(); tw.kill(); gsap.set(track, { x: 0 }); };
+  });
+  gsap.utils.toArray('.panel').forEach(function (p) { gsap.from(p.querySelector('.panel-num'), { opacity: 0, y: 40, duration: 1, ease: E, scrollTrigger: { trigger: p, start: 'top 85%' } }); });
+
+  // 7つの道具：カードが順に入ってくる
+  gsap.from('.svc .swiper-slide', { opacity: 0, x: 60, duration: 0.9, stagger: 0.08, ease: E, scrollTrigger: { trigger: '.svc', start: 'top 85%' } });
+
+  // 4本の柱：下から伸びる
+  gsap.from('.pillar-bar span', { scaleY: 0, duration: 1.3, stagger: 0.16, ease: E, scrollTrigger: { trigger: '.pillars', start: 'top 80%' } });
+  gsap.from('.pillar-num, .pillar-en, .pillar-title, .pillar-desc', { opacity: 0, y: 20, duration: 0.8, stagger: 0.04, ease: E, scrollTrigger: { trigger: '.pillars', start: 'top 75%' } });
+
+  // はじめ方：線が伸び、点が順に現れる
+  gsap.fromTo('.tl-fill', { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.timeline', start: 'top 70%', end: 'bottom 65%', scrub: true } });
+  gsap.utils.toArray('.tl-dot').forEach(function (d) { gsap.from(d, { scale: 0, duration: 0.6, ease: 'back.out(2)', scrollTrigger: { trigger: d, start: 'top 75%' } }); });
+
+  // 社名：「ノリ」と「縦上がり」が左右から集まる
+  gsap.from('.duo--nori', { x: -60, opacity: 0, duration: 1, ease: E, scrollTrigger: { trigger: '.name-duo', start: 'top 82%' } });
+  gsap.from('.duo--tate', { x: 60, opacity: 0, duration: 1, ease: E, scrollTrigger: { trigger: '.name-duo', start: 'top 82%' } });
+  gsap.from('.duo-plus', { scale: 0, rotate: -90, duration: 0.8, delay: 0.3, ease: 'back.out(2)', scrollTrigger: { trigger: '.name-duo', start: 'top 82%' } });
+
+  // 全体：読み進めた位置の線・流れる英字
   gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
   gsap.to('.marquee-track', { xPercent: -50, duration: 46, ease: 'none', repeat: -1 });
 })();
-</script>
 
+</script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check.js";
@@ -1017,16 +1103,15 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
 <script type="module">
 import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
 const parser = loadDefaultJapaneseParser();
-const SEL = '.g-card-title, .biz-name, .name-word, .join-list li'; // 見出しだけ（説明文まで文節で折り返すと、細いカードで行がガタガタになるため）
+const SEL = '.g-card-title, .biz-name, .name-word, .join-list li, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .pillar-title, .panel-sub, .ind-name, .ft-tag, .v-text';
 const done = new WeakMap();
 function apply() {
   document.querySelectorAll(SEL).forEach((el) => {
-    if (done.get(el) === el.textContent) return; // 処理済みで、文章が変わっていなければ何もしない
+    if (done.get(el) === el.textContent) return;
     try { parser.applyToElement(el); done.set(el, el.textContent); } catch (e) {}
   });
 }
 apply();
-// 管理画面で設定した文言が後から差し込まれた時にも、もう一度整える
 setTimeout(apply, 2500); setTimeout(apply, 7000);
 </script>
 </body>
