@@ -42,7 +42,7 @@ html.menu-open{overflow:hidden}
 #top{position:relative;display:grid;grid-template-columns:44% 56%;min-height:100vh;min-height:100svh}
 .hero-text{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hdr) + 20px) 4vw 60px var(--pad)}
 .hero-en{font-family:var(--en);font-size:11.5px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
-.hero-catch{font-family:var(--serif);font-weight:300;font-size:clamp(38px,4.7vw,80px);line-height:1.32;margin:26px 0 0;letter-spacing:.02em}
+.hero-catch{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.2vw,76px);line-height:1.32;margin:26px 0 0;letter-spacing:.02em;white-space:nowrap}
 .hero-line{height:1px;background:var(--ink);width:120px;margin:34px 0 26px}
 .hero-brand{font-family:var(--serif);font-weight:500;font-size:16px;letter-spacing:.14em;margin:0}
 .hero-lead{font-size:14.5px;line-height:2.15;color:var(--sub);margin:18px 0 0;max-width:560px}
@@ -150,7 +150,7 @@ section{position:relative}
   .menu li a{padding:12px 0}
   #top{display:flex;flex-direction:column;min-height:0}
   .hero-text{padding:34px var(--pad) 44px}
-  .hero-catch{font-size:clamp(34px,10.4vw,48px)}
+  .hero-catch{font-size:clamp(30px,9.6vw,46px)}
   .hero-lead{font-size:14px;line-height:2.05}
   .hero-lead br{display:none}
   .hero-visual{order:-1;height:48vh;height:48svh;margin-top:var(--hdr)}
@@ -219,7 +219,7 @@ section{position:relative}
           この光景を、二度と繰り返したくない。それが、NORI&amp;TATEを立ち上げた理由です。
         </p>
         <p class="s-body js-fade d3" style="margin-top:1.4rem;">
-          私たちは、事業承継を通じて技術と雇用を継承します。そのうえで、従来と違った観点から事業を見つめ直し、新しい価値を創造・探求することで成長を図ります。何よりも大切にしているのは、そこで働く方とご家族の暮らしを、より良くすることです。
+          私たちは、事業承継を通じて技術と雇用を継承します。そのうえで、従来と違った観点から事業を見つめ直し、新しい価値を創造・探求することで成長を図ります。何よりも大切にしているのは、そこで働く方々やご家族の暮らしを、より良くし、時代に必要とされる企業へと成長させることです。
         </p>
       </div>
 
@@ -314,13 +314,13 @@ section{position:relative}
             <div class="biz-num">01</div>
             <div class="biz-meta">
               <span class="biz-location" id="business-location">No.01 — 大阪市城東区</span>
-              <h3 class="biz-name" id="business-name">ケーキ屋さん こいまり</h3>
+              <h3 class="biz-name" id="business-name">ケーキ屋さん こいまり 城東店</h3>
               <p class="biz-sub" id="business-sub">Cake Shop Koimari</p>
             </div>
           </div>
           <div id="business-body">
           <p class="biz-body js-fade d2">
-            30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり」。そのオーナー様の想いに共感し、NORI&amp;TATEが経営面のサポートに入らせていただくことになりました。
+            30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり 城東店」。そのオーナー様の想いに共感し、NORI&amp;TATEが経営面のサポートに入らせていただくことになりました。
           </p>
           <p class="biz-body js-fade d3">
             オーナー様も従業員のみなさんも、これまで通りお店に立ち続けています。私たちはその後ろ盾として、もっと地域に愛されるこいまりを一緒につくっていきます。
@@ -330,6 +330,7 @@ section{position:relative}
           </p>
           </div>
           <div class="biz-link-row js-fade d4">
+            <a class="biz-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B1%E3%83%BC%E3%82%AD%E5%B1%8B%E3%81%95%E3%82%93%20%E3%81%93%E3%81%84%E3%81%BE%E3%82%8A%20%E5%9F%8E%E6%9D%B1%E5%BA%97" target="_blank" rel="noopener noreferrer">Googleマップで見る &nbsp;›</a>
             <a class="biz-link" href="https://www.instagram.com/_koimari_/" target="_blank" rel="noopener noreferrer">Instagramを見る &nbsp;›</a>
             <img class="biz-qr" src="koimari-instagram-qr.png" alt="こいまり公式Instagram QRコード" width="72" height="72" loading="lazy">
           </div>
@@ -361,37 +362,37 @@ section{position:relative}
             <div class="g-card-bar bar-a"></div>
             <span class="g-card-num">01 — Branding &amp; Marketing</span>
             <h3 class="g-card-title">ターゲットの洗い出しと、選ばれる理由づくり</h3>
-            <p class="g-card-desc">お客様の年代・来店の目的・競合を整理し、お店の強みを言葉と写真で伝わる形に整えます。商品説明やキャッチコピー、季節・イベントごとの特設ページまで、一貫した世界観でつくります。</p>
+            <p class="g-card-desc">お客様・取引先の層や、選ばれるきっかけ、競合を整理し、自社の強みを言葉と写真で伝わる形に整えます。商品・サービスの説明やキャッチコピー、キャンペーンごとの特設ページまで、一貫した世界観でつくります。</p>
           </article>
           <article class="g-card js-fade d2">
             <div class="g-card-bar bar-b"></div>
             <span class="g-card-num">02 — Website</span>
             <h3 class="g-card-title">自分で更新できるホームページの制作・運用</h3>
-            <p class="g-card-desc">スマホで見やすい公式サイトを制作し、お店の方が自分で写真や文章を更新できる管理画面を備えます。祝日や特別営業時間が自動で反映される営業日カレンダー、英語表示、検索・AI検索への対策にも対応します。</p>
+            <p class="g-card-desc">スマホで見やすい公式サイトを制作し、社内の方が自分で写真や文章を更新できる管理画面を備えます。営業日カレンダーや英語表示、検索・AI検索への対策など、業種に合わせた機能にも対応します。</p>
           </article>
           <article class="g-card js-fade d3">
             <div class="g-card-bar bar-c"></div>
             <span class="g-card-num">03 — Reservation &amp; EC</span>
-            <h3 class="g-card-title">予約・販売の仕組みづくり</h3>
-            <p class="g-card-desc">LINEから予約できるフォーム、ご注文内容からの見積もりの自動計算、予約の一覧・カレンダー表示、スタッフへの通知までを一つの流れにします。ネットショップ（ECサイト）の立ち上げもご相談いただけます。</p>
+            <h3 class="g-card-title">予約・受注・販売の仕組みづくり</h3>
+            <p class="g-card-desc">LINEやWebからの予約・注文・お問い合わせ、内容に応じた見積もりの自動計算、一覧・カレンダーでの管理、担当者への通知までを一つの流れにします。ネットショップ（ECサイト）の立ち上げもご相談いただけます。</p>
           </article>
           <article class="g-card js-fade d3">
             <div class="g-card-bar bar-d"></div>
             <span class="g-card-num">04 — LINE &amp; SNS</span>
             <h3 class="g-card-title">LINE・SNSでの集客と、お客様とのつながり</h3>
-            <p class="g-card-desc">LINE公式アカウントの自動返信（予約受付・確定のご連絡・前日のリマインド）、リッチメニュー、クーポン施策を設計します。Instagramの反応を分析し、伝わる投稿づくりと商品・店舗のPRをお手伝いします。</p>
+            <p class="g-card-desc">LINE公式アカウントの自動返信やリッチメニュー、クーポンなどの施策を設計します。InstagramなどSNSの反応を分析し、伝わる投稿づくりと、商品・サービス・会社のPRをお手伝いします。</p>
           </article>
           <article class="g-card js-fade d3">
             <div class="g-card-bar bar-a"></div>
             <span class="g-card-num">05 — Operations</span>
             <h3 class="g-card-title">新しいシステムによる、作業の効率化・自動化</h3>
-            <p class="g-card-desc">複雑なシフトの作成・修正、勤怠・給与計算、レシートを読み取る経費精算、原価と料金表の自動連動など、手作業で時間がかかっていた業務を、お店に合わせた仕組みに置き換えます。</p>
+            <p class="g-card-desc">シフトの作成・修正、勤怠・給与計算、レシートを読み取る経費精算、原価計算と価格表の自動連動など、手作業で時間がかかっていた業務を、会社に合わせた仕組みに置き換えます。</p>
           </article>
           <article class="g-card js-fade d4">
             <div class="g-card-bar bar-b"></div>
             <span class="g-card-num">06 — Product Development</span>
-            <h3 class="g-card-title">ターゲットに合わせた商品研究</h3>
-            <p class="g-card-desc">市場やトレンドを調べ、それぞれのお店のお客様が好む商品・価格・季節の企画を一緒に考えます。売れる理由を言葉にし、店頭とWebの両方で伝わる形まで落とし込みます。</p>
+            <h3 class="g-card-title">ニーズの分析と、商品展開・将来戦略のご提案</h3>
+            <p class="g-card-desc">市況やお客様のニーズを調べ、得意先・お客様が何を必要としているかを分析して、自社製品や取り扱い商品の展開をご提案します。将来の戦略も含めて、経営陣・従業員の皆さまと一緒に考えていきます。</p>
           </article>
           <article class="g-card js-fade d4">
             <div class="g-card-bar bar-c"></div>
@@ -417,7 +418,7 @@ section{position:relative}
       </div>
 
       <div class="sec-body">
-        <p class="growth-lead js-fade d1">事業承継した「ケーキ屋さん こいまり」での取り組みの一部をご紹介します。業種が変わっても、課題を洗い出し、仕組みで解決するという考え方は同じです。</p>
+        <p class="growth-lead js-fade d1">事業承継した「ケーキ屋さん こいまり 城東店」での取り組みの一部をご紹介します。業種が変わっても、課題を洗い出し、仕組みで解決するという考え方は同じです。</p>
         <div class="biz-card js-fade d1">
           <div class="biz-header">
             <div class="biz-num">01</div>
@@ -800,8 +801,7 @@ section{position:relative}
       var hc = SplitText.create('#hero-catch', { type: 'chars', mask: 'chars' });
       gsap.from(hc.chars, { yPercent: 110, duration: 1.1, ease: 'power4.out', stagger: 0.045, delay: 0.3 });
       gsap.utils.toArray('.sec-head .s-title').forEach(function (el) {
-        var st = SplitText.create(el, { type: 'chars' });
-        gsap.from(st.chars, { opacity: 0, y: 26, stagger: 0.035, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+        gsap.from(el, { clipPath: 'inset(0% 0% 100% 0%)', y: 24, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
       });
     }
     ScrollTrigger.refresh();
