@@ -74,14 +74,19 @@ section{position:relative}
 .growth-lead{margin-bottom:48px}
 .growth-lead strong,.g-card-desc strong{color:var(--ink);font-weight:500}
 /* カード：細い罫線のグリッド */
-.growth-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.growth-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .growth-cards:has(>.g-card:nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
-.g-card{background:var(--bg);padding:40px 32px 44px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .45s}
-.g-card:hover{background:var(--paper)}
+/* カード：トップの鮮やかな画像の一部を背景にし、文章は明るい面にのせて読みやすく。カードごとに違う場所を切り出す */
+.g-card{--ox:12%;--oy:14%;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:12px;background:#e9e4da;isolation:isolate}
+.g-card::before{content:"";position:absolute;inset:0;z-index:-1;background:url('hero.jpg.png') center/cover no-repeat;transform:scale(2.6);transform-origin:calc(var(--ox) + var(--sx,0%)) calc(var(--oy) + var(--sy,0%));transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.g-card:hover::before{transform:scale(3)}
+.g-card:nth-child(7n+2){--ox:46%;--oy:30%}.g-card:nth-child(7n+3){--ox:86%;--oy:12%}.g-card:nth-child(7n+4){--ox:20%;--oy:86%}
+.g-card:nth-child(7n+5){--ox:62%;--oy:72%}.g-card:nth-child(7n+6){--ox:90%;--oy:58%}.g-card:nth-child(7n+7){--ox:34%;--oy:50%}
+#whatwedo{--sx:7%;--sy:-6%}#industries{--sx:-6%;--sy:8%}#services{--sx:4%;--sy:5%}#growth{--sx:-8%;--sy:-4%}#process{--sx:8%;--sy:6%}
 .g-card-bar{display:none}
-.g-card-num{display:block;font-family:var(--en);font-weight:300;font-size:11px;letter-spacing:.2em;color:var(--gold)}
-.g-card-title{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.65;margin:16px 0 14px}
-.g-card-desc{font-size:14.5px;line-height:2.05;color:var(--sub);margin:0}
+.g-card-num{align-self:flex-start;display:block;font-family:var(--en);font-weight:500;font-size:10.5px;letter-spacing:.18em;color:var(--ink);background:rgba(255,253,249,.94);padding:7px 12px;margin-bottom:68px}
+.g-card-title{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.65;margin:0;padding:26px 24px 12px;background:var(--paper);text-wrap:pretty}
+.g-card-desc{font-size:14.5px;line-height:2.05;color:var(--sub);margin:0;padding:0 24px 28px;background:var(--paper);flex:1}
 /* 実績・事例カード */
 .biz-card{border-top:1px solid var(--ink);padding:44px 0 56px}
 .biz-card+.biz-card{margin-top:8px}
@@ -160,7 +165,9 @@ section{position:relative}
   .sec-split{grid-template-columns:1fr;gap:34px;padding:12vh var(--pad)}
   .sec-head{position:static}
   .growth-cards,.growth-cards:has(>.g-card:nth-child(4):last-child){grid-template-columns:1fr}
-  .g-card{padding:32px 24px 34px}
+  .g-card{padding:10px}
+  .g-card-num{margin-bottom:52px}
+  .g-card-title{padding:22px 20px 10px}.g-card-desc{padding:0 20px 24px}
   .biz-num{font-size:40px}
   .biz-header{gap:18px}
   .name-pair{grid-template-columns:1fr}
@@ -168,7 +175,8 @@ section{position:relative}
   .ct-submit{width:100%}
   .mobile-fab{display:flex;align-items:center;gap:8px;position:fixed;right:16px;bottom:18px;z-index:40;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14px;letter-spacing:.1em;padding:15px 22px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
 }
-@media (prefers-reduced-motion:reduce){.scroll-hint i::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.scroll-hint i::after{animation:none}.g-card::before{transition:none}}
+.biz-name,.name-word{text-wrap:pretty}
 </style>
 </head>
 <body>
@@ -997,5 +1005,21 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
 });
 </script>
 
+
+<script type="module">
+import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
+const parser = loadDefaultJapaneseParser();
+const SEL = '.g-card-title, .biz-name, .name-word, .join-list li'; // 見出しだけ（説明文まで文節で折り返すと、細いカードで行がガタガタになるため）
+const done = new WeakMap();
+function apply() {
+  document.querySelectorAll(SEL).forEach((el) => {
+    if (done.get(el) === el.textContent) return; // 処理済みで、文章が変わっていなければ何もしない
+    try { parser.applyToElement(el); done.set(el, el.textContent); } catch (e) {}
+  });
+}
+apply();
+// 管理画面で設定した文言が後から差し込まれた時にも、もう一度整える
+setTimeout(apply, 2500); setTimeout(apply, 7000);
+</script>
 </body>
 </html>
