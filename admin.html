@@ -305,7 +305,7 @@ function escapeHtml(s) {
 function fmtDate(iso) {
   if (!iso) return "";
   const d = new Date(iso);
-  if (isNaN(d)) return iso;
+  if (isNaN(d)) return escapeHtml(String(iso)); // 形の崩れた日時は安全な文字にして表示（外から仕掛けを入れられないように）
   return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
 }
 
