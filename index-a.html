@@ -97,6 +97,8 @@ section{position:relative}
 .story-body .s-body{margin:0 0 1.2em}
 .s-body--strong{color:var(--ink);font-weight:500}
 .pull{margin:48px 0;padding:0;font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.8vw,42px);line-height:1.6;color:var(--ink)}
+.pull--strength{margin:34px 0 26px}
+.pull.pull--strength::before{background:var(--c2)}
 .pull::before{content:"";display:block;width:56px;height:3px;background:var(--c1);margin-bottom:22px}
 
 /* ビジョン：鮮やかなメインビジュアルの上に、言葉を大きく */
@@ -511,14 +513,16 @@ section{position:relative}
       <div class="sec-head sec-head--wide">
         <span class="s-label">Strength</span>
         <h2 class="s-title">職人さんの現場から、<br>自動車の開発者まで。</h2>
-        <p class="sec-lead">代表は鉄鋼商社で、ものづくりの一連の現場を経験してきました。とくにモノづくりの業界は、市場の構造そのものを理解しています。つくる側の事情も、使う側の事情も知っているからこそ、値上げの伝え方や販路づくり、取引条件の見直しにも、しっかり踏み込めます。</p>
+        <p class="sec-lead">代表は鉄鋼商社で、ものづくりの一連の現場を経験してきました。</p>
+        <blockquote class="pull pull--strength">油まみれの下町の鉄工所から、<br>世界最先端の半導体装置メーカーまで。</blockquote>
+        <p class="sec-lead">配達の仕事を通じて、幅広いジャンルの現場を、自分の目と足で見てきました。とくにモノづくりの業界は、市場の構造そのものを理解しています。つくる側の事情も、使う側の事情も知っているからこそ、値上げの伝え方や販路づくり、取引条件の見直しにも、しっかり踏み込めます。</p>
       </div>
       <div class="range">
         <div class="range-end range-end--l"><span class="range-tag">現場</span><b class="range-txt">職人さんや現場の方と<br>深く関わった現場仕事</b></div>
         <div class="range-bar" aria-hidden="true"><span></span></div>
         <div class="range-end range-end--r"><span class="range-tag">開発・経営</span><b class="range-txt">カーメーカーの開発者との商談、<br>新規戦略・新車種の開発</b></div>
       </div>
-      <p class="range-cap">ものづくりの一連の現場を、端から端まで経験してきた、めずらしい経歴です。<br>その経験は、どの業界の会社の立て直しにも、アドバイスにも活かせると自負しています。</p>
+      <p class="range-cap">現場から開発・経営まで、ものづくりを端から端まで知る、めずらしい経歴です。<br>その経験は、どの業界の会社の立て直しにも、アドバイスにも活かせると自負しています。</p>
       <div class="chain" role="img" aria-label="メーカーから商社・卸、加工・販売、ユーザーまでの流通の流れ">
         <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b></div>
         <span class="chain-arw" aria-hidden="true">→</span>
@@ -1190,7 +1194,7 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
 <script type="module">
 import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
 const parser = loadDefaultJapaneseParser();
-const SEL = '.g-card-title, .know-title, .chain-cap, .range-cap, .biz-name, .name-word, .join-list li, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .pillar-title, .panel-sub, .ind-name, .ft-tag, .v-text';
+const SEL = '.g-card-title, .know-title, .chain-cap, .range-cap, .pull, .biz-name, .name-word, .join-list li, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .pillar-title, .panel-sub, .ind-name, .ft-tag, .v-text';
 const done = new WeakMap();
 function apply() {
   document.querySelectorAll(SEL).forEach((el) => {
