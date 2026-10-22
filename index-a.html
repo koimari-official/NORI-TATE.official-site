@@ -153,6 +153,16 @@ section{position:relative}
 
 /* 強み：流通の流れ（川上→川下）と4つの知識 */
 .sec--strength{background:var(--paper)}
+.range{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:24px;margin:8px 0 0}
+.range-end{display:flex;flex-direction:column;gap:8px}
+.range-end--r{text-align:right;align-items:flex-end}
+.range-tag{font-family:var(--en);font-size:11px;letter-spacing:.2em;color:var(--gold)}
+.range-txt{font-family:var(--serif);font-weight:500;font-size:clamp(17px,1.6vw,22px);line-height:1.6}
+.range-bar{height:10px;background:var(--line);position:relative;overflow:hidden}
+.range-bar span{position:absolute;inset:0;background:linear-gradient(90deg,var(--c4) 0 25%,var(--c3) 25% 50%,var(--c2) 50% 75%,var(--c1) 75% 100%);transform-origin:0 50%}
+.range-cap{font-family:var(--serif);font-size:clamp(17px,1.6vw,21px);line-height:1.9;text-align:center;margin:30px 0 6px}
+.range-note{font-size:12px;color:var(--mute);text-align:center;margin:0 0 56px}
+.know--last{margin:6px 0 0}
 .chain{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr);align-items:stretch;margin:10px 0 0}
 .chain-node{padding:26px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:var(--ink);min-height:120px}
 .chain-node b{font-family:var(--serif);font-weight:500;font-size:clamp(18px,1.8vw,24px)}
@@ -169,6 +179,10 @@ section{position:relative}
 .know-title{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.6;margin:0 0 8px;text-wrap:pretty}
 .know p{font-size:14.5px;line-height:2;color:var(--sub);margin:0}
 @media (max-width:900px){
+  .range{grid-template-columns:1fr;gap:14px}
+  .range-end--r{text-align:left;align-items:flex-start}
+  .range-bar{height:8px}
+  .range-note{margin-bottom:34px}
   .chain{grid-template-columns:1fr;gap:0}
   .chain-node{min-height:0;padding:16px 18px;flex-direction:row;justify-content:space-between}
   .chain-tag{margin:0;order:2}
@@ -499,6 +513,13 @@ section{position:relative}
         <h2 class="s-title">鉄鋼商社で見てきた、<br>川上から川下まで。</h2>
         <p class="sec-lead">代表は、鉄鋼商社で流通の現場を歩いてきました。とくにモノづくりの業界は、市場の構造そのものを理解しています。つくる側の事情も、使う側の事情も知っているからこそ、値上げの伝え方や販路づくり、取引条件の見直しにも、しっかり踏み込めます。</p>
       </div>
+      <div class="range">
+        <div class="range-end range-end--l"><span class="range-tag">現場</span><b class="range-txt">中小零細企業への<br>材料の配達・出荷</b></div>
+        <div class="range-bar" aria-hidden="true"><span></span></div>
+        <div class="range-end range-end--r"><span class="range-tag">経営・戦略</span><b class="range-txt">カーメーカー・Tier1メーカーの<br>新規戦略・新車種の開発</b></div>
+      </div>
+      <p class="range-cap">材料を届ける現場から、メーカーの経営に入り込んだ戦略づくり、新しい車の開発まで。<br>現場の手間も、経営の判断も、どちらも肌で知っています。</p>
+      <p class="range-note">※Tier1メーカー：自動車メーカーに直接部品を納める一次サプライヤー</p>
       <div class="chain" role="img" aria-label="メーカーから商社・卸、加工・販売、ユーザーまでの流通の流れ">
         <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b></div>
         <span class="chain-arw" aria-hidden="true">→</span>
@@ -515,6 +536,7 @@ section{position:relative}
         <li class="know"><span class="know-num">03</span><h3 class="know-title">商流・物流のつながり</h3><p>誰から誰へ、モノとお金がどう流れているか。両方の流れから、ムダや新しい販路の糸口を見つけます。</p></li>
         <li class="know"><span class="know-num">04</span><h3 class="know-title">外口銭・内口銭などの商習慣</h3><p>業界ならではのマージンの考え方を踏まえて、利益がきちんと残る価格や取引条件を考えます。</p></li>
         <li class="know"><span class="know-num">05</span><h3 class="know-title">見積もり依頼の回り方</h3><p>相見積もりの依頼が、どこへ、どう回っていくのか。声がかかりやすい会社になるための打ち手を、一緒に考えます。</p></li>
+        <li class="know know--main know--last"><span class="know-num">06</span><h3 class="know-title">業界を越えて使える、市場をとらえる力</h3><p>市場のどこにチャンスがあり、何に人・お金・時間を投じればよいか。鉄鋼や自動車の世界で鍛えたこの見方は、ほかの業界でも活かせます。業種がちがっても、「伸びる場所」と「投じるべきもの」を一緒に見つけます。</p></li>
       </ol>
     </div>
   </section>
@@ -948,6 +970,11 @@ section{position:relative}
   });
   gsap.utils.toArray('.panel').forEach(function (p) { gsap.from(p.querySelector('.panel-num'), { opacity: 0, y: 40, duration: 1, ease: E, scrollTrigger: { trigger: p, start: 'top 85%' } }); });
 
+  // 強み：経験の幅（現場 → 経営）が左から右へ伸びる
+  gsap.from('.range-bar span', { scaleX: 0, duration: 1.4, ease: 'power3.inOut', scrollTrigger: { trigger: '.range', start: 'top 82%' } });
+  gsap.from('.range-end--l', { opacity: 0, x: -30, duration: 0.8, ease: E, scrollTrigger: { trigger: '.range', start: 'top 82%' } });
+  gsap.from('.range-end--r', { opacity: 0, x: 30, duration: 0.8, delay: 0.8, ease: E, scrollTrigger: { trigger: '.range', start: 'top 82%' } });
+  gsap.from('.range-cap', { opacity: 0, y: 16, duration: 0.8, delay: 1.1, ease: E, scrollTrigger: { trigger: '.range', start: 'top 82%' } });
   // 強み：流通の流れが川上から川下へ順に点き、知識が並ぶ
   gsap.from('.chain-node, .chain-arw', { opacity: 0, x: -24, duration: 0.6, stagger: 0.14, ease: E, scrollTrigger: { trigger: '.chain', start: 'top 82%' } });
   gsap.from('.chain-cap', { opacity: 0, y: 16, duration: 0.8, delay: 0.9, ease: E, scrollTrigger: { trigger: '.chain', start: 'top 82%' } });
@@ -1164,7 +1191,7 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
 <script type="module">
 import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
 const parser = loadDefaultJapaneseParser();
-const SEL = '.g-card-title, .know-title, .chain-cap, .biz-name, .name-word, .join-list li, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .pillar-title, .panel-sub, .ind-name, .ft-tag, .v-text';
+const SEL = '.g-card-title, .know-title, .chain-cap, .range-cap, .biz-name, .name-word, .join-list li, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .pillar-title, .panel-sub, .ind-name, .ft-tag, .v-text';
 const done = new WeakMap();
 function apply() {
   document.querySelectorAll(SEL).forEach((el) => {
