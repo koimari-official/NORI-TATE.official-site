@@ -1392,6 +1392,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <select class="ct-select" name="type">
                 <option value="">選択してください</option>
                 <option value="succession">事業承継について</option>
+                <option value="support">経営の伴走支援（継続・スポット）</option>
+                <option value="web">ホームページ・SNSについて</option>
+                <option value="ai">AIの導入・活用について</option>
                 <option value="other">その他・まずは相談したい</option>
               </select>
             </div>
@@ -1399,6 +1402,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ct-row">
             <label class="ct-label">お問い合わせ内容<span class="req">*</span></label>
             <textarea class="ct-textarea" name="message" required placeholder="ご相談内容をご記入ください。"></textarea>
+            <!-- 迷惑送信対策：人には見えない欄（機械が入力したら送信を無視する。2026-10-22） -->
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
           </div>
           <div class="ct-row">
             <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:14px;line-height:1.7;">
@@ -1575,6 +1580,7 @@ contactForm.addEventListener('submit', async (e) => {
     type: fd.get("type") || "",
     message: fd.get("message") || "",
     privacyConsent: fd.get("privacyConsent") === "on",
+    ...(fd.get("website") ? { hp: String(fd.get("website")).slice(0, 100) } : {}),
     status: "未対応",
     submittedAt: new Date().toISOString()
   };

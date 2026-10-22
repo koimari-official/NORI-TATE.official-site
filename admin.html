@@ -315,24 +315,47 @@ function renderContacts() {
   let html = '<div style="overflow-x:auto;"><table><thead><tr><th>ステータス</th><th>受信日時</th><th>お名前</th><th>会社名</th><th>連絡先</th><th>種別</th><th>内容</th></tr></thead><tbody>';
   contactList.forEach((c, idx) => {
     const status = c.status || "未対応";
-    const color = status === "対応完了" ? "#3e6b50" : "#a98554";
-    const typeLabel = c.type === "succession" ? "事業承継について" : (c.type === "other" ? "その他・まずは相談したい" : escapeHtml(c.type || ""));
+    if (window.__ntOnlyOpen && status === "対応完了") return;
+    const color = status === "対応完了" ? "#3e6b50" : status === "対応中" ? "#2f6fd6" : "#b03b48";
+    const typeLabel = escapeHtml(({"succession":"事業承継について","support":"経営の伴走支援（継続・スポット）","web":"ホームページ・SNSについて","ai":"AIの導入・活用について","other":"その他・まずは相談したい"})[c.type] || c.type || "");
+    const replyHref = "mailto:" + encodeURIComponent(c.email || "") + "?subject=" + encodeURIComponent("【NORI&TATE】お問い合わせありがとうございます") + "&body=" + encodeURIComponent((c.name || "") + " 様\n\nこのたびは株式会社NORI&TATEにお問い合わせいただき、誠にありがとうございます。\n\n\n\n株式会社NORI&TATE\nnoritate.official@gmail.com\n\n――― いただいたお問い合わせ ―――\n" + (c.message || ""));
     html += `<tr>
       <td><select class="status" style="color:${color};font-weight:600;" onchange="updateContactStatus(${idx},this.value)">
-        ${["未対応","対応完了"].map(s=>`<option value="${s}"${s===status?" selected":""}>${s}</option>`).join("")}
+        ${["未対応","対応中","対応完了"].map(s=>`<option value="${s}"${s===status?" selected":""}>${s}</option>`).join("")}
       </select></td>
       <td>${fmtDate(c.submittedAt)}</td>
       <td>${escapeHtml(c.name)}</td>
       <td>${escapeHtml(c.company)}</td>
       <td>${escapeHtml(c.phone)}<br><span class="small">${escapeHtml(c.email)}</span></td>
       <td>${typeLabel}</td>
-      <td>${escapeHtml(c.message)}</td>
+      <td>${escapeHtml(c.message)}
+        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:flex-start;">
+          ${c.email ? `<a class="btn btn--ghost" style="padding:4px 10px;font-size:12px;" href="${replyHref}">メールで返信</a>` : ""}
+          <textarea placeholder="対応メモ（例：10/23 電話済み。資料を送付）" style="flex:1;min-width:180px;font-size:12px;padding:6px;border:1px solid #ddd;border-radius:6px;" rows="2" onchange="updateContactMemo(${idx},this.value)">${escapeHtml(c.memo || "")}</textarea>
+        </div>
+        ${c.memoAt ? `<div class="small">メモ更新：${fmtDate(c.memoAt)}</div>` : ""}
+      </td>
     </tr>`;
   });
   html += '</tbody></table></div>';
-  area.innerHTML = html;
+  area.innerHTML = '<label style="display:inline-flex;gap:6px;align-items:center;font-size:13px;margin:0 0 8px;"><input type="checkbox" id="ntOnlyOpen"' + (window.__ntOnlyOpen ? " checked" : "") + '> 未対応・対応中だけ表示</label>' + html;
+  const oo = document.getElementById("ntOnlyOpen"); if (oo) oo.addEventListener("change", () => { window.__ntOnlyOpen = oo.checked; renderContacts(); });
+  updateOpenCount();
 }
 
+window.updateContactMemo = function (idx, memo) {
+  const key = contactKeys[idx]; if (!key) return;
+  const at = new Date().toISOString();
+  contactList[idx].memo = memo; contactList[idx].memoAt = at;
+  update(ref(fbDb, "noritate/contacts/" + key), { memo, memoAt: at }).then(() => showToast("メモを保存しました")).catch(err => { console.warn("メモの保存に失敗:", err); showToast("メモの保存に失敗しました"); });
+};
+// 未対応の件数（タブとページの題名）と、「未対応・対応中だけ表示」の切り替え（2026-10-22）
+function updateOpenCount() {
+  const n = contactList.filter((c) => (c.status || "未対応") !== "対応完了").length;
+  const tab = document.querySelector('.tab-btn[data-tab="contacts"]');
+  if (tab) tab.textContent = "お問い合わせ" + (n ? "（未完了 " + n + "）" : "");
+  document.title = (n ? "(" + n + ") " : "") + "NORI&TATE 管理";
+}
 window.updateContactStatus = function (idx, status) {
   contactList[idx].status = status;
   const key = contactKeys[idx];
