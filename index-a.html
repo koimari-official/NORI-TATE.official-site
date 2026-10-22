@@ -153,6 +153,26 @@ section{position:relative}
 .ind-note{font-size:14px;line-height:1.9;color:var(--sub);margin:20px 0 0}
 .ind-desc{display:block;font-size:14px;line-height:1.9;color:var(--sub)}
 
+/* 業種：写真つきカード（2026-10-23） */
+.ind-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.ind-card{display:flex;flex-direction:column;background:var(--paper)}
+.ind-photo{position:relative;overflow:hidden;aspect-ratio:4/3;background:#e9e4da}
+.ind-body{flex:1;padding:22px 22px 26px;border-top:3px solid var(--c2)}
+.i2 .ind-body{border-top-color:var(--c1)}.i3 .ind-body{border-top-color:var(--c7)}.i4 .ind-body{border-top-color:var(--c4)}
+.ind-card .ind-en{display:block;font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--gold)}
+.ind-card .ind-name{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(18px,1.45vw,21px);line-height:1.5;margin:6px 0 10px;text-wrap:pretty}
+.ind-card .ind-desc{display:block;font-size:14px;line-height:1.95;color:var(--sub)}
+.ind-note{font-size:14px;line-height:1.9;color:var(--sub);margin:26px 0 0}
+@media (max-width:1100px){.ind-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){
+  .ind-grid{grid-template-columns:1fr;gap:12px}
+  .ind-card{display:grid;grid-template-columns:36% minmax(0,1fr)}
+  .ind-photo{aspect-ratio:auto;min-height:100%}
+  .ind-body{padding:14px 14px 16px}
+  .ind-card .ind-name{font-size:16.5px;margin:4px 0 6px}
+  .ind-card .ind-desc{font-size:13px;line-height:1.85}
+}
+
 /* 強み：流通の流れ（川上→川下）と4つの知識 */
 .sec--strength{background:var(--paper)}
 .range{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:24px;margin:8px 0 0}
@@ -171,6 +191,8 @@ section{position:relative}
 .chain-tag{font-family:var(--en);font-size:10.5px;letter-spacing:.2em;margin-bottom:6px}
 .cn1{background:var(--c4)}.cn2{background:var(--c3)}.cn3{background:var(--c2)}.cn4{background:var(--c1)}
 .chain-arw{display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:22px;color:var(--gold)}
+.mk-line{display:inline;color:var(--ink);font-weight:500;background:linear-gradient(transparent 62%,rgba(255,196,0,.55) 62%)}
+.chain-sub{font-size:12px;letter-spacing:.12em;margin-top:4px}
 .chain-cap{font-family:var(--serif);font-size:clamp(17px,1.6vw,21px);margin:22px 0 56px;text-align:center}
 .know-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 5vw;border-top:1px solid var(--line)}
 .know{padding:28px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:10px}
@@ -187,7 +209,9 @@ section{position:relative}
   .range-cap{margin-bottom:34px}
   .chain{grid-template-columns:1fr;gap:0}
   .chain-node{min-height:0;padding:16px 18px;flex-direction:row;justify-content:space-between}
-  .chain-tag{margin:0;order:2}
+  .chain-node{gap:12px;justify-content:flex-start}
+  .chain-sub{margin:0}
+  .chain-tag{margin:0 0 0 auto;order:3}
   .chain-arw{transform:rotate(90deg);height:34px}
   .chain-cap{margin:18px 0 34px}
   .know-list{grid-template-columns:1fr}
@@ -488,58 +512,57 @@ section{position:relative}
     </div>
   </section>
 
-  <!-- ── INDUSTRIES：大きな文字の一覧＋商店街の写真 ── -->
+  <!-- ── INDUSTRIES：業種ごとに合った写真つき（2026-10-23） ── -->
   <section id="industries" class="sec">
-    <div class="wrap split">
-      <div class="split-media"><div class="media-img" id="bg-industries" data-bg="bg-industries.jpg"></div></div>
-      <div class="split-text">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Industries</span>
         <h2 class="s-title">業種の壁は、<br>ありません。</h2>
         <p class="sec-lead">後継者や人材の悩みは、業種を選びません。小売・卸やモノづくり、飲食、サロン、工事・職人の世界まで。事業の価値と、そこで働く人を大切にする想いがあれば、どの業種でもご相談ください。</p>
-        <ul class="ind-list">
-          <li class="ind i1"><span class="ind-en">Retail / Wholesale / Manufacturing</span><b class="ind-name">小売・卸／商社・モノづくり</b><span class="ind-desc">地域のお店から、卸・商社、町工場や製造業まで。代表は鉄鋼商社の出身で、川上から川下までの流通と、モノづくりの市場構造をよく知っています。取引先とのつながりと、技術や商品の力を次の世代へつなぎます。</span></li>
-          <li class="ind i2"><span class="ind-en">Food &amp; Restaurant</span><b class="ind-name">飲食店・食品</b><span class="ind-desc">地域に愛されてきた味と、お客様とのつながりを守りながら、時代に合わせて育てます。</span></li>
-          <li class="ind i3"><span class="ind-en">Salon / Healthcare / Beauty</span><b class="ind-name">サロン・ヘルスケア・ビューティ</b><span class="ind-desc">施術者の技術と、通い続けてくださるお客様の信頼を引き継ぎ、集客や予約の仕組みも整えます。</span></li>
-          <li class="ind i4"><span class="ind-en">Construction &amp; Craftsmanship</span><b class="ind-name">各種工事業・職人業など</b><span class="ind-desc">建築・設備・内装などの工事業や、職人の手仕事まで。受け継がれてきた技と現場の信頼を、次の世代へつなぎます。</span></li>
-        </ul>
-        <p class="ind-note">ここにない業種も、まずはお気軽にご相談ください。</p>
       </div>
+      <ul class="ind-grid">
+        <li class="ind-card i1"><div class="ind-photo"><div class="media-img" data-bg="ind-manufacturing.jpg"></div></div><div class="ind-body"><span class="ind-en">Retail / Wholesale / Manufacturing</span><b class="ind-name">小売・卸／商社・モノづくり</b><span class="ind-desc">地域のお店から、卸・商社、町工場や製造業まで。代表は鉄鋼商社の出身で、ものづくりの業界を材料から製品まで幅広く見てきました。取引先とのつながりや技術を、次の世代へつなぎます。</span></div></li>
+        <li class="ind-card i2"><div class="ind-photo"><div class="media-img" data-bg="ind-food.jpg"></div></div><div class="ind-body"><span class="ind-en">Food &amp; Restaurant</span><b class="ind-name">飲食店・食品</b><span class="ind-desc">地域に愛されてきた味と、お客様とのつながりを守りながら、時代に合わせて育てます。</span></div></li>
+        <li class="ind-card i3"><div class="ind-photo"><div class="media-img" data-bg="ind-salon.jpg"></div></div><div class="ind-body"><span class="ind-en">Salon / Healthcare / Beauty</span><b class="ind-name">サロン・ヘルスケア・ビューティ</b><span class="ind-desc">施術者の技術と、通い続けてくださるお客様の信頼を引き継ぎ、集客や予約の仕組みも整えます。</span></div></li>
+        <li class="ind-card i4"><div class="ind-photo"><div class="media-img" data-bg="ind-craft.jpg"></div></div><div class="ind-body"><span class="ind-en">Construction &amp; Craftsmanship</span><b class="ind-name">各種工事業・職人業など</b><span class="ind-desc">建築・設備・内装などの工事業や、職人の手仕事まで。受け継がれてきた技と現場の信頼を、次の世代へつなぎます。</span></div></li>
+      </ul>
+      <p class="ind-note">ここにない業種も、まずはお気軽にご相談ください。</p>
     </div>
   </section>
 
-  <!-- ── STRENGTH：鉄鋼商社で培った、流通を読む目（2026-10-23オーナー情報） ── -->
+  <!-- ── STRENGTH：ものづくりの現場で鍛えた、市場を読む力（2026-10-23。どの業界の社長さんにも伝わる言葉で） ── -->
   <section id="strength" class="sec sec--strength">
     <div class="wrap">
       <div class="sec-head sec-head--wide">
         <span class="s-label">Strength</span>
-        <h2 class="s-title">職人さんの現場から、<br>自動車の開発者まで。</h2>
-        <p class="sec-lead">代表は鉄鋼商社で、ものづくりの一連の現場を経験してきました。</p>
+        <h2 class="s-title">ものづくりの現場で鍛えた、<br>市場を読む力。</h2>
+        <p class="sec-lead">代表は鉄鋼商社で、ものづくりの業界の「川上」（材料をつくるメーカー）から「川下」（製品を使うお客様）まで、幅広い取引を経験してきました。</p>
         <blockquote class="pull pull--strength">油まみれの下町の鉄工所から、<br>世界最先端の半導体装置メーカーまで。</blockquote>
-        <p class="sec-lead">配達の仕事を通じて、幅広いジャンルの現場を、自分の目と足で見てきました。とくにモノづくりの業界は、市場の構造そのものを理解しています。つくる側の事情も、使う側の事情も知っているからこそ、値上げの伝え方や販路づくり、取引条件の見直しにも、しっかり踏み込めます。</p>
+        <p class="sec-lead">大きな取引から小口の取引まで、モノとお金がどう流れ、どこで値段が決まるのか。その仕組みを知っているから、売り方や値上げの伝え方、販路づくりまで、戦略的なアドバイスができます。<br><b class="mk-line">この「市場を読む力」は、どの業界でも活かせます。</b></p>
       </div>
       <div class="range">
         <div class="range-end range-end--l"><span class="range-tag">現場</span><b class="range-txt">職人さんや現場の方と<br>深く関わった現場仕事</b></div>
         <div class="range-bar" aria-hidden="true"><span></span></div>
         <div class="range-end range-end--r"><span class="range-tag">開発・経営</span><b class="range-txt">カーメーカーの開発者との商談、<br>新規戦略・新車種の開発</b></div>
       </div>
-      <p class="range-cap">現場から開発・経営まで、ものづくりを端から端まで知る、めずらしい経歴です。<br>その経験は、どの業界の会社の立て直しにも、アドバイスにも活かせると自負しています。</p>
-      <div class="chain" role="img" aria-label="メーカーから商社・卸、加工・販売、ユーザーまでの流通の流れ">
-        <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b></div>
+      <p class="range-cap">職人さんの現場から、自動車の開発者まで。<br>ものづくりを端から端まで知る、めずらしい経歴です。</p>
+      <div class="chain" role="img" aria-label="材料をつくるメーカーから、商社・卸、加工・販売、製品を使うお客様までの流れ">
+        <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b><span class="chain-sub">つくる</span></div>
         <span class="chain-arw" aria-hidden="true">→</span>
-        <div class="chain-node cn2"><b>商社・卸</b></div>
+        <div class="chain-node cn2"><b>商社・卸</b><span class="chain-sub">つなぐ</span></div>
         <span class="chain-arw" aria-hidden="true">→</span>
-        <div class="chain-node cn3"><b>加工・販売</b></div>
+        <div class="chain-node cn3"><b>加工・販売</b><span class="chain-sub">届ける</span></div>
         <span class="chain-arw" aria-hidden="true">→</span>
-        <div class="chain-node cn4"><span class="chain-tag">川下</span><b>ユーザー</b></div>
+        <div class="chain-node cn4"><span class="chain-tag">川下</span><b>お客様</b><span class="chain-sub">使う</span></div>
       </div>
-      <p class="chain-cap">川上から川下まで、この流れのどこで何が起きているかを知っています。</p>
+      <p class="chain-cap">川上から川下まで、モノとお金の流れの中で、どこで何が起きているかを知っています。</p>
       <ol class="know-list">
-        <li class="know know--main"><span class="know-num">01</span><h3 class="know-title">モノづくりの市場構造</h3><p>どこで何がつくられ、どこへ流れ、どこで値段が決まっていくのか。モノづくりの業界の仕組みそのものを理解しているから、その会社が伸びる場所と、守るべき強みが見えてきます。</p></li>
-        <li class="know"><span class="know-num">02</span><h3 class="know-title">メーカー側とユーザー側、両方の立場と力関係</h3><p>売る側の事情も、買う側の事情も分かるから、無理のない値上げや条件の交渉を、一緒に考えて進められます。</p></li>
-        <li class="know"><span class="know-num">03</span><h3 class="know-title">商流・物流のつながり</h3><p>誰から誰へ、モノとお金がどう流れているか。両方の流れから、ムダや新しい販路の糸口を見つけます。</p></li>
-        <li class="know"><span class="know-num">04</span><h3 class="know-title">外口銭・内口銭などの商習慣</h3><p>業界ならではのマージンの考え方を踏まえて、利益がきちんと残る価格や取引条件を考えます。</p></li>
-        <li class="know"><span class="know-num">05</span><h3 class="know-title">見積もり依頼の回り方</h3><p>相見積もりの依頼が、どこへ、どう回っていくのか。声がかかりやすい会社になるための打ち手を、一緒に考えます。</p></li>
-        <li class="know know--main know--last"><span class="know-num">06</span><h3 class="know-title">業界を越えて使える、市場をとらえる力</h3><p>市場のどこにチャンスがあり、何に人・お金・時間を投じればよいか。鉄鋼や自動車の世界で鍛えたこの見方は、ほかの業界でも活かせます。業種がちがっても、「伸びる場所」と「投じるべきもの」を一緒に見つけます。</p></li>
+        <li class="know know--main"><span class="know-num">01</span><h3 class="know-title">市場の仕組みを読み解く</h3><p>どこで何がつくられ、どこへ流れ、どこで値段が決まっていくのか。業界の仕組みそのものを読み解くから、その会社が伸びる場所と、守るべき強みが見えてきます。</p></li>
+        <li class="know"><span class="know-num">02</span><h3 class="know-title">売る側と買う側、両方の事情が分かる</h3><p>つくる側の事情も、使う側の事情も分かるから、無理のない値上げや取引条件の交渉を、一緒に考えて進められます。</p></li>
+        <li class="know"><span class="know-num">03</span><h3 class="know-title">モノとお金の流れが分かる</h3><p>誰から誰へ、モノとお金がどう流れているのか。その流れをたどって、ムダを減らせるところや、新しい販路の糸口を見つけます。</p></li>
+        <li class="know"><span class="know-num">04</span><h3 class="know-title">業界ならではの、利益の決まり方が分かる</h3><p>手数料やマージンの決まり方は、業界ごとにちがいます（商社でいえば「口銭」）。それを踏まえて、利益がきちんと残る価格や取引条件を考えます。</p></li>
+        <li class="know"><span class="know-num">05</span><h3 class="know-title">お客様の「選び方」が分かる</h3><p>お客様がどこに声をかけ、どう比べて発注先を決めるのか。相見積もりの流れを知っているから、選ばれる会社になるための打ち手を、一緒に考えます。</p></li>
+        <li class="know know--main know--last"><span class="know-num">06</span><h3 class="know-title">どの業界でも活かせる、市場を読む力</h3><p>市場のどこにチャンスがあり、何に人・お金・時間を投じればよいか。ものづくりの世界で鍛えたこの見方は、業種がちがっても通用します。「伸びる場所」と「投じるべきもの」を、一緒に見つけます。</p></li>
       </ol>
     </div>
   </section>
@@ -833,7 +856,7 @@ section{position:relative}
     <nav class="ft-nav"><a href="#top">Top</a><a href="#concept">Concept</a><a href="#vision">Vision</a><a href="#issues">Issues</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a><a href="#strength">Strength</a><a href="#business">Business</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#growth">Key Principles</a><a href="#process">Process</a><a href="#join">Join</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a></nav>
     <div class="ft-line"></div>
     <p class="ft-copy">&copy; 2026 株式会社NORI&amp;TATE. All Rights Reserved.</p>
-    <p class="ft-copy ft-credit">背景写真：「Torii Hanging Along an Osaka Shopping Arcade」Ethan Doyle White（<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 4.0</a>／<a href="https://commons.wikimedia.org/wiki/File:Torii_Hanging_Along_an_Osaka_Shopping_Arcade.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>）</p>
+    <p class="ft-copy ft-credit">写真（Wikimedia Commons）：<a href="https://commons.wikimedia.org/wiki/File:Steel_coil_and_machinery_-_geograph.org.uk_-_8200249.jpg" target="_blank" rel="noopener">「Steel coil and machinery」Adrian Taylor</a>（<a href="https://creativecommons.org/licenses/by-sa/2.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:Mochi_including_dango_(8604909107).jpg" target="_blank" rel="noopener">「Mochi including dango」Pete Birkinshaw</a>（<a href="https://creativecommons.org/licenses/by/2.0/deed.ja" target="_blank" rel="noopener">CC BY 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:Interior_view_of_modern_beauty_salon.jpg" target="_blank" rel="noopener">「Interior view of modern beauty salon」Shixart1985</a>（<a href="https://creativecommons.org/licenses/by/2.0/deed.ja" target="_blank" rel="noopener">CC BY 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:160312_Takenaka_Carpentry_Tools_Museum_Kobe_Japan16s.jpg" target="_blank" rel="noopener">「Takenaka Carpentry Tools Museum Kobe Japan」663highland</a>（<a href="https://creativecommons.org/licenses/by/2.5/deed.ja" target="_blank" rel="noopener">CC BY 2.5</a>）</p>
   </div>
 </footer>
 
@@ -932,7 +955,7 @@ section{position:relative}
   gsap.utils.toArray('.s-label').forEach(function (el) { gsap.from(el, { opacity: 0, x: -14, duration: 0.8, ease: E, scrollTrigger: { trigger: el, start: 'top 90%' } }); });
 
   // ② ブロックのフェードイン
-  gsap.utils.toArray('.sec-lead, .story-body > p, .vision-text, .ind, .feature-text > *, .zig-text, .tl-step, .join-lead, .join-list li, .name-intro, .name-foot, .co-table, .ct-info, .ct-box, .cta-row, .svc-nav').forEach(function (el) {
+  gsap.utils.toArray('.sec-lead, .story-body > p, .vision-text, .ind-card, .ind-note, .feature-text > *, .zig-text, .tl-step, .join-lead, .join-list li, .name-intro, .name-foot, .co-table, .ct-info, .ct-box, .cta-row, .svc-nav').forEach(function (el) {
     gsap.from(el, { opacity: 0, y: 34, duration: 1, ease: E, scrollTrigger: { trigger: el, start: 'top 90%' } });
   });
 
