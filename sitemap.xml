@@ -6,6 +6,26 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://koimari-official.github.io/NORI-TATE.official-site/strength.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://koimari-official.github.io/NORI-TATE.official-site/services.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://koimari-official.github.io/NORI-TATE.official-site/works.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://koimari-official.github.io/NORI-TATE.official-site/faq.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://koimari-official.github.io/NORI-TATE.official-site/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

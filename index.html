@@ -8,7 +8,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WQJ25SX6');</script>
 <!-- End Google Tag Manager -->
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>株式会社NORI&amp;TATE | 中小企業から、再び日本を盛り上げる</title>
   <meta name="description" content="株式会社NORI&amp;TATEは、事業承継を通じて中小企業の技術継承・雇用・事業を守り、日本を盛り上げる会社です。代表：吉田光輝。大阪市城東区成育。">
@@ -25,1319 +25,739 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Corporation","name":"株式会社NORI&TATE","alternateName":"NORI&TATE Co., Ltd.","url":"https://koimari-official.github.io/NORI-TATE.official-site/","description":"事業承継を通じて中小企業の技術継承・雇用・事業を守り、日本を盛り上げる会社。","foundingDate":"2026-04-19","founder":{"@type":"Person","name":"吉田光輝"},"address":{"@type":"PostalAddress","streetAddress":"成育2丁目13-15 アイビーマンション103号室","addressLocality":"大阪市城東区","addressRegion":"大阪府","postalCode":"536-0007","addressCountry":"JP"},"telephone":"+81-90-1243-6770","email":"noritate.official@gmail.com"}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
+<style>
+/* NORI&TATE A案（上品ミニマル × ワクワク）2026-10-23  ルールは A_DESIGN_CONCEPT.md */
+:root{--bg:#f7f5f0;--paper:#fffdf9;--tint:#efebe2;--ink:#1d1d1b;--sub:#4a4a46;--mute:#8b8b85;--gold:#8a7a5a;--line:#d9d3c6;--dark:#161615;
+--c1:#ff3d8b;--c2:#ff8a00;--c3:#ffc400;--c4:#00b4d8;--c5:#2f6bff;--c6:#19b36b;--c7:#8b5cf6;
+--serif:'Noto Serif JP',serif;--sans:'Noto Sans JP',sans-serif;--en:'Montserrat',sans-serif;--pad:6vw;--hdr:76px;--max:1360px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}img{max-width:100%}
+.grecaptcha-badge{visibility:hidden!important}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c1) 0 17%,var(--c2) 17% 34%,var(--c3) 34% 50%,var(--c6) 50% 67%,var(--c4) 67% 84%,var(--c5) 84% 100%);transform:scaleX(0);transform-origin:0 50%;z-index:60}
 
-  <style>
-    /* ── RESET ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+/* ボタン（主ボタンは1種類）・文字リンク */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:18px 34px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14.5px;letter-spacing:.14em;border:none;cursor:pointer;transition:background .3s,color .3s}
+.btn:hover{background:var(--gold)}
+.btn .arw{display:inline-block;transition:transform .3s}.btn:hover .arw{transform:translateX(5px)}
+.btn--sm{padding:11px 18px;font-family:var(--en);font-size:11.5px;letter-spacing:.24em}
+.btn--light{background:var(--bg);color:var(--ink)}.btn--light:hover{background:var(--c3);color:var(--ink)}
+.tlink{font-size:14px;letter-spacing:.08em;text-decoration:none;background:linear-gradient(var(--ink),var(--ink)) 0 100%/100% 1px no-repeat;padding-bottom:5px;transition:background-size .4s}
+.tlink:hover{background-size:0 1px;background-position:100% 100%}
+.cta-row{margin-top:56px}.cta-row--center{text-align:center}
 
-    :root {
-      --serif:  'Noto Serif JP', serif;
-      --sans:   'Noto Sans JP', sans-serif;
-      --en:     'Montserrat', sans-serif;
-      --white:  #ffffff;
-      --black:  #111111;
-      --mid:    #888888;
-      --border: #e8e8e8;
-      --col-l:  240px;
-      --col-r:  180px;
-    }
+/* ヘッダー・メニュー */
+#hdr{position:fixed;top:0;left:0;right:0;height:var(--hdr);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);z-index:50;transition:background .4s,box-shadow .4s}
+#hdr.scrolled{background:rgba(247,245,240,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.logo{font-family:var(--en);font-weight:500;letter-spacing:.28em;font-size:13px;text-decoration:none}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.menu-btn{font-family:var(--en);font-size:11.5px;letter-spacing:.24em;padding:11px 18px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer;min-width:92px}
+.menu{position:fixed;inset:0;background:var(--bg);z-index:45;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hdr) + 10px) var(--pad) 40px;visibility:hidden;opacity:0;transition:opacity .45s,visibility .45s;overflow-y:auto}
+.menu.open{visibility:visible;opacity:1}
+.menu ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:4vw;max-width:1200px}
+.menu li a{display:flex;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.menu .mn{font-family:var(--en);font-size:11px;color:var(--gold);letter-spacing:.2em;width:22px}
+.menu .mj{font-family:var(--serif);font-weight:300;font-size:clamp(17px,1.6vw,23px);flex:1}
+.menu li a:hover .mj{color:var(--gold)}
+.menu-foot{margin-top:34px;font-size:13px;line-height:2;color:var(--sub);display:flex;flex-wrap:wrap;gap:6px 28px}
+.menu-foot a{text-decoration:none;border-bottom:1px solid var(--line)}
+html.menu-open{overflow:hidden}
 
-    body {
-      background: var(--white);
-      font-family: var(--sans);
-      color: var(--black);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+/* ヒーロー */
+#top{position:relative;display:flex;align-items:center;min-height:100vh;min-height:100svh;padding:calc(var(--hdr) + 5vh) var(--pad) 8vh}
+.hero-text{position:relative;z-index:1;display:flex;flex-direction:column;width:min(640px,100%);padding:46px 52px 44px;background:rgba(255,253,249,.95)}
+.hero-en{font-family:var(--en);font-size:11.5px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
+.hero-catch{font-family:var(--serif);font-weight:300;font-size:clamp(34px,3.6vw,64px);line-height:1.32;margin:18px 0 0;letter-spacing:.02em;white-space:nowrap}
+.hero-line{height:3px;width:140px;margin:24px 0 16px;background:linear-gradient(90deg,var(--c1) 0 25%,var(--c2) 25% 50%,var(--c3) 50% 75%,var(--c4) 75% 100%)}
+.hero-brand{font-family:var(--serif);font-weight:500;font-size:16px;letter-spacing:.14em;margin:0}
+.hero-lead{font-size:clamp(15px,1.2vw,18px);line-height:1.8;color:var(--ink);font-weight:500;margin:14px 0 0;max-width:560px}
+.hero-lead b{color:var(--ink);font-weight:500;background:linear-gradient(transparent 62%,rgba(255,196,0,.55) 62%)}
+.hero-ctas{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:26px}
+.hero-visual{position:absolute;top:var(--hdr);left:0;right:0;bottom:0;overflow:hidden}
+.hero-img{position:absolute;inset:-6% 0;background-size:cover;background-position:center}
+.scroll-hint{position:absolute;left:var(--pad);bottom:26px;display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:10.5px;letter-spacing:.3em;color:var(--mute)}
+.scroll-hint i{display:block;width:64px;height:1px;background:var(--line);position:relative;overflow:hidden}
+.scroll-hint i::after{content:"";position:absolute;inset:0;background:var(--ink);transform:translateX(-100%);animation:sh 2.4s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes sh{50%{transform:translateX(0)}100%{transform:translateX(100%)}}
 
-    /* ════════════════════════════
-       背景レイヤー
-    ════════════════════════════ */
-    #bg-layer {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      width: 100%;
-      height: 100vh;    /* fallback */
-      height: 100lvh;   /* スマホでアドレスバーが隠れても高さが変わらず背景ズームを防ぐ */
-      z-index: 1;
-      pointer-events: none;
-    }
-    .bg-panel {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1.4s ease;
-    }
-    .bg-panel.active-hero  { opacity: 1; }
-    .bg-panel.active-light { opacity: 0.12; }
+/* 流れる英字・写真の帯 */
+.marquee{overflow:hidden;padding:7vh 0 5vh;white-space:nowrap}
+.marquee-track{display:inline-flex;will-change:transform}
+.marquee-track span{font-family:var(--en);font-weight:300;font-size:clamp(44px,8vw,128px);letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px #bdb29b;padding-right:.6em}
+.band{position:relative;height:var(--h,60vh);margin:0 var(--pad);overflow:hidden;background:#e9e4da}
+.band--opt{display:none;margin-top:12vh}.band--opt.has-img{display:block}
+.band-img,.media-img{position:absolute;inset:-10% 0;background-size:cover;background-position:center}
 
-    /* ════════════════════════════
-       左サイドバー（ナビ）
-    ════════════════════════════ */
-    #sidebar {
-      position: fixed;
-      left: 0; top: 0; bottom: 0;
-      width: var(--col-l);
-      z-index: 30;
-      background: var(--white);
-      display: flex;
-      flex-direction: column;
-      padding: 3.5rem 2.2rem 3rem;
-      border-right: 1px solid var(--border);
-      /* トランジション */
-      opacity: 1;
-      transform: translateX(0);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+/* セクション共通（同じ役割は同じ大きさ） */
+section{position:relative}
+.sec{padding:16vh 0}
+.sec--tint{background:var(--tint)}
+.sec--flush{padding-bottom:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.wrap.narrow{max-width:980px}
+.sec-head{margin-bottom:56px}
+.sec-head--wide{max-width:900px}
+.sec-head--center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head--row{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:6vw;align-items:end}
+.sec-head--row .sec-lead{margin:0}
+.s-label{display:block;font-family:var(--en);font-size:11px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase}
+.s-title{font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.4vw,52px);line-height:1.45;margin:16px 0 0;letter-spacing:.03em}
+.sec-lead,.s-body,.ct-lead,.join-lead{font-size:15.5px;line-height:2.15;color:var(--sub);margin:22px 0 0;max-width:640px}
+.sec-lead b{color:var(--ink);font-weight:500}
 
-    /* ヒーロー表示中：非表示 */
-    body.hero-mode #sidebar {
-      opacity: 0;
-      transform: translateX(-18px);
-      pointer-events: none;
-    }
+/* 代表の想い */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:6vw}
+.story .sec-head{position:sticky;top:calc(var(--hdr) + 40px);align-self:start}
+.story-body .s-body{margin:0 0 1.2em}
+.s-body--strong{color:var(--ink);font-weight:500}
+.pull{margin:48px 0;padding:0;font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.8vw,42px);line-height:1.6;color:var(--ink)}
+.pull--strength{margin:34px 0 26px}
+.pull.pull--strength::before{background:var(--c2)}
+.pull::before{content:"";display:block;width:56px;height:3px;background:var(--c1);margin-bottom:22px}
 
-    .sidebar-logo {
-      font-family: var(--en);
-      font-size: 0.96rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--black);
-      text-decoration: none;
-      line-height: 1.4;
-      display: block;
-      margin-bottom: 3.5rem;
-      white-space: nowrap;
-    }
-    .sidebar-logo span {
-      display: block;
-      font-family: var(--serif);
-      font-size: 0.76rem;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-      color: var(--mid);
-      margin-top: 0.4rem;
-      line-height: 1.6;
-    }
+/* ビジョン：鮮やかなメインビジュアルの上に、言葉を大きく */
+.vision{position:relative;padding:16vh var(--pad);overflow:hidden}
+.vision-bg{position:absolute;inset:-12% 0;background:url('hero.jpg.png') center/cover no-repeat}
+.vision-inner{position:relative;max-width:1080px;margin:0 auto;background:var(--bg);padding:9vh 7vw}
+.vision-list{list-style:none;margin:26px 0 40px;padding:0}
+.vision-list li{display:flex;align-items:baseline;gap:22px;padding:14px 0;border-bottom:1px solid var(--line)}
+.v-num{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--gold);width:28px;flex-shrink:0}
+.v-text{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.2vw,62px);line-height:1.35}
+.mk{font-style:normal;display:inline-block;background-repeat:no-repeat;background-size:0% 100%;background-position:0 0;padding:0 .08em}
+.mk--1{background-image:linear-gradient(transparent 58%,var(--c3) 58%)}
+.mk--2{background-image:linear-gradient(transparent 58%,var(--c4) 58%)}
+.mk--3{background-image:linear-gradient(transparent 58%,var(--c1) 58%)}
+.vision-text{font-size:15.5px;line-height:2.15;color:var(--sub);margin:0 0 1em;max-width:680px}
 
-    .sidebar-nav ul { list-style: none; }
-    .sidebar-nav li a {
-      display: block;
-      font-family: var(--sans);
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: var(--mid);
-      text-decoration: none;
-      padding: 0.8rem 0;
-      transition: color 0.25s;
-    }
-    .sidebar-nav li a:hover,
-    .sidebar-nav li a.active {
-      color: var(--black);
-      font-weight: 500;
-    }
+/* お悩み：困った → こう変える */
+.flip-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.flip{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);align-items:stretch;border-bottom:1px solid var(--line)}
+.flip-pain{padding:30px 28px 30px 0}
+.flip-tag{display:block;font-family:var(--en);font-size:10.5px;letter-spacing:.2em;color:var(--mute);margin-bottom:8px}
+.flip-pain h3{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.6;margin:0 0 8px;display:inline;background:linear-gradient(var(--ink),var(--ink)) 0 58%/0% 1.5px no-repeat}
+.flip-pain p{font-size:14px;line-height:1.95;color:var(--sub);margin:10px 0 0}
+.flip-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:28px;color:var(--gold)}
+.flip-hope{margin:14px 0;padding:24px 28px;display:flex;flex-direction:column;justify-content:center}
+.flip-hope .flip-tag{color:rgba(29,29,27,.7)}
+.flip-hope p{font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.75;margin:0;color:var(--ink)}
+.h1c{background:var(--c1)}.h2c{background:var(--c2)}.h3c{background:var(--c3)}.h4c{background:var(--c4)}.h5c{background:var(--c6)}
+.h6c{background:var(--c5)}.h6c p,.h6c .flip-tag{color:#fff}
 
-    /* ════════════════════════════
-       右サイドバー（SNS・連絡先）
-    ════════════════════════════ */
-    #right-sidebar {
-      position: fixed;
-      right: 0; top: 0; bottom: 0;
-      width: var(--col-r);
-      z-index: 20;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      border-left: 1px solid rgba(200,200,200,0.25);
-      overflow: hidden;
-      /* トランジション */
-      opacity: 1;
-      transform: translateX(0);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+/* 私たちの仕事：横に流れるパネル */
+.hpin{overflow:hidden;padding:0 0 16vh}
+.htrack{display:flex;gap:28px;padding:0 var(--pad);width:max-content}
+.panel{position:relative;width:min(62vw,860px);min-height:min(64vh,560px);padding:54px 56px;display:flex;flex-direction:column;justify-content:flex-end;color:var(--ink);overflow:hidden}
+.pc1{background:var(--c2)}.pc2{background:var(--c4)}.pc3{background:var(--c1)}
+.panel-num{position:absolute;top:30px;right:40px;font-family:var(--en);font-weight:300;font-size:clamp(90px,11vw,170px);line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(29,29,27,.55)}
+.panel-en{font-family:var(--en);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase}
+.panel-title{font-family:var(--serif);font-weight:500;font-size:clamp(40px,5vw,76px);line-height:1.2;margin:10px 0 6px}
+.panel-sub{font-family:var(--serif);font-size:18px;margin:0 0 18px}
+.panel-desc{font-size:15px;line-height:2;margin:0;max-width:600px}
 
-    /* ヒーロー表示中：非表示 */
-    body.hero-mode #right-sidebar {
-      opacity: 0;
-      transform: translateX(18px);
-      pointer-events: none;
-    }
+/* 業種：写真＋大きな文字の一覧 */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:6vw;align-items:start}
+.split-media{position:relative;overflow:hidden;min-height:560px;background:#e9e4da}
+.split--company .split-media{min-height:420px}
+.ind-list{list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--line)}
+.ind{padding:22px 0 22px 30px;border-bottom:1px solid var(--line);position:relative}
+.ind::before{content:"";position:absolute;left:0;top:34px;width:14px;height:14px;background:var(--c2)}
+.i2::before{background:var(--c1)}.i3::before{background:var(--c7)}.i4::before{background:var(--c4)}
+.ind-en{display:block;font-family:var(--en);font-size:10.5px;letter-spacing:.2em;color:var(--gold)}
+.ind-name{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(20px,2vw,27px);margin:4px 0 6px}
+.ind-note{font-size:14px;line-height:1.9;color:var(--sub);margin:20px 0 0}
+.ind-desc{display:block;font-size:14px;line-height:1.9;color:var(--sub)}
 
-    #right-sidebar::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.78) 0%,
-        rgba(0,0,0,0.35) 45%,
-        transparent 72%
-      );
-      pointer-events: none;
-      z-index: 0;
-    }
+/* 業種：写真つきカード（2026-10-23） */
+.ind-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.ind-card{display:flex;flex-direction:column;background:var(--paper)}
+.ind-photo{position:relative;overflow:hidden;aspect-ratio:4/3;background:#e9e4da}
+.ind-body{flex:1;padding:22px 22px 26px;border-top:3px solid var(--c2)}
+.i2 .ind-body{border-top-color:var(--c1)}.i3 .ind-body{border-top-color:var(--c7)}.i4 .ind-body{border-top-color:var(--c4)}
+.ind-card .ind-en{display:block;font-family:var(--en);font-size:10.5px;letter-spacing:.14em;color:var(--gold)}
+.ind-card .ind-name{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(18px,1.45vw,21px);line-height:1.5;margin:6px 0 10px;text-wrap:pretty}
+.ind-card .ind-desc{display:block;font-size:14px;line-height:1.95;color:var(--sub)}
+.ind-note{font-size:14px;line-height:1.9;color:var(--sub);margin:26px 0 0}
+@media (max-width:1100px){.ind-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){
+  .ind-grid{grid-template-columns:1fr;gap:12px}
+  .ind-card{display:grid;grid-template-columns:36% minmax(0,1fr)}
+  .ind-photo{aspect-ratio:auto;min-height:100%}
+  .ind-body{padding:14px 14px 16px}
+  .ind-card .ind-name{font-size:16.5px;margin:4px 0 6px}
+  .ind-card .ind-desc{font-size:13px;line-height:1.85}
+}
 
-    .rs-bottom {
-      position: relative;
-      z-index: 1;
-      padding: 2.4rem 2rem 2.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
-    }
+/* 強み：流通の流れ（川上→川下）と4つの知識 */
+.sec--strength{background:var(--paper)}
+.range{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,.7fr) minmax(0,1.5fr);align-items:center;gap:24px;margin:8px 0 0}
+.range-end{display:flex;flex-direction:column;gap:8px}
+.range-end--r{text-align:right;align-items:flex-end}
+.range-tag{font-family:var(--en);font-size:11px;letter-spacing:.2em;color:var(--gold)}
+.range-txt{font-family:var(--serif);font-weight:500;font-size:clamp(17px,1.6vw,22px);line-height:1.6}
+.range-bar{height:10px;background:var(--line);position:relative;overflow:hidden}
+.range-bar span{position:absolute;inset:0;background:linear-gradient(90deg,var(--c4) 0 25%,var(--c3) 25% 50%,var(--c2) 50% 75%,var(--c1) 75% 100%);transform-origin:0 50%}
+.range-cap{font-family:var(--serif);font-size:clamp(17px,1.6vw,21px);line-height:1.9;text-align:center;margin:30px 0 56px}
+.range-note{font-size:12px;color:var(--mute);text-align:center;margin:0 0 56px}
+.know--last{margin:6px 0 0}
+.chain{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr);align-items:stretch;margin:10px 0 0}
+.chain-node{padding:26px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:var(--ink);min-height:120px}
+.chain-node b{font-family:var(--serif);font-weight:500;font-size:clamp(18px,1.8vw,24px)}
+.chain-tag{font-family:var(--en);font-size:10.5px;letter-spacing:.2em;margin-bottom:6px}
+.cn1{background:var(--c4)}.cn2{background:var(--c3)}.cn3{background:var(--c2)}.cn4{background:var(--c1)}
+.chain-arw{display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:22px;color:var(--gold)}
+.mk-line{display:inline;color:var(--ink);font-weight:500;background:linear-gradient(transparent 62%,rgba(255,196,0,.55) 62%)}
+.chain-sub{font-size:12px;letter-spacing:.12em;margin-top:4px}
+.chain-cap{font-family:var(--serif);font-size:clamp(17px,1.6vw,21px);margin:22px 0 56px;text-align:center}
+.know-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 5vw;border-top:1px solid var(--line)}
+.know{padding:28px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:10px}
+.know--main{grid-column:1/-1;background:var(--tint);padding:34px 30px;border-bottom:none;margin:0 0 6px}
+.know--main .know-title{font-size:clamp(21px,2vw,27px)}
+.know--main p{max-width:760px}
+.know-num{grid-row:span 2;font-family:var(--en);font-weight:300;font-size:30px;line-height:1;color:var(--gold)}
+.know-title{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.6;margin:0 0 8px;text-wrap:pretty}
+.know p{font-size:14.5px;line-height:2;color:var(--sub);margin:0}
+@media (max-width:900px){
+  .range{grid-template-columns:1fr;gap:14px}
+  .range-end--r{text-align:left;align-items:flex-start}
+  .range-bar{height:8px}
+  .range-cap{margin-bottom:34px}
+  .chain{grid-template-columns:1fr;gap:0}
+  .chain-node{min-height:0;padding:16px 18px;flex-direction:row;justify-content:space-between}
+  .chain-node{gap:12px;justify-content:flex-start}
+  .chain-sub{margin:0}
+  .chain-tag{margin:0 0 0 auto;order:3}
+  .chain-arw{transform:rotate(90deg);height:34px}
+  .chain-cap{margin:18px 0 34px}
+  .know-list{grid-template-columns:1fr}
+}
 
-    .rs-sns { display: flex; gap: 1.4rem; align-items: center; }
-    .rs-icon {
-      color: rgba(255,255,255,0.65);
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .rs-icon:hover { color: var(--white); }
+/* 実績：雑誌の見開き */
+.feature{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:5vw;align-items:stretch}
+.feature-media{position:relative;overflow:hidden;min-height:520px;background:#e9e4da}
+.feature-text{padding:10px 0}
+.biz-location{font-family:var(--en);font-size:11px;letter-spacing:.24em;color:var(--gold)}
+.biz-name{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.4vw,34px);line-height:1.5;margin:10px 0 4px}
+.biz-sub{font-family:var(--en);font-size:12px;letter-spacing:.12em;color:var(--mute);margin:0 0 22px}
+.biz-body{font-size:15px;line-height:2.1;color:var(--sub);margin:0 0 1.1em}
+.link-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:26px}
+.link-row .biz-link{font-size:14px;letter-spacing:.08em;text-decoration:none;background:linear-gradient(var(--ink),var(--ink)) 0 100%/100% 1px no-repeat;padding-bottom:5px}
+.biz-qr{border:1px solid var(--line);background:#fff}
 
-    .rs-contact { display: flex; flex-direction: column; gap: 0.4rem; }
-    .rs-contact-label {
-      font-family: var(--en);
-      font-size: 0.58rem;
-      color: rgba(255,255,255,0.32);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.35rem;
-    }
-    .rs-contact a {
-      font-family: var(--en);
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.62);
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      transition: color 0.2s;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .rs-contact a:hover { color: rgba(255,255,255,0.9); }
-    .rs-copy {
-      font-family: var(--en);
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.28);
-      letter-spacing: 0.05em;
-    }
+/* 7つの道具：色とりどりのカードを横にめくる（Swiper） */
+.svc{position:relative}
+.svc-swiper{padding:0 var(--pad);overflow:hidden}
+.svc .swiper-slide{width:360px;height:auto}
+.g-card{--ox:12%;--oy:14%;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:12px;background:#e9e4da;isolation:isolate}
+.g-card::before{content:"";position:absolute;inset:0;z-index:-1;background:url('hero.jpg.png') center/cover no-repeat;transform:scale(2.6);transform-origin:var(--ox) var(--oy);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.g-card:hover::before{transform:scale(3)}
+.g-card:nth-child(7n+2){--ox:46%;--oy:30%}.g-card:nth-child(7n+3){--ox:86%;--oy:12%}.g-card:nth-child(7n+4){--ox:20%;--oy:86%}
+.g-card:nth-child(7n+5){--ox:62%;--oy:72%}.g-card:nth-child(7n+6){--ox:90%;--oy:58%}.g-card:nth-child(7n+7){--ox:34%;--oy:50%}
+.g-card-bar{display:none}
+.g-card-num{align-self:flex-start;display:block;font-family:var(--en);font-weight:500;font-size:10.5px;letter-spacing:.18em;color:var(--ink);background:rgba(255,253,249,.94);padding:7px 12px;margin-bottom:84px}
+.g-card-title{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.65;margin:0;padding:26px 24px 12px;background:var(--paper);text-wrap:pretty}
+.g-card-desc{font-size:14.5px;line-height:2.05;color:var(--sub);margin:0;padding:0 24px 28px;background:var(--paper);flex:1}
+.g-card-desc strong{color:var(--ink);font-weight:500}
+.svc-nav{display:flex;align-items:center;gap:18px;margin-top:30px}
+.svc-nav button{width:52px;height:52px;border:1px solid var(--ink);background:transparent;font-family:var(--en);font-size:18px;cursor:pointer;transition:background .3s,color .3s}
+.svc-nav button:hover{background:var(--ink);color:var(--bg)}
+.svc-bar{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden}
+.svc-bar__fill{position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--ink);transform:scaleX(.14);transform-origin:0 50%;transition:transform .5s}
 
-    /* ════════════════════════════
-       中央スクロールエリア
-    ════════════════════════════ */
-    #main {
-      margin-left: var(--col-l);
-      margin-right: var(--col-r);
-      position: relative;
-      z-index: 10;
-      /* トランジション */
-      transition: margin-left 0.7s ease, margin-right 0.7s ease;
-    }
+/* 実際の取り組み：左右交互 */
+.zig{display:flex;flex-direction:column;gap:12vh}
+.zig-item{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:5vw;align-items:center}
+.zig-item:nth-child(even) .zig-media{order:2}
+.zig-media{overflow:hidden;background:var(--paper);border:1px solid var(--line)}
+.zig-media img{display:block;width:100%}
+.zig-media--pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;border:none;background:transparent}
+.zig-media--pair img{border:1px solid var(--line)}
+.zig-num{font-family:var(--en);font-weight:300;font-size:64px;line-height:1;color:transparent;-webkit-text-stroke:1px var(--gold)}
+.zig-en{display:block;font-family:var(--en);font-size:11px;letter-spacing:.22em;color:var(--gold);margin-top:14px}
+.zig-title{font-family:var(--serif);font-weight:500;font-size:clamp(21px,2vw,28px);line-height:1.55;margin:8px 0 14px}
+.zig-text p{font-size:15px;line-height:2.1;color:var(--sub);margin:0 0 20px}
 
-    /* ヒーロー表示中：マージン0（全画面） */
-    body.hero-mode #main {
-      margin-left: 0;
-      margin-right: 0;
-    }
+/* 4本の柱：下から伸びる */
+.pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;align-items:end}
+.pillar-bar{position:relative;height:240px;margin-bottom:22px;border-bottom:1px solid var(--ink)}
+.pillar-bar span{position:absolute;left:0;right:0;bottom:0;height:var(--ph,50%);transform-origin:50% 100%}
+.pl1 .pillar-bar span{--ph:42%;background:var(--c1)}.pl2 .pillar-bar span{--ph:58%;background:var(--c2)}
+.pl3 .pillar-bar span{--ph:74%;background:var(--c4)}.pl4 .pillar-bar span{--ph:92%;background:var(--c6)}
+.pillar-num{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--gold)}
+.pillar-en{display:block;font-family:var(--en);font-size:10.5px;letter-spacing:.16em;color:var(--mute);margin-top:4px}
+.pillar-title{font-family:var(--serif);font-weight:500;font-size:18.5px;line-height:1.65;margin:10px 0 10px;text-wrap:pretty}
+.pillar-desc{font-size:14px;line-height:2;color:var(--sub);margin:0}
 
-    /* ════════════════════════════
-       ヒーローセクション（全画面）
-    ════════════════════════════ */
-    #top {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+/* はじめ方：伸びる線 */
+.timeline{list-style:none;margin:0 auto;padding:0;position:relative;max-width:760px}
+.tl-step{position:relative;padding:0 0 56px 64px}
+.tl-dot{position:absolute;left:0;top:4px;width:22px;height:22px;background:var(--c1);z-index:1}
+.tl-step:nth-child(2) .tl-dot{background:var(--c2)}.tl-step:nth-child(3) .tl-dot{background:var(--c4)}.tl-step:nth-child(4) .tl-dot{background:var(--c6)}
+.tl-num{font-family:var(--en);font-size:11px;letter-spacing:.22em;color:var(--gold)}
+.tl-title{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2vw,26px);line-height:1.5;margin:6px 0 10px}
+.tl-step p{font-size:15px;line-height:2.05;color:var(--sub);margin:0}
+.tl-line{position:absolute;left:10px;top:14px;bottom:70px;width:2px;background:var(--line);list-style:none}
+.tl-fill{position:absolute;inset:0;background:var(--ink);transform-origin:50% 0}
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: var(--white);
-      padding: 3.5rem 4.5rem;
-      background: rgba(0, 0, 0, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
+/* オーナー様へ（黒） */
+#join{background:var(--dark);color:#efece5}
+#join .s-label{color:#d8c79f}
+#join .s-title{color:#fff}
+#join .join-lead{color:#cfcac0;margin-top:0}
+.split--join{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
+.join-list{list-style:none;margin:36px 0 40px;padding:0;border-top:1px solid rgba(255,255,255,.16)}
+.join-list li{padding:18px 0 18px 40px;border-bottom:1px solid rgba(255,255,255,.16);position:relative;font-family:var(--serif);font-size:17px;line-height:1.7}
+.join-list li::before{content:"";position:absolute;left:0;top:50%;width:22px;height:3px;background:var(--c3)}
+.join-list li:nth-child(2)::before{background:var(--c4)}.join-list li:nth-child(3)::before{background:var(--c1)}.join-list li:nth-child(4)::before{background:var(--c6)}
 
-    .hero-en {
-      font-family: var(--en);
-      font-size: clamp(0.82rem, 1.4vw, 1rem);
-      font-weight: 300;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      opacity: 0.65;
-      display: block;
-      margin-bottom: 2.8rem;
-    }
+/* 社名の由来 */
+.name-photo{position:relative;overflow:hidden;height:42vh;min-height:300px;background:#e9e4da;margin-bottom:48px}
+.name-intro{max-width:760px}
+.name-duo{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:28px;align-items:stretch;margin:48px 0}
+.duo{padding:34px 32px;border-top:3px solid var(--c2);background:var(--paper)}
+.duo--tate{border-top-color:var(--c4)}
+.duo-plus{display:flex;align-items:center;font-family:var(--en);font-weight:300;font-size:44px;color:var(--gold)}
+.name-word{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,36px);margin:0 0 12px}
+.name-def{font-size:14.5px;line-height:2.05;color:var(--sub);margin:0}
+.name-foot{font-family:var(--serif);font-size:clamp(18px,1.8vw,24px);line-height:1.9;margin:0}
 
-    .hero-catch {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3.8rem);
-      font-weight: 300;
-      line-height: 1.75;
-      letter-spacing: 0.06em;
-      margin-bottom: 2.8rem;
-    }
+/* 会社概要 */
+.co-table{width:100%;border-collapse:collapse;border-top:1px solid var(--ink);margin-top:34px}
+.co-table th,.co-table td{text-align:left;vertical-align:top;padding:20px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.95}
+.co-table th{width:150px;font-family:var(--serif);font-weight:500;padding-right:20px}
+.co-table td a{text-decoration:none;border-bottom:1px solid var(--line)}
 
-    .hero-brand {
-      font-family: var(--serif);
-      font-size: clamp(1.4rem, 3vw, 2.4rem);
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      opacity: 1;
-    }
+/* お問い合わせ */
+.contact-strip{position:relative;height:30vh;min-height:200px;margin:-16vh 0 14vh;overflow:hidden;background:#e9e4da}
+.split--contact{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
+.split--contact .sec-head{position:sticky;top:calc(var(--hdr) + 40px);align-self:start;margin:0}
+.ct-info{list-style:none;margin:34px 0 0;padding:0;border-top:1px solid var(--line)}
+.ct-info li{display:flex;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.ct-info span{font-family:var(--en);font-size:11px;letter-spacing:.2em;color:var(--gold);width:84px;padding-top:3px}
+.ct-info a{text-decoration:none}
+.ct-box{background:var(--paper);padding:48px 44px;border-top:3px solid var(--c1)}
+.ct-row{margin-bottom:28px}
+.ct-label{display:block;font-size:13px;letter-spacing:.08em;margin-bottom:6px}
+.req{color:var(--c1);margin-left:4px}
+.ct-input,.ct-select,.ct-textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:transparent;border:none;border-bottom:1px solid #b9b3a6;border-radius:0;padding:12px 0;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
+.ct-input:focus,.ct-select:focus,.ct-textarea:focus{border-bottom-color:var(--ink)}
+.ct-textarea{min-height:170px;resize:vertical;line-height:1.9}
+.ct-sel-wrap{position:relative}.ct-sel-wrap::after{content:"";position:absolute;right:4px;top:50%;width:7px;height:7px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.ct-submit{margin-top:8px;padding:20px 58px;border:none;background:var(--ink);color:var(--bg);font:inherit;font-size:15px;letter-spacing:.18em;cursor:pointer;transition:background .3s}
+.ct-submit:hover{background:var(--gold)}.ct-submit:disabled{opacity:.6}
+.ct-note{font-size:12.5px;line-height:1.9;color:var(--mute);margin-top:22px}
+.ct-note a{color:inherit}
+#formDone{display:none;padding:40px 10px;text-align:center}
+.done-title{font-family:var(--serif);font-size:21px;margin:0 0 14px}.done-body{font-size:14.5px;line-height:2;color:var(--sub);margin:0}
 
-    /* スクロールヒント（中央下） */
-.scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.55rem;
-      color: rgba(255,255,255,0.5);
-    }
-    .scroll-hint span {
-      font-family: var(--en);
-      font-size: 0.55rem;
-      letter-spacing: 0.42em;
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 44px;
-      background: rgba(255,255,255,0.38);
-      transform-origin: top;
-      animation: lineAnim 2s ease-in-out infinite;
-    }
-    @keyframes lineAnim {
-      0%   { transform: scaleY(0); opacity: 0; }
-      40%  { opacity: 1; }
-      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
-    }
+/* フッター */
+#footer{background:var(--dark);color:#bdb8ae}
+.ft-cta{padding:16vh var(--pad) 12vh;text-align:center;border-bottom:1px solid rgba(255,255,255,.12)}
+.ft-tag{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.6vw,54px);line-height:1.5;color:#f1eee7;margin:0 0 40px}
+.ft-bottom{padding:8vh var(--pad) 110px}
+.ft-logo{font-family:var(--en);font-weight:500;letter-spacing:.3em;color:#f1eee7;font-size:14px}
+.ft-nav{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:24px}
+.ft-nav a{font-family:var(--en);font-size:11.5px;letter-spacing:.16em;text-decoration:none;color:#bdb8ae}
+.ft-nav a:hover{color:#fff}
+.ft-line{height:1px;background:rgba(255,255,255,.14);margin:34px 0 20px}
+.ft-copy{font-size:11.5px;margin:0;letter-spacing:.06em}
+.ft-credit{font-size:10px;opacity:.6;margin-top:6px}.ft-credit a{color:inherit}
 
-    /* ════════════════════════════
-       二列セクションレイアウト
-    ════════════════════════════ */
-    .sec-split {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 4rem;
-      align-items: start;
-      padding: 8rem 3.5rem 8rem 2rem;
-    }
+.mobile-fab{display:none}
 
-    .sec-head {
-      position: sticky;
-      top: 5rem;
-    }
+@media (max-width:900px){
+  :root{--pad:22px;--hdr:62px}
+  .hdr-contact{display:none}
+  .menu ol{grid-template-columns:1fr}
+  .menu li a{padding:11px 0}
+  #top{flex-direction:column;justify-content:flex-end;align-items:stretch;padding:calc(var(--hdr) + 8vh) 14px 14px}
+  .hero-text{width:auto;padding:22px 20px 24px}
+  .hero-en{display:none}
+  .hero-catch{font-size:clamp(27px,8.4vw,38px);margin-top:0}
+  .hero-line{width:110px;margin:16px 0 12px}
+  .hero-brand{font-size:14px}
+  .hero-lead{font-size:15px;margin-top:10px}
+  .hero-ctas{margin-top:18px;gap:14px 20px}
+  .band{--h:40vh!important;margin:0}
+  .sec{padding:11vh 0}
+  .sec-head{margin-bottom:36px}
+  .sec-head--row{grid-template-columns:1fr;gap:0}
+  .sec-head--row .sec-lead{margin-top:20px}
+  .story{grid-template-columns:1fr;gap:0}
+  .story .sec-head{position:static}
+  .vision{padding:9vh 16px}
+  .vision-inner{padding:44px 24px}
+  .vision-list li{gap:14px}
+  .v-text{font-size:clamp(24px,7.2vw,34px)}
+  .flip{grid-template-columns:1fr}
+  .flip-pain{padding:26px 0 6px}
+  .flip-arrow{justify-content:flex-start;font-size:22px;transform:rotate(90deg);width:24px;height:30px}
+  .flip-hope{margin:6px 0 24px;padding:20px 22px}
+  .flip-hope p{font-size:16.5px}
+  .hpin{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:11vh;scrollbar-width:none}
+  .hpin::-webkit-scrollbar{display:none}
+  .htrack{gap:14px}
+  .panel{width:82vw;min-height:430px;padding:30px 26px;scroll-snap-align:start;scroll-margin-left:22px}
+  .panel-num{top:18px;right:20px;font-size:84px}
+  .panel-desc{font-size:14.5px}
+  .split,.split--join,.split--contact,.feature,.zig-item{grid-template-columns:1fr;gap:28px}
+  .split-media,.feature-media{min-height:280px}
+  .split--company .split-media{min-height:220px}
+  .zig{gap:9vh}
+  .zig-item:nth-child(even) .zig-media{order:0}
+  .zig-num{font-size:48px}
+  .svc .swiper-slide{width:80vw}
+  .pillars{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px}
+  .pillar-bar{height:150px}
+  .pillar-title{font-size:16.5px}
+  .name-photo{height:34vh}
+  .name-duo{grid-template-columns:1fr;gap:12px}
+  .duo-plus{justify-content:center;font-size:32px}
+  .co-table th{width:92px;font-size:13.5px}.co-table td{font-size:14px}
+  .contact-strip{margin:-11vh 0 9vh}
+  .split--contact .sec-head{position:static}
+  .ct-box{padding:30px 20px}
+  .ct-submit{width:100%}
+  .mobile-fab{display:flex;align-items:center;gap:8px;position:fixed;right:16px;bottom:18px;z-index:40;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14px;letter-spacing:.1em;padding:15px 22px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+}
+@media (prefers-reduced-motion:reduce){.scroll-hint i::after{animation:none}.g-card::before{transition:none}.mk{background-size:100% 100%}}
+.biz-name,.name-word,.panel-sub,.zig-title,.tl-title,.flip-pain h3{text-wrap:pretty}
 
-    .s-label {
-      font-family: var(--en);
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--mid);
-      display: block;
-      margin-bottom: 1.2rem;
-    }
-    .s-title {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
-      font-weight: 400;
-      line-height: 1.65;
-      letter-spacing: 0.03em;
-    }
-    .s-rule {
-      width: 24px;
-      height: 1px;
-      background: #ccc;
-      margin-top: 1.8rem;
-    }
+/* 2026-10-23 トップは要点だけ・詳しい内容は別ページへ（オーナー指摘「長すぎる・同じ内容の繰り返し」） */
+section[id]{scroll-margin-top:var(--hdr)}
+/* スマホで、右から滑り込む動き（縦上がり・経歴の帯の右端など）の出発位置が画面の外にはみ出し、ページが横にずれて縮んで見えていたのを防ぐ（clip はスクロールの仕組みを作らないので、追従する欄や縦スクロールに影響しない） */
+html,body{overflow-x:clip}
+p,li{text-wrap:pretty}  /* 段落の最後の行が「す。」など1〜2文字だけにならないよう、ブラウザに折り返しを整えてもらう（全ページ共通） */
+.hero-lead{text-wrap:balance}  /* 「…会社で／す。」のように1文字だけ次の行に落ちないように */
+/* 最初の画面：何をしてくれる会社かを3つの短い言葉で（下の「3つの関わり方」と対応）。SCROLLの印は背景の画像の上では読めないので出さない */
+.hero-chips{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.hero-chips li{font-size:14px;font-weight:500;line-height:1.5;padding:7px 12px 7px 10px;background:var(--tint);border-left:4px solid var(--c1)}
+.hero-chips li:nth-child(2){border-left-color:var(--c4)}.hero-chips li:nth-child(3){border-left-color:var(--c2)}
+.scroll-hint{display:none}
+.more-row{margin-top:44px}
+.tlink--more{font-size:15px;color:var(--ink)}
+.tlink .arw{display:inline-block;margin-left:4px;transition:transform .3s}.tlink:hover .arw{transform:translateX(5px)}
+.case-list{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line)}
+.case-list li{display:grid;grid-template-columns:38px minmax(0,1fr);padding:13px 0;border-bottom:1px solid var(--line)}
+.case-list .cn{font-family:var(--en);font-size:12px;letter-spacing:.12em;color:var(--gold);padding-top:4px}
+.case-list b{font-weight:500;font-size:15px;line-height:1.75;color:var(--ink)}
+.mobile-fab{transition:opacity .35s,transform .35s}
+.mobile-fab.fab-wait{opacity:0;transform:translateY(14px);pointer-events:none}
+.ct-wish{margin:30px 0 0}
+.ct-wish-ttl{font-size:14px;font-weight:500;color:var(--ink);margin:0 0 10px}
+.ct-wish ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.ct-wish li{position:relative;padding:11px 0 11px 28px;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.75;color:var(--sub)}
+.ct-wish li::before{content:"";position:absolute;left:0;top:22px;width:16px;height:3px;background:var(--c3)}
+.ct-wish li:nth-child(2)::before{background:var(--c4)}.ct-wish li:nth-child(3)::before{background:var(--c1)}.ct-wish li:nth-child(4)::before{background:var(--c6)}
+/* よくあるご質問（開閉式。ボタンの下の「相談は何度でも無料・秘密厳守」の一言も）2026-10-23 */
+.faq-list{border-top:1px solid var(--line)}
+.faq{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:30px minmax(0,1fr) 18px;gap:12px;align-items:start;padding:22px 0;font-family:var(--serif);font-weight:500;font-size:clamp(16px,1.25vw,18px);line-height:1.7}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.faq-q{font-family:var(--en);font-size:15px;font-weight:500;color:var(--gold);padding-top:3px}
+.faq-ic{position:relative;width:16px;height:16px;margin-top:7px}
+.faq-ic::before,.faq-ic::after{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:var(--ink);transition:transform .3s}
+.faq-ic::after{transform:rotate(90deg)}
+.faq[open] .faq-ic::after{transform:rotate(0)}
+.faq-a{padding:0 30px 24px 42px}
+.faq-a p{margin:0;font-size:15px;line-height:2;color:var(--sub)}
+.faq-group+.faq-group{margin-top:64px}
+.faq-gt{font-family:var(--serif);font-weight:500;font-size:clamp(19px,1.6vw,23px);line-height:1.6;margin:0 0 16px}
+.faq-gt::before{content:"";display:block;width:40px;height:3px;background:var(--c2);margin-bottom:14px}
+.faq-group:nth-child(2) .faq-gt::before{background:var(--c4)}.faq-group:nth-child(3) .faq-gt::before{background:var(--c1)}
+.cta-note{font-size:13px;letter-spacing:.04em;color:var(--sub);margin:12px 0 0}
+.cta-row--center .cta-note{text-align:center}
+/* 別ページ（代表の強み・7つの道具・こいまりの事例） */
+.page-hero{padding:calc(var(--hdr) + 12vh) 0 8vh;background:var(--tint)}
+.page-hero .sec-lead{max-width:760px}
+.crumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12.5px;letter-spacing:.08em;color:var(--mute);margin:0 0 28px}
+.crumb a{color:var(--sub);text-decoration:none;background:linear-gradient(var(--sub),var(--sub)) 0 100%/100% 1px no-repeat;padding-bottom:2px}
+.subpage .sec{padding:12vh 0}
+.range-cap,.range-txt{text-wrap:balance}
+.range-txt--list span,.range-cap span{display:block}  /* 1行ずつ別のかたまりにして、折り返す行だけ長さをそろえる（スマホで「新車種開発、」だけが残らないように） */  /* 「…物流・／価格交渉。」のように最後の言葉だけが残らないよう、行の長さをそろえる */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
+.back-row{padding-bottom:12vh}
+@media (max-width:900px){
+  .page-hero{padding:calc(var(--hdr) + 6vh) 0 6vh}
+  .svc-grid{grid-template-columns:1fr}
+  .more-row{margin-top:32px}
+  .pull--strength{font-size:clamp(19px,5.2vw,24px)}
+  .hero-chips{margin-top:12px;gap:6px}  /* スマホ用は通常の指定より後ろに書く（前に書くと上書きされる） */
+  .hero-chips li{font-size:13px;padding:5px 10px 5px 8px}
+  .faq summary{grid-template-columns:24px minmax(0,1fr) 16px;gap:8px;padding:18px 0;font-size:16px}
+  .faq-a{padding:0 4px 20px 32px}  /* 3行の引用がスマホで6行に細切れにならないよう、4行に収める */
+}
 
-    .s-body {
-      font-size: 0.96rem;
-      line-height: 2.15;
-      color: #444;
-      max-width: 640px;
-    }
-
-    /* ── CONCEPT ── */
-    .concept-quote {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      line-height: 2.1;
-      color: var(--black);
-      border-left: 2px solid #bbb;
-      padding-left: 1.3rem;
-      margin-bottom: 2.2rem;
-    }
-
-    /* ── NAME ── */
-    .name-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      margin-top: 2.5rem;
-    }
-    .name-word {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--black);
-      margin-bottom: 0.7rem;
-    }
-    .name-def { font-size: 0.83rem; line-height: 2; color: #555; }
-    .name-foot {
-      margin-top: 2.5rem;
-      padding-top: 1.8rem;
-      border-top: 1px solid var(--border);
-      font-size: 1rem;
-      line-height: 2;
-      color: #555;
-    }
-
-    /* ── BUSINESS ── */
-    .biz-intro { font-size: 0.875rem; line-height: 2.1; color: #555; margin-bottom: 3rem; }
-    .biz-card {
-      padding-top: 3rem;
-      border-top: 2px solid var(--black);
-    }
-    .biz-header {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .biz-num {
-      font-family: var(--en);
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 1;
-      color: var(--black);
-      flex-shrink: 0;
-    }
-    .biz-meta {
-      border-left: 1px solid var(--border);
-      padding-left: 1.6rem;
-    }
-    .biz-location {
-      font-family: var(--en);
-      font-size: 0.75rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--mid);
-      display: block;
-      margin-bottom: 0.6rem;
-    }
-    .biz-name {
-      font-family: var(--serif);
-      font-size: 1.55rem;
-      font-weight: 400;
-      line-height: 1.6;
-      margin-bottom: 0.3rem;
-    }
-    .biz-sub { font-size: 0.92rem; color: var(--mid); }
-    .biz-body { font-size: 0.85rem; line-height: 2.2; color: #444; margin-bottom: 1.8rem; }
-    .biz-body + .biz-body { margin-top: -0.8rem; }
-    .biz-link {
-      font-family: var(--en);
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--black);
-      text-decoration: none;
-      border-bottom: 1px solid var(--black);
-      padding-bottom: 2px;
-      transition: opacity 0.2s;
-      display: inline-block;
-    }
-    .works-img { display:block; width:100%; height:auto; border:1px solid var(--border); margin:0 0 1.6rem; }
-    .works-pair { display:grid; grid-template-columns:1fr 1fr; gap:1rem; max-width:420px; }
-    .works-img--phone { margin-bottom:1.6rem; }
-    #services .g-card, #process .g-card { }
-    #services .sec-split > *, #works .sec-split > *, #process .sec-split > * { min-width:0; }
-    #works .biz-sub, #works .biz-name { overflow-wrap:anywhere; }
-    #works .biz-header { min-width:0; } #works .biz-meta { min-width:0; flex:1 1 auto; }
-    @media (max-width: 600px) { #works .biz-name { font-size:1.15rem; } }
-    #works .biz-name { white-space:normal; }
-    .biz-link:hover { opacity: 0.4; }
-    .biz-link-row { display: flex; align-items: center; gap: 1.1rem; }
-    .biz-qr {
-      width: 4.2rem;
-      height: 4.2rem;
-      border: 1px solid var(--border);
-      padding: 3px;
-      background: var(--white);
-      flex-shrink: 0;
-    }
-
-    /* ── 事業成長の心得 ── */
-    .growth-lead { font-size: 0.875rem; line-height: 2.1; color: #555; margin-bottom: 3rem; }
-    .growth-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .g-card { background: var(--white); padding: 2.4rem 2rem; position: relative; }
-    .g-card-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-    .bar-a { background: #e9956a; }
-    .bar-b { background: #5bbfb5; }
-    .bar-c { background: #a989c5; }
-    .bar-d { background: #d4a847; }
-    .g-card-num {
-      font-family: var(--en);
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: #ccc;
-      display: block;
-      margin-bottom: 1.2rem;
-    }
-    .g-card-title {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-    .g-card-desc { font-size: 0.82rem; line-height: 2; color: #555; }
-
-    /* ════════════════════════════
-       JOIN（黒背景）
-    ════════════════════════════ */
-    #name .s-title { white-space: nowrap; }
-    #join { background: var(--black); }
-    #join .s-label { color: rgba(255,255,255,0.3); }
-    #join .s-title { color: var(--white); }
-    #join .s-rule  { background: rgba(255,255,255,0.18); }
-
-    .join-lead {
-      font-size: 0.96rem;
-      line-height: 2.2;
-      color: rgba(255,255,255,0.62);
-      margin-bottom: 3rem;
-    }
-    .join-list { list-style: none; margin-bottom: 3.5rem; }
-    .join-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.2rem;
-      padding: 0.95rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      font-size: 0.96rem;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.72);
-    }
-    .join-list li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
-    .join-list li::before { content: '—'; color: rgba(255,255,255,0.22); flex-shrink: 0; }
-    .join-btn {
-      display: inline-block;
-      font-size: 1.33rem;
-      font-family: var(--serif);
-      color: #fafafa;
-      padding: 10px 20px;
-      border-radius: 10px;
-      border: 2px solid #fafafa;
-      background: #252525;
-      box-shadow: 3px 3px #aaaaaa;
-      cursor: pointer;
-      margin: 35px 0;
-      text-decoration: none;
-      transition: box-shadow 0.12s, transform 0.12s;
-    }
-    .join-btn:active {
-      box-shadow: none;
-      transform: translate(3px, 3px);
-    }
-
-    /* ── COMPANY ── */
-    .co-table { width: 100%; border-collapse: collapse; }
-    .co-table tr { border-bottom: 1px solid var(--border); }
-    .co-table tr:first-child { border-top: 1px solid var(--border); }
-    .co-table th {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: var(--mid);
-      text-align: left;
-      padding: 1.3rem 1.5rem 1.3rem 0;
-      width: 150px;
-      vertical-align: top;
-      white-space: nowrap;
-    }
-    .co-table td { font-size: 1rem; padding: 1.3rem 0; line-height: 1.9; vertical-align: top; }
-    .co-table td a { color: inherit; text-decoration: none; border-bottom: 1px solid #ddd; }
-    .co-table td a:hover { color: #555; }
-
-    /* ── CONTACT ── */
-    .ct-lead { font-size: 0.875rem; line-height: 2.1; color: #555; margin-bottom: 2.5rem; }
-    .ct-form { display: flex; flex-direction: column; gap: 1.3rem; }
-    .ct-row  { display: flex; flex-direction: column; gap: 0.4rem; }
-    .ct-label { font-size: 0.73rem; color: #555; letter-spacing: 0.04em; }
-    .ct-label .req { color: #c07a5a; margin-left: 0.3em; font-size: 0.68rem; }
-    .ct-input, .ct-select, .ct-textarea {
-      width: 100%;
-      padding: 0.8rem 0.9rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.85);
-      font-family: var(--sans);
-      font-size: 0.86rem;
-      color: var(--black);
-      outline: none;
-      appearance: none;
-      -webkit-appearance: none;
-      border-radius: 0;
-      transition: border-color 0.25s;
-    }
-    .ct-input:focus, .ct-select:focus, .ct-textarea:focus { border-color: #999; }
-    .ct-textarea { min-height: 120px; resize: vertical; line-height: 1.8; }
-    .ct-sel-wrap { position: relative; }
-    .ct-sel-wrap::after {
-      content: '›';
-      position: absolute;
-      right: 0.9rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      color: var(--mid);
-      pointer-events: none;
-    }
-    .ct-submit {
-      display: block;
-      width: 100%;
-      padding: 0.95rem;
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--en);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin-top: 0.3rem;
-    }
-    .ct-submit:hover { background: #333; }
-    .ct-note { font-size: 0.72rem; color: #aaa; line-height: 1.9; margin-top: 0.9rem; }
-    #formDone { display: none; padding: 2.5rem; text-align: center; border: 1px solid var(--border); }
-    .done-title { font-family: var(--serif); font-size: 1.05rem; margin-bottom: 0.6rem; }
-    .done-body  { font-size: 0.83rem; color: #555; line-height: 2; }
-
-    /* ── FOOTER ── */
-    #footer { background: #0c0c0c; color: rgba(255,255,255,0.3); padding: 5rem 4.5rem 3.5rem; }
-    .ft-logo {
-      font-family: var(--en);
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.8);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .ft-tag { font-family: var(--serif); font-size: 0.75rem; color: rgba(255,255,255,0.2); margin-bottom: 3rem; }
-    .ft-nav { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
-    .ft-nav a {
-      font-family: var(--en);
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.28);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .ft-nav a:hover { color: rgba(255,255,255,0.7); }
-    .ft-line { width: 36px; height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 2.5rem; }
-    .ft-copy { font-family: var(--en); font-size: 0.62rem; letter-spacing: 0.05em; }
-
-    /* ════════════════════════════
-       下から上へのフェードイン
-    ════════════════════════════ */
-    .js-fade {
-      opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-    .js-fade.on { opacity: 1; transform: translateY(0); }
-    .js-fade.d1 { transition-delay: 0.15s; }
-    .js-fade.d2 { transition-delay: 0.28s; }
-    .js-fade.d3 { transition-delay: 0.40s; }
-    .js-fade.d4 { transition-delay: 0.52s; }
-
-    /* ════════════════════════════
-       レスポンシブ
-    ════════════════════════════ */
-    @media (max-width: 1100px) {
-      :root { --col-l: 200px; --col-r: 180px; }
-    }
-    /* ════════════════════════════
-       モバイル用 固定相談ボタン（960px以下）
-    ════════════════════════════ */
-    .mobile-fab {
-      display: none;
-      position: fixed;
-      bottom: 1.1rem;
-      right: 1.1rem;
-      z-index: 40;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--sans);
-      font-size: 0.82rem;
-      font-weight: 500;
-      padding: 0.75rem 1.15rem;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.28);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    body.hero-mode .mobile-fab {
-      opacity: 0;
-      transform: translateY(14px);
-      pointer-events: none;
-    }
-
-    @media (max-width: 960px) {
-      .mobile-fab { display: flex; }
-      #right-sidebar { display: none !important; }
-      body.hero-mode #main,
-      #main { margin-right: 0; }
-      .sec-split { grid-template-columns: 1fr; gap: 2.5rem; padding: 6rem 3rem; }
-      .sec-head { position: static; }
-      .name-pair { grid-template-columns: 1fr; gap: 2rem; }
-      .biz-card  { grid-template-columns: 1fr; gap: 2rem; }
-      .biz-visual { order: -1; }
-    }
-    /* ── スマホ横向き：サイドバー左右パディングを詰めてはみ出しを防ぐ ── */
-    @media (orientation: landscape) and (max-height: 500px) {
-      #sidebar {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        overflow-y: auto;
-      }
-      .sidebar-logo {
-        font-size: 0.86rem;
-        margin-bottom: 1rem;
-      }
-      .sidebar-nav li a {
-        padding: 0.28rem 0;
-        font-size: 0.88rem;
-      }
-      /* 表題欄：sticky解除（短い画面でスタックしないように） */
-      .sec-head { position: static; top: auto; }
-      /* セクションの上下パディングを詰めて表題が画面内に収まるように */
-      .sec-split { padding: 2.5rem 1.5rem; gap: 1.5rem; }
-    }
-
-    @media (max-width: 660px) {
-      :root { --col-l: 0px; }
-
-      /* ── スマホ固定ナビ（2段構成） ── */
-      #sidebar {
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        bottom: auto;
-        width: 100%;
-        height: auto;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.75rem 1.4rem 0.55rem;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        background: rgba(255,255,255,0.96);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-      }
-
-      /* ヒーロー中：上へフェードアウト */
-      body.hero-mode #sidebar {
-        opacity: 0;
-        transform: translateY(-14px);
-        pointer-events: none;
-      }
-
-      /* 1段目：ロゴ */
-      .sidebar-logo { font-size: 0.88rem; margin-bottom: 0.4rem; margin-right: 0; }
-      .sidebar-logo span { display: none; }
-
-      /* 2段目：ナビリンク */
-      .sidebar-nav ul { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0 0.9rem; }
-      .sidebar-nav li a { padding: 0.2rem 0; font-size: 0.73rem; }
-
-      /* 固定ナビ高さ分のアンカースクロール補正（≈70px） */
-      html { scroll-padding-top: 70px; }
-
-      /* 中央エリア */
-      body.hero-mode #main,
-      #main { margin-left: 0; }
-
-      /* セクション */
-      .sec-split { padding: 4.5rem 1.5rem; }
-
-      /* 見出し1行化 */
-      .s-title {
-        white-space: nowrap;
-        font-size: clamp(1.05rem, 5vw, 1.5rem);
-      }
-      .s-title br { display: none; }
-
-      /* ケーキ屋さん こいまり 1行 */
-      .biz-name {
-        white-space: nowrap;
-        font-size: clamp(1.1rem, 4.5vw, 1.55rem);
-      }
-
-      /* ヒーロー調整 */
-      .hero-catch { font-size: 2rem; }
-      .hero-en { letter-spacing: 0.3em; }
-
-      #footer { padding: 4rem 1.5rem 3rem; }
-    }
-  </style>
-<style>.grecaptcha-badge{visibility:hidden!important}</style>
+</style>
 </head>
-<body class="hero-mode">
+<body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQJ25SX6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+<div class="progress" aria-hidden="true"></div>
+<header id="hdr">
+  <a href="#top" class="logo">NORI&amp;TATE</a>
+  <div class="hdr-right"><a href="#contact" class="btn btn--sm hdr-contact">CONTACT</a><button type="button" id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu">MENU</button></div>
+</header>
+<nav id="menu" class="menu" aria-hidden="true" aria-label="メインナビゲーション">
+  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の想い</span></a></li><li><a href="#issues"><span class="mn">03</span><span class="mj">その「困った」、伸びしろです</span></a></li><li><a href="#whatwedo"><span class="mn">04</span><span class="mj">私たちの仕事</span></a></li><li><a href="#industries"><span class="mn">05</span><span class="mj">業種の壁はありません</span></a></li><li><a href="#strength"><span class="mn">06</span><span class="mj">代表の強み</span></a></li><li><a href="#services"><span class="mn">07</span><span class="mj">7つの道具</span></a></li><li><a href="#works"><span class="mn">08</span><span class="mj">こいまりの事例</span></a></li><li><a href="#process"><span class="mn">09</span><span class="mj">はじめ方</span></a></li><li><a href="#faq"><span class="mn">10</span><span class="mj">よくあるご質問</span></a></li><li><a href="#name"><span class="mn">11</span><span class="mj">社名の由来</span></a></li><li><a href="#company"><span class="mn">12</span><span class="mj">会社概要</span></a></li><li><a href="#contact"><span class="mn">13</span><span class="mj">お問い合わせ</span></a></li></ol>
+  <div class="menu-foot"><a href="tel:09012436770">090-1243-6770</a><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a></div>
+</nav>
+<a href="#contact" class="mobile-fab" aria-label="お問い合わせ・相談する">相談してみる</a>
 
-<!-- ════════════════════════
-     背景レイヤー
-════════════════════════ -->
-<div id="bg-layer" aria-hidden="true">
-  <div class="bg-panel" id="bg-top"      style="background-image:url('hero.jpg.png');"></div>
-  <div class="bg-panel" id="bg-concept"  style="background-image:url('our%20mind.jpg.png');"></div>
-  <div class="bg-panel" id="bg-name"     style="background-image:url('ameft.jpg.jpg');"></div>
-  <div class="bg-panel" id="bg-business" style="background-image:url('cake.jpg.jpg');"></div>
-  <!-- 2026-10-22：業種＝大阪の商店街（Ethan Doyle White, CC BY-SA 4.0）／経営を良くする手段＝仕事道具の机（Pixel.la, CC0）。出典は bg-credits.json -->
-  <div class="bg-panel" id="bg-industries" style="background-image:url('bg-industries.jpg');"></div>
-  <div class="bg-panel" id="bg-services" style="background-image:url('bg-services.jpg');"></div>
-  <div class="bg-panel" id="bg-growth"   style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=70&auto=format&fit=crop');"></div>
-  <div class="bg-panel" id="bg-company"  style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=70&auto=format&fit=crop');"></div>
-  <div class="bg-panel" id="bg-contact"  style="background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=70&auto=format&fit=crop');"></div>
-</div>
-
-
-<!-- ════════════════════════
-     左サイドバー（ナビ）
-════════════════════════ -->
-<aside id="sidebar">
-  <a href="#top" class="sidebar-logo">
-    NORI&amp;TATE Co., Ltd.
-    <span>中小企業から、<br>再び日本を盛り上げる</span>
-  </a>
-  <nav class="sidebar-nav" aria-label="メインナビゲーション">
-    <ul>
-      <li><a href="#top" class="nav-link active" data-section="top">Top</a></li>
-      <li><a href="#concept" class="nav-link" data-section="concept">Concept</a></li>
-      <li><a href="#issues" class="nav-link" data-section="issues">Issues</a></li>
-      <li><a href="#whatwedo" class="nav-link" data-section="whatwedo">What We Do</a></li>
-      <li><a href="#industries" class="nav-link" data-section="industries">Industries</a></li>
-      <li><a href="#business" class="nav-link" data-section="business">Business</a></li>
-      <li><a href="#services" class="nav-link" data-section="services">Services</a></li>
-      <li><a href="#works" class="nav-link" data-section="works">Case Study</a></li>
-      <li><a href="#growth" class="nav-link" data-section="growth">Key Principles</a></li>
-      <li><a href="#join" class="nav-link" data-section="join">Join</a></li>
-      <li><a href="#name" class="nav-link" data-section="name">Name</a></li>
-      <li><a href="#company" class="nav-link" data-section="company">Company</a></li>
-      <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
-    </ul>
-  </nav>
-</aside>
-
-<!-- ════════════════════════
-     モバイル用 固定相談ボタン
-════════════════════════ -->
-<a href="#contact" class="mobile-fab" aria-label="お問い合わせ・相談する">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-    <polyline points="22,6 12,13 2,6"/>
-  </svg>
-  相談する
-</a>
-
-
-<!-- ════════════════════════
-     右サイドバー（SNS・連絡先）
-════════════════════════ -->
-<div id="right-sidebar" aria-label="SNS・連絡先">
-  <div class="rs-bottom">
-    <div class="rs-sns">
-      <a href="#contact" class="rs-icon" aria-label="お問い合わせフォームへ">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-          <polyline points="22,6 12,13 2,6"/>
-        </svg>
-      </a>
-    </div>
-    <div class="rs-contact">
-      <span class="rs-contact-label">Contact</span>
-      <a href="tel:09012436770">090-1243-6770</a>
-      <a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a>
-    </div>
-    <p class="rs-copy">&copy; 2026 NORI&amp;TATE Co., Ltd.</p>
-  </div>
-</div>
-
-
-<!-- ════════════════════════
-     中央スクロールエリア
-════════════════════════ -->
 <main id="main">
 
-  <!-- ── TOP（全画面ヒーロー） ── -->
+  <!-- 2026-10-23 オーナー指摘「トップの内容がだらだら長い・同じ内容の繰り返し」：
+       トップは要点だけ・同じ主張は1回だけ。詳しい内容は別ページ（strength.html／services.html／works.html）へ -->
+
+  <!-- ── TOP：オーナー作のメインビジュアルを背景に、「何をしてくれる会社か」と相談ボタンを最初の画面に収める（2026-10-23） ── -->
   <section id="top">
-    <div class="hero-content js-fade">
-      <span class="hero-en" id="hero-en">Reviving Japan through Small Business</span>
+    <div class="hero-text">
+      <span class="hero-en fade" id="hero-en">Reviving Japan through Small Business</span>
       <h1 class="hero-catch" id="hero-catch">中小企業から、<br>再び日本を<br>盛り上げる。</h1>
-      <p class="hero-brand" id="hero-brand">株式会社NORI&amp;TATE</p>
-      <p class="hero-brand" style="margin-top:1.4rem;line-height:2;font-size:0.9rem;letter-spacing:.08em;">後継者不在・人手不足・高齢化。<br>時代の移り変わりとともに落ちていく営業力や管理の力。<br>取引先に値上げを言い出せない、販路が広がらない──。<br>あらゆる業種の中小企業の「続けたい」を、<br>経営ごと引き継ぎ、育て、次の世代へ。</p>
+      <div class="hero-line"></div>
+      <p class="hero-brand fade" id="hero-brand">株式会社NORI&amp;TATE</p>
+      <p class="hero-lead fade">中小企業の事業承継と経営を支える会社です。</p>
+      <ul class="hero-chips fade" aria-label="NORI&amp;TATEがすること"><li>経営を引き継ぐ</li><li>立て直しと成長に伴走する</li><li>次の経営者を育てる</li></ul>
+      <div class="hero-ctas fade"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a><a class="tlink" href="#whatwedo">NORI&amp;TATEってどんな会社？</a></div>
+      <p class="cta-note fade">ご相談は何度でも無料・秘密厳守です。</p>
     </div>
-    <div class="scroll-hint" aria-hidden="true">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
+    <div class="hero-visual"><div class="hero-img" id="bg-top" style="background-image:url('hero.jpg.png');"></div></div>
+    <div class="scroll-hint" aria-hidden="true">SCROLL<i></i></div>
   </section>
 
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Reviving Japan through Small Business —</span><span>NORI&amp;TATE —</span><span>Reviving Japan through Small Business —</span><span>NORI&amp;TATE —</span><span>Reviving Japan through Small Business —</span><span>NORI&amp;TATE —</span><span>Reviving Japan through Small Business —</span><span>NORI&amp;TATE —</span></div></div>
 
-  <!-- ── CONCEPT ── -->
-  <section id="concept">
-    <div class="sec-split">
+  <div class="band" style="--h:76vh" aria-hidden="true"><div class="band-img" id="bg-concept" data-bg="our%20mind.jpg.png"></div></div>
 
-      <div class="sec-head js-fade">
+  <!-- ── CONCEPT：原体験 → 決意の一文 → いちばん大切にしていること ── -->
+  <section id="concept" class="sec">
+    <div class="wrap story">
+      <div class="sec-head">
         <span class="s-label">Concept</span>
-        <h2 class="s-title" id="concept-title">代表の<br>考え方</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title" id="concept-title">この悔しさを、<br>希望に変える。</h2>
       </div>
-
-      <div class="sec-body" id="concept-body">
-        <p class="s-body js-fade d1">
-          株式会社NORI&amp;TATEの原点は、私が商社時代に目の当たりにしてきた、ある中小企業の姿にあります。お世話になった、鉄鋼業界で優れた技術を持つその金属加工会社は、経営者の高齢化や後継者不足、若手との意見の相違から技術を継げず、職人さんが一人ずつ離れていきました。そうして事業が衰退していく──そんな現場でした。
-        </p>
-        <p class="s-body js-fade d2" style="margin-top:1.4rem;">
-          この光景を、二度と繰り返したくない。それが、NORI&amp;TATEを立ち上げた理由です。
-        </p>
-        <p class="s-body js-fade d3" style="margin-top:1.4rem;">
-          私たちは、事業承継を通じて技術と雇用を継承します。そのうえで、従来と違った観点から事業を見つめ直し、新しい価値を創造・探求することで成長を図ります。何よりも大切にしているのは、そこで働く方々やご家族の暮らしをより良くすること。そして、会社を時代に必要とされる企業へと成長させることです。
-        </p>
+      <div class="story-body" id="concept-body">
+        <p class="s-body">株式会社NORI&amp;TATEの原点は、私が商社時代に目の当たりにした、ある中小企業の姿です。</p>
+        <p class="s-body">お世話になった、鉄鋼業界で優れた技術を持つ金属加工会社。経営者の高齢化や後継者不足、若手との意見の相違から技術を継げず、職人さんが一人、また一人と離れていき、事業は小さくなっていきました。</p>
+        <blockquote class="pull">この光景を、<br>二度と繰り返したくない。</blockquote>
+        <p class="s-body">それが、NORI&amp;TATEを立ち上げた理由です。</p>
+        <p class="s-body s-body--strong">何よりも大切にしているのは、そこで働く方々やご家族の暮らしをより良くすること。そして、会社を時代に必要とされる企業へと成長させることです。</p>
       </div>
-
     </div>
   </section>
 
+  <!-- ── VISION：代表の想いの続き（オーナーの言葉をそのまま大きく） ── -->
+  <section id="vision" class="vision">
+    <div class="vision-bg" aria-hidden="true"></div>
+    <div class="vision-inner">
+      <span class="s-label">Vision</span>
+      <ul class="vision-list">
+        <li><span class="v-num">01</span><span class="v-text">日本の未来を、<em class="mk mk--1">明るく。</em></span></li>
+        <li><span class="v-num">02</span><span class="v-text">中小企業を、<em class="mk mk--2">世界へ。</em></span></li>
+        <li><span class="v-num">03</span><span class="v-text">社員を、<em class="mk mk--3">次の経営者に。</em></span></li>
+      </ul>
+      <p class="vision-text">日本には、世界に誇れる技術や、おいしさや、あたたかいサービスを持つ中小企業がたくさんあります。それらの事業が、もっと広い世界へ羽ばたけるように。</p>
+      <p class="vision-text">私たちは、サポートに入ったり、経営を引き継いだりして会社を伸ばしながら、もともと働いている社員の方々を、ゆくゆくは経営を任せられる人材へと育てていきます。</p>
+    </div>
+  </section>
 
-  <!-- ── ISSUES（2026-10-20：誰のどんな悩みに応える会社かを最初に示す） ── -->
-  <section id="issues">
-    <div class="sec-split">
-      <div class="sec-head js-fade">
+  <!-- ── ISSUES：「困った」→「こう変える」（説明文は省き、見出しと答えの一行だけ） ── -->
+  <section id="issues" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Issues</span>
-        <h2 class="s-title">こんなお悩み<br>ありませんか</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title">その「困った」、<br>伸びしろです。</h2>
+        <p class="sec-lead">多くの中小企業がぶつかる壁を、ひとつずつ次の一手に変えていきます。</p>
       </div>
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1">業種や規模を問わず、日本の中小企業の多くが、いま同じ壁に向き合っています。</p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-a"></div><span class="g-card-num">01 — Succession</span><h3 class="g-card-title">後継者がいない</h3><p class="g-card-desc">事業は続けたい。けれど、ご家族にも社内にも、任せられる人が見つからない。</p></article>
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-b"></div><span class="g-card-num">02 — People</span><h3 class="g-card-title">人手が足りない・高齢化が進んでいる</h3><p class="g-card-desc">採用しても定着しない。職人や中心メンバーの高齢化で、技術や経験の継承が止まりかけている。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-c"></div><span class="g-card-num">03 — Management</span><h3 class="g-card-title">営業力・管理力が落ちてきた</h3><p class="g-card-desc">時代の移り変わりとともに、昔ながらのやり方では売上が伸びず、数字や業務の管理も追いつかない。何から手を付ければよいのか分からない。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-d"></div><span class="g-card-num">04 — Change</span><h3 class="g-card-title">時代の変化についていけない</h3><p class="g-card-desc">ホームページやSNS、予約や業務のデジタル化。必要だと分かっていても、手が回らない。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-a"></div><span class="g-card-num">05 — Partner</span><h3 class="g-card-title">相談できる相手がいない</h3><p class="g-card-desc">経営の悩みを、一人で抱え込んでいる。社外に、腹を割って話せる相談役が欲しい。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-b"></div><span class="g-card-num">06 — Price &amp; Market</span><h3 class="g-card-title">値上げを言い出せない・販路が広がらない</h3><p class="g-card-desc">原材料や人件費は上がるのに、長年の取引先には値上げを切り出せない。新しいお客様や販路を広げる手立ても見つからない。</p></article>
-        </div>
-      </div>
+      <ol class="flip-list">
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>後継者がいない</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h1c"><span class="flip-tag">NORI&amp;TATEなら</span><p>私たちが経営を引き継ぎ、事業を続けていきます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>人手が足りない・高齢化が進んでいる</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h2c"><span class="flip-tag">NORI&amp;TATEなら</span><p>採用と育成の仕組みで、技術と経験を次の世代へつなぎます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>営業力・管理力が落ちてきた</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h3c"><span class="flip-tag">NORI&amp;TATEなら</span><p>数字と業務を見える化し、「売れる仕組み」「回る仕組み」に変えます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>時代の変化についていけない</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h4c"><span class="flip-tag">NORI&amp;TATEなら</span><p>ホームページの作成から、SNSやGoogleマップの運用、予約・シフトの管理、AIの導入まで、まるごと一緒に整えます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>相談できる相手がいない</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h5c"><span class="flip-tag">NORI&amp;TATEなら</span><p>いちばん近くの相談役として、一緒に悩み、一緒に決めます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>値上げを言い出せない・販路が広がらない</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h6c"><span class="flip-tag">NORI&amp;TATEなら</span><p>価値がきちんと伝わる見せ方と、新しいお客様に届く道をつくります。</p></div></li>
+      </ol>
+      <div class="cta-row"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
-
-  <!-- ── WHAT WE DO ── -->
-  <section id="whatwedo">
-    <div class="sec-split">
-      <div class="sec-head js-fade">
+  <!-- ── WHAT WE DO：横に流れる3枚のパネル（PC）／横スワイプ（スマホ） ── -->
+  <section id="whatwedo" class="sec sec--flush">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">What is NORI&amp;TATE</span>
-        <h2 class="s-title">どのような<br>会社ですか</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title">会社に合わせた、<br>3つの関わり方。</h2>
+        <p class="sec-lead">外から助言するだけではありません。自ら経営の当事者になって、現場の皆さんと一緒に汗をかきます。事業承継ありきではなく、その会社にとって最善の形を選びます。</p>
       </div>
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1"><strong>NORI&amp;TATEは、あらゆる業種の中小企業の「続けたい」を、経営ごと引き継ぎ、育て、次の世代へつなぐ会社です。</strong><br>外から助言するだけでなく、自ら経営の当事者になって、現場とともに事業を立て直し、成長させます。<br>私たちが一番に考えているのは、中小企業の再起です。<strong>事業承継ありきではなく、その会社にとって最善の形</strong>を、一緒に選びます。</p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-a"></div><span class="g-card-num">01 — Business Succession</span><h3 class="g-card-title">事業を買い取り、経営を引き継ぐ</h3><p class="g-card-desc">後継者がいない事業を、M&amp;A（事業の譲り受け）によって引き継ぎます。屋号・技術・従業員の雇用・取引先とのつながりを守り、これまで通り現場が続いていく形を大切にします。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-b"></div><span class="g-card-num">02 — Management Support</span><h3 class="g-card-title">経営の立て直しと成長を、ともに担う</h3><p class="g-card-desc">事業承継が最善でない場合は、経営はそのままに、私たちのノウハウで支援します。月々の定額で継続的に伴走する形（サブスクリプション）から、必要なテーマだけのスポット支援まで。ホームページやSNS戦略の構築、商品・集客の見直し、業務の効率化、AIの導入と使い方の指導などに、現場に入り込んで取り組み、経営者の方の相談役も務めます。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-c"></div><span class="g-card-num">03 — Next Generation</span><h3 class="g-card-title">人を育て、次の経営者へ任せる</h3><p class="g-card-desc">後継者や社員の育成に力を入れ、ゆくゆくは事業を一番よく知るプロパー社員に経営を任せていきます。事業が、その会社の人の手で続いていくことが、私たちの目指すゴールです。</p></article>
-        </div>
+    </div>
+    <div class="hpin">
+      <div class="htrack">
+        <article class="panel pc1"><span class="panel-num">01</span><span class="panel-en">Business Succession</span><h3 class="panel-title">引き継ぐ</h3><p class="panel-sub">事業を買い取り、経営を引き継ぐ</p><p class="panel-desc">M&amp;A（事業の譲り受け）で引き継ぎ、屋号も技術も雇用も、そのまま守ります。ご希望があれば、現オーナーにも残っていただき、二人三脚で進めていきます。</p></article>
+        <article class="panel pc2"><span class="panel-num">02</span><span class="panel-en">Management Support</span><h3 class="panel-title">伴走する</h3><p class="panel-sub">経営の立て直しと成長を、ともに担う</p><p class="panel-desc">経営はそのままに、月々の定額や、テーマを絞ったスポットで支えます。</p></article>
+        <article class="panel pc3"><span class="panel-num">03</span><span class="panel-en">Next Generation</span><h3 class="panel-title">任せる</h3><p class="panel-sub">人を育て、次の経営者へ</p><p class="panel-desc">事業をいちばんよく知る社員の皆さんの手で、会社が続いていく形をつくります。</p></article>
       </div>
     </div>
   </section>
 
-
-  <!-- ── INDUSTRIES ── -->
-  <section id="industries">
-    <div class="sec-split">
-      <div class="sec-head js-fade">
+  <!-- ── INDUSTRIES：業種ごとに合った写真つき（2026-10-23） ── -->
+  <section id="industries" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Industries</span>
-        <h2 class="s-title">業種は<br>問いません</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title">業種の壁は、<br>ありません。</h2>
+        <p class="sec-lead">後継者や人材の悩みは、業種を選びません。</p>
       </div>
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1">後継者や人材の悩みは、業種を選びません。小売・卸やモノづくり、飲食、サロン、工事・職人の世界まで。事業の価値と、そこで働く人を大切にする想いがあれば、どの業種でもご相談ください。</p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-a"></div><span class="g-card-num">Retail / Wholesale / Manufacturing</span><h3 class="g-card-title">小売・卸／商社・モノづくり</h3><p class="g-card-desc">地域のお店から、卸・商社、町工場や製造業まで。代表は鉄鋼商社の出身で、ものづくりの業界を材料から製品まで幅広く見てきました。取引先とのつながりや技術を、次の世代へつなぎます。</p></article>
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-b"></div><span class="g-card-num">Food &amp; Restaurant</span><h3 class="g-card-title">飲食店・食品</h3><p class="g-card-desc">地域に愛されてきた味と、お客様とのつながりを守りながら、時代に合わせて育てます。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-c"></div><span class="g-card-num">Salon / Healthcare / Beauty</span><h3 class="g-card-title">サロン・ヘルスケア・ビューティ</h3><p class="g-card-desc">施術者の技術と、通い続けてくださるお客様の信頼を引き継ぎ、集客や予約の仕組みも整えます。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-d"></div><span class="g-card-num">Construction &amp; Craftsmanship</span><h3 class="g-card-title">各種工事業・職人業など</h3><p class="g-card-desc">建築・設備・内装などの工事業や、職人の手仕事まで。受け継がれてきた技と現場の信頼を、次の世代へつなぎます。</p></article>
-        </div>
-        <p class="growth-lead js-fade d4" style="margin:28px 0 0;">ここにない業種も、まずはお気軽にご相談ください。</p>
-      </div>
+      <ul class="ind-grid">
+        <li class="ind-card i1"><div class="ind-photo"><div class="media-img" data-bg="ind-manufacturing.jpg"></div></div><div class="ind-body"><span class="ind-en">Retail / Wholesale / Manufacturing</span><b class="ind-name">小売・卸／商社・モノづくり</b><span class="ind-desc">地域のお店から、卸・商社、町工場や製造業まで。</span></div></li>
+        <li class="ind-card i2"><div class="ind-photo"><div class="media-img" data-bg="ind-food.jpg"></div></div><div class="ind-body"><span class="ind-en">Food &amp; Restaurant</span><b class="ind-name">飲食店・食品</b><span class="ind-desc">地域に愛されてきた味と、お客様とのつながりを守ります。</span></div></li>
+        <li class="ind-card i3"><div class="ind-photo"><div class="media-img" data-bg="ind-salon.jpg"></div></div><div class="ind-body"><span class="ind-en">Salon / Healthcare / Beauty</span><b class="ind-name">サロン・ヘルスケア・ビューティ</b><span class="ind-desc">技術とお客様の信頼を引き継ぎ、集客や予約も整えます。</span></div></li>
+        <li class="ind-card i4"><div class="ind-photo"><div class="media-img" data-bg="ind-craft.jpg"></div></div><div class="ind-body"><span class="ind-en">Construction &amp; Craftsmanship</span><b class="ind-name">各種工事業・職人業など</b><span class="ind-desc">建築・設備・内装の工事業から、職人の手仕事まで。</span></div></li>
+      </ul>
+      <p class="ind-note">ここにない業種も、お気軽にご相談ください。</p>
     </div>
   </section>
 
-
-
-
-
-  <!-- ── BUSINESS ── -->
-  <section id="business">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
-        <span class="s-label">Business</span>
-        <h2 class="s-title" id="business-title">事業承継の<br>実績</h2>
-        <div class="s-rule"></div>
+  <!-- ── STRENGTH：要点だけ（詳しくは strength.html） ── -->
+  <section id="strength" class="sec sec--strength">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
+        <span class="s-label">Strength</span>
+        <h2 class="s-title">ものづくりの現場で鍛えた、<br>市場を読む力。</h2>
+        <blockquote class="pull pull--strength">油まみれの下町の鉄工所から、<br>世界最先端の半導体製造装置メーカーや<br>カーメーカーの完成車工場まで。</blockquote>
+        <p class="sec-lead">代表は鉄鋼商社で、材料をつくるメーカーから製品を使うお客様まで、ものづくりの業界の幅広い取引を経験してきました。取引とモノの流れ（商流・物流）や値段の決まり方を知っているから、売り方や値上げの伝え方、販路づくりまで、戦略的なアドバイスができます。<br><b class="mk-line">この力は、どの業界でも活かせます。</b></p>
       </div>
+      <div class="chain" role="img" aria-label="材料をつくるメーカーから、商社・卸、加工・販売、製品を使うお客様までの流れ">
+        <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b><span class="chain-sub">つくる</span></div>
+        <span class="chain-arw" aria-hidden="true">→</span>
+        <div class="chain-node cn2"><b>商社・卸</b><span class="chain-sub">つなぐ</span></div>
+        <span class="chain-arw" aria-hidden="true">→</span>
+        <div class="chain-node cn3"><b>加工・販売</b><span class="chain-sub">届ける</span></div>
+        <span class="chain-arw" aria-hidden="true">→</span>
+        <div class="chain-node cn4"><span class="chain-tag">川下</span><b>お客様</b><span class="chain-sub">使う</span></div>
+      </div>
+      <div class="more-row"><a class="tlink tlink--more" href="strength.html">代表の強みを詳しく見る <span class="arw" aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
 
-      <div class="sec-body">
-        <div class="biz-card js-fade d1">
-          <div class="biz-header">
-            <div class="biz-num">01</div>
-            <div class="biz-meta">
-              <span class="biz-location" id="business-location">No.01 — 大阪市城東区</span>
-              <h3 class="biz-name" id="business-name">ケーキ屋さん こいまり 城東店</h3>
-              <p class="biz-sub" id="business-sub">Cake Shop Koimari</p>
-            </div>
-          </div>
-          <div id="business-body">
-          <p class="biz-body js-fade d2">
+  <!-- ── SERVICES：色とりどりのカードを横にめくる（トップは短い説明。全文は services.html） ── -->
+  <section id="services" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide sec-head--row">
+        <div>
+          <span class="s-label">Services</span>
+          <h2 class="s-title">会社が元気になる、<br>7つの道具。</h2>
+        </div>
+        <p class="sec-lead">引き継いだ事業や、ご相談いただいた会社の立て直しで、実際に使っている道具です。会社に合わせて組み合わせてご提供します。</p>
+      </div>
+    </div>
+    <div class="svc">
+      <div class="swiper svc-swiper"><div class="swiper-wrapper">
+        <article class="swiper-slide g-card"><span class="g-card-num">01 — Branding &amp; Marketing</span><h3 class="g-card-title">ターゲットの洗い出しと、選ばれる理由づくり</h3><p class="g-card-desc">自社の強みを、言葉と写真で伝わる形に整えます。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">02 — Website</span><h3 class="g-card-title">公式ホームページの新規立ち上げ・運用</h3><p class="g-card-desc">スマホで見やすく、社内で写真や文章を更新できるサイトをつくります。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">03 — Reservation &amp; EC</span><h3 class="g-card-title">予約・受注・販売の仕組みづくり</h3><p class="g-card-desc">LINEやWebからの予約・注文を、見積もりから担当者への通知まで一つの流れにします。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">04 — LINE &amp; SNS</span><h3 class="g-card-title">LINE・SNSでの集客と、お客様とのつながり</h3><p class="g-card-desc">LINE公式アカウントやSNSで、お客様に届く発信をお手伝いします。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">05 — Operations</span><h3 class="g-card-title">新しいシステムによる、作業の効率化・自動化</h3><p class="g-card-desc">複雑なシフト作成の自動化をはじめ、時間のかかる手作業を仕組みに置き換えます。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">06 — Product Development</span><h3 class="g-card-title">ニーズの分析と、商品展開・将来戦略のご提案</h3><p class="g-card-desc">市況とお客様のニーズを調べ、商品展開と将来の戦略をご提案します。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">07 — AI</span><h3 class="g-card-title">AIの導入と、使いこなすための指導</h3><p class="g-card-desc">日々の仕事にAIを取り入れ、社員の方が自分で使いこなせるまで指導します。</p></article>
+      </div></div>
+      <div class="wrap svc-nav"><button type="button" class="svc-prev" aria-label="前へ">←</button><div class="svc-bar"><span class="svc-bar__fill"></span></div><button type="button" class="svc-next" aria-label="次へ">→</button></div>
+    </div>
+    <div class="wrap more-row"><a class="tlink tlink--more" href="services.html">7つの道具を詳しく見る <span class="arw" aria-hidden="true">→</span></a></div>
+  </section>
+
+  <!-- ── CASE STUDY：こいまりの紹介とやったことを1つに（詳しくは works.html） ── -->
+  <section id="works" class="sec sec--tint">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
+        <span class="s-label">Case Study</span>
+        <h2 class="s-title" id="business-title">最初の一歩は、<br>街のケーキ屋さん。</h2>
+      </div>
+      <div class="feature">
+        <div class="feature-media"><div class="media-img" id="bg-business" data-bg="cake.jpg.jpg"></div></div>
+        <div class="feature-text">
+          <span class="biz-location" id="business-location">No.01 — 大阪市城東区</span>
+          <h3 class="biz-name" id="business-name">ケーキ屋さん こいまり 城東店</h3>
+          <p class="biz-sub" id="business-sub">Cake Shop Koimari</p>
+          <div id="business-body"><p class="biz-body js-fade d2">
             30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり 城東店」。そのオーナー様の想いに共感し、NORI&amp;TATEが経営面のサポートに入らせていただくことになりました。
           </p>
-          <p class="biz-body js-fade d3">
-            オーナー様も従業員のみなさんも、これまで通りお店に立ち続けています。私たちはその後ろ盾として、もっと地域に愛されるこいまりを一緒につくっていきます。
-          </p>
-          <p class="biz-body js-fade d3" style="margin-bottom:2rem;">
-            ご愛好いただいているお客様、支えてくださっている地域の皆様。これまでの大切なものはそのままに、これからの新しい価値も少しずつ積み上げていけたらと考えています。
-          </p>
-          </div>
-          <div class="biz-link-row js-fade d4">
-            <a class="biz-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B1%E3%83%BC%E3%82%AD%E5%B1%8B%E3%81%95%E3%82%93%20%E3%81%93%E3%81%84%E3%81%BE%E3%82%8A%20%E5%9F%8E%E6%9D%B1%E5%BA%97" target="_blank" rel="noopener noreferrer">Googleマップで見る &nbsp;›</a>
-            <a class="biz-link" href="https://www.instagram.com/_koimari_/" target="_blank" rel="noopener noreferrer">Instagramを見る &nbsp;›</a>
-            <img class="biz-qr" src="koimari-instagram-qr.png" alt="こいまり公式Instagram QRコード" width="72" height="72" loading="lazy">
-          </div>
+<p class="biz-body">オーナー様も従業員のみなさんも、これまで通りお店に立ち続けています。</p></div>
+          <ol class="case-list">
+            <li><span class="cn">01</span><b>お客様のニーズ探求と、商品力の強化</b></li>
+            <li><span class="cn">02</span><b>公式ホームページの作成とリリース</b></li>
+            <li><span class="cn">03</span><b>季節・イベントの特設ページ</b></li>
+            <li><span class="cn">04</span><b>LINEで完結するケーキの予約</b></li>
+            <li><span class="cn">05</span><b>営業日カレンダーと、店舗運営の仕組み化</b></li>
+          </ol>
+          <div class="link-row"><a class="tlink tlink--more" href="works.html">取り組みを詳しく見る <span class="arw" aria-hidden="true">→</span></a></div>
         </div>
       </div>
-
     </div>
   </section>
 
-
-  <!-- ── SERVICES（2026-10-20追加：既存の sec-split / g-card / biz-card の作りをそのまま使用） ── -->
-  <section id="services">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
-        <span class="s-label">Services</span>
-        <h2 class="s-title">経営を<br>良くする手段</h2>
-        <div class="s-rule"></div>
-      </div>
-
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1">
-          引き継いだ事業や、ご相談いただいた会社の立て直しで、私たちが実際に使っている手段です。業種に合わせて必要なものを組み合わせ、継続的な伴走（月額）でも、テーマごとのスポットでもご提供します。<br>机上の提案ではなく、私たち自身が経営の当事者として現場で使い、成果を確かめてきたものです。
-        </p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2">
-            <div class="g-card-bar bar-a"></div>
-            <span class="g-card-num">01 — Branding &amp; Marketing</span>
-            <h3 class="g-card-title">ターゲットの洗い出しと、選ばれる理由づくり</h3>
-            <p class="g-card-desc">お客様・取引先の層や、選ばれるきっかけ、競合を整理し、自社の強みを言葉と写真で伝わる形に整えます。商品・サービスの説明やキャッチコピー、キャンペーンごとの特設ページまで、一貫した世界観でつくります。</p>
-          </article>
-          <article class="g-card js-fade d2">
-            <div class="g-card-bar bar-b"></div>
-            <span class="g-card-num">02 — Website</span>
-            <h3 class="g-card-title">公式ホームページの新規立ち上げ・運用</h3>
-            <p class="g-card-desc"><strong>公式ホームページの新規立ち上げ</strong>から、今あるサイトのリニューアルまで。スマホで見やすいサイトを制作し、社内の方が自分で写真や文章を更新できる管理画面を備えます。営業日カレンダーや英語表示、検索・AI検索への対策など、業種に合わせた機能にも対応します。</p>
-          </article>
-          <article class="g-card js-fade d3">
-            <div class="g-card-bar bar-c"></div>
-            <span class="g-card-num">03 — Reservation &amp; EC</span>
-            <h3 class="g-card-title">予約・受注・販売の仕組みづくり</h3>
-            <p class="g-card-desc">LINEやWebからの予約・注文・お問い合わせ、内容に応じた見積もりの自動計算、一覧・カレンダーでの管理、担当者への通知までを一つの流れにします。ネットショップ（ECサイト）の立ち上げもご相談いただけます。</p>
-          </article>
-          <article class="g-card js-fade d3">
-            <div class="g-card-bar bar-d"></div>
-            <span class="g-card-num">04 — LINE &amp; SNS</span>
-            <h3 class="g-card-title">LINE・SNSでの集客と、お客様とのつながり</h3>
-            <p class="g-card-desc">LINE公式アカウントの自動返信やリッチメニュー、クーポンなどの施策を設計します。InstagramなどSNSの反応を分析し、伝わる投稿づくりと、商品・サービス・会社のPRをお手伝いします。</p>
-          </article>
-          <article class="g-card js-fade d3">
-            <div class="g-card-bar bar-a"></div>
-            <span class="g-card-num">05 — Operations</span>
-            <h3 class="g-card-title">新しいシステムによる、作業の効率化・自動化</h3>
-            <p class="g-card-desc">人数や勤務条件が絡み合う<strong>複雑なシフト作成の自動化</strong>をはじめ、勤怠・給与計算、レシートを読み取る経費精算、原価計算と価格表の自動連動など、手作業で時間がかかっていた業務を、会社に合わせた仕組みに置き換えます。</p>
-          </article>
-          <article class="g-card js-fade d4">
-            <div class="g-card-bar bar-b"></div>
-            <span class="g-card-num">06 — Product Development</span>
-            <h3 class="g-card-title">ニーズの分析と、商品展開・将来戦略のご提案</h3>
-            <p class="g-card-desc">市況やお客様のニーズを調べ、得意先・お客様が何を必要としているかを分析して、自社製品や取り扱い商品の展開をご提案します。将来の戦略も含めて、経営陣・従業員の皆さまと一緒に考えていきます。</p>
-          </article>
-          <article class="g-card js-fade d4">
-            <div class="g-card-bar bar-c"></div>
-            <span class="g-card-num">07 — AI</span>
-            <h3 class="g-card-title">AIの導入と、使いこなすための指導</h3>
-            <p class="g-card-desc">文章や資料づくり、問い合わせ対応、データの整理など、日々の仕事にAIを取り入れる方法を、会社の業務に合わせてご提案します。導入して終わりではなく、社員の方が自分で使いこなせるようになるまで指導します。</p>
-          </article>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ── CASE STUDY ── -->
-  <section id="works">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
-        <span class="s-label">Case Study</span>
-        <h2 class="s-title">取り組みの<br>一例</h2>
-        <div class="s-rule"></div>
-      </div>
-
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1">事業承継した「ケーキ屋さん こいまり 城東店」での取り組みの一部をご紹介します。業種が変わっても、課題を洗い出し、仕組みで解決するという考え方は同じです。</p>
-        <div class="biz-card js-fade d1">
-          <div class="biz-header">
-            <div class="biz-num">01</div>
-            <div class="biz-meta">
-              <span class="biz-location">Website / Branding</span>
-              <h3 class="biz-name">公式ホームページの作成とリリース</h3>
-              <p class="biz-sub">Cake Shop Koimari — Official Site</p>
-            </div>
-          </div>
-          <img class="works-img" src="works/site.jpg" alt="ケーキ屋さん こいまり 城東店 公式サイト" loading="lazy">
-          <p class="biz-body">もともと公式ホームページがなかったこいまりに、一から作ってリリースしました。「フルーツリッチで満足度の高いケーキ屋さん」という強みが伝わるよう、写真の見せ方・言葉選び・ページ構成を組み立てています。お店の方が写真や文章をその場で更新できる管理画面も整えました。</p>
-        </div>
-
-        <div class="biz-card js-fade d2">
-          <div class="biz-header">
-            <div class="biz-num">02</div>
-            <div class="biz-meta">
-              <span class="biz-location">Seasonal Campaign</span>
-              <h3 class="biz-name">季節・イベントの特設ページ</h3>
-              <p class="biz-sub">Halloween / Christmas / New Year and more</p>
-            </div>
-          </div>
-          <img class="works-img" src="works/special.jpg" alt="ハロウィンフェア特設ページ" loading="lazy">
-          <p class="biz-body">ハロウィンやクリスマスなど、イベントごとに配色・飾り・動きが切り替わる特設ページの仕組みをつくりました。お知らせを書くだけで、関連商品が並んだにぎやかなページになり、トップページにも自動で掲載されます。</p>
-        </div>
-
-        <div class="biz-card js-fade d3">
-          <div class="biz-header">
-            <div class="biz-num">03</div>
-            <div class="biz-meta">
-              <span class="biz-location">Reservation / LINE</span>
-              <h3 class="biz-name">LINEで完結するケーキの予約</h3>
-              <p class="biz-sub">Reservation System</p>
-            </div>
-          </div>
-          <div class="works-pair">
-            <img class="works-img works-img--phone" src="works/phone-top.jpg" alt="スマートフォンで見たトップページ" loading="lazy">
-            <img class="works-img works-img--phone" src="works/phone-reserve.jpg" alt="LINEから開く予約フォーム" loading="lazy">
-          </div>
-          <p class="biz-body">写真から選んだケーキの仕様がそのまま入る予約フォーム、見積もりの自動計算、受付・確定・前日のリマインドの自動送信まで、LINEの中で完結する流れにしました。スタッフの電話対応や確認の手間を減らしています。</p>
-        </div>
-
-        <div class="biz-card js-fade d3">
-          <div class="biz-header">
-            <div class="biz-num">04</div>
-            <div class="biz-meta">
-              <span class="biz-location">Operations</span>
-              <h3 class="biz-name">営業日カレンダーと、店舗運営の仕組み化</h3>
-              <p class="biz-sub">Calendar / Shift / Payroll</p>
-            </div>
-          </div>
-          <img class="works-img" src="works/calendar.jpg" alt="営業日カレンダー" loading="lazy">
-          <p class="biz-body">定休日・祝日・特別営業時間が自動で反映される営業日カレンダーをはじめ、シフトの作成・修正、勤怠と給与の計算、経費精算など、日々の業務を一つずつ仕組みに置き換えてきました。</p>
-          <div class="biz-link-row">
-            <a class="biz-link" href="https://koimari-official.github.io/koimari-site/" target="_blank" rel="noopener">こいまりの公式サイトを見る &nbsp;›</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-
-
-  <!-- ── 事業成長の心得 ── -->
-  <section id="growth">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
-        <span class="s-label">Key Principles</span>
-        <h2 class="s-title" id="growth-title">事業成長の心得</h2>
-        <div class="s-rule"></div>
-      </div>
-
-      <div class="sec-body">
-        <p class="growth-lead js-fade d1" id="growth-lead">
-          譲受した事業を育てるにあたり、NORI&amp;TATEが大切にしている４つの柱です。<br>オーナーの想いと現場の価値を尊重しながら、無理のない形で事業を成長させていきます。
-        </p>
-        <div class="growth-cards">
-          <article class="g-card js-fade d2">
-            <div class="g-card-bar bar-a"></div>
-            <span class="g-card-num">01 — Recruitment &amp; Training</span>
-            <h3 class="g-card-title" id="growth-card-1-title">採用・育成による現場の強化</h3>
-            <p class="g-card-desc" id="growth-card-1-desc">現場を支える人材の採用計画から育成体制の構築まで、事業の実情に合わせて取り組みます。技術と知識が次の世代へ確実に引き継がれる仕組みをつくります。</p>
-          </article>
-          <article class="g-card js-fade d3">
-            <div class="g-card-bar bar-b"></div>
-            <span class="g-card-num">02 — Marketing</span>
-            <h3 class="g-card-title" id="growth-card-2-title">マーケティングによる企業価値の創出・探求</h3>
-            <p class="g-card-desc" id="growth-card-2-desc">マーケティングの視点から事業の強みを掘り起こし、地域に根ざしたブランドづくりと集客の仕組みを整えます。事業固有の価値を発信し、新たな顧客との接点を創出します。</p>
-          </article>
-          <article class="g-card js-fade d3">
-            <div class="g-card-bar bar-c"></div>
-            <span class="g-card-num">03 — Management Visualization</span>
-            <h3 class="g-card-title" id="growth-card-3-title">数字と業務の見える化・仕組み化</h3>
-            <p class="g-card-desc" id="growth-card-3-desc">経営状況・業務フロー・財務数値を可視化し、属人化していた判断を「仕組み」へ変えます。経営者が安心して次のステップを描けるよう、管理体制を整備します。</p>
-          </article>
-          <article class="g-card js-fade d4">
-            <div class="g-card-bar bar-d"></div>
-            <span class="g-card-num">04 — Next Generation Structure</span>
-            <h3 class="g-card-title" id="growth-card-4-title">次世代を担う経営体制づくり</h3>
-            <p class="g-card-desc" id="growth-card-4-desc">後継者の選定・育成から、経営移行のシナリオ設計まで。オーナーの想いを引き継ぎながら、無理のない形で次世代への橋渡しをサポートします。</p>
-          </article>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ── PROCESS ── -->
-  <section id="process">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── PROCESS：伸びていく線でつなぐ4ステップ ── -->
+  <section id="process" class="sec">
+    <div class="wrap narrow">
+      <div class="sec-head sec-head--wide sec-head--center">
         <span class="s-label">Process</span>
-        <h2 class="s-title">ご相談の<br>流れ</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title">はじめ方は、<br>かんたん4ステップ。</h2>
       </div>
-
-      <div class="sec-body">
-        <div class="growth-cards">
-          <article class="g-card js-fade d1"><div class="g-card-bar bar-a"></div><span class="g-card-num">Step 01 — Hearing</span><h3 class="g-card-title">お話をお聞かせください</h3><p class="g-card-desc">お店やお仕事の現状、困っていること、これからやりたいことをお伺いします。</p></article>
-          <article class="g-card js-fade d2"><div class="g-card-bar bar-b"></div><span class="g-card-num">Step 02 — Research</span><h3 class="g-card-title">現状の洗い出し</h3><p class="g-card-desc">お客様・商品・業務の流れを整理し、どこから手を付けると効果が大きいかを見極めます。</p></article>
-          <article class="g-card js-fade d3"><div class="g-card-bar bar-c"></div><span class="g-card-num">Step 03 — Proposal</span><h3 class="g-card-title">ご提案とお見積もり</h3><p class="g-card-desc">事業承継・継続的な伴走支援・スポット支援の中から、その会社に最善の形と優先順位をご提案し、お見積もりをお出しします。小さく始めることもできます。</p></article>
-          <article class="g-card js-fade d4"><div class="g-card-bar bar-d"></div><span class="g-card-num">Step 04 — Build &amp; Support</span><h3 class="g-card-title">制作・導入と、その後の運用</h3><p class="g-card-desc">つくって終わりではなく、実際に使いながら一緒に改善を続けます。</p></article>
-        </div>
-        <div class="biz-link-row js-fade d4" style="margin-top:2.4rem;">
-          <a class="biz-link" href="#contact">まずはご相談ください &nbsp;›</a>
-        </div>
-      </div>
-
+      <ol class="timeline">
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 01 — Hearing</span><h3 class="tl-title">お話をお聞かせください</h3><p>いま困っていること、これからやりたいことを、気軽にお話しください。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 02 — Research</span><h3 class="tl-title">いまを一緒に整理</h3><p>どこから手を付けるといちばん効くかを見極めます。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 03 — Proposal</span><h3 class="tl-title">ご提案とお見積もり</h3><p>いちばん合う形をご提案します。小さく始めることもできます。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 04 — Build &amp; Support</span><h3 class="tl-title">つくって、一緒に育てる</h3><p>実際に使いながら、改善を続けます。</p></li>
+        <li class="tl-line" aria-hidden="true"><span class="tl-fill"></span></li>
+      </ol>
+      <div class="cta-row cta-row--center"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
-
-  <!-- ── JOIN（黒背景） ── -->
-  <section id="join">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
-        <span class="s-label">Join</span>
-        <h2 class="s-title" id="join-title" style="color:var(--white);">ともに、<br>次の一歩を。</h2>
-        <div class="s-rule" style="background:rgba(255,255,255,0.18);"></div>
+  <!-- ── FAQ：よくあるご質問（トップは6問・開閉式。全問は faq.html。文の元データは a_faq.json） ── -->
+  <section id="faq" class="sec sec--tint">
+    <div class="wrap narrow">
+      <div class="sec-head sec-head--wide">
+        <span class="s-label">FAQ</span>
+        <h2 class="s-title">よくあるご質問</h2>
       </div>
-
-      <div class="sec-body">
-        <p class="join-lead js-fade d1" id="join-lead">
-          長年かけて育ててきた事業を、誰にどう引き継ぐか。それは経営者の方にとって、人生の大きな決断だと思います。<br><br>
-          技術、人、地域とのつながり。積み重ねてきたものを、単なる売買として手放すのではなく、その価値を理解した相手にきちんと渡したい。私たちは、そう考える経営者の方と一緒に進んでいきたいと考えています。<br><br>
-          こんな想いをお持ちの方は、お気軽にご相談ください。
-        </p>
-        <ul class="join-list js-fade d2" id="join-items">
-          <li>事業を続けたいが、後継者が見つからない</li>
-          <li>従業員や取引先を大切にしながら引き継ぎたい</li>
-          <li>一人で抱え込まず、一緒に考えてくれる相手が欲しい</li>
-          <li>引退後も、事業の成長を見届けたい</li>
-        </ul>
-        <a class="join-btn js-fade d3" href="#contact" id="join-btn-text">まずは話をお聞かせください</a>
-      </div>
-
+      <div class="faq-list"><details class="faq"><summary><span class="faq-q" aria-hidden="true">Q</span><span class="faq-qt">まだ会社を手放すと決めていなくても、相談できますか？</span><span class="faq-ic" aria-hidden="true"></span></summary><div class="faq-a"><p>はい。事業承継ありきではありません。いまの状況をお聞きしたうえで、「引き継ぐ」「伴走する」「必要なところだけ支える」の中から、その会社に合う形を一緒に考えます。判断を急かすことはしません。</p></div></details><details class="faq"><summary><span class="faq-q" aria-hidden="true">Q</span><span class="faq-qt">相談したことが、社員や取引先に知られることはありませんか？</span><span class="faq-ic" aria-hidden="true"></span></summary><div class="faq-a"><p>ご相談の内容は秘密厳守で、外部に漏らすことはありません。ご連絡の方法や時間帯も、ご都合に合わせます。</p></div></details><details class="faq"><summary><span class="faq-q" aria-hidden="true">Q</span><span class="faq-qt">相談に費用はかかりますか？</span><span class="faq-ic" aria-hidden="true"></span></summary><div class="faq-a"><p>ご支援の内容が決まるまでのご相談は、何度でも無料です。費用は、会社の状況に合わせて無理のない形でご提案し、始める前にお見積もりでお伝えします。ご納得いただいてから進めますので、ご安心ください。</p></div></details><details class="faq"><summary><span class="faq-q" aria-hidden="true">Q</span><span class="faq-qt">引き継いだ後、社員の雇用はどうなりますか？</span><span class="faq-ic" aria-hidden="true"></span></summary><div class="faq-a"><p>雇用はそのまま守ります。屋号や技術、取引先とのつながりも大切に引き継ぎ、現場はこれまで通り続いていきます。</p></div></details><details class="faq"><summary><span class="faq-q" aria-hidden="true">Q</span><span class="faq-qt">引き継いだ後、私（いまのオーナー）はどうなりますか？</span><span class="faq-ic" aria-hidden="true"></span></summary><div class="faq-a"><p>ご希望があれば残っていただき、二人三脚で進めていきます。完全に引退されたい場合は、その形で引き継ぎます。最初の事例のこいまりでも、オーナー様がこれまで通りお店に立ち続けています。</p></div></details><details class="faq"><summary><span class="faq-q" aria-hidden="true">Q</span><span class="faq-qt">原材料や人件費が上がっても、取引先に値上げを言い出せません。</span><span class="faq-ic" aria-hidden="true"></span></summary><div class="faq-a"><p>値上げは「お願い」ではなく、価値をきちんと伝える話し合いです。原価の上がり方や品質・サービスの価値を、数字と言葉で整理すると受け入れられやすくなります。売る側と買う側、両方の事情を知る立場から、伝え方を一緒に考えます。</p></div></details></div>
+      <div class="more-row"><a class="tlink tlink--more" href="faq.html">よくあるご質問をすべて見る <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
-
-  <!-- ── NAME ── -->
-  <section id="name">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── NAME：ノリと縦上がり ── -->
+  <section id="name" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide">
         <span class="s-label">Name</span>
-        <h2 class="s-title" id="name-title">NORI&amp;TATE<br>(ノリタテ)<br>の由来</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title" id="name-title">ノリと、<br>縦上がり。</h2>
       </div>
-
-      <div class="sec-body">
-        <p class="s-body js-fade d1" id="name-intro">
-          社名は、私が学生時代からアメリカンフットボールをランニングバックとしてプレーする中で生まれた合言葉、「ノリと縦上がり」に由来し、環境や前例にとらわれず自ら判断し責任を持って前進するという、私が心がける経営の在り方そのものを表しています。
-        </p>
-        <div class="name-pair">
-          <div class="js-fade d2">
-            <p class="name-word" id="name-word-nori">ノリ（NORI）</p>
-            <p class="name-def" id="name-def-nori">ボールを持ち全速力で走りながら、味方の状況や相手の動きを感じ、最も前進できる最善のルートを瞬時に察知する能力。</p>
-          </div>
-          <div class="js-fade d3">
-            <p class="name-word" id="name-word-tate">縦上がり（TATE）</p>
-            <p class="name-def" id="name-def-tate">壁や相手にぶち当たりながらも臆さずに最善のルートを最短距離で、全速力で突き進む強い意志。</p>
-          </div>
-        </div>
-        <p class="name-foot js-fade d4" id="name-foot">この二つを重ねた言葉が、「ノリと縦上がり」<br><br>ノリタテ（株式会社ＮＯＲＩ＆ＴＡＴＥ）の由来です。</p>
+      <div class="name-photo"><div class="media-img" id="bg-name" data-bg="ameft.jpg.jpg"></div></div>
+      <p class="s-body name-intro" id="name-intro">社名は、私が学生時代からアメリカンフットボールをランニングバックとしてプレーする中で生まれた合言葉、「ノリと縦上がり」に由来しています。</p>
+      <div class="name-duo">
+        <div class="duo duo--nori"><p class="name-word" id="name-word-nori">ノリ（NORI）</p><p class="name-def" id="name-def-nori">最も前進できる最善のルートを、瞬時に察知する力。</p></div>
+        <div class="duo-plus" aria-hidden="true">＋</div>
+        <div class="duo duo--tate"><p class="name-word" id="name-word-tate">縦上がり（TATE）</p><p class="name-def" id="name-def-tate">壁にぶち当たっても臆さず、最短距離で突き進む強い意志。</p></div>
       </div>
-
+      <p class="name-foot" id="name-foot">環境や前例にとらわれず、自ら判断し、責任を持って前へ進む。<br>私が心がける経営の在り方そのものです。</p>
     </div>
   </section>
-
-
-
 
   <!-- ── COMPANY ── -->
-  <section id="company">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <section id="company" class="sec sec--tint">
+    <div class="wrap split split--company">
+      <div class="split-media"><div class="media-img" id="bg-company" data-bg="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=70&auto=format&fit=crop"></div></div>
+      <div class="split-text">
         <span class="s-label">Company</span>
         <h2 class="s-title" id="company-title">会社概要</h2>
-        <div class="s-rule"></div>
-      </div>
-
-      <div class="sec-body">
-        <table class="co-table js-fade d1">
+        <table class="co-table">
           <tbody>
             <tr><th scope="row">会社名</th><td id="co-name">株式会社NORI&amp;TATE</td></tr>
             <tr><th scope="row">英文社名</th><td id="co-enname">NORI&amp;TATE Co., Ltd.</td></tr>
@@ -1351,26 +771,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </tbody>
         </table>
       </div>
-
     </div>
   </section>
 
-
-  <!-- ── CONTACT ── -->
-  <section id="contact">
-    <div class="sec-split">
-
-      <div class="sec-head js-fade">
+  <!-- ── CONTACT：旧Join欄の「こんな想いをお持ちなら」をここに統合（「大きな決断」の話は1回だけ） ── -->
+  <section id="contact" class="sec">
+    <div class="contact-strip" aria-hidden="true"><div class="media-img" id="bg-contact" data-bg="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=70&auto=format&fit=crop"></div></div>
+    <div class="wrap split split--contact">
+      <div class="sec-head">
         <span class="s-label">Contact</span>
-        <h2 class="s-title" id="contact-title">お話を<br>聞かせて<br>ください</h2>
-        <div class="s-rule"></div>
+        <h2 class="s-title" id="contact-title">まずは気軽に、<br>話してみませんか。</h2>
+        <p class="ct-lead" id="contact-lead">事業の引き継ぎは、一生に一度の大きな決断です。だからこそ、判断を急かすことはしません。まずは、いまのことを気軽にお聞かせください。<br><b class="mk-line">ご相談は何度でも無料・秘密厳守です。</b></p>
+        <div class="ct-wish">
+          <p class="ct-wish-ttl">こんな想いをお持ちなら、ぜひご相談ください。</p>
+          <ul id="join-items">
+            <li>事業を続けたいが、後継者が見つからない</li>
+            <li>従業員や取引先を大切にしながら引き継ぎたい</li>
+            <li>一人で抱え込まず、一緒に考えてくれる相手が欲しい</li>
+            <li>引退後も、事業の成長を見届けたい</li>
+          </ul>
+        </div>
+        <ul class="ct-info">
+          <li><span>Tel</span><a href="tel:09012436770">090-1243-6770</a></li>
+          <li><span>Mail</span><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a></li>        </ul>
       </div>
-
-      <div class="sec-body">
-        <p class="ct-lead js-fade d1" id="contact-lead">
-          事業承継は、経営者の方にとって一生に一度の決断だと思います。だからこそ、判断を急がせるような場にはしたくないと考えています。<br><br>まずは現状を聞かせてください。その上で、私たちでお役に立てそうかどうか、一緒に見極めていければと思います。
-        </p>
-        <form id="contactForm" class="ct-form js-fade d2">
+      <div class="ct-box"><form id="contactForm" class="ct-form js-fade d2">
           <div class="ct-row">
             <label class="ct-label">お名前<span class="req">*</span></label>
             <input class="ct-input" type="text" name="name" required placeholder="山田 太郎">
@@ -1422,119 +847,204 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="formDone">
           <p class="done-title">お問い合わせありがとうございます</p>
           <p class="done-body">内容を確認の上、担当者よりご連絡いたします。<br>しばらくお待ちください。</p>
-        </div>
-      </div>
-
+        </div></div>
     </div>
   </section>
 
-
-  <!-- ── FOOTER ── -->
-  <footer id="footer">
-    <span class="ft-logo">NORI&amp;TATE Co., Ltd.</span>
-    <p class="ft-tag" id="footer-tagline">中小企業から、再び日本を盛り上げる。</p>
-    <nav class="ft-nav">
-      <a href="#top">Top</a><a href="#concept">Concept</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a>
-      <a href="#business">Business</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#growth">Key Principles</a>
-      <a href="#join">Join</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a>
-    </nav>
-    <div class="ft-line"></div>
-    <p class="ft-copy">&copy; 2026 株式会社NORI&amp;TATE. All Rights Reserved.</p>
-    <p class="ft-copy" style="font-size:10px;opacity:.6;margin-top:4px;">背景写真：「Torii Hanging Along an Osaka Shopping Arcade」Ethan Doyle White（<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener" style="color:inherit;">CC BY-SA 4.0</a>／<a href="https://commons.wikimedia.org/wiki/File:Torii_Hanging_Along_an_Osaka_Shopping_Arcade.jpg" target="_blank" rel="noopener" style="color:inherit;">Wikimedia Commons</a>）</p>
-  </footer>
-
 </main>
 
+<footer id="footer">
+  <div class="ft-cta">
+    <p class="ft-tag" id="footer-tagline">中小企業から、再び日本を盛り上げる。</p>
+    <a class="btn btn--light" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-logo">NORI&amp;TATE Co., Ltd.</span>
+    <nav class="ft-nav"><a href="#top">Top</a><a href="#concept">Concept</a><a href="#issues">Issues</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a><a href="#strength">Strength</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#process">Process</a><a href="#faq">FAQ</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a></nav>
+    <div class="ft-line"></div>
+    <p class="ft-copy">&copy; 2026 株式会社NORI&amp;TATE. All Rights Reserved.</p>
+    <p class="ft-copy ft-credit">写真（Wikimedia Commons）：<a href="https://commons.wikimedia.org/wiki/File:Steel_coil_and_machinery_-_geograph.org.uk_-_8200249.jpg" target="_blank" rel="noopener">「Steel coil and machinery」Adrian Taylor</a>（<a href="https://creativecommons.org/licenses/by-sa/2.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:Mochi_including_dango_(8604909107).jpg" target="_blank" rel="noopener">「Mochi including dango」Pete Birkinshaw</a>（<a href="https://creativecommons.org/licenses/by/2.0/deed.ja" target="_blank" rel="noopener">CC BY 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:Interior_view_of_modern_beauty_salon.jpg" target="_blank" rel="noopener">「Interior view of modern beauty salon」Shixart1985</a>（<a href="https://creativecommons.org/licenses/by/2.0/deed.ja" target="_blank" rel="noopener">CC BY 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:160312_Takenaka_Carpentry_Tools_Museum_Kobe_Japan16s.jpg" target="_blank" rel="noopener">「Takenaka Carpentry Tools Museum Kobe Japan」663highland</a>（<a href="https://creativecommons.org/licenses/by/2.5/deed.ja" target="_blank" rel="noopener">CC BY 2.5</a>）</p>
+  </div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
 <script>
-  // ── 背景切替マップ ──
-  const bgMap = {
-    top:      { panel:'bg-top',      mode:'hero'  },
-    concept:  { panel:'bg-concept',  mode:'light' },
-    name:     { panel:'bg-name',     mode:'light' },
-    business: { panel:'bg-business', mode:'light' },
-    issues:   { panel:'bg-concept',  mode:'light' },
-    whatwedo: { panel:'bg-concept',  mode:'light' },
-    industries:{ panel:'bg-industries', mode:'light' },
-    services: { panel:'bg-services', mode:'light' },
-    works:    { panel:'bg-business', mode:'light' },
-    process:  { panel:'bg-growth',   mode:'light' },
-    growth:   { panel:'bg-growth',   mode:'light' },
-    join:     { panel:'bg-growth',   mode:'light' },
-    company:  { panel:'bg-company',  mode:'light' },
-    contact:  { panel:'bg-contact',  mode:'light' },
-  };
-  const allPanels = document.querySelectorAll('.bg-panel');
+// NORI&TATE A案の動き（GSAP 3.13 / ScrollTrigger / SplitText / Lenis / Swiper）2026-10-23
+// 動きの種類は4つだけ：①見出しが下から現れる ②ブロックのフェードイン ③写真が左右から開く ④スクロール連動（横に流れるパネル・柱・線・マーカー）
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hdr = document.getElementById('hdr'), menu = document.getElementById('menu'), btn = document.getElementById('menuBtn');
+  var lenis = null;
 
-  function activateBg(id) {
-    const cfg = bgMap[id];
-    if (!cfg) return;
-    allPanels.forEach(p => p.classList.remove('active-hero', 'active-light'));
-    const p = document.getElementById(cfg.panel);
-    if (p) p.classList.add(cfg.mode === 'hero' ? 'active-hero' : 'active-light');
+  // ── メニュー ──
+  function setMenu(open) {
+    menu.classList.toggle('open', open); menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false'); btn.textContent = open ? 'CLOSE' : 'MENU';
+    document.documentElement.classList.toggle('menu-open', open);
+    if (lenis) { open ? lenis.stop() : lenis.start(); }
+    if (open && window.gsap && !reduce) gsap.fromTo('#menu li', { y: 24, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.03, duration: 0.55, ease: 'power3.out' });
   }
-  activateBg('top');
+  btn.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false); });
 
-  // ── ヒーローモード切替（画面回転対応） ──
-  let _heroObs = null;
-  function initHeroObserver() {
-    if (_heroObs) _heroObs.disconnect();
-    const threshold = window.matchMedia('(max-width: 660px)').matches ? 0.05 : 0.7;
-    _heroObs = new IntersectionObserver((entries) => {
-      document.body.classList.toggle('hero-mode', entries[0].isIntersecting);
-    }, { threshold });
-    _heroObs.observe(document.getElementById('top'));
+  // ── ページ内リンク（ヘッダーの高さ分ずらす。移動中に写真が読み込まれてずれたら、着いた後に補正） ──
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+    var id = a.getAttribute('href'), t = id.length > 1 ? document.querySelector(id) : null; if (!t) return;
+    e.preventDefault(); if (menu.classList.contains('open')) setMenu(false);
+    var off = -(hdr.offsetHeight - 1);
+    var fix2 = function () { if (Math.abs(t.getBoundingClientRect().top + off) > 4) lenis.scrollTo(t, { offset: off, immediate: true }); };
+    var fix = function () { if (Math.abs(t.getBoundingClientRect().top + off) > 4) lenis.scrollTo(t, { offset: off, duration: 0.5, onComplete: fix2 }); };
+    if (lenis) lenis.scrollTo(t, { offset: off, duration: 1.4, onComplete: fix });
+    else window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset + off, behavior: reduce ? 'auto' : 'smooth' });
+  });
+  // ── スマホの「相談してみる」：最初の画面（同じボタンがある）では文字に重なるので隠し、読み進めたら出す ──
+  var fab = document.querySelector('.mobile-fab'), heroEl = document.getElementById('top');
+  if (fab && heroEl && 'IntersectionObserver' in window) {
+    fab.classList.add('fab-wait');
+    new IntersectionObserver(function (ents) { fab.classList.toggle('fab-wait', ents[0].isIntersecting); }, { threshold: 0.35 }).observe(heroEl);
   }
-  initHeroObserver();
+  function onScroll() { hdr.classList.toggle('scrolled', window.pageYOffset > 30); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-  // ── セクション検知（背景 & ナビ同期・画面回転対応） ──
-  const navLinks = document.querySelectorAll('.nav-link');
-  function setNav(id) {
-    navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
+  // ── 別ページから「トップの〇〇」へ来たとき：写真の読み込みや横に流れるパネルの固定で高さが変わった後、目的の位置に合わせ直す（自分で動かし始めたら何もしない） ──
+  var userMoved = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, function () { userMoved = true; }, { passive: true, once: true }); });
+  function toHash() {
+    if (userMoved || location.hash.length < 2) return;
+    var t = null; try { t = document.querySelector(location.hash); } catch (e) {}
+    if (!t) return;
+    var y = t.getBoundingClientRect().top + window.pageYOffset - (hdr.offsetHeight - 1);
+    if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else window.scrollTo(0, y);
   }
-  let _sectionObs = [];
-  function initSectionObservers() {
-    _sectionObs.forEach(o => o.disconnect());
-    _sectionObs = [];
-    const navH = window.matchMedia('(max-width: 660px)').matches ? 70 : 0;
-    const mid  = Math.round((window.innerHeight - navH) / 2);
-    const topM = navH + mid;
-    const botM = Math.max(0, window.innerHeight - topM);
-    const rootMargin = `-${topM}px 0px -${botM}px 0px`;
-    document.querySelectorAll('section[id]').forEach(s => {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { activateBg(e.target.id); setNav(e.target.id); }
-        });
-      }, { threshold: 0, rootMargin });
-      obs.observe(s);
-      _sectionObs.push(obs);
+  window.addEventListener('load', function () { setTimeout(toHash, 60); });
+
+  // ── 写真は画面に近づいてから読み込む（最初の表示を軽くする。解像度はそのまま）。管理画面で写真が設定されていれば、そちらを優先 ──
+  var lazyEls = [].slice.call(document.querySelectorAll('[data-bg]'));
+  function loadBg(el) { if (!el.style.backgroundImage) el.style.backgroundImage = "url('" + el.getAttribute('data-bg') + "')"; el.removeAttribute('data-bg'); }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (ents) { ents.forEach(function (en) { if (en.isIntersecting) { loadBg(en.target); io.unobserve(en.target); } }); }, { rootMargin: '900px 0px' });
+    lazyEls.forEach(function (el) { io.observe(el); });
+  } else lazyEls.forEach(loadBg);
+
+  // ── 7つの道具（Swiper：ドラッグ・スワイプでめくる） ──
+  var fill = document.querySelector('.svc-bar__fill');
+  if (window.Swiper) {
+    new Swiper('.svc-swiper', {
+      slidesPerView: 'auto', spaceBetween: 20, grabCursor: true, speed: 600,
+      navigation: { nextEl: '.svc-next', prevEl: '.svc-prev' },
+      on: { progress: function (s, p) { if (fill) fill.style.transform = 'scaleX(' + Math.max(0.14, Math.min(1, p)) + ')'; } }
     });
   }
-  initSectionObservers();
 
-  // 画面回転・リサイズ時にObserverを再初期化（250ms デバウンス）
-  let _resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(_resizeTimer);
-    _resizeTimer = setTimeout(function() {
-      initHeroObserver();
-      initSectionObservers();
-    }, 250);
+  if (reduce || !window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.config({ nullTargetWarn: false });  // トップと別ページで同じ動きの設定を使う（そのページに無い部品は飛ばす）
+  if (window.SplitText) gsap.registerPlugin(SplitText);
+  if (window.Lenis) {
+    lenis = new Lenis({ lerp: 0.1 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (t) { lenis.raf(t * 1000); }); gsap.ticker.lagSmoothing(0);
+  }
+  var E = 'power3.out';
+
+  // ── 最初の画面 ──
+  gsap.from('.hero-visual', { clipPath: 'inset(100% 0% 0% 0%)', duration: 1.6, ease: 'power4.inOut' });
+  gsap.from('.hero-img', { scale: 1.22, duration: 2.4, ease: E });
+  gsap.from('.hero-line', { scaleX: 0, transformOrigin: '0 50%', duration: 1.2, delay: 0.7, ease: 'power3.inOut' });
+  gsap.from('.hero-text .fade', { opacity: 0, y: 18, duration: 1, delay: 0.9, stagger: 0.12, ease: 'power2.out' });
+  gsap.to('.hero-img', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
+
+  document.fonts.ready.then(function () {
+    if (window.SplitText && document.getElementById('hero-catch')) {
+      var hc = SplitText.create('#hero-catch', { type: 'chars', mask: 'chars' });
+      gsap.from(hc.chars, { yPercent: 110, duration: 1.1, ease: 'power4.out', stagger: 0.045, delay: 0.3 });
+    }
+    ScrollTrigger.refresh();
+    toHash();
   });
 
-  // ── 下から上へのフェードイン ──
-  const fadeObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('on');
-        fadeObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.js-fade').forEach(el => fadeObs.observe(el));
-</script>
+  // ① 見出し（文字は分けない＝日本語の改行ルールを守る）
+  gsap.utils.toArray('.s-title, .pull, .panel-title, .ft-tag').forEach(function (el) {
+    gsap.from(el, { clipPath: 'inset(0% 0% 100% 0%)', y: 26, duration: 1.1, ease: E, scrollTrigger: { trigger: el, start: 'top 86%' } });
+  });
+  gsap.utils.toArray('.s-label').forEach(function (el) { gsap.from(el, { opacity: 0, x: -14, duration: 0.8, ease: E, scrollTrigger: { trigger: el, start: 'top 90%' } }); });
 
+  // ② ブロックのフェードイン
+  gsap.utils.toArray('.sec-lead, .story-body > p, .vision-text, .ind-card, .ind-note, .feature-text > *, .zig-text, .tl-step, .case-list li, .ct-wish li, .name-intro, .name-foot, .co-table, .ct-info, .ct-box, .cta-row, .svc-nav, .more-row, .svc-grid .g-card, .faq, .faq-gt').forEach(function (el) {
+    gsap.from(el, { opacity: 0, y: 34, duration: 1, ease: E, scrollTrigger: { trigger: el, start: 'top 90%' } });
+  });
+
+  // ③ 写真が左右から開き、ゆっくり動く
+  gsap.utils.toArray('.band').forEach(function (b, i) {
+    gsap.fromTo(b, { clipPath: i % 2 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: b, start: 'top 92%', end: 'top 38%', scrub: true } });
+  });
+  gsap.utils.toArray('.split-media, .feature-media, .name-photo, .contact-strip, .zig-media').forEach(function (b, i) {
+    gsap.fromTo(b, { clipPath: i % 2 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'power3.inOut', scrollTrigger: { trigger: b, start: 'top 82%' } });
+  });
+  gsap.utils.toArray('.band-img, .media-img').forEach(function (img) {
+    gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: img.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+
+  // ④ スクロール連動
+  // ビジョン：背景のメインビジュアルがゆっくり動き、言葉にマーカーが引かれる
+  gsap.fromTo('.vision-bg', { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.vision', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.from('.vision-list li', { opacity: 0, y: 30, duration: 0.9, stagger: 0.18, ease: E, scrollTrigger: { trigger: '.vision-list', start: 'top 80%' } });
+  gsap.to('.mk', { backgroundSize: '100% 100%', duration: 0.9, stagger: 0.3, delay: 0.4, ease: 'power2.inOut', scrollTrigger: { trigger: '.vision-list', start: 'top 80%' } });
+
+  // お悩み：「困った」に線が引かれ、「こう変える」が色つきで現れる
+  gsap.utils.toArray('.flip').forEach(function (row) {
+    var tl = gsap.timeline({ scrollTrigger: { trigger: row, start: 'top 82%' } });
+    tl.from(row.querySelector('.flip-pain'), { opacity: 0, x: -24, duration: 0.7, ease: E })
+      .to(row.querySelector('.flip-pain h3'), { backgroundSize: '100% 1.5px', duration: 0.5, ease: 'power2.inOut' }, '-=0.1')
+      .from(row.querySelector('.flip-arrow'), { opacity: 0, x: -16, duration: 0.4, ease: E }, '-=0.25')
+      .from(row.querySelector('.flip-hope'), { clipPath: 'inset(0% 100% 0% 0%)', duration: 0.8, ease: 'power3.inOut' }, '-=0.2');
+  });
+
+  // 私たちの仕事：PCでは縦スクロールで3枚のパネルが横に流れる（スマホは指で横スワイプ）
+  var mm = gsap.matchMedia();
+  mm.add('(min-width: 901px)', function () {
+    var track = document.querySelector('.htrack'), pin = document.querySelector('.hpin');
+    if (!track || !pin) return;
+    var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
+    var tw = gsap.to(track, { x: function () { return -dist(); }, ease: 'none',
+      scrollTrigger: { trigger: pin, start: 'top 14%', end: function () { return '+=' + dist(); }, pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 } });
+    return function () { if (tw.scrollTrigger) tw.scrollTrigger.kill(); tw.kill(); gsap.set(track, { x: 0 }); };
+  });
+  gsap.utils.toArray('.panel').forEach(function (p) { gsap.from(p.querySelector('.panel-num'), { opacity: 0, y: 40, duration: 1, ease: E, scrollTrigger: { trigger: p, start: 'top 85%' } }); });
+
+  // 強み：経験の幅（現場 → 経営）が左から右へ伸びる
+  gsap.from('.range-bar span', { scaleX: 0, duration: 1.4, ease: 'power3.inOut', scrollTrigger: { trigger: '.range', start: 'top 82%' } });
+  gsap.from('.range-end--l', { opacity: 0, x: -30, duration: 0.8, ease: E, scrollTrigger: { trigger: '.range', start: 'top 82%' } });
+  gsap.from('.range-end--r', { opacity: 0, x: 30, duration: 0.8, delay: 0.8, ease: E, scrollTrigger: { trigger: '.range', start: 'top 82%' } });
+  gsap.from('.range-cap', { opacity: 0, y: 16, duration: 0.8, delay: 1.1, ease: E, scrollTrigger: { trigger: '.range', start: 'top 82%' } });
+  // 強み：流通の流れが川上から川下へ順に点き、知識が並ぶ
+  gsap.from('.chain-node, .chain-arw', { opacity: 0, x: -24, duration: 0.6, stagger: 0.14, ease: E, scrollTrigger: { trigger: '.chain', start: 'top 82%' } });
+  gsap.from('.chain-cap', { opacity: 0, y: 16, duration: 0.8, delay: 0.9, ease: E, scrollTrigger: { trigger: '.chain', start: 'top 82%' } });
+  gsap.from('.know', { opacity: 0, y: 30, duration: 0.8, stagger: 0.12, ease: E, scrollTrigger: { trigger: '.know-list', start: 'top 85%' } });
+
+  // 7つの道具：カードが順に入ってくる
+  gsap.from('.svc .swiper-slide', { opacity: 0, x: 60, duration: 0.9, stagger: 0.08, ease: E, scrollTrigger: { trigger: '.svc', start: 'top 85%' } });
+
+  // はじめ方：線が伸び、点が順に現れる
+  gsap.fromTo('.tl-fill', { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.timeline', start: 'top 70%', end: 'bottom 65%', scrub: true } });
+  gsap.utils.toArray('.tl-dot').forEach(function (d) { gsap.from(d, { scale: 0, duration: 0.6, ease: 'back.out(2)', scrollTrigger: { trigger: d, start: 'top 75%' } }); });
+
+  // 社名：「ノリ」と「縦上がり」が左右から集まる
+  gsap.from('.duo--nori', { x: -60, opacity: 0, duration: 1, ease: E, scrollTrigger: { trigger: '.name-duo', start: 'top 82%' } });
+  gsap.from('.duo--tate', { x: 60, opacity: 0, duration: 1, ease: E, scrollTrigger: { trigger: '.name-duo', start: 'top 82%' } });
+  gsap.from('.duo-plus', { scale: 0, rotate: -90, duration: 0.8, delay: 0.3, ease: 'back.out(2)', scrollTrigger: { trigger: '.name-duo', start: 'top 82%' } });
+
+  // 全体：読み進めた位置の線・流れる英字
+  gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
+  gsap.to('.marquee-track', { xPercent: -50, duration: 46, ease: 'none', repeat: -1 });
+})();
+
+</script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check.js";
@@ -1722,6 +1232,19 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
   }
 });
 </script>
-
+<script type="module">
+import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
+const parser = loadDefaultJapaneseParser();
+const SEL = '.s-title, .hero-lead, .hero-chips li, .faq-qt, .faq-gt, .g-card-title, .know-title, .chain-cap, .range-cap, .range-txt, .pull, .biz-name, .name-word, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .panel-sub, .ind-name, .case-list b, .ct-wish li, .ft-tag, .v-text';
+const done = new WeakMap();
+function apply() {
+  document.querySelectorAll(SEL).forEach((el) => {
+    if (done.get(el) === el.textContent) return;
+    try { parser.applyToElement(el); done.set(el, el.textContent); } catch (e) {}
+  });
+}
+apply();
+setTimeout(apply, 2500); setTimeout(apply, 7000);
+</script>
 </body>
 </html>
