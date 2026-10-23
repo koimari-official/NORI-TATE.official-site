@@ -412,6 +412,7 @@ section{position:relative}
 section[id]{scroll-margin-top:var(--hdr)}
 /* スマホで、右から滑り込む動き（縦上がり・経歴の帯の右端など）の出発位置が画面の外にはみ出し、ページが横にずれて縮んで見えていたのを防ぐ（clip はスクロールの仕組みを作らないので、追従する欄や縦スクロールに影響しない） */
 html,body{overflow-x:clip}
+p,li{text-wrap:pretty}  /* 段落の最後の行が「す。」など1〜2文字だけにならないよう、ブラウザに折り返しを整えてもらう（全ページ共通） */
 .hero-lead{text-wrap:balance}  /* 「…会社で／す。」のように1文字だけ次の行に落ちないように */
 /* 最初の画面：何をしてくれる会社かを3つの短い言葉で（下の「3つの関わり方」と対応）。SCROLLの印は背景の画像の上では読めないので出さない */
 .hero-chips{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}

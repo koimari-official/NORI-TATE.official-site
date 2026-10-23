@@ -412,6 +412,7 @@ section{position:relative}
 section[id]{scroll-margin-top:var(--hdr)}
 /* スマホで、右から滑り込む動き（縦上がり・経歴の帯の右端など）の出発位置が画面の外にはみ出し、ページが横にずれて縮んで見えていたのを防ぐ（clip はスクロールの仕組みを作らないので、追従する欄や縦スクロールに影響しない） */
 html,body{overflow-x:clip}
+p,li{text-wrap:pretty}  /* 段落の最後の行が「す。」など1〜2文字だけにならないよう、ブラウザに折り返しを整えてもらう（全ページ共通） */
 .hero-lead{text-wrap:balance}  /* 「…会社で／す。」のように1文字だけ次の行に落ちないように */
 /* 最初の画面：何をしてくれる会社かを3つの短い言葉で（下の「3つの関わり方」と対応）。SCROLLの印は背景の画像の上では読めないので出さない */
 .hero-chips{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
@@ -553,7 +554,7 @@ html,body{overflow-x:clip}
     </div>
     <div class="hpin">
       <div class="htrack">
-        <article class="panel pc1"><span class="panel-num">01</span><span class="panel-en">Business Succession</span><h3 class="panel-title">引き継ぐ</h3><p class="panel-sub">事業を買い取り、経営を引き継ぐ</p><p class="panel-desc">M&amp;A（事業の譲り受け）で引き継ぎ、屋号も技術も雇用も、そのまま守ります。</p></article>
+        <article class="panel pc1"><span class="panel-num">01</span><span class="panel-en">Business Succession</span><h3 class="panel-title">引き継ぐ</h3><p class="panel-sub">事業を買い取り、経営を引き継ぐ</p><p class="panel-desc">M&amp;A（事業の譲り受け）で引き継ぎ、屋号も技術も雇用も、そのまま守ります。ご希望があれば、現オーナーにも残っていただき、二人三脚で進めていきます。</p></article>
         <article class="panel pc2"><span class="panel-num">02</span><span class="panel-en">Management Support</span><h3 class="panel-title">伴走する</h3><p class="panel-sub">経営の立て直しと成長を、ともに担う</p><p class="panel-desc">経営はそのままに、月々の定額や、テーマを絞ったスポットで支えます。</p></article>
         <article class="panel pc3"><span class="panel-num">03</span><span class="panel-en">Next Generation</span><h3 class="panel-title">任せる</h3><p class="panel-sub">人を育て、次の経営者へ</p><p class="panel-desc">事業をいちばんよく知る社員の皆さんの手で、会社が続いていく形をつくります。</p></article>
       </div>
@@ -641,7 +642,8 @@ html,body{overflow-x:clip}
           <p class="biz-sub" id="business-sub">Cake Shop Koimari</p>
           <div id="business-body"><p class="biz-body js-fade d2">
             30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり 城東店」。そのオーナー様の想いに共感し、NORI&amp;TATEが経営面のサポートに入らせていただくことになりました。
-          </p></div>
+          </p>
+<p class="biz-body">オーナー様も従業員のみなさんも、これまで通りお店に立ち続けています。</p></div>
           <ol class="case-list">
             <li><span class="cn">01</span><b>公式ホームページの全面リニューアル</b></li>
             <li><span class="cn">02</span><b>季節・イベントの特設ページ</b></li>
