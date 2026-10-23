@@ -175,7 +175,7 @@ section{position:relative}
 
 /* 強み：流通の流れ（川上→川下）と4つの知識 */
 .sec--strength{background:var(--paper)}
-.range{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:24px;margin:8px 0 0}
+.range{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,.7fr) minmax(0,1.5fr);align-items:center;gap:24px;margin:8px 0 0}
 .range-end{display:flex;flex-direction:column;gap:8px}
 .range-end--r{text-align:right;align-items:flex-end}
 .range-tag{font-family:var(--en);font-size:11px;letter-spacing:.2em;color:var(--gold)}
@@ -432,7 +432,8 @@ section[id]{scroll-margin-top:var(--hdr)}
 .crumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12.5px;letter-spacing:.08em;color:var(--mute);margin:0 0 28px}
 .crumb a{color:var(--sub);text-decoration:none;background:linear-gradient(var(--sub),var(--sub)) 0 100%/100% 1px no-repeat;padding-bottom:2px}
 .subpage .sec{padding:12vh 0}
-.range-cap{text-wrap:balance}  /* 「…物流・／価格交渉。」のように最後の言葉だけが残らないよう、行の長さをそろえる */
+.range-cap,.range-txt{text-wrap:balance}
+.range-txt--list span{display:block}  /* 1行ずつ別のかたまりにして、折り返す行だけ長さをそろえる（スマホで「新車種開発、」だけが残らないように） */  /* 「…物流・／価格交渉。」のように最後の言葉だけが残らないよう、行の長さをそろえる */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
 .back-row{padding-bottom:12vh}
 @media (max-width:900px){
@@ -711,7 +712,7 @@ section[id]{scroll-margin-top:var(--hdr)}
 <script type="module">
 import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
 const parser = loadDefaultJapaneseParser();
-const SEL = '.s-title, .g-card-title, .know-title, .chain-cap, .range-cap, .pull, .biz-name, .name-word, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .panel-sub, .ind-name, .case-list b, .ct-wish li, .ft-tag, .v-text';
+const SEL = '.s-title, .g-card-title, .know-title, .chain-cap, .range-cap, .range-txt, .pull, .biz-name, .name-word, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .panel-sub, .ind-name, .case-list b, .ct-wish li, .ft-tag, .v-text';
 const done = new WeakMap();
 function apply() {
   document.querySelectorAll(SEL).forEach((el) => {
