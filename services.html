@@ -432,12 +432,14 @@ section[id]{scroll-margin-top:var(--hdr)}
 .crumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12.5px;letter-spacing:.08em;color:var(--mute);margin:0 0 28px}
 .crumb a{color:var(--sub);text-decoration:none;background:linear-gradient(var(--sub),var(--sub)) 0 100%/100% 1px no-repeat;padding-bottom:2px}
 .subpage .sec{padding:12vh 0}
+.range-cap{text-wrap:balance}  /* 「…物流・／価格交渉。」のように最後の言葉だけが残らないよう、行の長さをそろえる */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
 .back-row{padding-bottom:12vh}
 @media (max-width:900px){
   .page-hero{padding:calc(var(--hdr) + 6vh) 0 6vh}
   .svc-grid{grid-template-columns:1fr}
   .more-row{margin-top:32px}
+  .pull--strength{font-size:clamp(19px,5.2vw,24px)}  /* 3行の引用がスマホで6行に細切れにならないよう、4行に収める */
 }
 
 </style>

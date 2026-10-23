@@ -432,12 +432,14 @@ section[id]{scroll-margin-top:var(--hdr)}
 .crumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12.5px;letter-spacing:.08em;color:var(--mute);margin:0 0 28px}
 .crumb a{color:var(--sub);text-decoration:none;background:linear-gradient(var(--sub),var(--sub)) 0 100%/100% 1px no-repeat;padding-bottom:2px}
 .subpage .sec{padding:12vh 0}
+.range-cap{text-wrap:balance}  /* 「…物流・／価格交渉。」のように最後の言葉だけが残らないよう、行の長さをそろえる */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
 .back-row{padding-bottom:12vh}
 @media (max-width:900px){
   .page-hero{padding:calc(var(--hdr) + 6vh) 0 6vh}
   .svc-grid{grid-template-columns:1fr}
   .more-row{margin-top:32px}
+  .pull--strength{font-size:clamp(19px,5.2vw,24px)}  /* 3行の引用がスマホで6行に細切れにならないよう、4行に収める */
 }
 
 </style>
@@ -469,7 +471,7 @@ section[id]{scroll-margin-top:var(--hdr)}
     <div class="wrap">
       <div class="sec-head sec-head--wide">
         <p class="sec-lead">代表は鉄鋼商社で、ものづくりの業界の「川上」（材料をつくるメーカー）から「川下」（製品を使うお客様）まで、幅広い取引を経験してきました。</p>
-        <blockquote class="pull pull--strength">油まみれの下町の鉄工所から、<br>世界最先端の半導体装置メーカーまで。</blockquote>
+        <blockquote class="pull pull--strength">油まみれの下町の鉄工所から、<br>世界最先端の半導体製造装置メーカーや<br>カーメーカーの完成車工場まで。</blockquote>
         <p class="sec-lead">取引とモノの流れ（商流・物流）がどうつながり、どこで値段が決まるのか。その仕組みを知っているから、売り方や値上げの伝え方、販路づくりまで、戦略的なアドバイスができます。<br><b class="mk-line">この力は、どの業界でも活かせます。</b></p>
       </div>
       <div class="range">
@@ -477,7 +479,7 @@ section[id]{scroll-margin-top:var(--hdr)}
         <div class="range-bar" aria-hidden="true"><span></span></div>
         <div class="range-end range-end--r"><span class="range-tag">開発・経営</span><b class="range-txt">カーメーカーの開発者との商談、<br>新規戦略・新車種の開発</b></div>
       </div>
-      <p class="range-cap">ものづくりを端から端まで知る、めずらしい経歴です。</p>
+      <p class="range-cap">現場・営業・研究開発・経営・物流・価格交渉。<br>そのすべてを経験したからこそ分かるノウハウがあります。</p>
       <div class="chain" role="img" aria-label="材料をつくるメーカーから、商社・卸、加工・販売、製品を使うお客様までの流れ">
         <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b><span class="chain-sub">つくる</span></div>
         <span class="chain-arw" aria-hidden="true">→</span>
