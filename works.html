@@ -50,16 +50,16 @@ a{color:inherit}img{max-width:100%}
 html.menu-open{overflow:hidden}
 
 /* ヒーロー */
-#top{position:relative;display:grid;grid-template-columns:44% 56%;min-height:100vh;min-height:100svh}
-.hero-text{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hdr) + 20px) 4vw 70px var(--pad)}
+#top{position:relative;display:flex;align-items:center;min-height:100vh;min-height:100svh;padding:calc(var(--hdr) + 5vh) var(--pad) 8vh}
+.hero-text{position:relative;z-index:1;display:flex;flex-direction:column;width:min(640px,100%);padding:46px 52px 44px;background:rgba(255,253,249,.95)}
 .hero-en{font-family:var(--en);font-size:11.5px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
-.hero-catch{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.2vw,76px);line-height:1.32;margin:24px 0 0;letter-spacing:.02em;white-space:nowrap}
-.hero-line{height:3px;width:140px;margin:30px 0 22px;background:linear-gradient(90deg,var(--c1) 0 25%,var(--c2) 25% 50%,var(--c3) 50% 75%,var(--c4) 75% 100%)}
+.hero-catch{font-family:var(--serif);font-weight:300;font-size:clamp(34px,3.6vw,64px);line-height:1.32;margin:18px 0 0;letter-spacing:.02em;white-space:nowrap}
+.hero-line{height:3px;width:140px;margin:24px 0 16px;background:linear-gradient(90deg,var(--c1) 0 25%,var(--c2) 25% 50%,var(--c3) 50% 75%,var(--c4) 75% 100%)}
 .hero-brand{font-family:var(--serif);font-weight:500;font-size:16px;letter-spacing:.14em;margin:0}
-.hero-lead{font-size:14.5px;line-height:2.1;color:var(--sub);margin:16px 0 0;max-width:560px}
+.hero-lead{font-size:clamp(15px,1.2vw,18px);line-height:1.8;color:var(--ink);font-weight:500;margin:14px 0 0;max-width:560px}
 .hero-lead b{color:var(--ink);font-weight:500;background:linear-gradient(transparent 62%,rgba(255,196,0,.55) 62%)}
-.hero-ctas{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:32px}
-.hero-visual{position:relative;overflow:hidden;min-height:100%}
+.hero-ctas{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:26px}
+.hero-visual{position:absolute;top:var(--hdr);left:0;right:0;bottom:0;overflow:hidden}
 .hero-img{position:absolute;inset:-6% 0;background-size:cover;background-position:center}
 .scroll-hint{position:absolute;left:var(--pad);bottom:26px;display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:10.5px;letter-spacing:.3em;color:var(--mute)}
 .scroll-hint i{display:block;width:64px;height:1px;background:var(--line);position:relative;overflow:hidden}
@@ -355,13 +355,14 @@ section{position:relative}
   .hdr-contact{display:none}
   .menu ol{grid-template-columns:1fr}
   .menu li a{padding:11px 0}
-  #top{display:flex;flex-direction:column;min-height:0}
-  .hero-visual{order:-1;height:48vh;height:48svh;margin-top:var(--hdr)}
-  .hero-text{padding:34px var(--pad) 48px}
-  .hero-catch{font-size:clamp(30px,9.6vw,46px)}
-  .hero-lead{font-size:14px;line-height:2.05}
-  .hero-lead br{display:none}
-  .scroll-hint{display:none}
+  #top{flex-direction:column;justify-content:flex-end;align-items:stretch;padding:calc(var(--hdr) + 8vh) 14px 14px}
+  .hero-text{width:auto;padding:22px 20px 24px}
+  .hero-en{display:none}
+  .hero-catch{font-size:clamp(27px,8.4vw,38px);margin-top:0}
+  .hero-line{width:110px;margin:16px 0 12px}
+  .hero-brand{font-size:14px}
+  .hero-lead{font-size:15px;margin-top:10px}
+  .hero-ctas{margin-top:18px;gap:14px 20px}
   .band{--h:40vh!important;margin:0}
   .sec{padding:11vh 0}
   .sec-head{margin-bottom:36px}
@@ -409,8 +410,14 @@ section{position:relative}
 
 /* 2026-10-23 トップは要点だけ・詳しい内容は別ページへ（オーナー指摘「長すぎる・同じ内容の繰り返し」） */
 section[id]{scroll-margin-top:var(--hdr)}
-.hero-lead--short{font-family:var(--serif);font-size:clamp(16px,1.25vw,19px);line-height:1.95;color:var(--ink)}
-.hero-lead--short br{display:inline}  /* スマホでも「育て、」の後で改行（「に。」だけが次の行に落ちないように） */
+/* スマホで、右から滑り込む動き（縦上がり・経歴の帯の右端など）の出発位置が画面の外にはみ出し、ページが横にずれて縮んで見えていたのを防ぐ（clip はスクロールの仕組みを作らないので、追従する欄や縦スクロールに影響しない） */
+html,body{overflow-x:clip}
+.hero-lead{text-wrap:balance}  /* 「…会社で／す。」のように1文字だけ次の行に落ちないように */
+/* 最初の画面：何をしてくれる会社かを3つの短い言葉で（下の「3つの関わり方」と対応）。SCROLLの印は背景の画像の上では読めないので出さない */
+.hero-chips{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.hero-chips li{font-size:14px;font-weight:500;line-height:1.5;padding:7px 12px 7px 10px;background:var(--tint);border-left:4px solid var(--c1)}
+.hero-chips li:nth-child(2){border-left-color:var(--c4)}.hero-chips li:nth-child(3){border-left-color:var(--c2)}
+.scroll-hint{display:none}
 .more-row{margin-top:44px}
 .tlink--more{font-size:15px;color:var(--ink)}
 .tlink .arw{display:inline-block;margin-left:4px;transition:transform .3s}.tlink:hover .arw{transform:translateX(5px)}
@@ -440,7 +447,9 @@ section[id]{scroll-margin-top:var(--hdr)}
   .page-hero{padding:calc(var(--hdr) + 6vh) 0 6vh}
   .svc-grid{grid-template-columns:1fr}
   .more-row{margin-top:32px}
-  .pull--strength{font-size:clamp(19px,5.2vw,24px)}  /* 3行の引用がスマホで6行に細切れにならないよう、4行に収める */
+  .pull--strength{font-size:clamp(19px,5.2vw,24px)}
+  .hero-chips{margin-top:12px;gap:6px}  /* スマホ用は通常の指定より後ろに書く（前に書くと上書きされる） */
+  .hero-chips li{font-size:13px;padding:5px 10px 5px 8px}  /* 3行の引用がスマホで6行に細切れにならないよう、4行に収める */
 }
 
 </style>
@@ -712,7 +721,7 @@ section[id]{scroll-margin-top:var(--hdr)}
 <script type="module">
 import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
 const parser = loadDefaultJapaneseParser();
-const SEL = '.s-title, .g-card-title, .know-title, .chain-cap, .range-cap, .range-txt, .pull, .biz-name, .name-word, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .panel-sub, .ind-name, .case-list b, .ct-wish li, .ft-tag, .v-text';
+const SEL = '.s-title, .hero-lead, .hero-chips li, .g-card-title, .know-title, .chain-cap, .range-cap, .range-txt, .pull, .biz-name, .name-word, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .panel-sub, .ind-name, .case-list b, .ct-wish li, .ft-tag, .v-text';
 const done = new WeakMap();
 function apply() {
   document.querySelectorAll(SEL).forEach((el) => {
