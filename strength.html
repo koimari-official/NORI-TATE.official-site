@@ -433,7 +433,7 @@ section[id]{scroll-margin-top:var(--hdr)}
 .crumb a{color:var(--sub);text-decoration:none;background:linear-gradient(var(--sub),var(--sub)) 0 100%/100% 1px no-repeat;padding-bottom:2px}
 .subpage .sec{padding:12vh 0}
 .range-cap,.range-txt{text-wrap:balance}
-.range-txt--list span{display:block}  /* 1行ずつ別のかたまりにして、折り返す行だけ長さをそろえる（スマホで「新車種開発、」だけが残らないように） */  /* 「…物流・／価格交渉。」のように最後の言葉だけが残らないよう、行の長さをそろえる */
+.range-txt--list span,.range-cap span{display:block}  /* 1行ずつ別のかたまりにして、折り返す行だけ長さをそろえる（スマホで「新車種開発、」だけが残らないように） */  /* 「…物流・／価格交渉。」のように最後の言葉だけが残らないよう、行の長さをそろえる */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
 .back-row{padding-bottom:12vh}
 @media (max-width:900px){
@@ -480,7 +480,7 @@ section[id]{scroll-margin-top:var(--hdr)}
         <div class="range-bar" aria-hidden="true"><span></span></div>
         <div class="range-end range-end--r"><span class="range-tag">開発・経営</span><b class="range-txt range-txt--list"><span>カーメーカーの開発者との商談、</span><span>EV・ハイブリッド車の新規戦略・新車種開発、</span><span>ボディに使う鉄板やアルミ板の、</span><span>国内外の量産拠点への納入まで</span></b></div>
       </div>
-      <p class="range-cap">現場・営業・研究開発・経営・物流・価格交渉。<br>そのすべてを経験したからこそ分かるノウハウがあります。</p>
+      <p class="range-cap"><span>さまざまなお客様の営業と現場を担当し、研究開発・経営・物流・価格交渉まで。</span><span>そのすべてを経験したからこそ分かるノウハウがあります。</span></p>
       <div class="chain" role="img" aria-label="材料をつくるメーカーから、商社・卸、加工・販売、製品を使うお客様までの流れ">
         <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b><span class="chain-sub">つくる</span></div>
         <span class="chain-arw" aria-hidden="true">→</span>
