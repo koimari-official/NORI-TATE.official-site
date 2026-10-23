@@ -1351,6 +1351,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <tr><th scope="row">設立</th><td id="co-founded">2026年4月6日</td></tr>
             <tr><th scope="row">代表取締役</th><td id="co-ceo">吉田　光輝</td></tr>
             <tr><th scope="row">生年月日</th><td id="co-birthday">1991年12月16日</td></tr>
+            <tr><th scope="row">従業員</th><td id="co-employees">正規雇用2名、アルバイト3名<br>（2026年10月現在）</td></tr>
             <tr><th scope="row">所在地</th><td id="co-address">大阪市城東区成育2丁目13-15<br>アイビーマンション103号室</td></tr>
             <tr><th scope="row">連絡先</th><td>090-1243-6770<br><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a></td></tr>
             <tr><th scope="row">事業内容</th><td id="co-business">事業承継（M&amp;Aによる経営の引き継ぎ）<br>中小企業の経営支援・コンサルティング（継続支援・スポット支援）<br>ホームページ・SNS戦略の構築、AI導入・活用指導<br>後継者・人材の育成支援<br>洋菓子製造・小売、卸業（ケーキ屋さん こいまり 城東店）</td></tr>
@@ -1700,9 +1701,11 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
     setHtml("join-lead", c.join.lead);
     if (c.join.items) {
       const items = c.join.items.split("\n").map(s => s.trim()).filter(Boolean);
-      document.getElementById("join-items").innerHTML = items.map(i => `<li>${escapeHtml(i)}</li>`).join("");
+      const joinItems = document.getElementById("join-items");
+      if (joinItems) joinItems.innerHTML = items.map(i => `<li>${escapeHtml(i)}</li>`).join("");
     }
-    if (c.join.btnText) document.getElementById("join-btn-text").textContent = c.join.btnText;
+    const joinBtn = document.getElementById("join-btn-text");
+    if (c.join.btnText && joinBtn) joinBtn.textContent = c.join.btnText;
   }
   if (c.company) {
     setBg("bg-company", c.company.bg);
@@ -1712,6 +1715,7 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
     setHtml("co-founded", c.company.founded);
     setHtml("co-ceo", c.company.ceo);
     setHtml("co-birthday", c.company.birthday);
+    setHtml("co-employees", c.company.employees);
     setHtml("co-address", c.company.address);
     setHtml("co-business", c.company.business);
   }

@@ -407,6 +407,39 @@ section{position:relative}
 @media (prefers-reduced-motion:reduce){.scroll-hint i::after{animation:none}.g-card::before{transition:none}.mk{background-size:100% 100%}}
 .biz-name,.name-word,.panel-sub,.zig-title,.tl-title,.flip-pain h3{text-wrap:pretty}
 
+/* 2026-10-23 トップは要点だけ・詳しい内容は別ページへ（オーナー指摘「長すぎる・同じ内容の繰り返し」） */
+section[id]{scroll-margin-top:var(--hdr)}
+.hero-lead--short{font-family:var(--serif);font-size:clamp(16px,1.25vw,19px);line-height:1.95;color:var(--ink)}
+.hero-lead--short br{display:inline}  /* スマホでも「育て、」の後で改行（「に。」だけが次の行に落ちないように） */
+.more-row{margin-top:44px}
+.tlink--more{font-size:15px;color:var(--ink)}
+.tlink .arw{display:inline-block;margin-left:4px;transition:transform .3s}.tlink:hover .arw{transform:translateX(5px)}
+.case-list{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line)}
+.case-list li{display:grid;grid-template-columns:38px minmax(0,1fr);padding:13px 0;border-bottom:1px solid var(--line)}
+.case-list .cn{font-family:var(--en);font-size:12px;letter-spacing:.12em;color:var(--gold);padding-top:4px}
+.case-list b{font-weight:500;font-size:15px;line-height:1.75;color:var(--ink)}
+.mobile-fab{transition:opacity .35s,transform .35s}
+.mobile-fab.fab-wait{opacity:0;transform:translateY(14px);pointer-events:none}
+.ct-wish{margin:30px 0 0}
+.ct-wish-ttl{font-size:14px;font-weight:500;color:var(--ink);margin:0 0 10px}
+.ct-wish ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.ct-wish li{position:relative;padding:11px 0 11px 28px;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.75;color:var(--sub)}
+.ct-wish li::before{content:"";position:absolute;left:0;top:22px;width:16px;height:3px;background:var(--c3)}
+.ct-wish li:nth-child(2)::before{background:var(--c4)}.ct-wish li:nth-child(3)::before{background:var(--c1)}.ct-wish li:nth-child(4)::before{background:var(--c6)}
+/* 別ページ（代表の強み・7つの道具・こいまりの事例） */
+.page-hero{padding:calc(var(--hdr) + 12vh) 0 8vh;background:var(--tint)}
+.page-hero .sec-lead{max-width:760px}
+.crumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12.5px;letter-spacing:.08em;color:var(--mute);margin:0 0 28px}
+.crumb a{color:var(--sub);text-decoration:none;background:linear-gradient(var(--sub),var(--sub)) 0 100%/100% 1px no-repeat;padding-bottom:2px}
+.subpage .sec{padding:12vh 0}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
+.back-row{padding-bottom:12vh}
+@media (max-width:900px){
+  .page-hero{padding:calc(var(--hdr) + 6vh) 0 6vh}
+  .svc-grid{grid-template-columns:1fr}
+  .more-row{margin-top:32px}
+}
+
 </style>
 </head>
 <body>
@@ -416,12 +449,15 @@ section{position:relative}
   <div class="hdr-right"><a href="#contact" class="btn btn--sm hdr-contact">CONTACT</a><button type="button" id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu">MENU</button></div>
 </header>
 <nav id="menu" class="menu" aria-hidden="true" aria-label="メインナビゲーション">
-  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の想い</span></a></li><li><a href="#vision"><span class="mn">03</span><span class="mj">ビジョン</span></a></li><li><a href="#issues"><span class="mn">04</span><span class="mj">その「困った」、伸びしろです</span></a></li><li><a href="#whatwedo"><span class="mn">05</span><span class="mj">私たちの仕事</span></a></li><li><a href="#industries"><span class="mn">06</span><span class="mj">業種の壁はありません</span></a></li><li><a href="#strength"><span class="mn">07</span><span class="mj">代表の強み</span></a></li><li><a href="#business"><span class="mn">08</span><span class="mj">最初の一歩</span></a></li><li><a href="#services"><span class="mn">09</span><span class="mj">7つの道具</span></a></li><li><a href="#works"><span class="mn">10</span><span class="mj">こいまりで実際にやったこと</span></a></li><li><a href="#growth"><span class="mn">11</span><span class="mj">会社が伸びる4本の柱</span></a></li><li><a href="#process"><span class="mn">12</span><span class="mj">はじめ方</span></a></li><li><a href="#join"><span class="mn">13</span><span class="mj">オーナー様へ</span></a></li><li><a href="#name"><span class="mn">14</span><span class="mj">社名の由来</span></a></li><li><a href="#company"><span class="mn">15</span><span class="mj">会社概要</span></a></li><li><a href="#contact"><span class="mn">16</span><span class="mj">お問い合わせ</span></a></li></ol>
+  <ol><li><a href="#top"><span class="mn">01</span><span class="mj">トップ</span></a></li><li><a href="#concept"><span class="mn">02</span><span class="mj">代表の想い</span></a></li><li><a href="#issues"><span class="mn">03</span><span class="mj">その「困った」、伸びしろです</span></a></li><li><a href="#whatwedo"><span class="mn">04</span><span class="mj">私たちの仕事</span></a></li><li><a href="#industries"><span class="mn">05</span><span class="mj">業種の壁はありません</span></a></li><li><a href="#strength"><span class="mn">06</span><span class="mj">代表の強み</span></a></li><li><a href="#services"><span class="mn">07</span><span class="mj">7つの道具</span></a></li><li><a href="#works"><span class="mn">08</span><span class="mj">こいまりの事例</span></a></li><li><a href="#process"><span class="mn">09</span><span class="mj">はじめ方</span></a></li><li><a href="#name"><span class="mn">10</span><span class="mj">社名の由来</span></a></li><li><a href="#company"><span class="mn">11</span><span class="mj">会社概要</span></a></li><li><a href="#contact"><span class="mn">12</span><span class="mj">お問い合わせ</span></a></li></ol>
   <div class="menu-foot"><a href="tel:09012436770">090-1243-6770</a><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a><a href="https://www.instagram.com/nori.tate_official" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </nav>
 <a href="#contact" class="mobile-fab" aria-label="お問い合わせ・相談する">相談してみる</a>
 
 <main id="main">
+
+  <!-- 2026-10-23 オーナー指摘「トップの内容がだらだら長い・同じ内容の繰り返し」：
+       トップは要点だけ・同じ主張は1回だけ。詳しい内容は別ページ（strength.html／services.html／works.html）へ -->
 
   <!-- ── TOP：左に言葉、右にオーナー作の鮮やかなメインビジュアルを大きく ── -->
   <section id="top">
@@ -430,7 +466,7 @@ section{position:relative}
       <h1 class="hero-catch" id="hero-catch">中小企業から、<br>再び日本を<br>盛り上げる。</h1>
       <div class="hero-line"></div>
       <p class="hero-brand fade" id="hero-brand">株式会社NORI&amp;TATE</p>
-      <p class="hero-lead fade">後継者不在・人手不足・高齢化。<br>時代の移り変わりとともに落ちていく営業力や管理の力。<br>取引先に値上げを言い出せない、販路が広がらない──。<br><b>その「困った」は、まだ伸びる場所がある証拠です。</b><br>経営ごと引き継ぎ、育て、世界へ羽ばたく会社に。</p>
+      <p class="hero-lead hero-lead--short fade">経営ごと引き継ぎ、育て、<br>世界へ羽ばたく会社に。</p>
       <div class="hero-ctas fade"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a><a class="tlink" href="#whatwedo">NORI&amp;TATEってどんな会社？</a></div>
     </div>
     <div class="hero-visual"><div class="hero-img" id="bg-top" style="background-image:url('hero.jpg.png');"></div></div>
@@ -441,7 +477,7 @@ section{position:relative}
 
   <div class="band" style="--h:76vh" aria-hidden="true"><div class="band-img" id="bg-concept" data-bg="our%20mind.jpg.png"></div></div>
 
-  <!-- ── CONCEPT：原体験 → 決意の一文 → ミッション ── -->
+  <!-- ── CONCEPT：原体験 → 決意の一文 → いちばん大切にしていること ── -->
   <section id="concept" class="sec">
     <div class="wrap story">
       <div class="sec-head">
@@ -453,13 +489,12 @@ section{position:relative}
         <p class="s-body">お世話になった、鉄鋼業界で優れた技術を持つ金属加工会社。経営者の高齢化や後継者不足、若手との意見の相違から技術を継げず、職人さんが一人、また一人と離れていき、事業は小さくなっていきました。</p>
         <blockquote class="pull">この光景を、<br>二度と繰り返したくない。</blockquote>
         <p class="s-body">それが、NORI&amp;TATEを立ち上げた理由です。</p>
-        <p class="s-body">私たちは事業承継で、技術と雇用を引き継ぎます。そのうえで、これまでと違う角度から事業を見つめ直し、新しい価値を一緒につくって、会社を伸ばしていきます。</p>
         <p class="s-body s-body--strong">何よりも大切にしているのは、そこで働く方々やご家族の暮らしをより良くすること。そして、会社を時代に必要とされる企業へと成長させることです。</p>
       </div>
     </div>
   </section>
 
-  <!-- ── VISION（新設）：オーナーの言葉をそのまま大きく ── -->
+  <!-- ── VISION：代表の想いの続き（オーナーの言葉をそのまま大きく） ── -->
   <section id="vision" class="vision">
     <div class="vision-bg" aria-hidden="true"></div>
     <div class="vision-inner">
@@ -474,21 +509,21 @@ section{position:relative}
     </div>
   </section>
 
-  <!-- ── ISSUES：「困った」→「こう変える」 ── -->
+  <!-- ── ISSUES：「困った」→「こう変える」（説明文は省き、見出しと答えの一行だけ） ── -->
   <section id="issues" class="sec">
     <div class="wrap">
       <div class="sec-head sec-head--wide">
         <span class="s-label">Issues</span>
         <h2 class="s-title">その「困った」、<br>伸びしろです。</h2>
-        <p class="sec-lead">業種や規模に関係なく、多くの中小企業が同じ壁にぶつかっています。でも、壁があるのは、まだ伸びる場所がある証拠。ひとつずつ、次の一手に変えていきます。</p>
+        <p class="sec-lead">多くの中小企業がぶつかる壁を、ひとつずつ次の一手に変えていきます。</p>
       </div>
       <ol class="flip-list">
-        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>後継者がいない</h3><p>事業は続けたい。けれど、ご家族にも社内にも、任せられる人が見つからない。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h1c"><span class="flip-tag">NORI&amp;TATEなら</span><p>経営ごと引き継ぎ、社員の中から次の社長を育てます。</p></div></li>
-        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>人手が足りない・高齢化が進んでいる</h3><p>採用しても定着しない。職人や中心メンバーの高齢化で、技術や経験の継承が止まりかけている。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h2c"><span class="flip-tag">NORI&amp;TATEなら</span><p>採用と育成の仕組みをつくり、技術と経験を次の世代へつなぎます。</p></div></li>
-        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>営業力・管理力が落ちてきた</h3><p>時代の移り変わりとともに、昔ながらのやり方では売上が伸びず、数字や業務の管理も追いつかない。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h3c"><span class="flip-tag">NORI&amp;TATEなら</span><p>数字と業務を見える化して、「売れる仕組み」「回る仕組み」に変えます。</p></div></li>
-        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>時代の変化についていけない</h3><p>ホームページやSNS、予約や業務のデジタル化。必要だと分かっていても、手が回らない。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h4c"><span class="flip-tag">NORI&amp;TATEなら</span><p>ホームページの作成から、SNSやGoogleマップの運用、予約・シフトの管理、AIの導入まで、まるごと一緒に整えます。</p></div></li>
-        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>相談できる相手がいない</h3><p>経営の悩みを、一人で抱え込んでいる。社外に、腹を割って話せる相談役が欲しい。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h5c"><span class="flip-tag">NORI&amp;TATEなら</span><p>いちばん近くの相談役として、一緒に悩み、一緒に決めます。</p></div></li>
-        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>値上げを言い出せない・販路が広がらない</h3><p>原材料や人件費は上がるのに、長年の取引先には値上げを切り出せない。新しいお客様や販路を広げる手立ても見つからない。</p></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h6c"><span class="flip-tag">NORI&amp;TATEなら</span><p>価値がきちんと伝わる見せ方と、新しいお客様に届く道を一緒につくります。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>後継者がいない</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h1c"><span class="flip-tag">NORI&amp;TATEなら</span><p>私たちが経営を引き継ぎ、事業を続けていきます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>人手が足りない・高齢化が進んでいる</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h2c"><span class="flip-tag">NORI&amp;TATEなら</span><p>採用と育成の仕組みで、技術と経験を次の世代へつなぎます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>営業力・管理力が落ちてきた</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h3c"><span class="flip-tag">NORI&amp;TATEなら</span><p>数字と業務を見える化し、「売れる仕組み」「回る仕組み」に変えます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>時代の変化についていけない</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h4c"><span class="flip-tag">NORI&amp;TATEなら</span><p>ホームページの作成から、SNSやGoogleマップの運用、予約・シフトの管理、AIの導入まで、まるごと一緒に整えます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>相談できる相手がいない</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h5c"><span class="flip-tag">NORI&amp;TATEなら</span><p>いちばん近くの相談役として、一緒に悩み、一緒に決めます。</p></div></li>
+        <li class="flip"><div class="flip-pain"><span class="flip-tag">いまの困った</span><h3>値上げを言い出せない・販路が広がらない</h3></div><div class="flip-arrow" aria-hidden="true">→</div><div class="flip-hope h6c"><span class="flip-tag">NORI&amp;TATEなら</span><p>価値がきちんと伝わる見せ方と、新しいお客様に届く道をつくります。</p></div></li>
       </ol>
       <div class="cta-row"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
@@ -499,15 +534,15 @@ section{position:relative}
     <div class="wrap">
       <div class="sec-head sec-head--wide">
         <span class="s-label">What is NORI&amp;TATE</span>
-        <h2 class="s-title">引き継ぐ。育てる。<br>次の世代へ。</h2>
-        <p class="sec-lead"><b>NORI&amp;TATEは、あらゆる業種の中小企業の「続けたい」を、経営ごと引き継ぎ、育て、次の世代へつなぐ会社です。</b>外から助言するだけではありません。自ら経営の当事者になって、現場の皆さんと一緒に汗をかきます。いちばんに考えるのは、その会社にとって最善の形。事業承継ありきではありません。</p>
+        <h2 class="s-title">会社に合わせた、<br>3つの関わり方。</h2>
+        <p class="sec-lead">外から助言するだけではありません。自ら経営の当事者になって、現場の皆さんと一緒に汗をかきます。事業承継ありきではなく、その会社にとって最善の形を選びます。</p>
       </div>
     </div>
     <div class="hpin">
       <div class="htrack">
-        <article class="panel pc1"><span class="panel-num">01</span><span class="panel-en">Business Succession</span><h3 class="panel-title">引き継ぐ</h3><p class="panel-sub">事業を買い取り、経営を引き継ぐ</p><p class="panel-desc">後継者がいない事業を、M&amp;A（事業の譲り受け）で引き継ぎます。屋号も、技術も、従業員の皆さんの雇用も、取引先とのつながりも大切に守り、現場はこれまで通り続いていきます。</p></article>
-        <article class="panel pc2"><span class="panel-num">02</span><span class="panel-en">Management Support</span><h3 class="panel-title">伴走する</h3><p class="panel-sub">経営の立て直しと成長を、ともに担う</p><p class="panel-desc">事業承継が最善でないときは、経営はそのままに、私たちのノウハウで支えます。月々の定額でずっと伴走する形から、テーマを絞ったスポット支援まで。現場に入り込んで一緒に取り組み、経営者の方の相談役にもなります。</p></article>
-        <article class="panel pc3"><span class="panel-num">03</span><span class="panel-en">Next Generation</span><h3 class="panel-title">任せる</h3><p class="panel-sub">人を育て、次の経営者へ</p><p class="panel-desc">後継者や社員の皆さんの育成に力を注ぎ、ゆくゆくは事業をいちばんよく知るプロパー社員に経営を任せます。会社が、その会社の人の手で続いていく。それが私たちのゴールです。</p></article>
+        <article class="panel pc1"><span class="panel-num">01</span><span class="panel-en">Business Succession</span><h3 class="panel-title">引き継ぐ</h3><p class="panel-sub">事業を買い取り、経営を引き継ぐ</p><p class="panel-desc">M&amp;A（事業の譲り受け）で引き継ぎ、屋号も技術も雇用も、そのまま守ります。</p></article>
+        <article class="panel pc2"><span class="panel-num">02</span><span class="panel-en">Management Support</span><h3 class="panel-title">伴走する</h3><p class="panel-sub">経営の立て直しと成長を、ともに担う</p><p class="panel-desc">経営はそのままに、月々の定額や、テーマを絞ったスポットで支えます。</p></article>
+        <article class="panel pc3"><span class="panel-num">03</span><span class="panel-en">Next Generation</span><h3 class="panel-title">任せる</h3><p class="panel-sub">人を育て、次の経営者へ</p><p class="panel-desc">事業をいちばんよく知る社員の皆さんの手で、会社が続いていく形をつくります。</p></article>
       </div>
     </div>
   </section>
@@ -518,34 +553,27 @@ section{position:relative}
       <div class="sec-head sec-head--wide">
         <span class="s-label">Industries</span>
         <h2 class="s-title">業種の壁は、<br>ありません。</h2>
-        <p class="sec-lead">後継者や人材の悩みは、業種を選びません。小売・卸やモノづくり、飲食、サロン、工事・職人の世界まで。事業の価値と、そこで働く人を大切にする想いがあれば、どの業種でもご相談ください。</p>
+        <p class="sec-lead">後継者や人材の悩みは、業種を選びません。</p>
       </div>
       <ul class="ind-grid">
-        <li class="ind-card i1"><div class="ind-photo"><div class="media-img" data-bg="ind-manufacturing.jpg"></div></div><div class="ind-body"><span class="ind-en">Retail / Wholesale / Manufacturing</span><b class="ind-name">小売・卸／商社・モノづくり</b><span class="ind-desc">地域のお店から、卸・商社、町工場や製造業まで。代表は鉄鋼商社の出身で、ものづくりの業界を材料から製品まで幅広く見てきました。取引先とのつながりや技術を、次の世代へつなぎます。</span></div></li>
-        <li class="ind-card i2"><div class="ind-photo"><div class="media-img" data-bg="ind-food.jpg"></div></div><div class="ind-body"><span class="ind-en">Food &amp; Restaurant</span><b class="ind-name">飲食店・食品</b><span class="ind-desc">地域に愛されてきた味と、お客様とのつながりを守りながら、時代に合わせて育てます。</span></div></li>
-        <li class="ind-card i3"><div class="ind-photo"><div class="media-img" data-bg="ind-salon.jpg"></div></div><div class="ind-body"><span class="ind-en">Salon / Healthcare / Beauty</span><b class="ind-name">サロン・ヘルスケア・ビューティ</b><span class="ind-desc">施術者の技術と、通い続けてくださるお客様の信頼を引き継ぎ、集客や予約の仕組みも整えます。</span></div></li>
-        <li class="ind-card i4"><div class="ind-photo"><div class="media-img" data-bg="ind-craft.jpg"></div></div><div class="ind-body"><span class="ind-en">Construction &amp; Craftsmanship</span><b class="ind-name">各種工事業・職人業など</b><span class="ind-desc">建築・設備・内装などの工事業や、職人の手仕事まで。受け継がれてきた技と現場の信頼を、次の世代へつなぎます。</span></div></li>
+        <li class="ind-card i1"><div class="ind-photo"><div class="media-img" data-bg="ind-manufacturing.jpg"></div></div><div class="ind-body"><span class="ind-en">Retail / Wholesale / Manufacturing</span><b class="ind-name">小売・卸／商社・モノづくり</b><span class="ind-desc">地域のお店から、卸・商社、町工場や製造業まで。</span></div></li>
+        <li class="ind-card i2"><div class="ind-photo"><div class="media-img" data-bg="ind-food.jpg"></div></div><div class="ind-body"><span class="ind-en">Food &amp; Restaurant</span><b class="ind-name">飲食店・食品</b><span class="ind-desc">地域に愛されてきた味と、お客様とのつながりを守ります。</span></div></li>
+        <li class="ind-card i3"><div class="ind-photo"><div class="media-img" data-bg="ind-salon.jpg"></div></div><div class="ind-body"><span class="ind-en">Salon / Healthcare / Beauty</span><b class="ind-name">サロン・ヘルスケア・ビューティ</b><span class="ind-desc">技術とお客様の信頼を引き継ぎ、集客や予約も整えます。</span></div></li>
+        <li class="ind-card i4"><div class="ind-photo"><div class="media-img" data-bg="ind-craft.jpg"></div></div><div class="ind-body"><span class="ind-en">Construction &amp; Craftsmanship</span><b class="ind-name">各種工事業・職人業など</b><span class="ind-desc">建築・設備・内装の工事業から、職人の手仕事まで。</span></div></li>
       </ul>
-      <p class="ind-note">ここにない業種も、まずはお気軽にご相談ください。</p>
+      <p class="ind-note">ここにない業種も、お気軽にご相談ください。</p>
     </div>
   </section>
 
-  <!-- ── STRENGTH：ものづくりの現場で鍛えた、市場を読む力（2026-10-23。どの業界の社長さんにも伝わる言葉で） ── -->
+  <!-- ── STRENGTH：要点だけ（詳しくは strength.html） ── -->
   <section id="strength" class="sec sec--strength">
     <div class="wrap">
       <div class="sec-head sec-head--wide">
         <span class="s-label">Strength</span>
         <h2 class="s-title">ものづくりの現場で鍛えた、<br>市場を読む力。</h2>
-        <p class="sec-lead">代表は鉄鋼商社で、ものづくりの業界の「川上」（材料をつくるメーカー）から「川下」（製品を使うお客様）まで、幅広い取引を経験してきました。</p>
         <blockquote class="pull pull--strength">油まみれの下町の鉄工所から、<br>世界最先端の半導体装置メーカーまで。</blockquote>
-        <p class="sec-lead">大きな取引から小口の取引まで、モノとお金がどう流れ、どこで値段が決まるのか。その仕組みを知っているから、売り方や値上げの伝え方、販路づくりまで、戦略的なアドバイスができます。<br><b class="mk-line">この「市場を読む力」は、どの業界でも活かせます。</b></p>
+        <p class="sec-lead">代表は鉄鋼商社で、材料をつくるメーカーから製品を使うお客様まで、ものづくりの業界の幅広い取引を経験してきました。モノとお金の流れや値段の決まり方を知っているから、売り方や値上げの伝え方、販路づくりまで、戦略的なアドバイスができます。<br><b class="mk-line">この力は、どの業界でも活かせます。</b></p>
       </div>
-      <div class="range">
-        <div class="range-end range-end--l"><span class="range-tag">現場</span><b class="range-txt">職人さんや現場の方と<br>深く関わった現場仕事</b></div>
-        <div class="range-bar" aria-hidden="true"><span></span></div>
-        <div class="range-end range-end--r"><span class="range-tag">開発・経営</span><b class="range-txt">カーメーカーの開発者との商談、<br>新規戦略・新車種の開発</b></div>
-      </div>
-      <p class="range-cap">職人さんの現場から、自動車の開発者まで。<br>ものづくりを端から端まで知る、めずらしい経歴です。</p>
       <div class="chain" role="img" aria-label="材料をつくるメーカーから、商社・卸、加工・販売、製品を使うお客様までの流れ">
         <div class="chain-node cn1"><span class="chain-tag">川上</span><b>メーカー</b><span class="chain-sub">つくる</span></div>
         <span class="chain-arw" aria-hidden="true">→</span>
@@ -555,23 +583,41 @@ section{position:relative}
         <span class="chain-arw" aria-hidden="true">→</span>
         <div class="chain-node cn4"><span class="chain-tag">川下</span><b>お客様</b><span class="chain-sub">使う</span></div>
       </div>
-      <p class="chain-cap">川上から川下まで、モノとお金の流れの中で、どこで何が起きているかを知っています。</p>
-      <ol class="know-list">
-        <li class="know know--main"><span class="know-num">01</span><h3 class="know-title">市場の仕組みを読み解く</h3><p>どこで何がつくられ、どこへ流れ、どこで値段が決まっていくのか。業界の仕組みそのものを読み解くから、その会社が伸びる場所と、守るべき強みが見えてきます。</p></li>
-        <li class="know"><span class="know-num">02</span><h3 class="know-title">売る側と買う側、両方の事情が分かる</h3><p>つくる側の事情も、使う側の事情も分かるから、無理のない値上げや取引条件の交渉を、一緒に考えて進められます。</p></li>
-        <li class="know"><span class="know-num">03</span><h3 class="know-title">モノとお金の流れが分かる</h3><p>誰から誰へ、モノとお金がどう流れているのか。その流れをたどって、ムダを減らせるところや、新しい販路の糸口を見つけます。</p></li>
-        <li class="know"><span class="know-num">04</span><h3 class="know-title">業界ならではの、利益の決まり方が分かる</h3><p>手数料やマージンの決まり方は、業界ごとにちがいます（商社でいえば「口銭」）。それを踏まえて、利益がきちんと残る価格や取引条件を考えます。</p></li>
-        <li class="know"><span class="know-num">05</span><h3 class="know-title">お客様の「選び方」が分かる</h3><p>お客様がどこに声をかけ、どう比べて発注先を決めるのか。相見積もりの流れを知っているから、選ばれる会社になるための打ち手を、一緒に考えます。</p></li>
-        <li class="know know--main know--last"><span class="know-num">06</span><h3 class="know-title">どの業界でも活かせる、市場を読む力</h3><p>市場のどこにチャンスがあり、何に人・お金・時間を投じればよいか。ものづくりの世界で鍛えたこの見方は、業種がちがっても通用します。「伸びる場所」と「投じるべきもの」を、一緒に見つけます。</p></li>
-      </ol>
+      <div class="more-row"><a class="tlink tlink--more" href="strength.html">代表の強みを詳しく見る <span class="arw" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
-  <!-- ── BUSINESS：雑誌の見開きのように ── -->
-  <section id="business" class="sec sec--tint">
+  <!-- ── SERVICES：色とりどりのカードを横にめくる（トップは短い説明。全文は services.html） ── -->
+  <section id="services" class="sec">
+    <div class="wrap">
+      <div class="sec-head sec-head--wide sec-head--row">
+        <div>
+          <span class="s-label">Services</span>
+          <h2 class="s-title">会社が元気になる、<br>7つの道具。</h2>
+        </div>
+        <p class="sec-lead">引き継いだ事業や、ご相談いただいた会社の立て直しで、実際に使っている道具です。会社に合わせて組み合わせてご提供します。</p>
+      </div>
+    </div>
+    <div class="svc">
+      <div class="swiper svc-swiper"><div class="swiper-wrapper">
+        <article class="swiper-slide g-card"><span class="g-card-num">01 — Branding &amp; Marketing</span><h3 class="g-card-title">ターゲットの洗い出しと、選ばれる理由づくり</h3><p class="g-card-desc">自社の強みを、言葉と写真で伝わる形に整えます。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">02 — Website</span><h3 class="g-card-title">公式ホームページの新規立ち上げ・運用</h3><p class="g-card-desc">スマホで見やすく、社内で写真や文章を更新できるサイトをつくります。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">03 — Reservation &amp; EC</span><h3 class="g-card-title">予約・受注・販売の仕組みづくり</h3><p class="g-card-desc">LINEやWebからの予約・注文を、見積もりから担当者への通知まで一つの流れにします。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">04 — LINE &amp; SNS</span><h3 class="g-card-title">LINE・SNSでの集客と、お客様とのつながり</h3><p class="g-card-desc">LINE公式アカウントやSNSで、お客様に届く発信をお手伝いします。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">05 — Operations</span><h3 class="g-card-title">新しいシステムによる、作業の効率化・自動化</h3><p class="g-card-desc">複雑なシフト作成の自動化をはじめ、時間のかかる手作業を仕組みに置き換えます。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">06 — Product Development</span><h3 class="g-card-title">ニーズの分析と、商品展開・将来戦略のご提案</h3><p class="g-card-desc">市況とお客様のニーズを調べ、商品展開と将来の戦略をご提案します。</p></article>
+        <article class="swiper-slide g-card"><span class="g-card-num">07 — AI</span><h3 class="g-card-title">AIの導入と、使いこなすための指導</h3><p class="g-card-desc">日々の仕事にAIを取り入れ、社員の方が自分で使いこなせるまで指導します。</p></article>
+      </div></div>
+      <div class="wrap svc-nav"><button type="button" class="svc-prev" aria-label="前へ">←</button><div class="svc-bar"><span class="svc-bar__fill"></span></div><button type="button" class="svc-next" aria-label="次へ">→</button></div>
+    </div>
+    <div class="wrap more-row"><a class="tlink tlink--more" href="services.html">7つの道具を詳しく見る <span class="arw" aria-hidden="true">→</span></a></div>
+  </section>
+
+  <!-- ── CASE STUDY：こいまりの紹介とやったことを1つに（詳しくは works.html） ── -->
+  <section id="works" class="sec sec--tint">
     <div class="wrap">
       <div class="sec-head sec-head--wide">
-        <span class="s-label">Business</span>
+        <span class="s-label">Case Study</span>
         <h2 class="s-title" id="business-title">最初の一歩は、<br>街のケーキ屋さん。</h2>
       </div>
       <div class="feature">
@@ -580,117 +626,17 @@ section{position:relative}
           <span class="biz-location" id="business-location">No.01 — 大阪市城東区</span>
           <h3 class="biz-name" id="business-name">ケーキ屋さん こいまり 城東店</h3>
           <p class="biz-sub" id="business-sub">Cake Shop Koimari</p>
-          <div id="business-body">
-          <p class="biz-body js-fade d2">
+          <div id="business-body"><p class="biz-body js-fade d2">
             30年以上洋菓子の世界に携わってこられたオーナー様が、15年前に大阪市城東区で開かれた「ケーキ屋さん こいまり 城東店」。そのオーナー様の想いに共感し、NORI&amp;TATEが経営面のサポートに入らせていただくことになりました。
-          </p>
-          <p class="biz-body js-fade d3">
-            オーナー様も従業員のみなさんも、これまで通りお店に立ち続けています。私たちはその後ろ盾として、もっと地域に愛されるこいまりを一緒につくっていきます。
-          </p>
-          <p class="biz-body js-fade d3" style="margin-bottom:2rem;">
-            ご愛好いただいているお客様、支えてくださっている地域の皆様。これまでの大切なものはそのままに、これからの新しい価値も少しずつ積み上げていけたらと考えています。
-          </p>
-          </div>
-          <div class="link-row">
-            <a class="biz-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B1%E3%83%BC%E3%82%AD%E5%B1%8B%E3%81%95%E3%82%93%20%E3%81%93%E3%81%84%E3%81%BE%E3%82%8A%20%E5%9F%8E%E6%9D%B1%E5%BA%97" target="_blank" rel="noopener noreferrer">Googleマップで見る &nbsp;›</a>
-            <a class="biz-link" href="https://www.instagram.com/_koimari_/" target="_blank" rel="noopener noreferrer">Instagramを見る &nbsp;›</a>
-            <img class="biz-qr" src="koimari-instagram-qr.png" alt="こいまり公式Instagram QRコード" width="72" height="72" loading="lazy">
-          </div>
+          </p></div>
+          <ol class="case-list">
+            <li><span class="cn">01</span><b>公式ホームページの全面リニューアル</b></li>
+            <li><span class="cn">02</span><b>季節・イベントの特設ページ</b></li>
+            <li><span class="cn">03</span><b>LINEで完結するケーキの予約</b></li>
+            <li><span class="cn">04</span><b>営業日カレンダーと、店舗運営の仕組み化</b></li>
+          </ol>
+          <div class="link-row"><a class="tlink tlink--more" href="works.html">取り組みを詳しく見る <span class="arw" aria-hidden="true">→</span></a><a class="tlink" href="https://koimari-official.github.io/koimari-site/" target="_blank" rel="noopener">こいまりの公式サイト</a></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SERVICES：色とりどりのカードを横にめくる ── -->
-  <section id="services" class="sec">
-    <div class="wrap">
-      <div class="sec-head sec-head--wide sec-head--row">
-        <div>
-          <span class="s-label">Services</span>
-          <h2 class="s-title">会社が元気になる、<br>7つの道具。</h2>
-        </div>
-        <p class="sec-lead">引き継いだ事業や、ご相談いただいた会社の立て直しで、私たちが実際に使っている道具です。机の上の提案ではなく、経営の当事者として現場で試し、手応えを確かめてきたものばかり。会社に合わせて組み合わせ、月々の伴走でも、テーマごとのスポットでもご提供します。</p>
-      </div>
-    </div>
-    <div class="svc">
-      <div class="swiper svc-swiper"><div class="swiper-wrapper"><article class="swiper-slide g-card">
-            <div class="g-card-bar bar-a"></div>
-            <span class="g-card-num">01 — Branding &amp; Marketing</span>
-            <h3 class="g-card-title">ターゲットの洗い出しと、選ばれる理由づくり</h3>
-            <p class="g-card-desc">お客様・取引先の層や、選ばれるきっかけ、競合を整理し、自社の強みを言葉と写真で伝わる形に整えます。商品・サービスの説明やキャッチコピー、キャンペーンごとの特設ページまで、一貫した世界観でつくります。</p>
-          </article>
-<article class="swiper-slide g-card">
-            <div class="g-card-bar bar-b"></div>
-            <span class="g-card-num">02 — Website</span>
-            <h3 class="g-card-title">公式ホームページの新規立ち上げ・運用</h3>
-            <p class="g-card-desc"><strong>公式ホームページの新規立ち上げ</strong>から、今あるサイトのリニューアルまで。スマホで見やすいサイトを制作し、社内の方が自分で写真や文章を更新できる管理画面を備えます。営業日カレンダーや英語表示、検索・AI検索への対策など、業種に合わせた機能にも対応します。</p>
-          </article>
-<article class="swiper-slide g-card">
-            <div class="g-card-bar bar-c"></div>
-            <span class="g-card-num">03 — Reservation &amp; EC</span>
-            <h3 class="g-card-title">予約・受注・販売の仕組みづくり</h3>
-            <p class="g-card-desc">LINEやWebからの予約・注文・お問い合わせ、内容に応じた見積もりの自動計算、一覧・カレンダーでの管理、担当者への通知までを一つの流れにします。ネットショップ（ECサイト）の立ち上げもご相談いただけます。</p>
-          </article>
-<article class="swiper-slide g-card">
-            <div class="g-card-bar bar-d"></div>
-            <span class="g-card-num">04 — LINE &amp; SNS</span>
-            <h3 class="g-card-title">LINE・SNSでの集客と、お客様とのつながり</h3>
-            <p class="g-card-desc">LINE公式アカウントの自動返信やリッチメニュー、クーポンなどの施策を設計します。InstagramなどSNSの反応を分析し、伝わる投稿づくりと、商品・サービス・会社のPRをお手伝いします。</p>
-          </article>
-<article class="swiper-slide g-card">
-            <div class="g-card-bar bar-a"></div>
-            <span class="g-card-num">05 — Operations</span>
-            <h3 class="g-card-title">新しいシステムによる、作業の効率化・自動化</h3>
-            <p class="g-card-desc">人数や勤務条件が絡み合う<strong>複雑なシフト作成の自動化</strong>をはじめ、勤怠・給与計算、レシートを読み取る経費精算、原価計算と価格表の自動連動など、手作業で時間がかかっていた業務を、会社に合わせた仕組みに置き換えます。</p>
-          </article>
-<article class="swiper-slide g-card">
-            <div class="g-card-bar bar-b"></div>
-            <span class="g-card-num">06 — Product Development</span>
-            <h3 class="g-card-title">ニーズの分析と、商品展開・将来戦略のご提案</h3>
-            <p class="g-card-desc">市況やお客様のニーズを調べ、得意先・お客様が何を必要としているかを分析して、自社製品や取り扱い商品の展開をご提案します。将来の戦略も含めて、経営陣・従業員の皆さまと一緒に考えていきます。</p>
-          </article>
-<article class="swiper-slide g-card">
-            <div class="g-card-bar bar-c"></div>
-            <span class="g-card-num">07 — AI</span>
-            <h3 class="g-card-title">AIの導入と、使いこなすための指導</h3>
-            <p class="g-card-desc">文章や資料づくり、問い合わせ対応、データの整理など、日々の仕事にAIを取り入れる方法を、会社の業務に合わせてご提案します。導入して終わりではなく、社員の方が自分で使いこなせるようになるまで指導します。</p>
-          </article></div></div>
-      <div class="wrap svc-nav"><button type="button" class="svc-prev" aria-label="前へ">←</button><div class="svc-bar"><span class="svc-bar__fill"></span></div><button type="button" class="svc-next" aria-label="次へ">→</button></div>
-    </div>
-  </section>
-
-  <!-- ── CASE STUDY：写真と文章を左右交互に ── -->
-  <section id="works" class="sec">
-    <div class="wrap">
-      <div class="sec-head sec-head--wide">
-        <span class="s-label">Case Study</span>
-        <h2 class="s-title">こいまりで、<br>実際にやったこと。</h2>
-        <p class="sec-lead">事業承継した「ケーキ屋さん こいまり 城東店」での取り組みの一部です。業種が変わっても、課題を見つけ、仕組みで解決するという考え方は同じです。</p>
-      </div>
-      <div class="zig">
-        <article class="zig-item"><div class="zig-media"><img src="works/site.jpg" alt="ケーキ屋さん こいまり 城東店 公式サイト" loading="lazy"></div><div class="zig-text"><span class="zig-num">01</span><span class="zig-en">Website / Branding</span><h3 class="zig-title">公式ホームページの全面リニューアル</h3><p>「フルーツリッチで満足度の高いケーキ屋さん」という強みが伝わるよう、写真の見せ方・言葉選び・ページ構成を見直しました。お店の方が写真や文章をその場で更新できる管理画面も整えています。</p></div></article>
-        <article class="zig-item"><div class="zig-media"><img src="works/special.jpg" alt="ハロウィンフェア特設ページ" loading="lazy"></div><div class="zig-text"><span class="zig-num">02</span><span class="zig-en">Seasonal Campaign</span><h3 class="zig-title">季節・イベントの特設ページ</h3><p>ハロウィンやクリスマスなど、イベントごとに配色・飾り・動きが切り替わる特設ページの仕組みをつくりました。お知らせを書くだけで、関連商品が並んだにぎやかなページになり、トップページにも自動で掲載されます。</p></div></article>
-        <article class="zig-item"><div class="zig-media zig-media--pair"><img src="works/phone-top.jpg" alt="スマートフォンで見たトップページ" loading="lazy"><img src="works/phone-reserve.jpg" alt="LINEから開く予約フォーム" loading="lazy"></div><div class="zig-text"><span class="zig-num">03</span><span class="zig-en">Reservation / LINE</span><h3 class="zig-title">LINEで完結するケーキの予約</h3><p>写真から選んだケーキの仕様がそのまま入る予約フォーム、見積もりの自動計算、受付・確定・前日のリマインドの自動送信まで、LINEの中で完結する流れにしました。スタッフの電話対応や確認の手間を減らしています。</p></div></article>
-        <article class="zig-item"><div class="zig-media"><img src="works/calendar.jpg" alt="営業日カレンダー" loading="lazy"></div><div class="zig-text"><span class="zig-num">04</span><span class="zig-en">Operations</span><h3 class="zig-title">営業日カレンダーと、店舗運営の仕組み化</h3><p>定休日・祝日・特別営業時間が自動で反映される営業日カレンダーをはじめ、シフトの作成・修正、勤怠と給与の計算、経費精算など、日々の業務を一つずつ仕組みに置き換えてきました。</p><a class="tlink" href="https://koimari-official.github.io/koimari-site/" target="_blank" rel="noopener">こいまりの公式サイトを見る</a></div></article>
-      </div>
-    </div>
-  </section>
-
-  <div class="band band--opt" aria-hidden="true"><div class="band-img" id="bg-growth"></div></div>
-
-  <!-- ── KEY PRINCIPLES：伸びていく4本の柱 ── -->
-  <section id="growth" class="sec sec--tint">
-    <div class="wrap">
-      <div class="sec-head sec-head--wide">
-        <span class="s-label">Key Principles</span>
-        <h2 class="s-title" id="growth-title">会社が伸びる、<br>4本の柱。</h2>
-        <p class="sec-lead" id="growth-lead">引き継いだ事業を育てるとき、NORI&amp;TATEが大切にしている4本の柱です。オーナーの想いと現場の良さを活かしながら、無理なく、でも着実に伸ばしていきます。</p>
-      </div>
-      <div class="pillars">
-        <article class="pillar pl1"><div class="pillar-bar" aria-hidden="true"><span></span></div><span class="pillar-num">01</span><span class="pillar-en">Recruitment &amp; Training</span><h3 class="pillar-title" id="growth-card-1-title">採用・育成による現場の強化</h3><p class="pillar-desc" id="growth-card-1-desc">現場を支える人材の採用計画から育成体制の構築まで、事業の実情に合わせて取り組みます。技術と知識が次の世代へ確実に引き継がれる仕組みをつくります。</p></article>
-        <article class="pillar pl2"><div class="pillar-bar" aria-hidden="true"><span></span></div><span class="pillar-num">02</span><span class="pillar-en">Marketing</span><h3 class="pillar-title" id="growth-card-2-title">マーケティングによる企業価値の創出・探求</h3><p class="pillar-desc" id="growth-card-2-desc">マーケティングの視点から事業の強みを掘り起こし、地域に根ざしたブランドづくりと集客の仕組みを整えます。事業固有の価値を発信し、新たな顧客との接点を創出します。</p></article>
-        <article class="pillar pl3"><div class="pillar-bar" aria-hidden="true"><span></span></div><span class="pillar-num">03</span><span class="pillar-en">Management Visualization</span><h3 class="pillar-title" id="growth-card-3-title">数字と業務の見える化・仕組み化</h3><p class="pillar-desc" id="growth-card-3-desc">経営状況・業務フロー・財務数値を可視化し、属人化していた判断を「仕組み」へ変えます。経営者が安心して次のステップを描けるよう、管理体制を整備します。</p></article>
-        <article class="pillar pl4"><div class="pillar-bar" aria-hidden="true"><span></span></div><span class="pillar-num">04</span><span class="pillar-en">Next Generation Structure</span><h3 class="pillar-title" id="growth-card-4-title">次世代を担う経営体制づくり</h3><p class="pillar-desc" id="growth-card-4-desc">後継者の選定・育成から、経営移行のシナリオ設計まで。オーナーの想いを引き継ぎながら、無理のない形で次世代への橋渡しをサポートします。</p></article>
       </div>
     </div>
   </section>
@@ -703,33 +649,13 @@ section{position:relative}
         <h2 class="s-title">はじめ方は、<br>かんたん4ステップ。</h2>
       </div>
       <ol class="timeline">
-        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 01 — Hearing</span><h3 class="tl-title">お話をお聞かせください</h3><p>お店やお仕事のいま、困っていること、これからやりたいことを、気軽にお話しください。</p></li>
-        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 02 — Research</span><h3 class="tl-title">いまを一緒に整理</h3><p>お客様・商品・業務の流れを整理して、どこから手を付けるといちばん効くかを見極めます。</p></li>
-        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 03 — Proposal</span><h3 class="tl-title">ご提案とお見積もり</h3><p>事業承継・継続的な伴走支援・スポット支援の中から、その会社にいちばん合う形と優先順位をご提案し、お見積もりをお出しします。小さく始めることもできます。</p></li>
-        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 04 — Build &amp; Support</span><h3 class="tl-title">つくって、一緒に育てる</h3><p>つくって終わりではありません。実際に使いながら、一緒に改善を続けます。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 01 — Hearing</span><h3 class="tl-title">お話をお聞かせください</h3><p>いま困っていること、これからやりたいことを、気軽にお話しください。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 02 — Research</span><h3 class="tl-title">いまを一緒に整理</h3><p>どこから手を付けるといちばん効くかを見極めます。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 03 — Proposal</span><h3 class="tl-title">ご提案とお見積もり</h3><p>いちばん合う形をご提案します。小さく始めることもできます。</p></li>
+        <li class="tl-step"><span class="tl-dot" aria-hidden="true"></span><span class="tl-num">Step 04 — Build &amp; Support</span><h3 class="tl-title">つくって、一緒に育てる</h3><p>実際に使いながら、改善を続けます。</p></li>
         <li class="tl-line" aria-hidden="true"><span class="tl-fill"></span></li>
       </ol>
       <div class="cta-row cta-row--center"><a class="btn" href="#contact">まずは話してみる <span class="arw" aria-hidden="true">→</span></a></div>
-    </div>
-  </section>
-
-  <!-- ── JOIN（黒） ── -->
-  <section id="join" class="sec">
-    <div class="wrap split split--join">
-      <div class="sec-head">
-        <span class="s-label">Join</span>
-        <h2 class="s-title" id="join-title">ともに、<br>次の一歩を。</h2>
-      </div>
-      <div>
-        <p class="join-lead" id="join-lead">長年かけて育ててきた事業を、誰にどう引き継ぐか。それは経営者の方にとって、人生の大きな決断だと思います。<br><br>技術、人、地域とのつながり。積み重ねてきたものを、単なる売買として手放すのではなく、その価値を分かってくれる相手に、きちんと渡したい。私たちは、そう考える経営者の方と一緒に進んでいきたいと考えています。<br><br>こんな想いをお持ちなら、ぜひ気軽にお声がけください。</p>
-        <ul class="join-list" id="join-items">
-          <li>事業を続けたいが、後継者が見つからない</li>
-          <li>従業員や取引先を大切にしながら引き継ぎたい</li>
-          <li>一人で抱え込まず、一緒に考えてくれる相手が欲しい</li>
-          <li>引退後も、事業の成長を見届けたい</li>
-        </ul>
-        <a class="btn btn--light" href="#contact"><span id="join-btn-text">まずは話をお聞かせください</span> <span class="arw" aria-hidden="true">→</span></a>
-      </div>
     </div>
   </section>
 
@@ -741,13 +667,13 @@ section{position:relative}
         <h2 class="s-title" id="name-title">ノリと、<br>縦上がり。</h2>
       </div>
       <div class="name-photo"><div class="media-img" id="bg-name" data-bg="ameft.jpg.jpg"></div></div>
-      <p class="s-body name-intro" id="name-intro">社名は、私が学生時代からアメリカンフットボールをランニングバックとしてプレーする中で生まれた合言葉、「ノリと縦上がり」に由来しています。環境や前例にとらわれず、自ら判断し、責任を持って前へ進む。私が心がける経営の在り方そのものです。</p>
+      <p class="s-body name-intro" id="name-intro">社名は、私が学生時代からアメリカンフットボールをランニングバックとしてプレーする中で生まれた合言葉、「ノリと縦上がり」に由来しています。</p>
       <div class="name-duo">
-        <div class="duo duo--nori"><p class="name-word" id="name-word-nori">ノリ（NORI）</p><p class="name-def" id="name-def-nori">ボールを持ち全速力で走りながら、味方の状況や相手の動きを感じ、最も前進できる最善のルートを瞬時に察知する能力。</p></div>
+        <div class="duo duo--nori"><p class="name-word" id="name-word-nori">ノリ（NORI）</p><p class="name-def" id="name-def-nori">最も前進できる最善のルートを、瞬時に察知する力。</p></div>
         <div class="duo-plus" aria-hidden="true">＋</div>
-        <div class="duo duo--tate"><p class="name-word" id="name-word-tate">縦上がり（TATE）</p><p class="name-def" id="name-def-tate">壁や相手にぶち当たりながらも臆さずに最善のルートを最短距離で、全速力で突き進む強い意志。</p></div>
+        <div class="duo duo--tate"><p class="name-word" id="name-word-tate">縦上がり（TATE）</p><p class="name-def" id="name-def-tate">壁にぶち当たっても臆さず、最短距離で突き進む強い意志。</p></div>
       </div>
-      <p class="name-foot" id="name-foot">この二つを重ねた言葉が、「ノリと縦上がり」。<br>ノリタテ（株式会社ＮＯＲＩ＆ＴＡＴＥ）の由来です。</p>
+      <p class="name-foot" id="name-foot">環境や前例にとらわれず、自ら判断し、責任を持って前へ進む。<br>私が心がける経営の在り方そのものです。</p>
     </div>
   </section>
 
@@ -765,6 +691,7 @@ section{position:relative}
             <tr><th scope="row">設立</th><td id="co-founded">2026年4月6日</td></tr>
             <tr><th scope="row">代表取締役</th><td id="co-ceo">吉田　光輝</td></tr>
             <tr><th scope="row">生年月日</th><td id="co-birthday">1991年12月16日</td></tr>
+            <tr><th scope="row">従業員</th><td id="co-employees">正規雇用2名、アルバイト3名<br>（2026年10月現在）</td></tr>
             <tr><th scope="row">所在地</th><td id="co-address">大阪市城東区成育2丁目13-15<br>アイビーマンション103号室</td></tr>
             <tr><th scope="row">連絡先</th><td>090-1243-6770<br><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a></td></tr>
             <tr><th scope="row">事業内容</th><td id="co-business">事業承継（M&amp;Aによる経営の引き継ぎ）<br>中小企業の経営支援・コンサルティング（継続支援・スポット支援）<br>ホームページ・SNS戦略の構築、AI導入・活用指導<br>後継者・人材の育成支援<br>洋菓子製造・小売、卸業（ケーキ屋さん こいまり 城東店）</td></tr>
@@ -774,14 +701,23 @@ section{position:relative}
     </div>
   </section>
 
-  <!-- ── CONTACT ── -->
+  <!-- ── CONTACT：旧Join欄の「こんな想いをお持ちなら」をここに統合（「大きな決断」の話は1回だけ） ── -->
   <section id="contact" class="sec">
     <div class="contact-strip" aria-hidden="true"><div class="media-img" id="bg-contact" data-bg="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=70&auto=format&fit=crop"></div></div>
     <div class="wrap split split--contact">
       <div class="sec-head">
         <span class="s-label">Contact</span>
         <h2 class="s-title" id="contact-title">まずは気軽に、<br>話してみませんか。</h2>
-        <p class="ct-lead" id="contact-lead">事業承継は、経営者の方にとって一生に一度の大きな決断です。だからこそ、判断を急かすようなことはしません。<br><br>まずは、いまのことを気軽に聞かせてください。私たちでお役に立てるかどうか、一緒に考えましょう。</p>
+        <p class="ct-lead" id="contact-lead">事業の引き継ぎは、一生に一度の大きな決断です。だからこそ、判断を急かすことはしません。まずは、いまのことを気軽にお聞かせください。</p>
+        <div class="ct-wish">
+          <p class="ct-wish-ttl">こんな想いをお持ちなら、ぜひご相談ください。</p>
+          <ul id="join-items">
+            <li>事業を続けたいが、後継者が見つからない</li>
+            <li>従業員や取引先を大切にしながら引き継ぎたい</li>
+            <li>一人で抱え込まず、一緒に考えてくれる相手が欲しい</li>
+            <li>引退後も、事業の成長を見届けたい</li>
+          </ul>
+        </div>
         <ul class="ct-info">
           <li><span>Tel</span><a href="tel:09012436770">090-1243-6770</a></li>
           <li><span>Mail</span><a href="mailto:noritate.official@gmail.com">noritate.official@gmail.com</a></li>
@@ -853,7 +789,7 @@ section{position:relative}
   </div>
   <div class="ft-bottom">
     <span class="ft-logo">NORI&amp;TATE Co., Ltd.</span>
-    <nav class="ft-nav"><a href="#top">Top</a><a href="#concept">Concept</a><a href="#vision">Vision</a><a href="#issues">Issues</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a><a href="#strength">Strength</a><a href="#business">Business</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#growth">Key Principles</a><a href="#process">Process</a><a href="#join">Join</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a></nav>
+    <nav class="ft-nav"><a href="#top">Top</a><a href="#concept">Concept</a><a href="#issues">Issues</a><a href="#whatwedo">What We Do</a><a href="#industries">Industries</a><a href="#strength">Strength</a><a href="#services">Services</a><a href="#works">Case Study</a><a href="#process">Process</a><a href="#name">Name</a><a href="#company">Company</a><a href="#contact">Contact</a><a href="privacy.html">Privacy Policy</a><a href="admin.html">Admin</a></nav>
     <div class="ft-line"></div>
     <p class="ft-copy">&copy; 2026 株式会社NORI&amp;TATE. All Rights Reserved.</p>
     <p class="ft-copy ft-credit">写真（Wikimedia Commons）：<a href="https://commons.wikimedia.org/wiki/File:Steel_coil_and_machinery_-_geograph.org.uk_-_8200249.jpg" target="_blank" rel="noopener">「Steel coil and machinery」Adrian Taylor</a>（<a href="https://creativecommons.org/licenses/by-sa/2.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:Mochi_including_dango_(8604909107).jpg" target="_blank" rel="noopener">「Mochi including dango」Pete Birkinshaw</a>（<a href="https://creativecommons.org/licenses/by/2.0/deed.ja" target="_blank" rel="noopener">CC BY 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:Interior_view_of_modern_beauty_salon.jpg" target="_blank" rel="noopener">「Interior view of modern beauty salon」Shixart1985</a>（<a href="https://creativecommons.org/licenses/by/2.0/deed.ja" target="_blank" rel="noopener">CC BY 2.0</a>）／<a href="https://commons.wikimedia.org/wiki/File:160312_Takenaka_Carpentry_Tools_Museum_Kobe_Japan16s.jpg" target="_blank" rel="noopener">「Takenaka Carpentry Tools Museum Kobe Japan」663highland</a>（<a href="https://creativecommons.org/licenses/by/2.5/deed.ja" target="_blank" rel="noopener">CC BY 2.5</a>）</p>
@@ -895,15 +831,26 @@ section{position:relative}
     if (lenis) lenis.scrollTo(t, { offset: off, duration: 1.4, onComplete: fix });
     else window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset + off, behavior: reduce ? 'auto' : 'smooth' });
   });
+  // ── スマホの「相談してみる」：最初の画面（同じボタンがある）では文字に重なるので隠し、読み進めたら出す ──
+  var fab = document.querySelector('.mobile-fab'), heroEl = document.getElementById('top');
+  if (fab && heroEl && 'IntersectionObserver' in window) {
+    fab.classList.add('fab-wait');
+    new IntersectionObserver(function (ents) { fab.classList.toggle('fab-wait', ents[0].isIntersecting); }, { threshold: 0.35 }).observe(heroEl);
+  }
   function onScroll() { hdr.classList.toggle('scrolled', window.pageYOffset > 30); }
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-  // ── 管理画面で「事業成長の心得」の写真が設定された時だけ帯を出す（写真が変わった時だけ反応。動きの処理も style を書き換えるため） ──
-  var opt = document.getElementById('bg-growth'), optLast = opt ? opt.style.backgroundImage : '';
-  if (opt) new MutationObserver(function () {
-    var v = opt.style.backgroundImage; if (v === optLast) return; optLast = v;
-    opt.parentNode.classList.toggle('has-img', !!v); if (window.ScrollTrigger) ScrollTrigger.refresh();
-  }).observe(opt, { attributes: true, attributeFilter: ['style'] });
+  // ── 別ページから「トップの〇〇」へ来たとき：写真の読み込みや横に流れるパネルの固定で高さが変わった後、目的の位置に合わせ直す（自分で動かし始めたら何もしない） ──
+  var userMoved = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, function () { userMoved = true; }, { passive: true, once: true }); });
+  function toHash() {
+    if (userMoved || location.hash.length < 2) return;
+    var t = null; try { t = document.querySelector(location.hash); } catch (e) {}
+    if (!t) return;
+    var y = t.getBoundingClientRect().top + window.pageYOffset - (hdr.offsetHeight - 1);
+    if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else window.scrollTo(0, y);
+  }
+  window.addEventListener('load', function () { setTimeout(toHash, 60); });
 
   // ── 写真は画面に近づいてから読み込む（最初の表示を軽くする。解像度はそのまま）。管理画面で写真が設定されていれば、そちらを優先 ──
   var lazyEls = [].slice.call(document.querySelectorAll('[data-bg]'));
@@ -925,6 +872,7 @@ section{position:relative}
 
   if (reduce || !window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
+  gsap.config({ nullTargetWarn: false });  // トップと別ページで同じ動きの設定を使う（そのページに無い部品は飛ばす）
   if (window.SplitText) gsap.registerPlugin(SplitText);
   if (window.Lenis) {
     lenis = new Lenis({ lerp: 0.1 });
@@ -941,11 +889,12 @@ section{position:relative}
   gsap.to('.hero-img', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
 
   document.fonts.ready.then(function () {
-    if (window.SplitText) {
+    if (window.SplitText && document.getElementById('hero-catch')) {
       var hc = SplitText.create('#hero-catch', { type: 'chars', mask: 'chars' });
       gsap.from(hc.chars, { yPercent: 110, duration: 1.1, ease: 'power4.out', stagger: 0.045, delay: 0.3 });
     }
     ScrollTrigger.refresh();
+    toHash();
   });
 
   // ① 見出し（文字は分けない＝日本語の改行ルールを守る）
@@ -955,7 +904,7 @@ section{position:relative}
   gsap.utils.toArray('.s-label').forEach(function (el) { gsap.from(el, { opacity: 0, x: -14, duration: 0.8, ease: E, scrollTrigger: { trigger: el, start: 'top 90%' } }); });
 
   // ② ブロックのフェードイン
-  gsap.utils.toArray('.sec-lead, .story-body > p, .vision-text, .ind-card, .ind-note, .feature-text > *, .zig-text, .tl-step, .join-lead, .join-list li, .name-intro, .name-foot, .co-table, .ct-info, .ct-box, .cta-row, .svc-nav').forEach(function (el) {
+  gsap.utils.toArray('.sec-lead, .story-body > p, .vision-text, .ind-card, .ind-note, .feature-text > *, .zig-text, .tl-step, .case-list li, .ct-wish li, .name-intro, .name-foot, .co-table, .ct-info, .ct-box, .cta-row, .svc-nav, .more-row, .svc-grid .g-card').forEach(function (el) {
     gsap.from(el, { opacity: 0, y: 34, duration: 1, ease: E, scrollTrigger: { trigger: el, start: 'top 90%' } });
   });
 
@@ -989,6 +938,7 @@ section{position:relative}
   var mm = gsap.matchMedia();
   mm.add('(min-width: 901px)', function () {
     var track = document.querySelector('.htrack'), pin = document.querySelector('.hpin');
+    if (!track || !pin) return;
     var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
     var tw = gsap.to(track, { x: function () { return -dist(); }, ease: 'none',
       scrollTrigger: { trigger: pin, start: 'top 14%', end: function () { return '+=' + dist(); }, pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 } });
@@ -1008,10 +958,6 @@ section{position:relative}
 
   // 7つの道具：カードが順に入ってくる
   gsap.from('.svc .swiper-slide', { opacity: 0, x: 60, duration: 0.9, stagger: 0.08, ease: E, scrollTrigger: { trigger: '.svc', start: 'top 85%' } });
-
-  // 4本の柱：下から伸びる
-  gsap.from('.pillar-bar span', { scaleY: 0, duration: 1.3, stagger: 0.16, ease: E, scrollTrigger: { trigger: '.pillars', start: 'top 80%' } });
-  gsap.from('.pillar-num, .pillar-en, .pillar-title, .pillar-desc', { opacity: 0, y: 20, duration: 0.8, stagger: 0.04, ease: E, scrollTrigger: { trigger: '.pillars', start: 'top 75%' } });
 
   // はじめ方：線が伸び、点が順に現れる
   gsap.fromTo('.tl-fill', { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.timeline', start: 'top 70%', end: 'bottom 65%', scrub: true } });
@@ -1187,9 +1133,11 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
     setHtml("join-lead", c.join.lead);
     if (c.join.items) {
       const items = c.join.items.split("\n").map(s => s.trim()).filter(Boolean);
-      document.getElementById("join-items").innerHTML = items.map(i => `<li>${escapeHtml(i)}</li>`).join("");
+      const joinItems = document.getElementById("join-items");
+      if (joinItems) joinItems.innerHTML = items.map(i => `<li>${escapeHtml(i)}</li>`).join("");
     }
-    if (c.join.btnText) document.getElementById("join-btn-text").textContent = c.join.btnText;
+    const joinBtn = document.getElementById("join-btn-text");
+    if (c.join.btnText && joinBtn) joinBtn.textContent = c.join.btnText;
   }
   if (c.company) {
     setBg("bg-company", c.company.bg);
@@ -1199,6 +1147,7 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
     setHtml("co-founded", c.company.founded);
     setHtml("co-ceo", c.company.ceo);
     setHtml("co-birthday", c.company.birthday);
+    setHtml("co-employees", c.company.employees);
     setHtml("co-address", c.company.address);
     setHtml("co-business", c.company.business);
   }
@@ -1217,7 +1166,7 @@ onValue(ref(contentDb, "noritate/content"), (snapshot) => {
 <script type="module">
 import { loadDefaultJapaneseParser } from 'https://cdn.jsdelivr.net/npm/budoux@0.9.3/+esm';
 const parser = loadDefaultJapaneseParser();
-const SEL = '.g-card-title, .know-title, .chain-cap, .range-cap, .pull, .biz-name, .name-word, .join-list li, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .pillar-title, .panel-sub, .ind-name, .ft-tag, .v-text';
+const SEL = '.s-title, .g-card-title, .know-title, .chain-cap, .range-cap, .pull, .biz-name, .name-word, .flip-pain h3, .flip-hope p, .zig-title, .tl-title, .panel-sub, .ind-name, .case-list b, .ct-wish li, .ft-tag, .v-text';
 const done = new WeakMap();
 function apply() {
   document.querySelectorAll(SEL).forEach((el) => {
